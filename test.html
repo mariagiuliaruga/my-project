@@ -1,22 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         h1 {
-            font-family: 'Lobster', sans-serif;
+            font-family: 'fantasy';
             font-size: 90px;
             text-align: center;
-            color: fuchsia; 
+            color: rgb(21, 181, 221); 
+        }
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f0f0;
+            transition: background 1s ease;
         }
     </style>
 </head>
 <body>
-    <h1>BUONPROSEGUIMENTODIGIORNATA</h1>
-    ciao siamo le piu fighe
-    provaaaaaaaaaaaa rlelle
+    <h1>PIOVE</h1>
+    <p>ciao siamo top rimaste</p>
+
+    <script>
+        const colors = [
+            'rgb(255, 99, 71)',   // Tomato
+            'rgb(60, 179, 113)',  // MediumSeaGreen
+            'rgb(30, 144, 255)',  // DodgerBlue
+            'rgb(238, 130, 238)', // Violet
+            'rgb(255, 215, 0)',   // Gold
+            'rgb(255, 69, 0)'     // OrangeRed
+        ];
+
+        let colorIndex = 0;
+        setInterval(() => {
+            document.body.style.backgroundColor = colors[colorIndex];
+            colorIndex = (colorIndex + 1) % colors.length;
+        }, 2000); // Cambia colore ogni 2 secondi
+    </script>
 </body>
 </html>
