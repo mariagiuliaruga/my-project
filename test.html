@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,36 +12,18 @@
             text-align: center;
             color: rgb(21, 181, 221); 
         }
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #f0f0f0;
-            transition: background 1s ease;
+
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 60%; /* Puoi regolare la dimensione */
+            border-radius: 10px; /* Aggiungi bordi arrotondati se desideri */
         }
     </style>
 </head>
 <body>
+    <img src="th.jpeg" alt="Immagine Moda"> <!-- Assicurati che l'immagine sia nella stessa cartella -->
     <h1>PIOVE</h1>
-    <p>ciao siamo top rimaste</p>
-
-    <script>
-        const colors = [
-            'rgb(255, 99, 71)',   // Tomato
-            'rgb(60, 179, 113)',  // MediumSeaGreen
-            'rgb(30, 144, 255)',  // DodgerBlue
-            'rgb(238, 130, 238)', // Violet
-            'rgb(255, 215, 0)',   // Gold
-            'rgb(255, 69, 0)'     // OrangeRed
-        ];
-
-        let colorIndex = 0;
-        setInterval(() => {
-            document.body.style.backgroundColor = colors[colorIndex];
-            colorIndex = (colorIndex + 1) % colors.length;
-        }, 2000); // Cambia colore ogni 2 secondi
-    </script>
+    ciao siamo top rimaste
 </body>
 </html>
