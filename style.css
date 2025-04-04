@@ -23,30 +23,20 @@ body {
     box-shadow: 0 10px 5px rgba(0,0,0,0.1);
 }
 
-.titolo{
+
+.titolo {
     position: relative;
     font-family: 'Pacifico', cursive;
-    font-size: 3rem;
+    font-size: 3vw; /* Utilizza unità vw per una dimensione del testo reattiva */
     font-weight: bolder;
-    color: rgb(247, 101, 227); 
+    color: rgb(247, 101, 227);
     margin-top: -1.25rem;
-    text-shadow: 
-        -0.0625rem -0.0625rem 0 #343234,
-        0.0625rem -0.0625rem 0 #343234,
-        -0.0625rem 0.0625rem 0 #343234,
+    text-shadow:
         0.0625rem 0.0625rem 0 #343234,
-        -0.125rem -0.125rem 0.125rem #343234,
-        0.125rem -0.125rem 0.125rem #343234,
-        -0.125rem 0.125rem 0.125rem #343234,
-        0.125rem 0.125rem 0.125rem #343234,
-        -0.1875rem -0.1875rem 0.25rem #343234,
-        0.1875rem -0.1875rem 0.25rem #343234,
-        -0.1875rem 0.1875rem 0.25rem #343234,
-        0.1875rem 0.1875rem 0.25rem #343234;
+        -0.0625rem -0.0625rem 0.125rem #343234;
     top: 30%;
     left: 5rem;
 }
-
 .sottotitolo{
     position: relative;
     font-family: 'Montserrat', sans-serif;
@@ -160,3 +150,4 @@ body {
     margin-right: 2rem;
     height: auto; /* Mantieni le proporzioni */
 }
+
