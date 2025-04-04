@@ -124,3 +124,25 @@ body {
     background-color: rgb(255, 171, 255);
     padding-left: 8.2rem;
 }
+
+.quiz-button {
+    background-color: fuchsia;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 3rem;
+    box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+}
+
+/* Effetti al passaggio del mouse */
+.quiz-button:hover {
+    transform: scale(1.1);
+    background-color: rgb(220, 20, 147);
+    box-shadow: 0 0.625rem 1.25rem rgba(255, 20, 147, 0.6);
+}
