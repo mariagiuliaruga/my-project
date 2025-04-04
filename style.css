@@ -14,7 +14,7 @@ body {
     width: 100%;
     height: 150px;
     background-color: rgba(255, 255, 255, 0.612);
-    padding: 10px;
+    padding: 0.6rem;
     z-index: 1000;
     top: 0;
     left: 0;
@@ -25,25 +25,25 @@ body {
 .titolo{
     position: relative;
     font-family: 'fantasy';
-    font-size: 90px;
+    font-size: 5.625rem;
     font-weight: bolder;
     color: rgb(247, 101, 227); 
-    margin-top: -20px;
+    margin-top: -1.25rem;
     text-shadow: 
-        -1px -1px 0 #343234,
-        1px -1px 0 #343234,
-        -1px 1px 0 #343234,
-        1px 1px 0 #343234,
-        -2px -2px 2px #343234,
-        2px -2px 2px #343234,
-        -2px 2px 2px #343234,
-        2px 2px 2px #343234,
-        -3px -3px 4px #343234,
-        3px -3px 4px #343234,
-        -3px 3px 4px #343234,
-        3px 3px 4px #343234;
+        -0.0625rem -0.0625rem 0 #343234,
+        0.0625rem -0.0625rem 0 #343234,
+        -0.0625rem 0.0625rem 0 #343234,
+        0.0625rem 0.0625rem 0 #343234,
+        -0.125rem -0.125rem 0.125rem #343234,
+        0.125rem -0.125rem 0.125rem #343234,
+        -0.125rem 0.125rem 0.125rem #343234,
+        0.125rem 0.125rem 0.125rem #343234,
+        -0.1875rem -0.1875rem 0.25rem #343234,
+        0.1875rem -0.1875rem 0.25rem #343234,
+        -0.1875rem 0.1875rem 0.25rem #343234,
+        0.1875rem 0.1875rem 0.25rem #343234;
     top: 30%;
-    left: 80px;
+    left: 5rem;
 }
 
 .sottotitolo{
@@ -57,26 +57,26 @@ body {
 
 .bottone {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 30px;
-    height: 20px;
+    top: 1.25rem;
+    left: 1.25rem;
+    width: 1.875rem;
+    height: 1.25rem;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     outline: none;
     border: none;
-    background: transparent; 
+    background: transparent;
     transition: transform 0.3s ease-in-out; 
 }
 
 .bottone span {
     display: block;
     width: 100%;
-    height: 3px; 
+    height: 0.1875rem;
     background-color: rgb(4, 5, 6);
-    border-radius: 2px; 
+    border-radius: 0.125rem;
     transition: transform 0.3s ease-in-out; 
 }
 
@@ -90,30 +90,30 @@ body {
 
 .menu-tendina {
     position: absolute;
-    top: 100%; /*il menu si apre appena sotto il bottone*/
-    left: -10px;
+    top: 100%;
+    left: -0.625rem;
     background-color: rgba(255, 255, 255, 0.95);
-    min-width: 200px;
-    box-shadow: 0 10px 10px rgba(0,0,0,0.2);
-    display: none; /* vuol dire che quando apri la pagina il menu è nascosto*/  
+    min-width: 12.5rem;
+    box-shadow: 0 0.625rem 0.625rem rgba(0,0,0,0.2);
+    display: none;
     z-index: 1001;
-    border-radius: 15px;
+    border-radius: 0.9375rem;
     overflow: hidden;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(0.3125rem);
 }
 
 .bottone:hover .menu-tendina {
-    display: block; /*vuol dire che quando si passa sopra il bottone si apre il menu*/  
+    display: block;
 }
 
 .menu-tendina a {
     display: block;
-    padding: 15px 20px;
+    padding: 1rem 1.25rem;
     text-decoration: none;
     color: rgb(4, 5, 6);
     font-family: 'Montserrat', sans-serif;
-    transition: all 0.3s ease; 
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border-bottom: 0.1rem solid rgba(0,0,0,0.05);
 }
 
 .menu-tendina a:last-child {
@@ -122,5 +122,5 @@ body {
 
 .menu-tendina a:hover {
     background-color: rgb(255, 171, 255);
-    padding-left: 115px;
+    padding-left: 8.2rem;
 }
