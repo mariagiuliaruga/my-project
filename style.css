@@ -153,5 +153,5 @@ body {
     align-items: center;
     height: 100vh; /* Occupa tutta la pagina */
     flex-direction: column; /* Mantiene il bottone centrato */
-    margin-top: 3rem; /* Aumenta questa misura se vuoi abbassarlo di più */
+    margin-top: 12rem; /* Aumenta questa misura se vuoi abbassarlo di più */
 }
