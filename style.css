@@ -126,23 +126,31 @@ body {
 }
 
 .quiz-button {
-    background-color: fuchsia;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
+    display: block;
+    margin: auto;
+    margin-top: 20vh;
     padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    background-color: fuchsia;
     border: none;
-    border-radius: 2rem;
+    border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    margin-top: 3rem;
-    box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Effetti al passaggio del mouse */
 .quiz-button:hover {
+    background-color: deeppink;
     transform: scale(1.1);
-    background-color: rgb(220, 20, 147);
-    box-shadow: 0 0.625rem 1.25rem rgba(255, 20, 147, 0.6);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Centrare verticalmente il bottone */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Occupa tutta la pagina */
 }
