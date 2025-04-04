@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 body {
     background-image: url(watercolor.jpg);
@@ -7,6 +7,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 300vh;
+    font-family: 'Arial', sans-serif;
 }
 
 .intestazione {
@@ -24,7 +25,7 @@ body {
 
 .titolo{
     position: relative;
-    font-family: 'fantasy';
+    font-family: 'Pacifico', cursive;
     font-size: 3rem;
     font-weight: bolder;
     color: rgb(247, 101, 227); 
@@ -51,7 +52,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     text-align: center;
-    color: rgb(4, 5, 6); 
+    color: rgb(6, 5, 4); 
     margin-top: -10px;
 }
 
@@ -126,16 +127,17 @@ body {
 }
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Sposta gli elementi a sinistra */
     align-items: center;
     height: 100vh;
     flex-direction: row; /* Posiziona gli elementi orizzontalmente */
-    gap: 2rem; /* Distanza tra la GIF e il bottone, in rem */
+    gap: 1rem; /* Distanza tra la GIF e il bottone */
+    margin-left: -5rem; /* Sposta tutto il blocco verso sinistra */
 }
 
 .quiz-button {
-    padding: 1rem 2rem; /* Le dimensioni sono relative all'elemento */
-    font-size: 1.5rem; /* Dimensione del testo relativa */
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: white;
     background-color: fuchsia;
@@ -143,8 +145,8 @@ body {
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 0.3rem 0.625rem rgba(0, 0, 0, 0.2); /* Ombra relativa */
-    margin-left: 2rem; /* Spazio tra il bottone e la GIF */
+    box-shadow: 0 0.3rem 0.625rem rgba(0, 0, 0, 0.2);
+    margin-left: -2rem; /* Sposta il bottone più a sinistra */
 }
 
 .quiz-button:hover {
@@ -155,6 +157,6 @@ body {
 
 .gif-animata {
     width: 50rem; /* Larghezza della GIF in rem */
-    margin-right: 10rem;
+    margin-right: 2rem;
     height: auto; /* Mantieni le proporzioni */
 }
