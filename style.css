@@ -11,13 +11,14 @@ body {
 
 .intestazione {
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 150px;
     background-color: rgba(255, 255, 255, 0.612);
-    padding: 20px;
+    padding: 10px;
     z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
     box-shadow: 0 10px 5px rgba(0,0,0,0.1);
 }
 
@@ -25,9 +26,24 @@ body {
     position: relative;
     font-family: 'fantasy';
     font-size: 90px;
-    text-align: left;
-    color: rgb(21, 181, 221); 
+    font-weight: bolder;
+    color: rgb(247, 101, 227); 
     margin-top: -20px;
+    text-shadow: 
+        -1px -1px 0 #343234,
+        1px -1px 0 #343234,
+        -1px 1px 0 #343234,
+        1px 1px 0 #343234,
+        -2px -2px 2px #343234,
+        2px -2px 2px #343234,
+        -2px 2px 2px #343234,
+        2px 2px 2px #343234,
+        -3px -3px 4px #343234,
+        3px -3px 4px #343234,
+        -3px 3px 4px #343234,
+        3px 3px 4px #343234;
+    top: 30%;
+    left: 80px;
 }
 
 .sottotitolo{
@@ -37,4 +53,74 @@ body {
     text-align: center;
     color: rgb(4, 5, 6); 
     margin-top: -10px;
+}
+
+.bottone {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    outline: none;
+    border: none;
+    background: transparent; 
+    transition: transform 0.3s ease-in-out; 
+}
+
+.bottone span {
+    display: block;
+    width: 100%;
+    height: 3px; 
+    background-color: rgb(4, 5, 6);
+    border-radius: 2px; 
+    transition: transform 0.3s ease-in-out; 
+}
+
+.bottone:hover span{
+    background-color: fuchsia;
+}
+
+.bottone:hover{
+    transform: scale(1.05);
+}
+
+.menu-tendina {
+    position: absolute;
+    top: 100%; /*il menu si apre appena sotto il bottone*/
+    left: -10px;
+    background-color: rgba(255, 255, 255, 0.95);
+    min-width: 200px;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+    display: none; /* vuol dire che quando apri la pagina il menu è nascosto*/  
+    z-index: 1001;
+    border-radius: 15px;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.bottone:hover .menu-tendina {
+    display: block; /*vuol dire che quando si passa sopra il bottone si apre il menu*/  
+}
+
+.menu-tendina a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: rgb(4, 5, 6);
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease; 
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.menu-tendina a:last-child {
+    border-bottom: none;
+}
+
+.menu-tendina a:hover {
+    background-color: rgb(255, 171, 255);
+    padding-left: 115px;
 }
