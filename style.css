@@ -228,15 +228,13 @@ body {
     top: 100%;
     left: -0.625rem;
     background-color: rgba(255, 255, 255, 0.95);
-    min-width: 8rem;
+    min-width: 12.5rem;
     box-shadow: 0 0.625rem 0.625rem rgba(0,0,0,0.2);
     display: none;
     z-index: 1001;
-    border-radius: 0.5rem;
+    border-radius: 0.9375rem;
     overflow: hidden;
     backdrop-filter: blur(0.3125rem);
-    margin-top: 0.5rem;
-    padding: 0.3rem 0;
 }
 
 .bottone:hover .menu-tendina,
@@ -246,14 +244,12 @@ body {
 
 .menu-tendina a {
     display: block; /* ogni blocco (ogni a) va a capo  */
-    padding: 0.5rem 0.8rem;
+    padding: 1rem 1.25rem;
     text-decoration: none;
     color: rgb(4, 5, 6);
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem;
     transition: all 0.3s ease;
-    border-bottom: 0.05rem solid rgba(0,0,0,0.05);
-    white-space: nowrap; /*ogni voce del menu occupa una sola riga (nowrap:non va a capo)*/
+    border-bottom: 0.1rem solid rgba(0,0,0,0.05);
 }
 
 .menu-tendina a:last-child {
@@ -262,7 +258,7 @@ body {
 
 .menu-tendina a:hover {
     background-color: rgb(255, 171, 255);
-    padding-left: 1rem;
+    padding-left: 8.2rem;
 }
 
 .quiz-button {
