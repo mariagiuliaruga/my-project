@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loginButton.classList.add('logged-in');
             loginButton.innerHTML = '<div class="user-icon"></div>';
             
+            
             // Chiudi il pannello
             loginPanel.classList.remove('visible');
             

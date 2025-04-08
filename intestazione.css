@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 body {
     background-image: url(watercolor.jpg);
@@ -6,8 +7,9 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 300vh;
-    font-family: 'Arial', sans-serif;
+    min-height: 100vh; /*per tutta la pagina se ricaricando la pagina, parte un po' più in basso, toglierlo*/
+    scroll-behavior: smooth;  /*fa scorrere la pagina in modo fluido*/
+    font-family: 'Montserrat', sans-serif;
 }
 
 .bottone {
@@ -66,15 +68,6 @@ body {
     transform: scale(1.5);
 }
 
-.container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
-    flex-direction: row;
-    gap: 1rem;
-    margin-left: -5rem;
-}
 
 .email-input {
     padding: 0.5rem 1rem;
@@ -91,11 +84,6 @@ body {
     box-shadow: 0 0 0.5rem rgba(106, 17, 203, 0.3);
 }
 
-.gif-animata {
-    width: 50rem;
-    margin-right: 2rem;
-    height: auto;
-}
 
 .intestazione {
     position: fixed;
@@ -111,8 +99,8 @@ body {
 }
 
 .login-button {
-    padding: 0.5rem 1.25rem;
-    font-size: 1rem;
+    padding: 0.8rem 3rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: white;
     background-color: #6a11cb;
@@ -130,9 +118,10 @@ body {
 }
 
 .login-button.logged-in {
-    padding: 0.5rem;
+    padding: 0.6rem;
     background-color: white;
     border: 2px solid #6a11cb;
+    margin-top: 0.5rem;
 }
 
 .login-button.logged-in .user-icon {
@@ -141,6 +130,8 @@ body {
 
 .login-button.logged-in:hover {
     background-color: #f0f0f0;
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
 }
 
 .login-container {
@@ -179,15 +170,23 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+.login-form button:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
 }
 
 .login-link {
-    text-align: center;
+    text-align: right;
     margin-top: 2rem;
     font-size: 1.1rem;
     color: #6a11cb;
     text-decoration: none;
     transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .login-link:hover {
@@ -247,7 +246,6 @@ body {
     padding: 1rem 1.25rem;
     text-decoration: none;
     color: rgb(4, 5, 6);
-    font-family: 'Montserrat', sans-serif;
     transition: all 0.3s ease;
     border-bottom: 0.1rem solid rgba(0,0,0,0.05);
 }
@@ -261,54 +259,6 @@ body {
     padding-left: 8.2rem;
 }
 
-.quiz-button {
-    padding: 0.8rem 1.5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    background-color: fuchsia;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
-}
-
-.quiz-button:hover {
-    background-color: deeppink;
-    transform: scale(1.1);
-    box-shadow: 0 0.375rem 0.9rem rgba(0, 0, 0, 0.3);
-}
-
-.quiz-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    backdrop-filter: blur(5px);
-}
-
-.quiz-container.visible {
-    display: flex;
-}
-
-.quiz-window {
-    background-color: white;
-    padding: 3rem;
-    border-radius: 1.5rem;
-    width: 90%;
-    max-width: 70rem;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
-    animation: scaleIn 0.3s ease-out;
-}
 
 .register-link {
     text-align: right;
@@ -393,11 +343,17 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+.register-form button:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
 }
 
 .sottotitolo {
     position: relative;
-    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     text-align: center;
     color: rgb(6, 5, 4); 
@@ -406,17 +362,23 @@ body {
 
 .titolo {
     position: relative;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Poppins', sans-serif;
     font-size: 3vw;
     font-weight: bolder;
     color: rgb(247, 101, 227);
     margin-top: -1.25rem;
     text-shadow:
-        0.0625rem 0.0625rem 0 #343234,
-        -0.0625rem -0.0625rem 0.125rem #343234;
+        0 0 0.75rem rgba(247, 101, 227, 0.9),
+        0 0 1.375rem rgba(247, 101, 227, 0.7),
+        0 0 2rem rgba(247, 101, 227, 0.5),
+        0 0 2.625rem rgba(247, 101, 227, 0.3); 
     top: 30%;
     left: 5rem;
+    filter: blur(0.0625rem);
+   
 }
+
+
 
 .user-icon {
     width: 1.5rem;
@@ -451,12 +413,4 @@ body {
     border-radius: 0.2rem; /*rettangolo viola arrotondato, il corpo*/
 }
 
-@keyframes scaleIn { /*fa ingrandire l'animazione*/
-    from {
-        transform: scale(0.9);   
-    }
-    to {
-        transform: scale(1);
-    }
-}
 
