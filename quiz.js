@@ -22,7 +22,7 @@ const sondaggio = [{
 {
     domanda: "Quanto ti piace sperimentare con il tuo stile?",
     tipo: "select",
-    opzioni: ["Per niente", "Poco", "Abbastanza", "Molto", "Moltissimo"],
+    opzioni: ["Per niente", "Poco", "Abbastanza", "Molto", "Moltissimo", "Tutto", "Non so"],
 },
 {
     domanda: "Quali colori preferisci indossare?",
@@ -47,202 +47,24 @@ const sondaggio = [{
 
 ]
 
-let currentQuestion = 0;
+let currentQuestion = 0; //let è per dichiarare una variabile che può essere modificata
 let answers = {};
 
-// Aggiungi gli stili CSS
-const style = document.createElement('style');
-style.textContent = `
-    .quiz-container {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(5px);
-        z-index: 1000;
-    }
-
-    .quiz-container.visible {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        animation: fadeIn 0.3s ease;
-    }
-
-    .quiz-window {
-        display: none;
-        background:rgb(255, 255, 255);
-        padding: 35px;
-        border-radius: 20px;
-        max-width: 900px;
-        width: 90%;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        position: relative;
-        overflow: hidden;
-        height: 70%;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .quiz-window.visible {
-        display: block;
-        animation: slideIn 0.3s ease;
-    }
-
-    .quiz-window::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: linear-gradient(90deg,rgb(255, 77, 190),rgb(255, 107, 216),rgb(255, 142, 236));
-    }
-
-    .quiz-progress {
-        text-align: center;
-        margin-bottom: 25px;
-        font-size: 14px;
-        color:rgb(251, 4, 173);
-        font-weight: 500;
-        letter-spacing: 1px;
-    }
-
-    .quiz-domanda {
-        margin-bottom: 30px;
-    }
-
-    .quiz-domanda h3 {
-        font-size: 22px;
-        color:rgb(0, 0, 0);
-        margin-bottom: 25px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-    }
-
-    .quiz-options {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .quiz-option {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        padding: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        background: rgba(255, 255, 255, 0.05);
-    }
-
-    .quiz-option:hover {
-        background: rgba(255, 107, 107, 0.1);
-        border-color:rgb(255, 77, 190);
-        transform: translateX(5px);
-    }
-
-    .quiz-checkbox {
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-        accent-color:rgb(255, 77, 190);
-    }
-
-    .quiz-option-text {
-        font-size: 16px;
-        color:rgb(0, 0, 0);
-    }
-
-    .quiz-input {
-        width: 100%;
-        padding: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        font-size: 16px;
-        transition: all 0.3s ease;
-        background: rgba(255, 255, 255, 0.05);
-        color: #ffffff;
-    }
-
-    .quiz-input:focus {
-        outline: none;
-        border-color:rgb(255, 77, 190);
-        background: rgba(255, 107, 107, 0.1);
-    }
-
-    .quiz-input::placeholder {
-        color: black;
-    }
-
-    .quiz-navigation {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 35px;
-        gap: 15px;
-    }
-
-    .quiz-prev, .quiz-next, .quiz-submit {
-        padding: 15px 30px;
-        border: none;
-        border-radius: 12px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        letter-spacing: 1px;
-    }
-
-    .quiz-prev {
-        background-color: rgb(255, 77, 190);
-        color: white;
-    }
-
-    .quiz-next, .quiz-submit {
-        background-color: rgb(255, 77, 190);
-        color: white;
-    }
-
-    .quiz-prev:hover {
-        background-color: rgb(210, 4, 134);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgb(255, 77, 190);
-    }
-
-    .quiz-next:hover, .quiz-submit:hover {
-        background-color: rgb(210, 4, 134);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgb(255, 77, 190);
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    @keyframes slideIn {
-        from { transform: translateY(-30px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-    }
-`;
-document.head.appendChild(style);
 
 // Funzione per creare e mostrare una singola domanda
 function showQuestion(index) {
     if (!quizWindow || index < 0 || index >= sondaggio.length) return;
     
-    const domanda = sondaggio[index];
+    const domandaStruct = sondaggio[index];
+
+    //creo il codice html direttamente dentro JavaScript dentro la variabile html
     let html = `<div class="quiz-progress">Domanda ${index + 1} di ${sondaggio.length}</div>`;
     html += `<div class="quiz-domanda">
-        <h3>${domanda.domanda}</h3>`;
+        <h3>${domandaStruct.domanda}</h3>`;
         
-    if (domanda.tipo === "select") {
+    if (domandaStruct.tipo === "select") {
         html += `<div class="quiz-options">`;
-        domanda.opzioni.forEach(opzione => {
+        domandaStruct.opzioni.forEach(opzione => { //itera su ogni opzione di risposta
             const isChecked = answers[index] && answers[index].includes(opzione);
             html += `<label class="quiz-option">
                 <input type="checkbox" class="quiz-checkbox" 
@@ -251,11 +73,11 @@ function showQuestion(index) {
             </label>`;
         });
         html += `</div>`;
-    } else if (domanda.tipo === "number") {
-        html += `<input type="text" class="quiz-input" placeholder="${domanda.placeholder || ''}" 
+    } else if (domandaStruct.tipo === "number") {
+        html += `<input type="text" class="quiz-input" placeholder="${domandaStruct.placeholder || ''}" 
             value="${answers[index] || ''}" pattern="[1-9][0-9]*" title="Inserisci un numero intero maggiore di 0" required>`;
     } else {
-        html += `<input type="${domanda.tipo}" class="quiz-input" placeholder="${domanda.placeholder || ''}" 
+        html += `<input type="${domandaStruct.tipo}" class="quiz-input" placeholder="${domandaStruct.placeholder || ''}" 
             value="${answers[index] || ''}" required>`;
     }
     
@@ -273,7 +95,9 @@ function showQuestion(index) {
     }
     html += `</div>`;
     
-    quizWindow.innerHTML = html;
+    html += `<div class="close-button">&times;</div>`;
+
+    quizWindow.innerHTML = html; //inserisce il codice html nel quizWindow
     
     // Aggiungi gli event listener per le checkbox
     const checkboxes = quizWindow.querySelectorAll('.quiz-checkbox');
@@ -310,7 +134,7 @@ function showQuestion(index) {
     
     if (nextButton) {
         nextButton.addEventListener('click', () => {
-            if (domanda.tipo === "select") {
+            if (domandaStruct.tipo === "select") {
                 if (answers[index] && answers[index].length > 0) {
                     showQuestion(index + 1);
                 } else {
@@ -327,7 +151,7 @@ function showQuestion(index) {
     
     if (submitButton) {
         submitButton.addEventListener('click', () => {
-            if (domanda.tipo === "select") {
+            if (domandaStruct.tipo === "select") {
                 if (answers[index] && answers[index].length > 0) {
                     submitQuiz();
                 } else {
@@ -341,6 +165,14 @@ function showQuestion(index) {
             }
         });
     }
+
+    const closeButton = quizWindow.querySelector('.close-button');
+    closeButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        quizContainer.classList.remove('visible');
+        quizWindow.classList.remove('visible');
+    });
 }
 
 // Funzione per salvare la risposta
@@ -359,9 +191,7 @@ function submitQuiz() {
     quizWindow.classList.remove('visible');
 }
 
-quizButton.addEventListener('click', function() {
-    loginPanel.classList.toggle('visible');
-});
+
 
 // Inizializza gli event listener quando il documento è caricato
 document.addEventListener('DOMContentLoaded', function() {
@@ -376,13 +206,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Event listener per chiudere il quiz cliccando fuori
-    if (quizContainer) {
-        quizContainer.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('visible');
-                quizWindow.classList.remove('visible');
-            }
-        });
-    }
 });

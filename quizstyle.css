@@ -1,0 +1,193 @@
+.quiz-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 105%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+.quiz-container.visible {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.quiz-checkbox {
+    width: 10vh;
+    height: 3vh;
+    cursor: pointer;
+    accent-color:rgb(255, 77, 190);
+}
+
+.quiz-progress {
+    text-align: center;
+    margin-bottom: 3vh;
+    font-size: 3vh;
+    color:rgb(251, 4, 173);
+    font-weight: 500;
+}
+
+.quiz-domanda { 
+    margin-bottom: 2vh;
+}
+
+.quiz-domanda h3 {
+    font-size: 3vh;
+    text-align: center;
+    color:rgb(0, 0, 0);
+    margin-bottom: 3vh;
+    font-weight: 600;
+}
+
+.quiz-input {
+    padding: 2vh;
+    width: 96%;
+    border: 0.02vh solid rgb(255, 77, 190);
+    border-radius: 2vh;
+    font-size: 2.5vh;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    color: black;
+}
+
+.quiz-input:focus {
+    outline: none;
+    border-color: rgb(255, 77, 190);
+    background: rgba(255, 107, 107, 0.1);
+    color: black;
+}
+
+.quiz-input::placeholder {
+    color: black;
+}
+
+.quiz-navigation { /*barra dei pulsanti*/
+    position: sticky;
+    bottom: 0; /*perche non funziona?*/
+    background: white;
+    display: flex;
+    height: 10vh;
+    justify-content: space-between; /*pulsanti ai lati*/
+    gap: 10px; /*spazio tra i pulsanti*/
+}
+
+.quiz-options {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    align-items: center;
+}
+
+.quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    padding: 2vh;
+    width: 50%;
+    border: 0.02vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 2vh;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.quiz-option:hover {
+    background: rgba(255, 107, 107, 0.1);
+    border-color:rgb(255, 77, 190);
+    transform: translateX(5px);
+}
+
+.quiz-option-text {
+    font-size: 2.5vh;
+    color:rgb(0, 0, 0);
+}
+
+.quiz-prev, .quiz-next, .quiz-submit {
+    padding: 1.5vh 3vh;
+    border: none;
+    border-radius: 2.5vh;
+    cursor: pointer;
+    font-size: 2.5vh;
+    font-weight: 500;
+    margin-bottom: 0.5vh;
+    transition: all 0.3s ease;
+    letter-spacing: 0.02vh;
+    background-color: rgb(255, 77, 190);
+    color: white;
+    height: 7vh;
+}
+
+.quiz-prev:hover, .quiz-next:hover, .quiz-submit:hover {
+    background-color: rgb(210, 4, 134);
+    transform: translateY(-1vh);
+    box-shadow: 0 1vh 1vh rgb(255, 77, 190);
+}
+
+.quiz-window {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 7vh;
+    border-radius: 3vh;
+    width: 90%;
+    max-width: 120vh;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: 0 1rvh 1vh rgba(0, 0, 0, 0.3);
+    
+}
+
+.quiz-window.visible {
+    display: block;
+    animation: slideIn 0.3s ease;
+}
+
+.quiz-window::before {
+    position: sticky; 
+    top: 0; /*perche non funziona?*/
+    
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2vh;
+    background: linear-gradient(90deg,rgb(255, 77, 190),rgb(255, 107, 216),rgb(255, 142, 236));
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Stile della barra di scorrimento */
+.quiz-window::-webkit-scrollbar {
+    width: 1.75vh;
+    position: relative;
+}
+
+.quiz-window::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.quiz-window::-webkit-scrollbar-thumb {
+    background: #6a11cb;
+    border-radius: 4px;
+}
+
+.quiz-window::-webkit-scrollbar-thumb:hover {
+    background: #4a0d9b;
+}
