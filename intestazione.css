@@ -361,19 +361,23 @@ body {
 .titolo {
     position: relative;
     font-family: 'Poppins', sans-serif;
-    font-size: 3vw;
+    font-size: 3.2vw;
     font-weight: bolder;
     color: rgb(247, 101, 227);
     margin-top: -1.25rem;
     text-shadow:
-        0 0 0.75rem rgba(247, 101, 227, 0.9),
-        0 0 1.375rem rgba(247, 101, 227, 0.7),
-        0 0 2rem rgba(247, 101, 227, 0.5),
-        0 0 2.625rem rgba(247, 101, 227, 0.3); 
+        0 0 0.75rem rgba(247, 101, 227, 0.7),
+        0 0 1.375rem rgba(247, 101, 227, 0.5),
+        0 0 2rem rgba(247, 101, 227, 0.3),
+        0 0 2.625rem rgba(247, 101, 227, 0.2),
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000; 
     top: 30%;
     left: 5rem;
     filter: blur(0.0625rem);
-   
+    letter-spacing: 0.5px;
 }
 
 .user-icon {
