@@ -1,20 +1,43 @@
 .container {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template: 
+        'a a'
+        'b c'
+        'd d';
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 200vh;
     flex-direction: row;
     gap: 1rem;
     margin-left: -5rem;
+}
+.gif-animata {
+        grid-area: b;
+    }
+.gif-animata2 {
+    grid-area: d;
+}
+.quiz-button {
+    grid-area: c;
 }
 
 
 .gif-animata {
     width: 50rem;
+    margin-top: 5rem;
     margin-right: 2rem;
     height: auto;
     margin-left: 0rem;
+}
+
+.gif-animata2 {
+    
+    width: 105%;
+    margin-top: 15rem;
+    height: auto;
+    
+    
 }
 
 .quiz-button {

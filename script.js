@@ -86,4 +86,20 @@ document.addEventListener('DOMContentLoaded', function() {
             this.reset();
         }
     });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const quizButton = document.querySelector('.quiz-button');
+    const loginPopup = document.querySelector('.login-popup');
+    const overlay = document.querySelector('.overlay');
+
+    quizButton.addEventListener('click', () => {
+        loginPopup.classList.add('visible');
+        overlay.classList.add('visible');
+    });
+
+    overlay.addEventListener('click', () => {
+        loginPopup.classList.remove('visible');
+        overlay.classList.remove('visible');
+    });
 }); 
