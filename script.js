@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const registerLink = document.querySelector('.register-link');
     const loginLink = document.querySelector('.login-link');
     const closeButtons = document.querySelectorAll('.close-button');
+    const quizButton = document.querySelector('.quiz-button');
+    const areaPersonale = document.querySelector('.area-personale');
+    const container = document.querySelector('.container');
+   
 
     // Mostra/nascondi il pannello di login
     loginButton.addEventListener('click', function() {
@@ -51,13 +55,32 @@ document.addEventListener('DOMContentLoaded', function() {
             // Trasforma il bottone in icona utente
             loginButton.classList.add('logged-in');
             loginButton.innerHTML = '<div class="user-icon"></div>';
-            
+            quizButton.classList.add('active');
+            quizButton.innerHTML = '<div class="quiz-icon">Inizia il quiz</div>';
             
             // Chiudi il pannello
             loginPanel.classList.remove('visible');
             
             // Svuota il form
             this.reset();
+
+            // Aggiungi l'event listener all'icona utente dopo che è stata creata
+            const userIcon = document.querySelector('.user-icon');
+            userIcon.addEventListener('click', function() {
+                container.classList.add('invisible');
+                areaPersonale.classList.add('visible');
+                loginPanel.style.display = 'none';
+                registerPanel.style.display = 'none';
+                loginPanel.classList.remove('visible');
+                registerPanel.classList.remove('visible');
+            });
+
+            // Modifica il comportamento del quiz button quando l'utente è loggato
+            quizButton.addEventListener('click', function() {
+                const quizContainer = document.querySelector('.quiz-container');
+                quizContainer.classList.add('visible');
+                
+            });
         }
     });
 
@@ -77,29 +100,40 @@ document.addEventListener('DOMContentLoaded', function() {
             // Trasforma il bottone in icona utente
             loginButton.classList.add('logged-in');
             loginButton.innerHTML = '<div class="user-icon"></div>';
-            
+            quizButton.classList.add('active');
+            quizButton.innerHTML = '<div class="quiz-icon">Inizia il quiz</div>';
             
             // Chiudi il pannello
             registerPanel.classList.remove('visible');
             
             // Svuota il form
             this.reset();
+
+            // Aggiungi l'event listener all'icona utente dopo che è stata creata
+            const userIcon = document.querySelector('.user-icon');
+            userIcon.addEventListener('click', function() {
+                container.classList.add('invisible');
+                areaPersonale.classList.add('visible');
+                loginPanel.style.display = 'none';
+                registerPanel.style.display = 'none';
+                loginPanel.classList.remove('visible');
+                registerPanel.classList.remove('visible');
+            });
+
+            // Modifica il comportamento del quiz button quando l'utente è loggato
+            quizButton.addEventListener('click', function() {
+                const quizContainer = document.querySelector('.quiz-container');
+                quizContainer.classList.add('visible');
+            });
+        }
+    });
+
+    // Comportamento iniziale del quiz button (quando l'utente non è loggato)
+    quizButton.addEventListener('click', function() {
+        if (!quizButton.classList.contains('active')) {
+            loginPanel.classList.add('visible');
         }
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const quizButton = document.querySelector('.quiz-button');
-    const loginPopup = document.querySelector('.login-popup');
-    const overlay = document.querySelector('.overlay');
 
-    quizButton.addEventListener('click', () => {
-        loginPopup.classList.add('visible');
-        overlay.classList.add('visible');
-    });
-
-    overlay.addEventListener('click', () => {
-        loginPopup.classList.remove('visible');
-        overlay.classList.remove('visible');
-    });
-}); 
