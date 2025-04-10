@@ -1,22 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
+/* Reset base */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
 body {
+    position: relative;
+    min-height: 100vh;
     background-color: white;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 100vh; /*per tutta la pagina se ricaricando la pagina, parte un po' più in basso, toglierlo*/
     scroll-behavior: smooth;  /*fa scorrere la pagina in modo fluido*/
     font-family: 'Montserrat', sans-serif;
 }
 
 .bottone {
     position: absolute;
-    top: 1.25rem;
-    left: 1.25rem;
-    width: 1.875rem;
-    height: 1.25rem;
+    top: 2.75vh;
+    left: 2.5vw;
+    width: 2vw;
+    height: 2.75vh;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -31,9 +40,9 @@ body {
 .bottone span {
     display: block;
     width: 100%;
-    height: 0.1875rem;
+    height: 0.45vh;
     background-color: rgb(4, 5, 6);
-    border-radius: 0.125rem;
+    border-radius: 2vh;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -47,14 +56,14 @@ body {
 
 .close-button {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 4rem;
-    height: 4rem;
+    top: 5vh;
+    right: 3vw;
+    width: 3vw;
+    height: 6vh;
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 4vh;
     color: #6a11cb;
     display: flex;
     align-items: center;
@@ -69,6 +78,7 @@ body {
     background-color: rgba(200, 200, 200, 0.3);
 }
 
+/*
 .email-input {
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -84,43 +94,45 @@ body {
     box-shadow: 0 0 0.5rem rgba(106, 17, 203, 0.3);
 }
 
+ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fatemi sapere*/
+
 .intestazione {
     position: fixed;
     width: 100%;
-    height: 60px;
+    height: 10vh;
     background-color: rgba(255, 255, 255, 0.612);
-    padding: 0.6rem;
+    padding: 0.5vh;
     z-index: 1000;
     top: 0;
     left: 0;
     right: 0;
-    box-shadow: 0 10px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 1vw 1vh rgba(0,0,0,0.1);
 }
 
 .login-button {
-    padding: 0.8rem 3rem;
-    font-size: 1.5rem;
+    padding: 0.8vw 5vh;
+    font-size: 3vh;
     font-weight: bold;
     color: white;
     background-color: #6a11cb;
     border: none;
-    border-radius: 25px;
+    border-radius: 4vh;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5vh 0.5vh rgba(0, 0, 0, 0.2);  
 }
 
 .login-button:hover {
     background-color: #845ec2;
-    transform: translateY(-0.2rem);
-    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+    transform: translateY(-0.6vh);
+    box-shadow: 0 1vh 0.5vw rgba(0, 0, 0, 0.3);
 }
 
 .login-button.logged-in {
-    padding: 0.6rem;
+    padding: 1vh;
     background-color: white;
-    border: 2px solid #6a11cb;
-    margin-top: 0.5rem;
+    border: 0.3vh solid #6a11cb;
+    margin-top: 0.6vh;
 }
 
 .login-button.logged-in .user-icon {
@@ -129,14 +141,14 @@ body {
 
 .login-button.logged-in:hover {
     background-color: #f0f0f0;
-    transform: translateY(-0.2rem);
-    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+    transform: translateY(-0.6vh);
+    box-shadow: 0 0.8vh 4vh rgba(0, 0, 0, 0.3);
 }
 
 .login-container {
     position: absolute;
-    top: 0.625rem;
-    right: 5rem;
+    top: 1vh;
+    right: 5vw;
     display: flex;
     align-items: center;
     z-index: 1002;
@@ -145,47 +157,45 @@ body {
 .login-form {
     display: flex;
     flex-direction: column; /*li dispone uno sotto l'altro*/
-    gap: 1.5rem;
+    gap: 1.5vw;
 }
 
 .login-form input {
-    padding: 1rem 1.2rem;
-    font-size: 1.1rem;
-    border: 2px solid #6a11cb;
-    border-radius: 30px;
+    padding: 2vh 1.2vw;
+    font-size: 2.5vh;
+    border: 0.1rem solid #6a11cb;
+    border-radius: 30vw;
     outline: none;
     transition: all 0.3s ease;
     width: 100%;
 }
 
 .login-form button {
-    padding: 1rem;
-    font-size: 1.2rem;
+    padding: 2vh;
+    font-size: 2.7vh;
     font-weight: bold;
     color: white;
     background-color: #6a11cb;
     border: none;
-    border-radius: 30px;
+    border-radius: 30vh;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 2rem;
+    margin-top: 2vh;
     transition: all 0.3s ease;
-    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1vh 1vh rgba(0, 0, 0, 0.2);
 }
 
 .login-form button:hover {
     transform: translateY(-0.2rem);
-    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+    box-shadow: 0 1vh 1vh rgba(0, 0, 0, 0.4);
 }
 
 .login-link {
     text-align: right;
-    margin-top: 2rem;
-    font-size: 1.1rem;
+    margin-top: 2vh;
     color: #6a11cb;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .login-link:hover {
@@ -200,13 +210,13 @@ body {
     width: 30%;
     height: 100vh;
     background-color: white;
-    box-shadow: -0.5rem 0 1rem rgba(0, 0, 0, 0.1);
+    box-shadow: -0.5vw 0 1vh rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
     z-index: 1003;
-    padding: 3rem;
+    padding: 5vh 3vw;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.5vw;
     transform: translateX(100%);  /*lo sposto a destra per renderlo invisibile*/
 }
 
@@ -217,20 +227,20 @@ body {
 
 .login-panel h2 {
     color: #6a11cb;
-    margin-bottom: 2rem;
-    font-size: 2rem;
+    margin-bottom: 4vh;
+    font-size: 4.5vh;
 }
 
 .menu-tendina {
     position: absolute;
     top: 100%;
-    left: -0.625rem;
+    left: -0.625vw;
     background-color: rgba(255, 255, 255, 0.95);
-    min-width: 12.5rem;
-    box-shadow: 0 0.625rem 0.625rem rgba(0,0,0,0.2);
+    min-width: 12.5vw;
+    box-shadow: 0 0.625vh 0.625vh rgba(0,0,0,0.2);
     display: none;
     z-index: 1001;
-    border-radius: 0.9375rem;
+    border-radius: 0.9375vw;
     overflow: hidden;
     backdrop-filter: blur(0.3125rem);
 }
@@ -242,7 +252,7 @@ body {
 
 .menu-tendina a {
     display: block; /* ogni blocco (ogni a) va a capo  */
-    padding: 1rem 1.25rem;
+    padding: 1vw 3vh;
     text-decoration: none;
     color: rgb(4, 5, 6);
     transition: all 0.3s ease;
@@ -255,13 +265,12 @@ body {
 
 .menu-tendina a:hover {
     background-color: rgb(255, 171, 255);
-    padding-left: 8.2rem;
+    padding-left: 8.2vw;
 }
 
 .register-link {
     text-align: right;
-    margin-top: 2rem;
-    font-size: 1.1rem;
+    margin-top: 2vh;
     color: #6a11cb;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -273,9 +282,9 @@ body {
 }
 
 .register-link.logged-in {
-    padding: 0.5rem;
+    padding: 0.5vh;
     background-color: white;
-    border: 2px solid #6a11cb;
+    border: 2vh solid #6a11cb;
 }
 
 .register-link.logged-in .user-icon {
@@ -293,13 +302,13 @@ body {
     width: 30%;
     height: 100vh;
     background-color: white;
-    box-shadow: -0.5rem 0 1rem rgba(0, 0, 0, 0.1);
+    box-shadow: -0.5vw 0 1vh rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
     z-index: 1003;
-    padding: 3rem;
+    padding: 5vh 3vw;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.5vw;
     transform: translateX(100%);
 }
 
@@ -310,52 +319,44 @@ body {
 
 .register-panel h2 {
     color: #6a11cb;
-    margin-bottom: 2rem;
-    font-size: 2rem;
+    margin-bottom: 4vh;
+    font-size: 4.5vh;
 }
 
 .register-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.5vw;
 }
 
 .register-form input {
-    padding: 1rem 1.2rem;
-    font-size: 1.1rem;
-    border: 2px solid #6a11cb;
-    border-radius: 30px;
+    padding: 2vh 1.2vw;
+    font-size: 2.5vh;
+    border: 0.1rem solid #6a11cb;
+    border-radius: 30vw;
     outline: none;
     transition: all 0.3s ease;
     width: 100%;
 }
 
 .register-form button {
-    padding: 1rem;
-    font-size: 1.2rem;
+    padding: 2vh;
+    font-size: 2.7vh;
     font-weight: bold;
     color: white;
     background-color: #6a11cb;
     border: none;
-    border-radius: 30px;
+    border-radius: 30vh;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 2rem;
+    margin-top: 2vh;
     transition: all 0.3s ease;
-    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1vh 1vh rgba(0, 0, 0, 0.2);
 }
 
 .register-form button:hover {
-    transform: translateY(-0.2rem);
-    box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
-}
-
-.sottotitolo {
-    position: relative;
-    font-size: 20px;
-    text-align: center;
-    color: rgb(6, 5, 4); 
-    margin-top: -10px;
+    transform: translateY(-0.2vh);
+    box-shadow: 0 1vh 1vh rgba(0, 0, 0, 0.4);
 }
 
 .titolo {
@@ -364,7 +365,7 @@ body {
     font-size: 3.2vw;
     font-weight: bolder;
     color: rgb(247, 101, 227);
-    margin-top: -1.25rem;
+    margin-top: -1.25vh;
     text-shadow:
         0 0 0.75rem rgba(247, 101, 227, 0.7),
         0 0 1.375rem rgba(247, 101, 227, 0.5),
@@ -375,14 +376,14 @@ body {
         -1px 1px 0 #6a11cb,
         1px 1px 0 #6a11cb; 
     top: 30%;
-    left: 5rem;
+    left: 5vw;
     filter: none;
     letter-spacing: 0.5px;
 }
 
 .user-icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.7vw;
+    height: 3.5vh;
     background-color: white;
     border-radius: 50%; /*crea un cerchio bianco*/
     position: relative; /*siccome relative è il 'padre' che sarà il punto di riferimento per il resto degli elementi*/
@@ -392,11 +393,11 @@ body {
 .user-icon::before {
     content: '';
     position: absolute; /*assoluto rispetto al padre che è relativo*/
-    top: 0.2rem;
+    top: 0.5vh;
     left: 50%;
     transform: translateX(-50%);
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 0.7vw;
+    height: 1.3vh;
     background-color: #6a11cb;
     border-radius: 50%; /*crea un cerchio viola, la testa*/
 }
@@ -404,13 +405,80 @@ body {
 .user-icon::after {
     content: '';
     position: absolute; /*anche lui assoluto rispetto al padre che è relativo*/
-    bottom: 0.2rem;
+    bottom: 0.35vh;
     left: 50%;
     transform: translateX(-50%);
-    width: 1rem;
-    height: 0.4rem;
+    width: 1.1vw;
+    height: 0.9vh;
     background-color: #6a11cb;
-    border-radius: 0.2rem; /*rettangolo viola arrotondato, il corpo*/
+    border-radius: 0.3vh; /*rettangolo viola arrotondato, il corpo*/
 }
 
+.main-title {
+    grid-area: a;
+    text-align: right;
+    font-size: 9vh;
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+    font-weight: 900;
+    margin-left: 20%;
+    font-family: 'Georgia', 'Arial', sans-serif;
+    letter-spacing: 0.1vw;
+    background: linear-gradient(90deg, #ff00ff, #6a11cb, #ff00ff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    text-transform: uppercase;
+    animation: gradientText 3s linear infinite;
+    text-shadow: 2vh 2vh 4vh rgba(0, 0, 0, 0.1);
+}
+
+@keyframes gradientText {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.main-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5vh;
+    left: 0;
+    width: 100%;
+    height: 0.3vh;
+    background: linear-gradient(90deg, transparent, #ff00ff, #6a11cb, transparent);
+    animation: lineGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes lineGlow {
+    0% {
+        opacity: 0.5;
+        height: 0.2vh;
+    }
+    100% {
+        opacity: 1;
+        height: 0.4vh;
+    }
+}
+
+.main-description {
+    grid-area: a;
+    text-align: right;
+    font-size: 4vh;
+    color: #555;
+    margin-top: 15%;
+    margin-bottom: 2vh;
+    font-weight: 500;
+    margin-left: 20%;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    line-height: 1.4;
+    width: 80%;
+    margin-right: 10%;
+}
 

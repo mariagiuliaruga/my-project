@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>MES</title>
     <link rel="stylesheet" href="intestazione.css">
     <link rel="stylesheet" href="centro.css">
@@ -11,7 +12,7 @@
 </head>
 <body>
     <div class="intestazione">
-        <h1 class="titolo">MakeEveryStyle</h1>        
+        <h1 class="titolo" autofocus>MakeEveryStyle</h1>        
         <div class="bottone">
             <span></span>
             <span></span>
@@ -57,9 +58,16 @@
         <button class="quiz-button">Scopri il tuo stile</button>
         <div class="quiz-container">
             <div class="quiz-window">
-                <!-- Qui andrà il contenuto del quiz -->
-                <h2>Il tuo Quiz </h2>
-                <!-- Aggiungere le domande del quiz -->
+                <button class="close-button">&times;</button>
+                <div class="quiz-progress">Domanda 1 di 8</div>
+                <div class="quiz-domanda">
+                    <!-- Il contenuto della domanda verrà inserito dinamicamente da JS -->
+                </div>
+                <div class="quiz-navigation">
+                    <button class="quiz-prev" style="display: none;">← Precedente</button>
+                    <button class="quiz-next">Successiva →</button>
+                    <button class="quiz-submit" style="display: none;">Invia Risposte</button>
+                </div>
             </div>
         </div>
         <img src="spring_girls.gif" alt="GIF animata" class="gif-animata2">
@@ -80,5 +88,6 @@
     
     <script src="quiz.js"></script>
     <script src="script.js"></script>
+    <script src="caricamentoHome.js"></script>
 </body>
 </html>

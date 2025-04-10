@@ -25,12 +25,12 @@
     display: none;
     opacity: 0;
     transition: opacity 0.3s ease;
-    max-width: 800px;
+    max-width: 60vw;
     margin: 50px auto;
-    padding: 30px;
+    padding: 3vh;
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 2vh;
+    box-shadow: 0 10vh 10vh rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
@@ -42,128 +42,59 @@
 
 .area-personale h2 {
     color: rgb(247, 101, 227);
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    text-shadow: 0 0 10px rgba(247, 101, 227, 0.3);
+    font-size: 6vh;
+    margin-bottom: 3vh;
+    text-shadow: 0 0 10vh rgba(247, 101, 227, 0.3);
 }
 
 .area-personale .user-info {
-    margin-bottom: 40px;
+    margin-bottom: 4vh;
 }
 
 .area-personale .user-info h3 {
     color: #333;
     font-size: 1.8rem;
-    margin-bottom: 15px;
+    margin-bottom: 1vh;
 }
 
 .area-personale .user-info p {
     color: #666;
-    font-size: 1.2rem;
+    font-size: 2.7vh;
     line-height: 1.6;
 }
 
 .area-personale .user-actions {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 2vw;
     flex-wrap: wrap;
 }
 
 .area-personale .user-actions button {
-    padding: 12px 25px;
+    padding: 1.2vh 2.5vw;
     border: none;
-    border-radius: 30px;
+    border-radius: 3vh;
     background: linear-gradient(90deg, rgb(247, 101, 227), rgb(255, 0, 238));
     color: white;
-    font-size: 1.1rem;
+    font-size: 2.7vh;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(247, 101, 227, 0.3);
+    box-shadow: 0 1vh 2vh rgba(247, 101, 227, 0.3);
 }
 
 .area-personale .user-actions button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(247, 101, 227, 0.4);
+    box-shadow: 0 2vh 1vh rgba(247, 101, 227, 0.4);
 }
 
 .area-personale .logout-button {
     background: linear-gradient(90deg, #6a11cb, #2575fc) !important;
-    box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3) !important;
+    box-shadow: 0 1vh 2vh rgba(106, 17, 203, 0.3) !important;
 }
 
 .area-personale .logout-button:hover {
-    box-shadow: 0 8px 20px rgba(106, 17, 203, 0.4) !important;
-}
-
-.main-title {
-    grid-area: a;
-    text-align: right;
-    font-size: 4rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-weight: 900;
-    margin-left: 20%;
-    font-family: 'Georgia', 'Arial', sans-serif;
-    letter-spacing: 3px;
-    background: linear-gradient(90deg, #ff00ff, #6a11cb, #ff00ff);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    position: relative;
-    padding: 0.5rem 0;
-    text-transform: uppercase;
-    animation: gradientText 3s linear infinite;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-@keyframes gradientText {
-    0% {
-        background-position: 0% center;
-    }
-    100% {
-        background-position: 200% center;
-    }
-}
-
-.main-title::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #ff00ff, #6a11cb, transparent);
-    animation: lineGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes lineGlow {
-    0% {
-        opacity: 0.5;
-        height: 2px;
-    }
-    100% {
-        opacity: 1;
-        height: 4px;
-    }
-}
-
-.main-description {
-    grid-area: a;
-    text-align: right;
-    font-size: 2rem;
-    color: #555;
-    margin-top: 15%;
-    margin-bottom: 2rem;
-    font-weight: 500;
-    margin-left: 20%;
-    font-family: 'Georgia', serif;
-    font-style: italic;
-    line-height: 1.4;
-    width: 80%;
-    margin-right: 10%;
+    box-shadow: 0 2vh 1vh rgba(106, 17, 203, 0.4) !important;
 }
 
 .gif-animata {
