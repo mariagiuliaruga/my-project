@@ -24,6 +24,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Funzione per tornare alla home page
+    function handleBackToHome() {
+        container.classList.remove('invisible');
+        areaPersonale.classList.remove('visible');
+    }
+
+    // Funzione per gestire il logout
+    function handleLogout() {
+        isLoggedIn = false;
+        loginButton.classList.remove('logged-in');
+        loginButton.innerHTML = 'Login';
+        quizButton.classList.remove('active');
+        quizButton.innerHTML = 'Scopri il tuo stile';
+        
+        // Rimuovi gli event listener
+        loginButton.removeEventListener('click', handleUserIconClick);
+        quizButton.removeEventListener('click', handleQuizButtonClick);
+        
+        // Torna alla home page
+        handleBackToHome();
+    }
+
     // Funzione per gestire il click sul quiz button
     function handleQuizButtonClick(e) {
         e.preventDefault();
@@ -136,6 +158,24 @@ document.addEventListener('DOMContentLoaded', function() {
             quizButton.addEventListener('click', handleQuizButtonClick);
         }
     });
+
+    // Aggiungi event listener per il pulsante di logout
+    const logoutButton = document.querySelector('.logout-button');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', handleLogout);
+    }
+
+    // Aggiungi event listener per tornare alla home page
+    const menuTendina = document.querySelector('.menu-tendina');
+    if (menuTendina) {
+        const homeLink = menuTendina.querySelector('a[href="test.html"]');
+        if (homeLink) {
+            homeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                handleBackToHome();
+            });
+        }
+    }
 });
 
 

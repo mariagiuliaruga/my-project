@@ -67,15 +67,15 @@ function showQuestion(index) {
         domandaStruct.opzioni.forEach(opzione => { //itera su ogni opzione di risposta
             const isChecked = answers[index] && answers[index].includes(opzione);
             html += `<label class="quiz-option">
-                <input type="checkbox" class="quiz-checkbox" 
-                    value="${opzione}" ${isChecked ? 'checked' : ''}>
+                <input type="radio" class="quiz-radio" 
+                    name="question-${index}" value="${opzione}" ${isChecked ? 'checked' : ''}>
                 <span class="quiz-option-text">${opzione}</span>
             </label>`;
         });
         html += `</div>`;
     } else if (domandaStruct.tipo === "number") {
-        html += `<input type="text" class="quiz-input" placeholder="${domandaStruct.placeholder || ''}" 
-            value="${answers[index] || ''}" pattern="[1-9][0-9]*" title="Inserisci un numero intero maggiore di 0" required>`;
+        html += `<input type="number" class="quiz-input" placeholder="${domandaStruct.placeholder || ''}" 
+            value="${answers[index] || ''}" min="1" max="100" title="Inserisci un numero tra 1 e 100" required>`;
     } else {
         html += `<input type="${domandaStruct.tipo}" class="quiz-input" placeholder="${domandaStruct.placeholder || ''}" 
             value="${answers[index] || ''}" required>`;
@@ -99,24 +99,18 @@ function showQuestion(index) {
 
     quizWindow.innerHTML = html; //inserisce il codice html nel quizWindow
     
-    // Aggiungi gli event listener per le checkbox
-    const checkboxes = quizWindow.querySelectorAll('.quiz-checkbox');
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
+    // Aggiungi gli event listener per i radio button
+    const radioButtons = quizWindow.querySelectorAll('.quiz-radio');
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', () => {
             // Inizializza l'array delle risposte se non esiste
             if (!answers[index]) {
                 answers[index] = [];
             }
             
-            if (checkbox.checked) {
-                // Aggiungi la risposta se selezionata
-                if (!answers[index].includes(checkbox.value)) {
-                    answers[index].push(checkbox.value);
-                }
-            } else {
-                // Rimuovi la risposta se deselezionata
-                answers[index] = answers[index].filter(value => value !== checkbox.value);
-            }
+            // Per i radio button, possiamo avere solo una risposta selezionata
+            // Quindi svuotiamo l'array e aggiungiamo solo la risposta selezionata
+            answers[index] = [radio.value];
         });
     });
     
@@ -138,13 +132,17 @@ function showQuestion(index) {
                 if (answers[index] && answers[index].length > 0) {
                     showQuestion(index + 1);
                 } else {
-                    alert('Per favore seleziona almeno una risposta');
+                    alert('Per favore seleziona una risposta');
                 }
             } else if (input && input.checkValidity()) {
+                if (domandaStruct.domanda.includes("età") && parseInt(input.value) > 100) {
+                    alert('L\'età non può essere maggiore di 100 anni');
+                    return;
+                }
                 answers[index] = input.value;
                 showQuestion(index + 1);
             } else {
-                alert('Per favore inserisci un numero valido');
+                alert('Per favore inserisci un numero valido tra 1 e 100');
             }
         });
     }
@@ -155,7 +153,7 @@ function showQuestion(index) {
                 if (answers[index] && answers[index].length > 0) {
                     submitQuiz();
                 } else {
-                    alert('Per favore seleziona almeno una risposta');
+                    alert('Per favore seleziona una risposta');
                 }
             } else if (input && input.checkValidity()) {
                 answers[index] = input.value;
