@@ -17,11 +17,12 @@
     animation: fadeIn 0.3s ease;
 }
 
-.quiz-checkbox {
-    width: 10vh;
+.quiz-radio {
+    width: 3vh;
     height: 3vh;
     cursor: pointer;
-    accent-color:rgb(255, 77, 190);
+    accent-color: rgb(255, 77, 190);
+    margin-right: 1vh;
 }
 
 .quiz-progress {

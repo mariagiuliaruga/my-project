@@ -370,13 +370,13 @@ body {
         0 0 1.375rem rgba(247, 101, 227, 0.5),
         0 0 2rem rgba(247, 101, 227, 0.3),
         0 0 2.625rem rgba(247, 101, 227, 0.2),
-        -1px -1px 0 #000,  
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000; 
+        -1px -1px 0 #6a11cb,  
+        1px -1px 0 #6a11cb,
+        -1px 1px 0 #6a11cb,
+        1px 1px 0 #6a11cb; 
     top: 30%;
     left: 5rem;
-    filter: blur(0.0625rem);
+    filter: none;
     letter-spacing: 0.5px;
 }
 

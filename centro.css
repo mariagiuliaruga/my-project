@@ -25,12 +25,77 @@
     display: none;
     opacity: 0;
     transition: opacity 0.3s ease;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .area-personale.visible {
     display: block;
     opacity: 1;
-} 
+    animation: fadeIn 0.5s ease;
+}
+
+.area-personale h2 {
+    color: rgb(247, 101, 227);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(247, 101, 227, 0.3);
+}
+
+.area-personale .user-info {
+    margin-bottom: 40px;
+}
+
+.area-personale .user-info h3 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.area-personale .user-info p {
+    color: #666;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.area-personale .user-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.area-personale .user-actions button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(90deg, rgb(247, 101, 227), rgb(255, 0, 238));
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(247, 101, 227, 0.3);
+}
+
+.area-personale .user-actions button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(247, 101, 227, 0.4);
+}
+
+.area-personale .logout-button {
+    background: linear-gradient(90deg, #6a11cb, #2575fc) !important;
+    box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3) !important;
+}
+
+.area-personale .logout-button:hover {
+    box-shadow: 0 8px 20px rgba(106, 17, 203, 0.4) !important;
+}
 
 .main-title {
     grid-area: a;
