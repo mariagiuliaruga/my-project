@@ -5,14 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const quizContainer = document.querySelector('.quiz-container');
     const quizWindow = document.querySelector('.quiz-window');
     const quizButtonActive = document.querySelector('.quiz-button.active');
-    const closeButton = document.querySelector('.close-button');
+    const closeButton = document.querySelector('.quiz-close-button');
 
     // Aggiungi l'event listener per il pulsante di chiusura
     if (closeButton) {
         closeButton.addEventListener('click', function() {
             console.log('Close button clicked'); // Debug
-            quizContainer.style.display = 'none';
-            quizWindow.style.display = 'none';
+            quizContainer.classList.remove('visible');
+            quizWindow.classList.remove('visible');
         });
     }
 
@@ -154,8 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function submitQuiz() {
         console.log('Risposte:', answers);
         // Qui puoi aggiungere la logica per inviare le risposte
-        quizContainer.style.display = 'none';
-        quizWindow.style.display = 'none';
+        quizContainer.classList.remove('visible');
+        quizWindow.classList.remove('visible');
     }
 
     // Event listener per il pulsante del quiz
@@ -163,8 +163,8 @@ document.addEventListener('DOMContentLoaded', function() {
         quizButton.addEventListener('click', function() {
             currentQuestion = 0;
             answers = {};
-            quizContainer.style.display = 'flex';
-            quizWindow.style.display = 'block';
+            quizContainer.classList.add('visible');
+            quizWindow.classList.add('visible');
             showQuestion(currentQuestion);
         });
     }

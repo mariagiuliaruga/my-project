@@ -4,13 +4,11 @@
     grid-template: 
         'a a'
         'b c'
-        'd d';
+        'd d' ;
     justify-content: center;
     align-items: center;
-    height: 200vh;
     flex-direction: row;
-    gap: 1rem;
-    margin-left: -5rem;
+    gap: calc(var(--base-size) * 0.5);
     opacity: 1;
     transition: opacity 0.3s ease;
 }
@@ -98,45 +96,107 @@
 }
 
 .gif-animata {
-        grid-area: b;
-    }
+    grid-area: b;
+    width: calc(var(--base-size) * 90);
+    margin-top: 0;
+    margin-right: calc(var(--base-size) * 4);
+    margin-left: calc(var(--base-size) * 10);
+    
+}
+
 .gif-animata2 {
     grid-area: d;
-}
-.quiz-button {
-    grid-area: c;
+    margin-top: calc(var(--base-size) * 15);
+    width: auto;
+    
 }
 
+.container .main-title {
+    position: relative;
+    grid-area: a;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    margin-top: calc(var(--viewport-size) * 0.15);
+    margin-left: calc(var(--viewport-size) * 0.3);
+    margin-right: calc(var(--viewport-size) * 0.4);
+    /*se metto 0.3 è dove dovrebbe stare ma nel responsive non si vede*/
+    min-width: calc(var(--viewport-size));
+}
 
-.gif-animata {
-    width: 80rem;
+.main-title h1 {
+    position: relative;
+    font-size: calc(var(--viewport-size) * 0.09);
+    font-weight: 900;
+    font-family: 'Georgia', 'Arial', sans-serif;
+    background: linear-gradient(90deg, #ff00ff, #6a11cb, #ff00ff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+    animation: gradientText 3s linear infinite;
+    text-shadow: 2vh 2vh 4vh rgba(0, 0, 0, 0.1);
+}
+
+.main-title h1::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5vh;
+    left: 0;
+    width: 100%;
+    height: 0.3vh;
+    background: linear-gradient(90deg, transparent, #ff00ff, #6a11cb, transparent);
+    animation: lineGlow 2s ease-in-out infinite alternate;
+}
+
+.main-title .main-description { /*figlio diretto*/
+    position: relative;
+    font-size: calc(var(--viewport-size) * 0.05);
+    font-weight: 400;
+    color: #555;
     margin-top: 0;
-    margin-right: 4rem;
-    height: auto;
-    margin-left: -10rem;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    line-height: 1.4;
 }
 
-.gif-animata2 {
-    
-    width: 105%;
-    margin-top: 15rem;
-    height: auto;
-    
-    
+@keyframes gradientText {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes lineGlow {
+    0% {
+        opacity: 0.5;
+        height: 0.2vh;
+    }
+    100% {
+        opacity: 1;
+        height: 0.4vh;
+    }
 }
 
 .quiz-button {
-    padding: 1.2rem 2.5rem;
-    font-size: 1.5rem;
+    position: absolute;
+    grid-area: c;
+    padding: 0.8vw 5vh;
+    font-size: calc(var(--viewport-size) * 0.04);
+    margin-right: calc(var(--viewport-size) * 0.2);
+    margin-left: calc(var(--viewport-size) * 0.1);
     font-weight: bold;
     color: white;
-    margin-right: 8rem;
-    background-color: fuchsia;
+    background-color: deeppink;
     border: none;
-    border-radius: 30px;
+    border-radius: 4vh;
+    width: calc(var(--viewport-size) * 0.5);
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5vh 0.5vh rgba(0, 0, 0, 0.2);
 }
 
 .quiz-button:hover {
@@ -151,13 +211,10 @@
     box-shadow: 0 0.375rem 0.9rem rgba(0, 0, 0, 0.3);
 }
 
-.quiz-icon {
-    width: 10rem;
-    height: 1.5rem;
+.quiz-button-active .quiz-icon {
     background-color: deeppink;
-    border-radius: 50%;
+    border-radius: 4vh;
 }
-
 
 .quiz-container {
     display: none;
@@ -200,4 +257,5 @@
         transform: scale(1);
     }
 }
+
 

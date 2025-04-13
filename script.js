@@ -145,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loginButton.classList.add('logged-in');
             loginButton.innerHTML = '<div class="user-icon"></div>';
             quizButton.classList.add('active');
+            const quizButton = document.querySelector('.quiz-button.active');
             quizButton.innerHTML = '<div class="quiz-icon">Inizia il quiz</div>';
             
             // Chiudi il pannello

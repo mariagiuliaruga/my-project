@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 /* Reset base */
+:root {
+    --viewport-size: min(100vw, 100vh); /*prende il valore più piccolo tra la larghezza e l'altezza del dispositivo */
+    --base-size: calc(var(--viewport-size) * 0.01); /*per avere una dimensione base per tutti gli elementi*/
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -24,8 +29,8 @@ body {
     position: absolute;
     top: 2.75vh;
     left: 2.5vw;
-    width: 2vw;
-    height: 2.75vh;
+    width: calc(var(--viewport-size) * 0.04);
+    height: calc(var(--viewport-size) * 0.03);
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -39,8 +44,8 @@ body {
 
 .bottone span {
     display: block;
-    width: 100%;
-    height: 0.45vh;
+    width: calc(var(--viewport-size) * 0.04);
+    height: calc(var(--viewport-size) * 0.005);
     background-color: rgb(4, 5, 6);
     border-radius: 2vh;
     transition: transform 0.3s ease-in-out;
@@ -111,7 +116,8 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
 
 .login-button {
     padding: 0.8vw 5vh;
-    font-size: 3vh;
+    font-size: calc(var(--viewport-size) * 0.04);
+    margin-top: calc(var(--viewport-size) * 0.005);
     font-weight: bold;
     color: white;
     background-color: #6a11cb;
@@ -234,9 +240,9 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
 .menu-tendina {
     position: absolute;
     top: 100%;
-    left: -0.625vw;
+    left: calc(var(--viewport-size) * 0.002);
     background-color: rgba(255, 255, 255, 0.95);
-    min-width: 12.5vw;
+    min-width: calc(var(--viewport-size) * 0.275);
     box-shadow: 0 0.625vh 0.625vh rgba(0,0,0,0.2);
     display: none;
     z-index: 1001;
@@ -252,6 +258,7 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
 
 .menu-tendina a {
     display: block; /* ogni blocco (ogni a) va a capo  */
+    font-size: calc(var(--viewport-size) * 0.02);
     padding: 1vw 3vh;
     text-decoration: none;
     color: rgb(4, 5, 6);
@@ -361,11 +368,12 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
 
 .titolo {
     position: relative;
+    cursor: pointer;
     font-family: 'Poppins', sans-serif;
-    font-size: 3.2vw;
-    font-weight: bolder;
+    font-size: calc(var(--viewport-size) * 0.07);
+    font-weight: bold;
     color: rgb(247, 101, 227);
-    margin-top: -1.25vh;
+    margin-top: calc(var(--viewport-size) * 0.1);
     text-shadow:
         0 0 0.75rem rgba(247, 101, 227, 0.7),
         0 0 1.375rem rgba(247, 101, 227, 0.5),
@@ -376,14 +384,16 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
         -1px 1px 0 #6a11cb,
         1px 1px 0 #6a11cb; 
     top: 30%;
-    left: 5vw;
-    filter: none;
+    margin-left: calc(var(--viewport-size) * 0.15);
     letter-spacing: 0.5px;
+    text-decoration: none;  /* Rimuove la sottolineatura del link */
+    border: none;  /* Rimuove il bordo */
+    outline: none;  /* Rimuove l'outline quando il link ha il focus */
 }
 
 .user-icon {
-    width: 1.7vw;
-    height: 3.5vh;
+    width: calc(var(--viewport-size) * 0.04);
+    height: calc(var(--viewport-size) * 0.04);
     background-color: white;
     border-radius: 50%; /*crea un cerchio bianco*/
     position: relative; /*siccome relative è il 'padre' che sarà il punto di riferimento per il resto degli elementi*/
@@ -393,11 +403,11 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
 .user-icon::before {
     content: '';
     position: absolute; /*assoluto rispetto al padre che è relativo*/
-    top: 0.5vh;
-    left: 50%;
+    top: calc(var(--viewport-size) * 0.005);
+    left: calc(var(--viewport-size) * 0.02);
     transform: translateX(-50%);
-    width: 0.7vw;
-    height: 1.3vh;
+    width: calc(var(--viewport-size) * 0.015);
+    height: calc(var(--viewport-size) * 0.015);
     background-color: #6a11cb;
     border-radius: 50%; /*crea un cerchio viola, la testa*/
 }
@@ -405,80 +415,12 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
 .user-icon::after {
     content: '';
     position: absolute; /*anche lui assoluto rispetto al padre che è relativo*/
-    bottom: 0.35vh;
+    bottom: calc(var(--viewport-size) * 0.005);
     left: 50%;
     transform: translateX(-50%);
-    width: 1.1vw;
-    height: 0.9vh;
+    width: calc(var(--viewport-size) * 0.03);
+    height: calc(var(--viewport-size) * 0.01);
     background-color: #6a11cb;
     border-radius: 0.3vh; /*rettangolo viola arrotondato, il corpo*/
-}
-
-.main-title {
-    grid-area: a;
-    text-align: right;
-    font-size: 9vh;
-    margin-top: 2vh;
-    margin-bottom: 1vh;
-    font-weight: 900;
-    margin-left: 20%;
-    font-family: 'Georgia', 'Arial', sans-serif;
-    letter-spacing: 0.1vw;
-    background: linear-gradient(90deg, #ff00ff, #6a11cb, #ff00ff);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    position: relative;
-    text-transform: uppercase;
-    animation: gradientText 3s linear infinite;
-    text-shadow: 2vh 2vh 4vh rgba(0, 0, 0, 0.1);
-}
-
-@keyframes gradientText {
-    0% {
-        background-position: 0% center;
-    }
-    100% {
-        background-position: 200% center;
-    }
-}
-
-.main-title::after {
-    content: '';
-    position: absolute;
-    bottom: -0.5vh;
-    left: 0;
-    width: 100%;
-    height: 0.3vh;
-    background: linear-gradient(90deg, transparent, #ff00ff, #6a11cb, transparent);
-    animation: lineGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes lineGlow {
-    0% {
-        opacity: 0.5;
-        height: 0.2vh;
-    }
-    100% {
-        opacity: 1;
-        height: 0.4vh;
-    }
-}
-
-.main-description {
-    grid-area: a;
-    text-align: right;
-    font-size: 4vh;
-    color: #555;
-    margin-top: 15%;
-    margin-bottom: 2vh;
-    font-weight: 500;
-    margin-left: 20%;
-    font-family: 'Georgia', serif;
-    font-style: italic;
-    line-height: 1.4;
-    width: 80%;
-    margin-right: 10%;
 }
 
