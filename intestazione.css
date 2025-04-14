@@ -186,7 +186,7 @@ body {
     position: fixed;
     top: 0;
     right: -30%;
-    width: 30%;
+    width: 500px;
     height: 100vh;
     background-color: white;
     box-shadow: -0.5vw 0 1vh rgba(0, 0, 0, 0.1);
@@ -279,7 +279,7 @@ body {
     position: fixed;
     top: 0;
     right: -30%;
-    width: 30%;
+    width: 500px;
     height: 100vh;
     background-color: white;
     box-shadow: -0.5vw 0 1vh rgba(0, 0, 0, 0.1);
@@ -300,6 +300,7 @@ body {
 .register-panel h2 {
     color: #6a11cb;
     margin-bottom: 4vh;
+    font-size: 4.5vh;
 }
 
 .register-form {
@@ -320,6 +321,7 @@ body {
 
 .register-form button {
     padding: 2vh;
+    font-size: 2.7vh;
     font-weight: bold;
     color: white;
     background-color: #6a11cb;

@@ -40,7 +40,14 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             domanda: "Quali colori preferisci indossare?",
             tipo: "select",
-            opzioni: ["Neutrali(nero, bianco, grigio)", "Scuri(nero, blu, marrone)", "Vivaci(verde, giallo, fucsia)", "Pastello", "Colorati"]
+            opzioni: ["Neutrali(nero, bianco, grigio)", "Scuri(nero, blu, marrone)", "Vivaci(verde, giallo, fucsia)", "Pastello", "Colorati"],
+            colori: {
+                "Neutrali(nero, bianco, grigio)": ["#000000", "#FFFFFF", "#888888"],
+                "Scuri(nero, blu, marrone)": ["#000000", "#0A2463", "#553939"],
+                "Vivaci(verde, giallo, fucsia)": ["#00FF00", "#FFFF00", "#FF00FF"],
+                "Pastello": ["#FFB6C1", "#C1FFB6", "#B6C1FF"],
+                "Colorati": ["#FF0000", "#00BFFF", "#FFDB58", "#8A2BE2", "#50C878"]
+            }
         },
         {
             domanda: "Quale tra questi brand o negozi senti più vicino al tuo stile?",
@@ -74,12 +81,30 @@ document.addEventListener('DOMContentLoaded', function() {
             html += `<div class="quiz-options">`;
             question.opzioni.forEach(opzione => {
                 const isChecked = answers[index] === opzione;
-                html += `
-                    <label class="quiz-option">
-                        <input type="radio" class="quiz-radio" 
-                            name="question-${index}" value="${opzione}" ${isChecked ? 'checked' : ''}>
-                        <span class="quiz-option-text">${opzione}</span>
-                    </label>`;
+                
+                // Aggiungi palette di colori per la domanda 5 (indice 4)
+                if (index === 4 && question.colori && question.colori[opzione]) {
+                    const coloriHtml = question.colori[opzione].map(colore => 
+                        `<span class="color-swatch" style="background-color: ${colore}"></span>`
+                    ).join('');
+                    
+                    html += `
+                        <label class="quiz-option">
+                            <input type="radio" class="quiz-radio" 
+                                name="question-${index}" value="${opzione}" ${isChecked ? 'checked' : ''}>
+                            <div class="quiz-option-container">
+                                <span class="quiz-option-text">${opzione}</span>
+                                <div class="color-palette">${coloriHtml}</div>
+                            </div>
+                        </label>`;
+                } else {
+                    html += `
+                        <label class="quiz-option">
+                            <input type="radio" class="quiz-radio" 
+                                name="question-${index}" value="${opzione}" ${isChecked ? 'checked' : ''}>
+                            <span class="quiz-option-text">${opzione}</span>
+                        </label>`;
+                }
             });
             html += `</div>`;
         } else if (question.tipo === "number") {
