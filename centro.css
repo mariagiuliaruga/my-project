@@ -8,7 +8,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    gap: calc(var(--base-size) * 0.5);
+    font-size: 100%;
+    width: 100%;
+    height: 100%;
+    top: 10%;
+    gap: 5%;
     opacity: 1;
     transition: opacity 0.3s ease;
 }
@@ -25,6 +29,7 @@
     transition: opacity 0.3s ease;
     max-width: 60vw;
     margin: 50px auto;
+    margin-top: 13vh;
     padding: 3vh;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 2vh;
@@ -40,7 +45,7 @@
 
 .area-personale h2 {
     color: rgb(247, 101, 227);
-    font-size: 6vh;
+    font-size: 100%;
     margin-bottom: 3vh;
     text-shadow: 0 0 10vh rgba(247, 101, 227, 0.3);
 }
@@ -51,13 +56,13 @@
 
 .area-personale .user-info h3 {
     color: #333;
-    font-size: 1.8rem;
+    font-size: 100%;
     margin-bottom: 1vh;
 }
 
 .area-personale .user-info p {
     color: #666;
-    font-size: 2.7vh;
+    font-size: 100%;
     line-height: 1.6;
 }
 
@@ -74,7 +79,7 @@
     border-radius: 3vh;
     background: linear-gradient(90deg, rgb(247, 101, 227), rgb(255, 0, 238));
     color: white;
-    font-size: 2.7vh;
+    font-size: 100%;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -97,36 +102,32 @@
 
 .gif-animata {
     grid-area: b;
-    width: calc(var(--base-size) * 90);
-    margin-top: 0;
-    margin-right: calc(var(--base-size) * 4);
-    margin-left: calc(var(--base-size) * 10);
+    width: 100%;
     
 }
 
 .gif-animata2 {
     grid-area: d;
-    margin-top: calc(var(--base-size) * 15);
-    width: auto;
+    width: 100%;
     
 }
 
-.container .main-title {
+.main-title {
     position: relative;
     grid-area: a;
     display: flex;
+    width: 90vw;
+    height: 100%;
+    font-size: 250%;
+    top: 0%;
     flex-direction: column;
     text-align: right;
-    margin-top: calc(var(--viewport-size) * 0.15);
-    margin-left: calc(var(--viewport-size) * 0.3);
-    margin-right: calc(var(--viewport-size) * 0.4);
-    /*se metto 0.3 è dove dovrebbe stare ma nel responsive non si vede*/
-    min-width: calc(var(--viewport-size));
+    right: 2%;
+    left: 1%;
 }
 
 .main-title h1 {
     position: relative;
-    font-size: calc(var(--viewport-size) * 0.09);
     font-weight: 900;
     font-family: 'Georgia', 'Arial', sans-serif;
     background: linear-gradient(90deg, #ff00ff, #6a11cb, #ff00ff);
@@ -142,20 +143,19 @@
 .main-title h1::after {
     content: '';
     position: absolute;
-    bottom: -0.5vh;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 0.3vh;
     background: linear-gradient(90deg, transparent, #ff00ff, #6a11cb, transparent);
     animation: lineGlow 2s ease-in-out infinite alternate;
 }
 
 .main-title .main-description { /*figlio diretto*/
     position: relative;
-    font-size: calc(var(--viewport-size) * 0.05);
+    font-size: 100%;
     font-weight: 400;
     color: #555;
-    margin-top: 0;
+    top: -10%;
     font-family: 'Georgia', serif;
     font-style: italic;
     line-height: 1.4;
@@ -184,19 +184,21 @@
 .quiz-button {
     position: absolute;
     grid-area: c;
-    padding: 0.8vw 5vh;
-    font-size: calc(var(--viewport-size) * 0.04);
-    margin-right: calc(var(--viewport-size) * 0.2);
-    margin-left: calc(var(--viewport-size) * 0.1);
+    font-size: clamp(0.8rem, 1.5vw, 1.2rem);
     font-weight: bold;
     color: white;
     background-color: deeppink;
     border: none;
-    border-radius: 4vh;
-    width: calc(var(--viewport-size) * 0.5);
+    border-radius: 30px;
+    width: 20vw;
+    height: 7vh;
+    top: 10%;
+    left: 0%;
+    right: 10%;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 0.5vh 0.5vh rgba(0, 0, 0, 0.2);
+    align-content: center;
 }
 
 .quiz-button:hover {
@@ -205,48 +207,12 @@
     box-shadow: 0 0.375rem 0.9rem rgba(0, 0, 0, 0.3);
 }
 
-.quiz-button.active {
-    background-color: deeppink;
-    transform: scale(1.1);
-    box-shadow: 0 0.375rem 0.9rem rgba(0, 0, 0, 0.3);
-}
-
-.quiz-button-active .quiz-icon {
-    background-color: deeppink;
-    border-radius: 4vh;
-}
-
-.quiz-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
+.quiz-icon {
+    align-content: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    backdrop-filter: blur(5px);
-}
-
-.quiz-container.visible {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.quiz-window {
-    background-color: white;
-    padding: 3rem;
-    border-radius: 1.5rem;
-    width: 90%;
-    max-width: 70rem;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
-    animation: scaleIn 0.3s ease-out;
+    font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+    color: white;
 }
 
 @keyframes scaleIn { /*fa ingrandire l'animazione*/
@@ -257,5 +223,4 @@
         transform: scale(1);
     }
 }
-
 

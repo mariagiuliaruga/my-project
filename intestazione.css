@@ -1,53 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-/* Reset base */
-:root {
-    --viewport-size: min(100vw, 100vh); /*prende il valore più piccolo tra la larghezza e l'altezza del dispositivo */
-    --base-size: calc(var(--viewport-size) * 0.01); /*per avere una dimensione base per tutti gli elementi*/
-}
 
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    width: 100%;
     overflow-x: hidden;
+    font-size: 100%;
 }
 
 body {
     position: relative;
     min-height: 100vh;
-    background-color: white;
+    background-color: #edd4d4;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     scroll-behavior: smooth;  /*fa scorrere la pagina in modo fluido*/
     font-family: 'Montserrat', sans-serif;
+    font-size: 100%;
+}
+
+.intestazione {
+    position: fixed;
+    display: flex;
+    flex-flow: row ; /*contrae flex-direction: row; flex-wrap: wrap;*/
+    align-items: center; /*centra verticalmente*/
+    width: 100%;
+    height: 13vh;
+    background-color: rgba(255, 255, 255, 0.612);
+    z-index: 1000;
+    box-shadow: 0 1vw 1vh rgba(0,0,0,0.1);
 }
 
 .bottone {
-    position: absolute;
-    top: 2.75vh;
-    left: 2.5vw;
-    width: calc(var(--viewport-size) * 0.04);
-    height: calc(var(--viewport-size) * 0.03);
+    position: relative;
+    height: 25px;
+    aspect-ratio: 1/1;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    outline: none;
-    border: none;
     background: transparent;
     transition: transform 0.3s ease-in-out;
     z-index: 1001;
+    text-align: center;
+    margin-left: 2%;
+    margin-top: 0;
+    margin-right: 0;
+    flex-basis: 5vw;
 }
 
 .bottone span {
     display: block;
-    width: calc(var(--viewport-size) * 0.04);
-    height: calc(var(--viewport-size) * 0.005);
+    width: 60%; /* Le linee occupano per 80% la larghezza del bottone */
+    height: 4px; /* Linee più spesse */
     background-color: rgb(4, 5, 6);
-    border-radius: 2vh;
+    border-radius: 20px;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -83,49 +93,20 @@ body {
     background-color: rgba(200, 200, 200, 0.3);
 }
 
-/*
-.email-input {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: 2px solid #6a11cb;
-    border-radius: 25px;
-    outline: none;
-    transition: all 0.3s ease;
-    width: 250px;
-}
-
-.email-input:focus {
-    border-color: #845ec2;
-    box-shadow: 0 0 0.5rem rgba(106, 17, 203, 0.3);
-}
-
-ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fatemi sapere*/
-
-.intestazione {
-    position: fixed;
-    width: 100%;
-    height: 10vh;
-    background-color: rgba(255, 255, 255, 0.612);
-    padding: 0.5vh;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    right: 0;
-    box-shadow: 0 1vw 1vh rgba(0,0,0,0.1);
-}
-
 .login-button {
-    padding: 0.8vw 5vh;
-    font-size: calc(var(--viewport-size) * 0.04);
-    margin-top: calc(var(--viewport-size) * 0.005);
+    position: relative;
     font-weight: bold;
+    font-size: clamp(0.9rem, 2vw, 1.5rem);
     color: white;
     background-color: #6a11cb;
     border: none;
-    border-radius: 4vh;
+    border-radius: 30px;
+    width: clamp(80px, 10vw, 120px);
+    height: 7vh;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0.5vh 0.5vh rgba(0, 0, 0, 0.2);  
+    box-shadow: 0 0.5vh 0.5vh rgba(0, 0, 0, 0.2);
+    margin-right: 5%;
 }
 
 .login-button:hover {
@@ -135,29 +116,21 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
 }
 
 .login-button.logged-in {
-    padding: 1vh;
     background-color: white;
     border: 0.3vh solid #6a11cb;
-    margin-top: 0.6vh;
-}
-
-.login-button.logged-in .user-icon {
-    display: block;
+    border-radius: 50%;
+    width: 7vh;
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
 .login-button.logged-in:hover {
     background-color: #f0f0f0;
     transform: translateY(-0.6vh);
     box-shadow: 0 0.8vh 4vh rgba(0, 0, 0, 0.3);
-}
-
-.login-container {
-    position: absolute;
-    top: 1vh;
-    right: 5vw;
-    display: flex;
-    align-items: center;
-    z-index: 1002;
 }
 
 .login-form {
@@ -239,14 +212,14 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
 
 .menu-tendina {
     position: absolute;
-    top: 100%;
-    left: calc(var(--viewport-size) * 0.002);
+    top: 70%;
+    left: 20%;
     background-color: rgba(255, 255, 255, 0.95);
-    min-width: calc(var(--viewport-size) * 0.275);
+    min-width: 13vw;
     box-shadow: 0 0.625vh 0.625vh rgba(0,0,0,0.2);
     display: none;
     z-index: 1001;
-    border-radius: 0.9375vw;
+    border-radius: 20px;
     overflow: hidden;
     backdrop-filter: blur(0.3125rem);
 }
@@ -258,8 +231,8 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
 
 .menu-tendina a {
     display: block; /* ogni blocco (ogni a) va a capo  */
-    font-size: calc(var(--viewport-size) * 0.02);
     padding: 1vw 3vh;
+    text-align: left;
     text-decoration: none;
     color: rgb(4, 5, 6);
     transition: all 0.3s ease;
@@ -327,7 +300,6 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
 .register-panel h2 {
     color: #6a11cb;
     margin-bottom: 4vh;
-    font-size: 4.5vh;
 }
 
 .register-form {
@@ -348,7 +320,6 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
 
 .register-form button {
     padding: 2vh;
-    font-size: 2.7vh;
     font-weight: bold;
     color: white;
     background-color: #6a11cb;
@@ -366,14 +337,52 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
     box-shadow: 0 1vh 1vh rgba(0, 0, 0, 0.4);
 }
 
+/* Media query per schermi medi */
+@media screen and (max-width: 768px) {
+    .intestazione {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .titolo {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .login-button {
+        width: clamp(70px, 8vw, 100px);
+    }
+}
+
+/* Media query per schermi piccoli */
+@media screen and (max-width: 480px) {
+    .intestazione {
+        padding: 0.3rem;
+        gap: 0.3rem;
+    }
+
+    .titolo {
+        font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .login-button {
+        width: clamp(60px, 7vw, 90px);
+        height: 6vh;
+    }
+}
+
 .titolo {
+    width: 100%;
+    height: 100%;
+    align-content: center;
+}
+
+.titolo-link {
     position: relative;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
-    font-size: calc(var(--viewport-size) * 0.07);
+    font-size: 6vw;
     font-weight: bold;
     color: rgb(247, 101, 227);
-    margin-top: calc(var(--viewport-size) * 0.1);
     text-shadow:
         0 0 0.75rem rgba(247, 101, 227, 0.7),
         0 0 1.375rem rgba(247, 101, 227, 0.5),
@@ -383,31 +392,31 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
         1px -1px 0 #6a11cb,
         -1px 1px 0 #6a11cb,
         1px 1px 0 #6a11cb; 
-    top: 30%;
-    margin-left: calc(var(--viewport-size) * 0.15);
-    letter-spacing: 0.5px;
-    text-decoration: none;  /* Rimuove la sottolineatura del link */
-    border: none;  /* Rimuove il bordo */
-    outline: none;  /* Rimuove l'outline quando il link ha il focus */
+    letter-spacing: 0.5%;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    align-content: center;
+
 }
 
 .user-icon {
-    width: calc(var(--viewport-size) * 0.04);
-    height: calc(var(--viewport-size) * 0.04);
-    background-color: white;
-    border-radius: 50%; /*crea un cerchio bianco*/
-    position: relative; /*siccome relative è il 'padre' che sarà il punto di riferimento per il resto degli elementi*/
-    display: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: transparent;
+    aspect-ratio: 1/1;
 }
 
 .user-icon::before {
     content: '';
     position: absolute; /*assoluto rispetto al padre che è relativo*/
-    top: calc(var(--viewport-size) * 0.005);
-    left: calc(var(--viewport-size) * 0.02);
+    top: 20%; 
+    left: 50%;
     transform: translateX(-50%);
-    width: calc(var(--viewport-size) * 0.015);
-    height: calc(var(--viewport-size) * 0.015);
+    width: 30%; 
+    height: 30%;
     background-color: #6a11cb;
     border-radius: 50%; /*crea un cerchio viola, la testa*/
 }
@@ -415,12 +424,11 @@ ragazze secondo me sono inutili perchè se le tolgo si vede uguale a prima, fate
 .user-icon::after {
     content: '';
     position: absolute; /*anche lui assoluto rispetto al padre che è relativo*/
-    bottom: calc(var(--viewport-size) * 0.005);
+    bottom: 25%; 
     left: 50%;
     transform: translateX(-50%);
-    width: calc(var(--viewport-size) * 0.03);
-    height: calc(var(--viewport-size) * 0.01);
+    width: 50%;
+    height: 20%;
     background-color: #6a11cb;
-    border-radius: 0.3vh; /*rettangolo viola arrotondato, il corpo*/
+    border-radius: 10px; /*rettangolo viola arrotondato, il corpo*/ 
 }
-

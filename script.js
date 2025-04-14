@@ -35,8 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         isLoggedIn = false;
         loginButton.classList.remove('logged-in');
         loginButton.innerHTML = 'Login';
-        quizButton.classList.remove('active');
-        quizButton.innerHTML = 'Scopri il tuo stile';
+        quizButton.innerHTML = '<div class="quiz-icon">Scopri il tuo stile</div>';
         
         // Rimuovi gli event listener
         loginButton.removeEventListener('click', handleUserIconClick);
@@ -112,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Trasforma il bottone in icona utente
             loginButton.classList.add('logged-in');
             loginButton.innerHTML = '<div class="user-icon"></div>';
-            quizButton.classList.add('active');
             quizButton.innerHTML = '<div class="quiz-icon">Inizia il quiz</div>';
             
             // Chiudi il pannello
@@ -144,8 +142,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Trasforma il bottone in icona utente
             loginButton.classList.add('logged-in');
             loginButton.innerHTML = '<div class="user-icon"></div>';
-            quizButton.classList.add('active');
-            const quizButton = document.querySelector('.quiz-button.active');
             quizButton.innerHTML = '<div class="quiz-icon">Inizia il quiz</div>';
             
             // Chiudi il pannello

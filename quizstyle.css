@@ -27,7 +27,7 @@
 
 .quiz-progress {
     text-align: center;
-    margin-bottom: 3vh;
+    margin-top: 3vh;
     font-size: 3vh;
     color:rgb(251, 4, 173);
     font-weight: 500;
@@ -47,7 +47,8 @@
 
 .quiz-input {
     padding: 2vh;
-    width: 96%;
+    margin-left: 1.5vw;
+    width: 65vw;
     border: 0.02vh solid rgb(255, 77, 190);
     border-radius: 2vh;
     font-size: 2.5vh;
@@ -69,12 +70,11 @@
 
 .quiz-navigation { /*barra dei pulsanti*/
     position: sticky;
-    bottom: 0; /*perche non funziona?*/
+    bottom: 0;
     background: white;
     display: flex;
     height: 10vh;
-    justify-content: space-between; /*pulsanti ai lati*/
-    gap: 10px; /*spazio tra i pulsanti*/
+    justify-content: space-around; /*spazio intorno ai pulsanti*/
 }
 
 .quiz-options {
@@ -116,7 +116,6 @@
     cursor: pointer;
     font-size: 2.5vh;
     font-weight: 500;
-    margin-bottom: 0.5vh;
     transition: all 0.3s ease;
     letter-spacing: 0.02vh;
     background-color: rgb(255, 77, 190);
@@ -132,16 +131,15 @@
 
 .quiz-window {
     position: relative;
-    display: flex;
-    flex-direction: column;
     background-color: white;
-    padding: calc(var(--base-size) * 7);
-    border-radius: calc(var(--base-size) * 3);
-    width: 90%;
-    max-width: calc(var(--base-size) * 120);
-    max-height: calc(var(--base-size) * 70);
+    border-radius: 20px;
+    width: 70vw;
+    height: 60vh;
     overflow-y: auto;
-    box-shadow: 0 calc(var(--base-size) * 1) calc(var(--base-size) * 1) rgba(0, 0, 0, 0.3);
+    overflow-x: hidden; /* Previene lo scrolling orizzontale */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+    animation: scaleIn 0.3s ease-out;
+    padding-right: 10px; /* Spazio per lo scrollbar */
 }
 
 .quiz-window.visible {
@@ -149,17 +147,23 @@
     animation: slideIn 0.3s ease;
 }
 
-.quiz-window::before {
+.quiz-window::before { /*barra superiore colorata*/
     position: sticky; 
     top: 0; /*perche non funziona?*/
-    
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 2vh;
     background: linear-gradient(90deg,rgb(255, 77, 190),rgb(255, 107, 216),rgb(255, 142, 236));
+}
+
+@keyframes scaleIn { /*fa ingrandire l'animazione*/
+    from {
+        transform: scale(0.9);   
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
 @keyframes fadeIn {
@@ -174,22 +178,31 @@
 
 /* Stile della barra di scorrimento */
 .quiz-window::-webkit-scrollbar {
-    width: 1.75vh;
-    position: relative;
+    width: 15px; /* Larghezza fissa in pixel */
+    background-color: transparent; /* Per evitare che si veda al di fuori */
 }
 
 .quiz-window::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: transparent;
     border-radius: 10px;
+    margin: 10px 0; /* Aggiunge margine sopra e sotto */
+    /*canale in cui scorre la scrollbar*/
+}
+
+.quiz-window::-webkit-scrollbar-track:hover {
+   transform: scale(5);
 }
 
 .quiz-window::-webkit-scrollbar-thumb {
     background: #6a11cb;
-    border-radius: 4px;
+    border-radius: 10px;
+    border: 2px solid white; /* Bordo per far sembrare lo scrollbar contenuto */
+    /*personalizza la parte che scorre*/
 }
 
 .quiz-window::-webkit-scrollbar-thumb:hover {
-    background: #4a0d9b;
+    background: #4a0d9b;;
+    /*definisce l'aspetto della parte che scorre quando ci passi sopra*/
 }
 
 .quiz-close-button {
