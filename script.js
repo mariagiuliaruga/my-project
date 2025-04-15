@@ -1,4 +1,5 @@
-// Gestione del login
+/*gestione di login, registrazione, logout, quiz e area personale*/
+
 document.addEventListener('DOMContentLoaded', function() {
     const loginButton = document.querySelector('.login-button');
     const loginPanel = document.querySelector('.login-panel');

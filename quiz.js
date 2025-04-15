@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const quizButtonActive = document.querySelector('.quiz-button.active');
     const closeButton = document.querySelector('.quiz-close-button');
 
-    // Aggiungi l'event listener per il pulsante di chiusura
+    //event listener per il pulsante di chiusura
     if (closeButton) {
         closeButton.addEventListener('click', function() {
             console.log('Close button clicked'); // Debug
@@ -35,24 +35,25 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             domanda: "Quanto ti piace sperimentare con il tuo stile?",
             tipo: "select",
-            opzioni: ["Per niente", "Poco", "Abbastanza", "Molto", "Moltissimo", "Tutto", "Non so"]
+            opzioni: ["Per niente", "Poco", "Abbastanza", "Molto", "Moltissimo"]
         },
         {
             domanda: "Quali colori preferisci indossare?",
             tipo: "select",
-            opzioni: ["Neutrali(nero, bianco, grigio)", "Scuri(nero, blu, marrone)", "Vivaci(verde, giallo, fucsia)", "Pastello", "Colorati"],
-            colori: {
-                "Neutrali(nero, bianco, grigio)": ["#000000", "#FFFFFF", "#888888"],
-                "Scuri(nero, blu, marrone)": ["#000000", "#0A2463", "#553939"],
-                "Vivaci(verde, giallo, fucsia)": ["#00FF00", "#FFFF00", "#FF00FF"],
-                "Pastello": ["#FFB6C1", "#C1FFB6", "#B6C1FF"],
-                "Colorati": ["#FF0000", "#00BFFF", "#FFDB58", "#8A2BE2", "#50C878"]
+            opzioni: ["Neutrali", "Scuri", "Vivaci", "Pastello", "Colorati", "Navy"],
+            immagini: {
+                "Neutrali": "coloriNeutrali.png",
+                "Scuri": "coloriScuri.png",
+                "Vivaci": "coloriVivaci.png",
+                "Pastello": "coloriPastello.png",
+                "Colorati": "coloriColorati.png",
+                "Navy": "coloriNavy.png"
             }
         },
         {
             domanda: "Quale tra questi brand o negozi senti più vicino al tuo stile?",
             tipo: "select",
-            opzioni: ["Zara", "H&M", "Uniqlo", "DoppleGanger", "Other"]
+            opzioni: ["Zara", "H&M", "Stradivarius", "DoppelGanger", "Nike", "Other"]
         },
         {
             domanda: "Quanto tempo dedichi a scegliere il tuo outfit",
@@ -78,35 +79,46 @@ document.addEventListener('DOMContentLoaded', function() {
         let html = `<h3>${question.domanda}</h3>`;
         
         if (question.tipo === "select") {
-            html += `<div class="quiz-options">`;
-            question.opzioni.forEach(opzione => {
-                const isChecked = answers[index] === opzione;
+            // Gestione speciale per la domanda sui colori (indice 4)
+            if (index === 4 && question.immagini) {
+                html += `<div class="color-options-grid">`;
                 
-                // Aggiungi palette di colori per la domanda 5 (indice 4)
-                if (index === 4 && question.colori && question.colori[opzione]) {
-                    const coloriHtml = question.colori[opzione].map(colore => 
-                        `<span class="color-swatch" style="background-color: ${colore}"></span>`
-                    ).join('');
+                // Genera tutte le opzioni in un unico ciclo
+                question.opzioni.forEach(opzione => {
+                    const imgSrc = question.immagini[opzione];
+                    // Verifica se questa opzione è selezionata (per checkbox multipli)
+                    let isChecked = false;
+                    if (answers[index]) {
+                        isChecked = Array.isArray(answers[index]) 
+                            ? answers[index].includes(opzione) 
+                            : answers[index] === opzione;
+                    }
                     
                     html += `
-                        <label class="quiz-option">
-                            <input type="radio" class="quiz-radio" 
+                        <label class="color-option">
+                            <input type="checkbox" class="quiz-checkbox" 
                                 name="question-${index}" value="${opzione}" ${isChecked ? 'checked' : ''}>
-                            <div class="quiz-option-container">
-                                <span class="quiz-option-text">${opzione}</span>
-                                <div class="color-palette">${coloriHtml}</div>
+                            <div class="color-option-content">
+                                <img src="${imgSrc}" alt="${opzione}" class="color-img">
+                                <span class="color-option-text">${opzione}</span>
                             </div>
                         </label>`;
-                } else {
+                });
+                
+                html += `</div>`;
+            } else {
+                html += `<div class="quiz-options">`;
+                question.opzioni.forEach(opzione => {
+                    const isChecked = answers[index] === opzione;
                     html += `
                         <label class="quiz-option">
                             <input type="radio" class="quiz-radio" 
                                 name="question-${index}" value="${opzione}" ${isChecked ? 'checked' : ''}>
                             <span class="quiz-option-text">${opzione}</span>
                         </label>`;
-                }
-            });
-            html += `</div>`;
+                });
+                html += `</div>`;
+            }
         } else if (question.tipo === "number") {
             html += `<input type="number" class="quiz-input" 
                 placeholder="${question.placeholder || ''}" 
@@ -144,8 +156,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const questionElement = document.querySelector('.quiz-domanda');
         
         if (question.tipo === "select") {
-            const selectedRadio = questionElement.querySelector('input[type="radio"]:checked');
-            answers[index] = selectedRadio ? selectedRadio.value : null;
+            // Caso speciale per la domanda sui colori (indice 4) che usa checkbox
+            if (index === 4) {
+                const selectedCheckboxes = questionElement.querySelectorAll('input[type="checkbox"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                answers[index] = selectedValues.length > 0 ? selectedValues : null;
+            } else {
+                // Per le altre domande a scelta singola
+                const selectedRadio = questionElement.querySelector('input[type="radio"]:checked');
+                answers[index] = selectedRadio ? selectedRadio.value : null;
+            }
         } else if (question.tipo === "number") {
             const input = questionElement.querySelector('input[type="number"]');
             answers[index] = input ? input.value : null;
@@ -158,10 +178,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const questionElement = document.querySelector('.quiz-domanda');
         
         if (question.tipo === "select") {
-            const selectedRadio = questionElement.querySelector('input[type="radio"]:checked');
-            if (!selectedRadio) {
-                alert('Per favore seleziona una risposta');
-                return false;
+            // Caso speciale per la domanda sui colori (indice 4) che usa checkbox
+            if (currentQuestion === 4) {
+                const selectedCheckboxes = questionElement.querySelectorAll('input[type="checkbox"]:checked');
+                if (selectedCheckboxes.length === 0) {
+                    alert('Per favore seleziona almeno un colore');
+                    return false;
+                }
+            } else {
+                // Per le altre domande a scelta singola
+                const selectedRadio = questionElement.querySelector('input[type="radio"]:checked');
+                if (!selectedRadio) {
+                    alert('Per favore seleziona una risposta');
+                    return false;
+                }
             }
         } else if (question.tipo === "number") {
             const input = questionElement.querySelector('input[type="number"]');

@@ -13,7 +13,7 @@ html, body {
 body {
     position: relative;
     min-height: 100vh;
-    background-color: #edd4d4;
+    background-color: #efd8e5;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -186,7 +186,7 @@ body {
     position: fixed;
     top: 0;
     right: -30%;
-    width: 500px;
+    width: 40vw;
     height: 100vh;
     background-color: white;
     box-shadow: -0.5vw 0 1vh rgba(0, 0, 0, 0.1);
@@ -279,7 +279,7 @@ body {
     position: fixed;
     top: 0;
     right: -30%;
-    width: 500px;
+    width: 40vw;
     height: 100vh;
     background-color: white;
     box-shadow: -0.5vw 0 1vh rgba(0, 0, 0, 0.1);
