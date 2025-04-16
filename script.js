@@ -211,10 +211,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Aggiungi event listener per il bottone del menu
     const menuButton = document.querySelector('.bottone');
     if (menuButton) {
+        // Rimuovi l'event listener esistente
+        menuButton.removeEventListener('click', function() {});
+        
+        // Aggiungi il nuovo event listener
         menuButton.addEventListener('click', function(e) {
+            e.preventDefault();
             e.stopPropagation();
             const menuTendina = this.querySelector('.menu-tendina');
             if (menuTendina) {
+                // Chiudi tutti gli altri menu a tendina
+                document.querySelectorAll('.menu-tendina').forEach(menu => {
+                    if (menu !== menuTendina) {
+                        menu.classList.remove('visible');
+                    }
+                });
+                // Apri/chiudi il menu corrente
                 menuTendina.classList.toggle('visible');
             }
         });
@@ -224,7 +236,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(e) {
         const menuTendina = document.querySelector('.menu-tendina');
         const menuButton = document.querySelector('.bottone');
-        if (menuTendina && menuButton && !menuButton.contains(e.target)) {
+        if (menuTendina && menuButton && !menuButton.contains(e.target) && !menuTendina.contains(e.target)) {
+            menuTendina.classList.remove('visible');
+        }
+    });
+
+    // Aggiungi event listener per touchstart
+    document.addEventListener('touchstart', function(e) {
+        const menuTendina = document.querySelector('.menu-tendina');
+        const menuButton = document.querySelector('.bottone');
+        if (menuTendina && menuButton && !menuButton.contains(e.target) && !menuTendina.contains(e.target)) {
             menuTendina.classList.remove('visible');
         }
     });

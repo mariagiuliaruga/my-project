@@ -212,10 +212,10 @@ body {
 
 .menu-tendina {
     position: absolute;
-    top: 70%;
-    left: 20%;
+    top: 100%;
+    left: 0;
     background-color: rgba(255, 255, 255, 0.95);
-    min-width: 13vw;
+    min-width: 200px;
     box-shadow: 0 0.625vh 0.625vh rgba(0,0,0,0.2);
     display: none;
     z-index: 1001;
@@ -224,19 +224,19 @@ body {
     backdrop-filter: blur(0.3125rem);
 }
 
-.bottone:hover .menu-tendina,
 .menu-tendina.visible {
     display: block;
 }
 
 .menu-tendina a {
-    display: block; /* ogni blocco (ogni a) va a capo  */
-    padding: 1vw 3vh;
+    display: block;
+    padding: 1.5vh 2vw;
     text-align: left;
     text-decoration: none;
     color: rgb(4, 5, 6);
     transition: all 0.3s ease;
     border-bottom: 0.1rem solid rgba(0,0,0,0.05);
+    font-size: 1rem;
 }
 
 .menu-tendina a:last-child {
@@ -245,7 +245,7 @@ body {
 
 .menu-tendina a:hover {
     background-color: rgb(255, 171, 255);
-    padding-left: 8.2vw;
+    padding-left: 2.5vw;
 }
 
 .register-link {
@@ -410,16 +410,25 @@ body {
         width: 100%;
         min-width: auto;
         border-radius: 0;
-        padding: 2vh 0;
+        padding: 1vh 0;
+        background-color: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     .menu-tendina a {
-        padding: 2vh 5vw;
-        font-size: 1.2rem;
+        padding: 3vh 5vw;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
     .menu-tendina a:hover {
         padding-left: 5vw;
+        background-color: rgba(255, 171, 255, 0.3);
+    }
+
+    .bottone {
+        height: 4vh;
+        margin-left: 3vw;
     }
 }
 
