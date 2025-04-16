@@ -51,6 +51,8 @@ body {
     margin-top: 0;
     margin-right: 0;
     flex-basis: 6vw;
+    border: none;
+    padding: 0;
 }
 
 .bottone span {
@@ -70,6 +72,9 @@ body {
     width: 25px;
     height: 25px;
     transition: all 0.3s ease;
+    display: block;
+    border: none;
+    background: transparent;
 }
 
 .bottone:hover .menu-icon {
