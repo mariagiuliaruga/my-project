@@ -1,6 +1,6 @@
 .profile-edit-container {
     max-width: 80vw;
-    margin: 15vh auto 5vh;
+    margin: 20vh auto 5vh;
     padding: 3vh 4vw;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
@@ -100,7 +100,7 @@
 /* Responsive */
 @media (max-width: 768px) {
     .profile-edit-container {
-        margin: 12vh 5vw 5vh;
+        margin: 15vh 5vw 5vh;
         padding: 4vh 5vw;
     }
     
