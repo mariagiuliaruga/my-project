@@ -36,33 +36,33 @@ body {
 
 .bottone {
     position: relative;
-    height: 25px;
+    height: 4vh;
     aspect-ratio: 1/1;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     background: transparent;
     transition: transform 0.3s ease-in-out;
     z-index: 1001;
     text-align: center;
-    margin-left: 2%;
+    margin-left: 2vw;
     margin-top: 0;
     margin-right: 0;
-    flex-basis: 5vw;
+    flex-basis: 6vw;
 }
 
-.bottone span {
+.bottone::before {
+    content: '';
     display: block;
-    width: 60%; /* Le linee occupano per 80% la larghezza del bottone */
-    height: 4px; /* Linee più spesse */
-    background-color: rgb(4, 5, 6);
-    border-radius: 20px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.bottone:hover span {
-    background-color: fuchsia;
+    width: 100%;
+    height: 100%;
+    background-image: url('menubar.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.3s ease;
 }
 
 .bottone:hover {
@@ -353,6 +353,20 @@ body {
     .login-button {
         width: clamp(70px, 8vw, 100px);
     }
+
+    .bottone {
+        height: 3.5vh;
+        flex-basis: 8vw;
+    }
+    
+    .bottone::before {
+        width: 70%;
+        height: 70%;
+    }
+
+    .titolo-link {
+        font-size: 5vw;
+    }
 }
 
 /* Media query per schermi piccoli */
@@ -370,6 +384,20 @@ body {
         width: clamp(60px, 7vw, 90px);
         height: 6vh;
     }
+
+    .bottone {
+        height: 3vh;
+        flex-basis: 10vw;
+    }
+    
+    .bottone::before {
+        width: 80%;
+        height: 80%;
+    }
+
+    .titolo-link {
+        font-size: 5.5vw;
+    }
 }
 
 .titolo {
@@ -382,7 +410,7 @@ body {
     position: relative;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
-    font-size: 6vw;
+    font-size: 4.5vw;
     font-weight: bold;
     color: rgb(247, 101, 227);
     text-shadow:
@@ -399,7 +427,6 @@ body {
     border: none;
     outline: none;
     align-content: center;
-
 }
 
 .user-icon {

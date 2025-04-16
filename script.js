@@ -179,6 +179,18 @@ document.addEventListener('DOMContentLoaded', function() {
         logoutButton.addEventListener('click', handleLogout);
     }
 
+    // Aggiungi event listener per il link Reset nel menu a tendina
+    const menuTendinaContainer = document.querySelector('.menu-tendina');
+    if (menuTendinaContainer) {
+        const resetLink = menuTendinaContainer.querySelector('a[href="#"]:nth-child(2)');
+        if (resetLink) {
+            resetLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                handleLogout();
+            });
+        }
+    }
+
     // Aggiungi event listener per il pulsante di modifica profilo
     if (profileButton) {
         profileButton.addEventListener('click', handleProfileButtonClick);
