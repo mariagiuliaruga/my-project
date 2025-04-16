@@ -411,6 +411,23 @@ body {
 
 /* Media query per dispositivi mobili */
 @media (max-width: 768px) {
+    .menu-tendina {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 200px;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 0.625vh 0.625vh rgba(0,0,0,0.2);
+        border-radius: 20px;
+        overflow: hidden;
+        backdrop-filter: blur(0.3125rem);
+    }
+
+    .menu-link {
+        padding: 2vh 3vw;
+        font-size: 1.1rem;
+    }
+
     .bottone {
         height: 3.5vh;
         flex-basis: 8vw;
@@ -444,21 +461,6 @@ body {
         left: 0;
     }
 
-    .menu-link {
-        padding: 4vh 5vw;
-        font-size: 1.2rem;
-    }
-
-    .intestazione {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1001;
-        background-color: white;
-    }
-
-    /* Overlay quando il menu è aperto */
     .menu-overlay {
         display: none;
         position: fixed;
