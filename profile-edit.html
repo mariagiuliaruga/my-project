@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Modifica Profilo - MSE</title>
+    <link rel="stylesheet" href="intestazione.css">
+    <link rel="stylesheet" href="centro.css">
+    <link rel="stylesheet" href="profile-edit.css">
+    
+</head>
+<body>
+    <div class="intestazione">
+              
+        <div class="bottone">
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class="menu-tendina"> 
+                <a href="index.html">Home</a>
+                <a href="#">Reset</a>
+                <a href="#">About</a>
+            </div>
+        </div>
+        <div class="titolo">
+            <a href="index.html" class="titolo-link" autofocus>MyStyleEssence</a>  
+        </div>
+
+        <button class="login-button">Login</button>
+    </div>
+    
+    <div class="profile-edit-container">
+        <h2>Modifica Profilo</h2>
+        <div class="profile-form">
+            <form id="profile-edit-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Inserisci la tua email" required>
+                </div>
+                <div class="form-group">
+                    <label for="current-password">Password Attuale</label>
+                    <input type="password" id="current-password" name="current-password" placeholder="Inserisci la password attuale">
+                </div>
+                <div class="form-group">
+                    <label for="new-password">Nuova Password</label>
+                    <input type="password" id="new-password" name="new-password" placeholder="Inserisci la nuova password">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Conferma Nuova Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Conferma la nuova password">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="save-button">Salva Modifiche</button>
+                    <button type="button" class="cancel-button">Annulla</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="profile-edit.js"></script>
+</body>
+</html> 

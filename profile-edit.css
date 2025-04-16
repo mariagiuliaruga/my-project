@@ -1,0 +1,140 @@
+.profile-edit-container {
+    max-width: 80vw;
+    width: 90%;
+    margin: 5vh auto;
+    padding: 3vh 4vw;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1rem;
+    box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.2);
+}
+
+.profile-edit-container h2 {
+    color: rgb(247, 101, 227);
+    font-size: 2.5rem;
+    margin-bottom: 3vh;
+    text-align: center;
+    text-shadow: 0 0 1vh rgba(247, 101, 227, 0.3);
+}
+
+.profile-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 3vh;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 1vh;
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1.5vh 2vw;
+    border: 0.1rem solid #ddd;
+    border-radius: 0.8rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: rgb(247, 101, 227);
+    outline: none;
+    box-shadow: 0 0 0.5vh rgba(247, 101, 227, 0.5);
+}
+
+.form-group input.error {
+    border-color: #ff3333;
+    box-shadow: 0 0 0.5vh rgba(255, 51, 51, 0.5);
+}
+
+.error-message {
+    color: #ff3333;
+    font-size: 0.9rem;
+    margin-top: 0.5vh;
+    display: block;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4vh;
+    gap: 2vw;
+}
+
+.save-button, .cancel-button {
+    padding: 1.5vh 3vw;
+    border: none;
+    border-radius: 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.save-button {
+    background: linear-gradient(90deg, rgb(247, 101, 227), rgb(255, 0, 238));
+    color: white;
+    box-shadow: 0 0.3vh 1vh rgba(247, 101, 227, 0.3);
+}
+
+.save-button:hover {
+    transform: translateY(-0.3vh);
+    box-shadow: 0 0.5vh 1.5vh rgba(247, 101, 227, 0.4);
+}
+
+.cancel-button {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.cancel-button:hover {
+    background: #e0e0e0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-edit-container {
+        max-width: 95vw;
+        margin: 3vh auto;
+        padding: 2vh 3vw;
+    }
+    
+    .profile-edit-container h2 {
+        font-size: 2rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 2vh;
+    }
+    
+    .save-button, .cancel-button {
+        width: 100%;
+    }
+}
+
+/* Per schermi molto piccoli */
+@media (max-width: 480px) {
+    .profile-edit-container {
+        padding: 2vh 2vw;
+    }
+    
+    .profile-edit-container h2 {
+        font-size: 1.8rem;
+    }
+    
+    .form-group label {
+        font-size: 1rem;
+    }
+    
+    .form-group input {
+        padding: 1.2vh 1.5vw;
+    }
+} 

@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const quizButton = document.querySelector('.quiz-button');
     const areaPersonale = document.querySelector('.area-personale');
     const container = document.querySelector('.container');
+    const profileButton = document.querySelector('.profile-button');
 
     let isLoggedIn = false;
 
@@ -57,6 +58,13 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             loginPanel.classList.add('visible');
         }
+    }
+
+    // Funzione per gestire il click sul pulsante modifica profilo
+    function handleProfileButtonClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = 'profile-edit.html';
     }
 
     // mostra il pannello di login e nascondi il pannello di registrazione
@@ -109,6 +117,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             isLoggedIn = true;
             
+            // Salva i dati dell'utente nel localStorage
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userPassword', password);
+            
             // Trasforma il bottone in icona utente
             loginButton.classList.add('logged-in');
             loginButton.innerHTML = '<div class="user-icon"></div>';
@@ -140,6 +152,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             isLoggedIn = true;
             
+            // Salva i dati dell'utente nel localStorage
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userPassword', password);
+            
             // Trasforma il bottone in icona utente
             loginButton.classList.add('logged-in');
             loginButton.innerHTML = '<div class="user-icon"></div>';
@@ -163,10 +179,15 @@ document.addEventListener('DOMContentLoaded', function() {
         logoutButton.addEventListener('click', handleLogout);
     }
 
+    // Aggiungi event listener per il pulsante di modifica profilo
+    if (profileButton) {
+        profileButton.addEventListener('click', handleProfileButtonClick);
+    }
+
     // Aggiungi event listener per tornare alla home page
     const menuTendina = document.querySelector('.menu-tendina');
     if (menuTendina) {
-        const homeLink = menuTendina.querySelector('a[href="test.html"]');
+        const homeLink = menuTendina.querySelector('a[href="index.html"]');
         if (homeLink) {
             homeLink.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -175,6 +196,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-
-
-
