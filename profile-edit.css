@@ -1,7 +1,7 @@
 .profile-edit-container {
     max-width: 80vw;
-    margin: 20vh auto 5vh;
-    padding: 3vh 4vw;
+    margin: 12vh auto 5vh;
+    padding: 4vh 5vw;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
     box-shadow: 0 0.5vw 1vh rgba(0, 0, 0, 0.1);
@@ -10,17 +10,19 @@
 .profile-edit-container h2 {
     color: rgb(247, 101, 227);
     font-size: 2.5rem;
-    margin-bottom: 3vh;
+    margin-bottom: 4vh;
     text-align: center;
     text-shadow: 0 0 1vh rgba(247, 101, 227, 0.3);
 }
 
 .profile-form {
     width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .form-group {
-    margin-bottom: 3vh;
+    margin-bottom: 2.5vh;
     position: relative;
 }
 
@@ -29,7 +31,7 @@
     margin-bottom: 1vh;
     font-weight: 600;
     color: #333;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .form-group input {
@@ -37,7 +39,7 @@
     padding: 1.5vh 2vw;
     border: 0.1rem solid #ddd;
     border-radius: 0.8rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     transition: border-color 0.3s ease;
 }
 
@@ -54,8 +56,8 @@
 
 .error-message {
     color: #ff3333;
-    font-size: 0.9rem;
-    margin-top: 0.5vh;
+    font-size: 1rem;
+    margin-top: 0.8vh;
     display: block;
 }
 
@@ -67,10 +69,10 @@
 }
 
 .save-button, .cancel-button {
-    padding: 1.5vh 3vw;
+    padding: 2vh 4vw;
     border: none;
     border-radius: 0.8rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -97,35 +99,41 @@
     background: #e0e0e0;
 }
 
-/* Responsive */
+/* Media query per tablet */
+@media (max-width: 1024px) {
+    .profile-edit-container {
+        max-width: 85vw;
+        margin: 15vh auto 5vh;
+        padding: 3vh 4vw;
+    }
+    
+    .profile-edit-container h2 {
+        font-size: 2.3rem;
+    }
+    
+    .form-group label {
+        font-size: 1.1rem;
+    }
+    
+    .form-group input {
+        font-size: 1rem;
+    }
+    
+    .save-button, .cancel-button {
+        font-size: 1.1rem;
+    }
+}
+
+/* Media query per dispositivi mobili */
 @media (max-width: 768px) {
     .profile-edit-container {
-        margin: 25vh 5vw 5vh;
-        padding: 4vh 5vw;
+        max-width: 90vw;
+        margin: 18vh 5vw 5vh;
+        padding: 3vh 4vw;
     }
     
     .profile-edit-container h2 {
         font-size: 2rem;
-    }
-    
-    .form-actions {
-        flex-direction: column;
-        gap: 2vh;
-    }
-    
-    .save-button, .cancel-button {
-        width: 100%;
-    }
-}
-
-/* Per schermi molto piccoli */
-@media (max-width: 480px) {
-    .profile-edit-container {
-        padding: 2vh 2vw;
-    }
-    
-    .profile-edit-container h2 {
-        font-size: 1.8rem;
     }
     
     .form-group label {
@@ -133,6 +141,35 @@
     }
     
     .form-group input {
-        padding: 1.2vh 1.5vw;
+        font-size: 0.95rem;
+    }
+    
+    .save-button, .cancel-button {
+        font-size: 1rem;
+    }
+}
+
+/* Per schermi molto piccoli */
+@media (max-width: 480px) {
+    .profile-edit-container {
+        max-width: 95vw;
+        margin: 15vh auto 5vh;
+        padding: 2.5vh 3vw;
+    }
+    
+    .profile-edit-container h2 {
+        font-size: 1.8rem;
+    }
+    
+    .form-group label {
+        font-size: 0.95rem;
+    }
+    
+    .form-group input {
+        font-size: 0.9rem;
+    }
+    
+    .save-button, .cancel-button {
+        font-size: 0.95rem;
     }
 } 
