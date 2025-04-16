@@ -114,16 +114,12 @@
 }
 
 .gif-animata {
-    width: 120%;
-    max-width: 120%;
-    display: block;
+    width: 95%;
+    max-width: 600px;
     height: auto;
-    object-fit: contain;
-    max-height: 100vh;
-    margin: 10vh auto 0;
-    transform: scale(1.2);
-    position: relative;
-    left: -10%;
+    margin: 2vh auto;
+    display: block;
+    border-radius: 10px;
 }
 
 .gif-animata2 {
@@ -309,11 +305,11 @@
     }
     
     .gif-animata {
-        width: 130%;
-        max-width: 130%;
-        transform: scale(1.3);
-        left: -15%;
-        margin: 15vh auto 0;
+        width: 100%;
+        max-width: 650px;
+        transform: none;
+        left: 0;
+        margin: 2vh auto;
     }
     
     .text-content {
@@ -369,11 +365,11 @@
     }
     
     .gif-animata {
-        width: 140%;
-        max-width: 140%;
-        transform: scale(1.4);
-        left: -20%;
-        margin: 18vh auto 0;
+        width: 105%;
+        max-width: 700px;
+        transform: none;
+        left: 0;
+        margin: 2vh auto;
     }
 }
 
@@ -414,11 +410,11 @@
     }
     
     .gif-animata {
-        width: 150%;
-        max-width: 150%;
-        transform: scale(1.5);
-        left: -25%;
-        margin: 20vh auto 0;
+        width: 110%;
+        max-width: 750px;
+        transform: none;
+        left: 0;
+        margin: 2vh auto;
     }
 }
 
@@ -467,10 +463,7 @@
     }
     
     .gif-animata {
-        width: 110%;
-        max-width: 110%;
-        transform: scale(1.2);
-        left: -5%;
-        margin: 8vh auto 0;
+        width: 100%;
+        max-width: 550px;
     }
 }
