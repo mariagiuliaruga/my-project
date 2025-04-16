@@ -458,6 +458,10 @@ body {
     .menu-overlay.visible {
         display: block;
     }
+
+    .intestazione {
+        background-color: rgba(255, 255, 255, 0.612);
+    }
 }
 
 .titolo {
