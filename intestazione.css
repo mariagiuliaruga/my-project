@@ -483,14 +483,14 @@ body {
     font-weight: bold;
     color: rgb(247, 101, 227);
     text-shadow:
-        0 0 0.75vw rgba(247, 101, 227, 0.7),
-        0 0 1.375vw rgba(247, 101, 227, 0.5),
-        0 0 2vw rgba(247, 101, 227, 0.3),
-        0 0 2.625vw rgba(247, 101, 227, 0.2),
-        -0.1vw -0.1vw 0 #6a11cb,  
-        0.1vw -0.1vw 0 #6a11cb,
-        -0.1vw 0.1vw 0 #6a11cb,
-        0.1vw 0.1vw 0 #6a11cb; 
+        0 0 0.75rem rgba(247, 101, 227, 0.7),
+        0 0 1.375rem rgba(247, 101, 227, 0.5),
+        0 0 2rem rgba(247, 101, 227, 0.3),
+        0 0 2.625rem rgba(247, 101, 227, 0.2),
+        -1px -1px 0 #6a11cb,  
+        1px -1px 0 #6a11cb,
+        -1px 1px 0 #6a11cb,
+        1px 1px 0 #6a11cb; 
     letter-spacing: 0.5%;
     text-decoration: none;
     border: none;
@@ -529,4 +529,18 @@ body {
     height: 20%;
     background-color: #6a11cb;
     border-radius: 10px; /*rettangolo viola arrotondato, il corpo*/ 
+}
+
+.forgot-password {
+    text-align: right;
+    margin-top: 1vh;
+    color: #6a11cb;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #845ec2;
+    text-decoration: underline;
 }
