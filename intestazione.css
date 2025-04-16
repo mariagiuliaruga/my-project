@@ -444,23 +444,6 @@ body {
         margin: 3px 0;
     }
 
-    .menu-tendina {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 80%;
-        height: 100vh;
-        background-color: white;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-        transition: left 0.3s ease;
-        z-index: 1002;
-        padding-top: 15vh;
-    }
-
-    .menu-tendina.visible {
-        left: 0;
-    }
-
     .menu-overlay {
         display: none;
         position: fixed;
