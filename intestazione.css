@@ -225,8 +225,8 @@ body {
 }
 
 .bottone:hover .menu-tendina,
-.menu-tendina:hover {
-    display: block; /* rende tutto il menu a tendina un blocco che va a capo ogni riga */
+.menu-tendina.visible {
+    display: block;
 }
 
 .menu-tendina a {
@@ -397,6 +397,29 @@ body {
 
     .titolo-link {
         font-size: 5.5vw;
+    }
+}
+
+/* Media query per dispositivi mobili */
+@media (max-width: 768px) {
+    .menu-tendina {
+        position: fixed;
+        top: 13vh;
+        left: 0;
+        right: 0;
+        width: 100%;
+        min-width: auto;
+        border-radius: 0;
+        padding: 2vh 0;
+    }
+
+    .menu-tendina a {
+        padding: 2vh 5vw;
+        font-size: 1.2rem;
+    }
+
+    .menu-tendina a:hover {
+        padding-left: 5vw;
     }
 }
 

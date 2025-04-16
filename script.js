@@ -207,4 +207,25 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // Aggiungi event listener per il bottone del menu
+    const menuButton = document.querySelector('.bottone');
+    if (menuButton) {
+        menuButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const menuTendina = this.querySelector('.menu-tendina');
+            if (menuTendina) {
+                menuTendina.classList.toggle('visible');
+            }
+        });
+    }
+
+    // Chiudi il menu quando si clicca fuori da esso
+    document.addEventListener('click', function(e) {
+        const menuTendina = document.querySelector('.menu-tendina');
+        const menuButton = document.querySelector('.bottone');
+        if (menuTendina && menuButton && !menuButton.contains(e.target)) {
+            menuTendina.classList.remove('visible');
+        }
+    });
 });
