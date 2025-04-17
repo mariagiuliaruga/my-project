@@ -3,9 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const userEmail = localStorage.getItem('userEmail');
     const userPassword = localStorage.getItem('userPassword');
     
-    // Popola il campo email con l'email dell'utente
+    // Popola il campo email con l'email dell'utente e lo rendi non modificabile
     if (userEmail) {
-        document.getElementById('email').value = userEmail;
+        const emailInput = document.getElementById('email');
+        emailInput.value = userEmail;
+        emailInput.readOnly = true;
+        emailInput.title = "L'email non può essere modificata";
     }
     
     // Gestione del form di modifica profilo
@@ -42,6 +45,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         inputElement.classList.remove('error');
+    }
+    
+    // Funzione per mostrare una notifica toast
+    function showToast(message, type = 'success') {
+        // Crea il container del toast se non esiste
+        let toastContainer = document.querySelector('.toast-container');
+        if (!toastContainer) {
+            toastContainer = document.createElement('div');
+            toastContainer.className = 'toast-container';
+            document.body.appendChild(toastContainer);
+        }
+        
+        // Crea il toast
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        
+        // Aggiungi l'icona
+        const icon = document.createElement('i');
+        icon.className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+        toast.appendChild(icon);
+        
+        // Aggiungi il messaggio
+        const messageElement = document.createElement('span');
+        messageElement.textContent = message;
+        toast.appendChild(messageElement);
+        
+        // Aggiungi il toast al container
+        toastContainer.appendChild(toast);
+        
+        // Animazione di entrata
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 100);
+        
+        // Rimuovi il toast dopo 3 secondi
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                toastContainer.removeChild(toast);
+            }, 300);
+        }, 3000);
     }
     
     // Validazione della password attuale
@@ -121,13 +165,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // In un'applicazione reale, qui ci sarebbe una chiamata API
         localStorage.setItem('userEmail', email);
         localStorage.setItem('userPassword', newPassword);
+        // Imposta il flag per mostrare l'area personale
+        localStorage.setItem('showPersonalArea', 'true');
         
-        alert('Profilo aggiornato con successo!');
-        window.location.href = 'index.html';
+        // Mostra la notifica toast invece dell'alert
+        showToast('Profilo aggiornato con successo!');
+        
+        // Reindirizza dopo un breve delay per permettere di vedere la notifica
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 1500);
     });
     
     // Gestione del pulsante Annulla
     cancelButton.addEventListener('click', function() {
+        // Imposta il flag per mostrare l'area personale
+        localStorage.setItem('showPersonalArea', 'true');
         window.location.href = 'index.html';
     });
 }); 

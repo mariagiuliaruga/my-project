@@ -14,6 +14,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let isLoggedIn = false;
 
+    // Controlla se dobbiamo mostrare l'area personale
+    if (localStorage.getItem('showPersonalArea') === 'true') {
+        container.classList.add('invisible');
+        areaPersonale.classList.add('visible');
+        loginButton.style.display = 'none'; // Nascondi il pulsante di login
+        localStorage.removeItem('showPersonalArea'); // Rimuovi il flag dopo averlo usato
+    }
+
     // Funzione per gestire il click sull'icona utente
     function handleUserIconClick(e) {
         e.preventDefault();
@@ -21,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isLoggedIn) {
             container.classList.add('invisible');
             areaPersonale.classList.add('visible');
+            loginButton.style.display = 'none'; // Nascondi il pulsante di login
             loginPanel.classList.remove('visible');
             registerPanel.classList.remove('visible');
         }
@@ -30,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleBackToHome() {
         container.classList.remove('invisible');
         areaPersonale.classList.remove('visible');
+        loginButton.style.display = 'block'; // Mostra di nuovo il pulsante di login
     }
 
     // Funzione per gestire il logout
@@ -37,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         isLoggedIn = false;
         loginButton.classList.remove('logged-in');
         loginButton.innerHTML = 'Login';
+        loginButton.style.display = 'block'; // Mostra di nuovo il pulsante di login
         quizButton.innerHTML = '<div class="quiz-icon">Scopri il tuo stile</div>';
         
         // Rimuovi gli event listener

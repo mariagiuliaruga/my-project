@@ -107,29 +107,30 @@ body {
 
 .login-button {
     position: relative;
-    font-weight: bold;
+    border: 2px solid #8e44ad;
+    background: none;
+    color: #8e44ad;
+    border-radius: 10px;
+    padding: 6px 16px;
+    font-weight: 600;
     font-size: clamp(0.9rem, 2vw, 1.5rem);
-    color: white;
-    background-color: #6a11cb;
-    border: none;
-    border-radius: 30px;
     width: clamp(80px, 10vw, 120px);
     height: 7vh;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0.5vh 0.5vh rgba(0, 0, 0, 0.2);
     margin-right: 5%;
 }
 
 .login-button:hover {
-    background-color: #845ec2;
+    background-color: #8e44ad;
+    color: white;
     transform: translateY(-0.6vh);
     box-shadow: 0 1vh 0.5vw rgba(0, 0, 0, 0.3);
 }
 
 .login-button.logged-in {
     background-color: white;
-    border: 0.3vh solid #6a11cb;
+    border: 2px solid #8e44ad;
     border-radius: 50%;
     width: 7vh;
     height: 7vh;

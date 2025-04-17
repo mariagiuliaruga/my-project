@@ -42,13 +42,23 @@ document.addEventListener('DOMContentLoaded', function() {
             tipo: "select",
             opzioni: ["Neutrali", "Scuri", "Vivaci", "Pastello", "Colorati", "Navy"],
             immagini: {
-                "Neutrali": "coloriNeutrali.png",
-                "Scuri": "coloriScuri.png",
-                "Vivaci": "coloriVivaci.png",
-                "Pastello": "coloriPastello.png",
-                "Colorati": "coloriColorati.png",
-                "Navy": "coloriNavy.png"
+                "Neutrali": "colori/coloriNeutrali.png",
+                "Scuri": "colori/coloriScuri.png",
+                "Vivaci": "colori/coloriVivaci.png",
+                "Pastello": "colori/coloriPastello.png",
+                "Colorati": "colori/coloriColorati.png",
+                "Navy": "colori/coloriNavy.png"
             }
+        },
+        {
+            domanda: "Che tipo di gioielli preferisci?",
+            tipo: "select",
+            opzioni: ["Oro", "Argento", "Entrambi", "Nessuno"]
+        },
+        {
+            domanda: "Quale di queste occasioni vivi più spesso?",
+            tipo: "select",
+            opzioni: ["Università / Lavoro", "Aperitivi / Eventi", "Viaggi e weekend", "Serate fuori"]
         },
         {
             domanda: "Quale tra questi brand o negozi senti più vicino al tuo stile?",
