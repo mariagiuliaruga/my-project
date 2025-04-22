@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loginButton.style.display = 'block'; // Mostra di nuovo il pulsante di login
     }
 
+
     // Funzione per gestire il logout
     function handleLogout() {
         isLoggedIn = false;

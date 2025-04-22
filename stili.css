@@ -1,0 +1,79 @@
+.prova{
+    display: none;
+}
+
+.area-stili{
+    position: relative;
+    background-color: white;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-size: 100%;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.titolo-stili{
+    position: relative;
+    margin-top: 10vh;
+}
+
+.area-stili h1{
+    position: relative;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.area-stili p{
+    position: relative;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.stili-donna{
+    position: relative;
+    margin-top: 2rem;
+    width: 80vw;
+    margin-left: 5vw;
+}
+
+/* Style entry - a container for each image+text pair */
+.style-entry-sx {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    width: 100%;
+}
+
+.style-entry-dx {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    width: 100%;
+}
+
+.img-guide{
+    width: 45%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 30px;
+    margin-right: 2rem;
+}
+
+.testo-stili{
+    width: 45%;
+    line-height: 1.2;
+}
+
+
+b {
+    color: rgb(95, 14, 14);
+}
