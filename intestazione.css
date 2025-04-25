@@ -484,24 +484,31 @@ body {
 .titolo-link {
     position: relative;
     cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-    font-size: 4.5vw;
-    font-weight: bold;
-    color: rgb(247, 101, 227);
-    text-shadow:
-        0 0 0.75rem rgba(247, 101, 227, 0.7),
-        0 0 1.375rem rgba(247, 101, 227, 0.5),
-        0 0 2rem rgba(247, 101, 227, 0.3),
-        0 0 2.625rem rgba(247, 101, 227, 0.2),
-        -1px -1px 0 #6a11cb,  
-        1px -1px 0 #6a11cb,
-        -1px 1px 0 #6a11cb,
-        1px 1px 0 #6a11cb; 
-    letter-spacing: 0.5%;
+    font-family: 'Anton', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #9370DB;  /* viola medio */
     text-decoration: none;
-    border: none;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
     outline: none;
-    align-content: center;
+    -webkit-tap-highlight-color: transparent;
+    text-transform: uppercase;
+}
+
+.titolo-link .highlight {
+    color: #8A2BE2;  /* viola scuro */
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.titolo-link:hover .highlight {
+    transform: translateY(-5px);
+    text-shadow: 0 5px 10px rgba(138, 43, 226, 0.2);
+}
+
+.titolo-link:focus {
+    outline: none;
 }
 
 .user-icon {

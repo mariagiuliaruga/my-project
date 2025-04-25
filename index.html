@@ -7,7 +7,8 @@
     <title>Style Quiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/agentur" rel="stylesheet">
     <link rel="stylesheet" href="intestazione.css">
     <link rel="stylesheet" href="centro.css">
     <link rel="stylesheet" href="quizstyle.css">
@@ -29,13 +30,46 @@
             </div>
         </div>
         <div class="titolo">
-            <a href="index.html" class="titolo-link" autofocus>MyStyleEssence</a>  
+            <a href="index.html" class="titolo-link" autofocus><span class="highlight">M</span>y<span class="highlight">S</span>tyle<span class="highlight">E</span>ssence</a>  
         </div>
 
         <button class="login-button">Login</button>
     </div>
     
-    <div class="prova">
+    <div class="container">
+        <div class="main-title">
+            <p class="main-description">Trova l'ispirazione perfetta per il tuo guardaroba</p>
+        </div>
+        <div class="content-section">
+            <img src="prima.gif" alt="GIF animata" class="gif-animata">
+            <div class="text-content">
+                <p>Non sai qual è il tuo stile? Inizia il quiz!</p>
+                <p>Oppure esplora gli stili disponibili per trovare ispirazione.</p>
+                <div class="action-buttons">
+                    <button class="quiz-button">
+                        <span class="quiz-icon">Inizia il Quiz</span>
+                    </button>
+                    <a href="#" class="explore-link" id="exploreStyles"><span>Esplora Stili</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-container">
+            <div class="quiz-window">
+                <button class="quiz-close-button">&times;</button>
+                <div class="quiz-progress">Domanda 1 di 8</div>
+                <div class="quiz-domanda">
+                    <!-- Il contenuto della domanda verrà inserito dinamicamente da JS -->
+                </div>
+                <div class="quiz-navigation">
+                    <button class="quiz-prev" style="display: none;">← Precedente</button>
+                    <button class="quiz-next">Successiva →</button>
+                    <button class="quiz-submit" style="display: none;">Invia Risposte</button>
+                </div>
+            </div>
+        </div>
+        <img src="spring_girls.gif" alt="GIF animata" class="gif-animata2">
+    </div> 
+    
     <div class="login-panel">
         <button class="close-button">&times;</button>
         <h2>Login</h2>
@@ -58,40 +92,7 @@
         </form>
         <a href="#" class="login-link">Hai già un account? Accedi</a>
     </div>
-       
-    <div class="container">
-        <div class="main-title">
-            <h1>Prova</h1>
-            <p class="main-description">prova prova prova</p>
-        </div>
-        <div class="content-section">
-            <img src="prima.gif" alt="GIF animata" class="gif-animata">
-            <div class="text-content">
-                <p>Hai mai guardato il tuo armadio e pensato: "Non ho niente da mettere"… anche se è pieno di vestiti?</p>
-                <p>La verità è che non basta un bel capo per sentirsi bene con sé stessi. Il segreto sta nel capire qual è davvero il tuo stile — quello che parla di te, ti valorizza, ti fa sentire sicura, libera, autentica.</p>
-                <p>A volte ci piace un po' di tutto: un giorno colori accesi, il giorno dopo solo nero, poi un vestito romantico, poi felpe oversize. Ma quando c'è troppa varietà e poca direzione, vestirsi diventa una fatica.</p>
-                <p>Il nostro sondaggio interattivo nasce proprio per aiutarti a trovare la tua identità di stile.</p>
-                <p>Basta rispondere a poche domande e ti guideremo tra colori, forme e vibes che ti rappresentano davvero. Un mix tra ispirazione e divertimento, per trasformare il modo in cui vivi il tuo guardaroba.</p>
-                <button class="quiz-button">Scopri il tuo stile</button>
-            </div>
-        </div>
-        <div class="quiz-container">
-            <div class="quiz-window">
-                <button class="quiz-close-button">&times;</button>
-                <div class="quiz-progress">Domanda 1 di 8</div>
-                <div class="quiz-domanda">
-                    <!-- Il contenuto della domanda verrà inserito dinamicamente da JS -->
-                </div>
-                <div class="quiz-navigation">
-                    <button class="quiz-prev" style="display: none;">← Precedente</button>
-                    <button class="quiz-next">Successiva →</button>
-                    <button class="quiz-submit" style="display: none;">Invia Risposte</button>
-                </div>
-            </div>
-        </div>
-        <img src="spring_girls.gif" alt="GIF animata" class="gif-animata2">
-    </div> 
-    
+
     <div class="area-personale">
         <h2>Area Personale</h2>
         <div class="user-info">
@@ -105,7 +106,7 @@
         </div>
     </div>
     </div>
-    <div class="area-stili">
+    <div class="area-stili" style="display: none;">
         <div class="titolo-stili">
             <h1><b>Vuoi dare una svolta al tuo stile ma non sai da dove iniziare?</b></h1>
             <p>Di seguito sono riportate alcune idee per outfit adatti a diverse occasioni, sia per un look casual che per uno più elegante.</p>
@@ -136,14 +137,14 @@
             <div class="style-entry-sx">
                 <img src="style/women/preppy/preppyChicGuide.jpg" class="img-guide">
                 <div class="testo-stili">
-                    <p><b>Classico, curato e un po’ accademico: lo stile Preppy è fatto per chi ama sembrare sempre composto… con un tocco di ironia.</b></p>
-                    <p>Magari ami le vibes da campus Ivy League, o forse vuoi solo un guardaroba che dica “so quello che faccio” anche quando non lo sai davvero.</p>
+                    <p><b>Classico, curato e un po' accademico: lo stile Preppy è fatto per chi ama sembrare sempre composto… con un tocco di ironia.</b></p>
+                    <p>Magari ami le vibes da campus Ivy League, o forse vuoi solo un guardaroba che dica "so quello che faccio" anche quando non lo sai davvero.</p>
                     <p><b>I nostri consigli</b> per un look preppy moderno, punta su polo e camicie button-down, gonne a pieghe, maglioni con scollo a V 
                         (da portare sulle spalle, ovviamente), blazer ben tagliati, mocassini lucidi, calzini bianchi in bella vista, e borse strutturate.</p>
                     <p>Colori chiave: navy, bordeaux, beige, verde inglese e bianco ottico. Le fantasie? Righe, tartan e motivi college sono un must. 
                         Il tocco finale? Una fascia nei capelli, un filo di perle, oppure un rossetto nude per tenere tutto ordinatamente cool.
-                        Lo stile preppy non è solo moda—è un’attitudine: sempre al passo, sempre pronta, e sempre con un libro (o un caffè) in mano.</p>
-                    <p><b>Brand</b>: Ralph Lauren, Tommy Hilfiger, Abercrombie & fitch, GANT</p>
+                        Lo stile preppy non è solo moda—è un'attitudine: sempre al passo, sempre pronta, e sempre con un libro (o un caffè) in mano.</p>
+                    <p><b>Brand</b>: Ralph Lauren, Tommy Hilfiger, Abercrombie & fitch, GANT</p>
                 </div>
             </div>
             <div class="style-entry-dx">
@@ -155,29 +156,29 @@
                          cappotti in eco-pelliccia, jeans larghi e scoloriti, tee con stampe ironiche, borse hobo, stivali morbidi… 
                          e completa tutto con uno smoky eye e un rossetto rosso.</p>
                         
-                    <p>L’estetica Messy Girl non segue una formula precisa: è più uno stile di vita. 
+                    <p>L'estetica Messy Girl non segue una formula precisa: è più uno stile di vita. 
                         Ti consigliamo di fare shopping second-hand per trovare capi unici, vissuti e pieni di personalità.
                         Divertiti a mescolare pezzi che sulla carta non dovrebbero stare insieme, gioca con i colori, 
                         le texture e crea look che parlano di te, senza regole.</p>
                         
-                    <p><b>Brand</b> Bershka, Vans e qualsiasi pezzo inconfondibile trovato ad un Thrift Shop</p>
+                    <p><b>Brand</b> Bershka, Vans e qualsiasi pezzo inconfondibile trovato ad un Thrift Shop</p>
                 </div>
             </div>
             <div class="style-entry-sx">
                 <img src="style/women/scandi/scandiGuide.jpg" class="img-guide">
                 <div class="testo-stili">
-                    <p><b>Lo stile scandinavo fa per te – ami sentirti comoda senza rinunciare all’eleganza.</b></p>
+                    <p><b>Lo stile scandinavo fa per te – ami sentirti comoda senza rinunciare all'eleganza.</b></p>
                     <p><b>I nostri consigli</b> punta su capi morbidi e dal taglio ampio, come jeans larghi, felpe oversize, cappotti maxi e pantaloni fluidi.</p>
-                    <p>L’obiettivo è restare comoda e a proprio agio, ma con stile! Gioca con le sovrapposizioni: borse a tracolla, cardigan originali, maxi sciarpe e giacche particolari daranno carattere ai tuoi outfit.</p>
-                    <p>Ricorda, lo stile scandinavo si basa sul principio del “meno ma meglio”: investi in capi basic e senza tempo che puoi abbinare in tanti modi diversi, arricchendoli con accessori divertenti e sneaker pratiche.</p>
-                    <p><b>Brand</b> consigliati: Arket, Ganni, Zara e Samsøe & Samsøe.</p>
+                    <p>L'obiettivo è restare comoda e a proprio agio, ma con stile! Gioca con le sovrapposizioni: borse a tracolla, cardigan originali, maxi sciarpe e giacche particolari daranno carattere ai tuoi outfit.</p>
+                    <p>Ricorda, lo stile scandinavo si basa sul principio del "meno ma meglio": investi in capi basic e senza tempo che puoi abbinare in tanti modi diversi, arricchendoli con accessori divertenti e sneaker pratiche.</p>
+                    <p><b>Brand</b> consigliati: Arket, Ganni, Zara e Samsøe & Samsøe.</p>
                 </div>
             </div>
             <div class="style-entry-dx">
                 <img src="style/women/fisherman/fishermanGuide.jpg" class="img-guide">
                 <div class="testo-stili">
                     <p><b>Forse passi le tue estati al lago, oppure ami semplicemente uno stile rilassato e costiero con un tocco originale?</b></p>
-                    <p><b>I nostri consigli</b> il fisherman core unisce l’atmosfera tranquilla e marittima del Coastal Grandmother a dettagli eccentrici e colori vivaci.</p>
+                    <p><b>I nostri consigli</b> il fisherman core unisce l'atmosfera tranquilla e marittima del Coastal Grandmother a dettagli eccentrici e colori vivaci.</p>
                         
                     <p>Scegli capi come maglie a righe orizzontali, maglioni a trecce, stivali da pioggia, borse in rete,
                      gilet color block, scarpe da barca e bucket hat.
@@ -186,7 +187,7 @@
                     <p>I toni? Blu navy, sabbia, bianco sale e un tocco colore negli accessori o dettagli.</p>
                     Divertiti ad aggiungere dettagli particolari come orecchini a forma di pesce, occhiali da sole oversize e calzini a fantasia.
                         
-                    <p><b>Brand</b>adatti: Patagonia, The North Face, Arket e Birkenstock</p>
+                    <p><b>Brand</b>adatti: Patagonia, The North Face, Arket e Birkenstock</p>
                 </div>
             </div>
         </div>
@@ -196,5 +197,21 @@
     <script src="script.js"></script>
     <script src="caricamentoHome.js"></script>
     <script src="responsive.js"></script>
+    <script>
+        document.getElementById('exploreStyles').addEventListener('click', function(e) {
+            e.preventDefault();
+            // Carica dinamicamente il CSS degli stili
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'stili.css';
+            document.head.appendChild(link);
+            
+            // Mostra l'area degli stili
+            document.querySelector('.area-stili').style.display = 'block';
+            
+            // Scrolla fino alla sezione degli stili
+            document.querySelector('.area-stili').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
