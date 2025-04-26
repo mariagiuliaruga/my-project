@@ -85,11 +85,11 @@
     <div class="register-panel">
         <button class="close-button">&times;</button>
         <h2>Register</h2>
-        <form class="register-form">
-            <input type="email" placeholder="Insert your e-mail" required>
-            <input type="password" placeholder="Insert your password" required>
+        <form class="register-form" action="register.php" method="POST">
+            <input type="email" name="email" placeholder="Insert your e-mail" required>
+            <input type="password" name="password" placeholder="Insert your password" required>
             <button type="submit">Register</button>
-        </form>
+        </form>              
         <a href="#" class="login-link">Hai già un account? Accedi</a>
     </div>
 
