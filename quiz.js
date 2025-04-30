@@ -53,7 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             domanda: "Che tipo di gioielli preferisci?",
             tipo: "select",
-            opzioni: ["Oro", "Argento", "Entrambi", "Nessuno"]
+            opzioni: ["Oro", "Argento", "Entrambi", "Nessuno"],
+            immagini: {
+                "Oro": "gioielli/oro.png",
+                "Argento": "gioielli/argento.png"
+            }
         },
         {
             domanda: "Quale di queste occasioni vivi più spesso?",
@@ -77,26 +81,136 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
+        //Domande iniziali 
+        const sondaggioIniziale = [
+            {
+                domanda: "Sei un uomo o una donna?",
+                tipo: "select",
+                opzioni: ["Uomo", "Donna"]
+            },
+            {
+                domanda: "Quanti anni hai?",
+                tipo: "number",
+                placeholder: "Inserisci la tua età"
+            }
+        ];
+
+    //Sondaggio uomo
+    const sondaggioUomo = [
+        {
+            domanda: "Qual è il tuo stile preferito?",
+            tipo: "select",
+            opzioni: ["Classico", "Sportivo", "Casual", "Elegante", "Streetwear"]
+        },
+        {
+            domanda: "Quali accessori preferisci?",
+            tipo: "select",
+            opzioni: ["Orologi", "Cinture", "Cravatte", "Borse", "Nessuno"]
+        },
+        {
+            domanda: "Quanto ti piace sperimentare con il tuo stile?",
+            tipo: "select",
+            opzioni: ["Per niente", "Poco", "Abbastanza", "Molto", "Moltissimo"]
+        },
+        {
+            domanda: "Quali colori preferisci indossare?",
+            tipo: "select",
+            opzioni: ["Neutrali(nero, bianco, grigio)", "Scuri(nero, blu, marrone)", "Vivaci(verde, giallo, fucsia)", "Pastello", "Colorati"]
+        },
+        {
+            domanda: "Quale tra questi brand o negozi senti più vicino al tuo stile?",
+            tipo: "select",
+            opzioni: ["Zara", "H&M", "Uniqlo", "DoppleGanger", "Other"]
+        }
+    ];
+
+    //Sondaggio donna
+    const sondaggioDonna = [
+        {
+            domanda: "Quale tra queste parole ti descrive meglio?",
+            tipo: "select",
+            opzioni: ["Creativo", "Minimalista", "Elegante", "Sportivo"]
+        },
+        {
+            domanda: "Quanto ti piace sperimentare con il tuo stile?",
+            tipo: "select",
+            opzioni: ["Per niente", "Poco", "Abbastanza", "Molto", "Moltissimo"]
+        },
+        {
+            domanda: "Quali colori preferisci indossare?",
+            tipo: "select",
+            opzioni: ["Neutrali", "Scuri", "Vivaci", "Pastello", "Colorati", "Navy"],
+            immagini: {
+                "Neutrali": "colori/coloriNeutrali.png",
+                "Scuri": "colori/coloriScuri.png",
+                "Vivaci": "colori/coloriVivaci.png",
+                "Pastello": "colori/coloriPastello.png",
+                "Colorati": "colori/coloriColorati.png",
+                "Navy": "colori/coloriNavy.png"
+            }
+        },
+        {
+            domanda: "Che tipo di gioielli preferisci?",
+            tipo: "select",
+            opzioni: ["Oro", "Argento", "Entrambi", "Nessuno"],
+            immagini: {
+                "Oro": "gioielli/oro.png",
+                "Argento": "gioielli/argento.png"
+            }
+        },
+        {
+            domanda: "Quale di queste occasioni vivi più spesso?",
+            tipo: "select",
+            opzioni: ["Università / Lavoro", "Aperitivi / Eventi", "Viaggi e weekend", "Serate fuori"]
+        },
+        {
+            domanda: "Quale tra questi brand o negozi senti più vicino al tuo stile?",
+            tipo: "select",
+            opzioni: ["Zara", "H&M", "Stradivarius", "DoppelGanger", "Nike", "Other"]
+        },
+        {
+            domanda: "Quanto tempo dedichi a scegliere il tuo outfit",
+            tipo: "select",
+            opzioni: ["Pochi minuti", "Ci penso un po'", "Lo preparo il giorno prima", "Cambio idea mille volte"]
+        },
+        {
+            domanda: "Quando scegli un outfit, cosa consideri più importante?",
+            tipo: "select",
+            opzioni: ["Essere comoda", "Sentirmi alla moda", "Esprimere la mia personalità", "Vestirmi in modo curato e ordinato"]
+        },
+        {
+            domanda: "Quali tra queste scarpe indosseresti?",
+            tipo: "select",
+            opzioni: ["Ballerine", "Birkenstock", "UGGS", "Converse", "Samba", "Stivali"],
+            immagini: {
+                "Ballerine": "scarpe/Ballerina.png",
+                "Birkenstock": "scarpe/Birkenstock.png",
+                "UGGS": "scarpe/UGGS.png",
+                "Converse": "scarpe/Converse.png",
+                "Samba": "scarpe/Samba.png",
+                "Stivali": "scarpe/Stivali.png"
+            }
+        }
+    ];
+
+
     let currentQuestion = 0;
     let answers = {};
-    const totalQuestions = questions.length;
+    let currentSondaggio = [...sondaggioIniziale, ...sondaggioDonna]; // Inizialmente usa le domande per donne
 
     // Funzione per mostrare la domanda corrente
     function showQuestion(index) {
         const questionElement = document.querySelector('.quiz-domanda');
-        const question = questions[index];
+        const question = currentSondaggio[index];
         
         let html = `<h3>${question.domanda}</h3>`;
         
         if (question.tipo === "select") {
-            // Gestione speciale per la domanda sui colori (indice 4)
-            if (index === 4 && question.immagini) {
+            if (question.immagini) {
                 html += `<div class="color-options-grid">`;
                 
-                // Genera tutte le opzioni in un unico ciclo
                 question.opzioni.forEach(opzione => {
                     const imgSrc = question.immagini[opzione];
-                    // Verifica se questa opzione è selezionata (per checkbox multipli)
                     let isChecked = false;
                     if (answers[index]) {
                         isChecked = Array.isArray(answers[index]) 
@@ -104,13 +218,19 @@ document.addEventListener('DOMContentLoaded', function() {
                             : answers[index] === opzione;
                     }
                     
+                    const isShoeQuestion = question.domanda.includes("scarpe");
+                    const isJewelryQuestion = question.domanda.includes("gioielli");
+                    
                     html += `
-                        <label class="color-option">
+                        <label class="color-option ${!imgSrc ? 'text-only' : ''} ${isJewelryQuestion && imgSrc ? 'jewelry-option' : ''} ${isShoeQuestion ? 'shoe-option' : ''}">
                             <input type="checkbox" class="quiz-checkbox" 
                                 name="question-${index}" value="${opzione}" ${isChecked ? 'checked' : ''}>
                             <div class="color-option-content">
-                                <img src="${imgSrc}" alt="${opzione}" class="color-img">
-                                <span class="color-option-text">${opzione}</span>
+                                ${imgSrc ? `
+                                    <img src="${imgSrc}" alt="${opzione}" 
+                                        class="color-img ${isShoeQuestion ? 'shoe-img' : ''} ${isJewelryQuestion ? 'jewelry-img' : ''}">
+                                ` : ''}
+                                ${!isShoeQuestion ? `<span class="color-option-text">${opzione}</span>` : ''}
                             </div>
                         </label>`;
                 });
@@ -141,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Aggiorna il progresso
         const progressElement = document.querySelector('.quiz-progress');
         if (progressElement) {
-            progressElement.textContent = `Domanda ${index + 1} di ${totalQuestions}`;
+            progressElement.textContent = `Domanda ${index + 1} di ${currentSondaggio.length}`;
         }
 
         // Gestisci i pulsanti di navigazione
@@ -153,21 +273,45 @@ document.addEventListener('DOMContentLoaded', function() {
             prevButton.style.display = index > 0 ? 'inline-block' : 'none';
         }
         if (nextButton) {
-            nextButton.style.display = index < totalQuestions - 1 ? 'inline-block' : 'none';
+            nextButton.style.display = index < currentSondaggio.length - 1 ? 'inline-block' : 'none';
         }
         if (submitButton) {
-            submitButton.style.display = index === totalQuestions - 1 ? 'inline-block' : 'none';
+            submitButton.style.display = index === currentSondaggio.length - 1 ? 'inline-block' : 'none';
+        }
+
+        // Aggiungi event listener per i checkbox e radio
+        const checkboxes = questionElement.querySelectorAll('input[type="checkbox"]');
+        const radios = questionElement.querySelectorAll('input[type="radio"]');
+        
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                saveAnswer(index);
+            });
+        });
+        
+        radios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                saveAnswer(index);
+            });
+        });
+
+        // Aggiungi event listener per l'input numerico
+        const numberInput = questionElement.querySelector('input[type="number"]');
+        if (numberInput) {
+            numberInput.addEventListener('input', function() {
+                saveAnswer(index);
+            });
         }
     }
 
     // Funzione per salvare la risposta
     function saveAnswer(index) {
-        const question = questions[index];
+        const question = currentSondaggio[index];
         const questionElement = document.querySelector('.quiz-domanda');
         
         if (question.tipo === "select") {
-            // Caso speciale per la domanda sui colori (indice 4) che usa checkbox
-            if (index === 4) {
+            // Caso speciale per la domanda sui colori che usa checkbox
+            if (question.immagini) {
                 const selectedCheckboxes = questionElement.querySelectorAll('input[type="checkbox"]:checked');
                 const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
                 answers[index] = selectedValues.length > 0 ? selectedValues : null;
@@ -175,6 +319,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Per le altre domande a scelta singola
                 const selectedRadio = questionElement.querySelector('input[type="radio"]:checked');
                 answers[index] = selectedRadio ? selectedRadio.value : null;
+                
+                // Se è la prima domanda (genere), carica il sondaggio appropriato
+                if (index === 0) {
+                    if (answers[0] === "Uomo") {
+                        currentSondaggio = [...sondaggioIniziale, ...sondaggioUomo];
+                    } else if (answers[0] === "Donna") {
+                        currentSondaggio = [...sondaggioIniziale, ...sondaggioDonna];
+                    }
+                    // Resetta le risposte successive alla prima domanda
+                    Object.keys(answers).forEach(key => {
+                        if (parseInt(key) > 0) {
+                            delete answers[key];
+                        }
+                    });
+                }
             }
         } else if (question.tipo === "number") {
             const input = questionElement.querySelector('input[type="number"]');
@@ -184,19 +343,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Funzione per validare la risposta corrente
     function validateCurrentQuestion() {
-        const question = questions[currentQuestion];
+        const question = currentSondaggio[currentQuestion];
         const questionElement = document.querySelector('.quiz-domanda');
         
         if (question.tipo === "select") {
-            // Caso speciale per la domanda sui colori (indice 4) che usa checkbox
-            if (currentQuestion === 4) {
+            if (question.immagini) {
+                // Per domande con checkbox (immagini)
                 const selectedCheckboxes = questionElement.querySelectorAll('input[type="checkbox"]:checked');
                 if (selectedCheckboxes.length === 0) {
-                    alert('Per favore seleziona almeno un colore');
+                    alert('Per favore seleziona almeno un\'opzione');
                     return false;
                 }
             } else {
-                // Per le altre domande a scelta singola
+                // Per domande con radio button
                 const selectedRadio = questionElement.querySelector('input[type="radio"]:checked');
                 if (!selectedRadio) {
                     alert('Per favore seleziona una risposta');

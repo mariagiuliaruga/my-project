@@ -232,8 +232,9 @@
 /* Stili per le opzioni di colore con immagini */
 .color-options-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colonne di larghezza uguale */
-    gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
 }
 
 /*è un label (tutto ciò al suo intenro è cliccabile per attivare il checkbox)
@@ -263,13 +264,13 @@ che contiene un input(casella del checkbox) e un div(contenitore dell'immagine e
     object-fit: contain;
     border-radius: 8px;
     margin-bottom: 10px;
-    border: 3px solid transparent; /* Aggiungo un bordo trasparente per evitare spostamenti */
-    transition: all 0.3s ease; /* Aggiungo transizione per tutti i cambiamenti */
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
 }
 
 .color-img:hover {
     transform: translateY(-5px);
-    border-color: rgba(255, 77, 190, 0.149); /* Colore più leggero in hover */
+    border-color: rgba(255, 77, 190, 0.149);
     box-shadow: 0 5px 25px rgba(255, 77, 190, 0.3);
 }
 
@@ -278,7 +279,7 @@ che contiene un input(casella del checkbox) e un div(contenitore dell'immagine e
     color: #333;
     font-weight: 500;
     text-align: center;
-    transition: color 0.3s ease, font-weight 0.3s ease; /* Aggiungo transizione per il testo */
+    transition: color 0.3s ease, font-weight 0.3s ease;
 }
 
 /* Nasconde completamente i checkbox */
@@ -293,7 +294,7 @@ che contiene un input(casella del checkbox) e un div(contenitore dell'immagine e
 .color-option input[type="checkbox"]:checked + .color-option-content .color-img {
     border: 3px solid rgb(255, 77, 190);
     box-shadow: 0 0 15px rgba(255, 77, 190, 0.7);
-    transform: scale(1.05); /* Leggero ingrandimento quando selezionato */
+    transform: scale(1.05);
 }
 
 /* Stile per il testo quando il checkbox è selezionato */
@@ -318,9 +319,9 @@ che contiene un input(casella del checkbox) e un div(contenitore dell'immagine e
     justify-content: center;
     font-size: 14px;
     font-weight: bold;
-    opacity: 0; /* Inizia invisibile */
-    transform: scale(0.5); /* Inizia piccolo */
-    animation: checkmarkAppear 0.3s forwards; /* Animazione che lo fa apparire */
+    opacity: 0;
+    transform: scale(0.5);
+    animation: checkmarkAppear 0.3s forwards;
 }
 
 @keyframes checkmarkAppear {
@@ -337,12 +338,36 @@ che contiene un input(casella del checkbox) e un div(contenitore dell'immagine e
 /* Media query per dispositivi mobili */
 @media (max-width: 768px) {
     .color-options-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 colonne su dispositivi più piccoli */
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .shoe-img {
+        max-height: 150px !important;
     }
 }
 
 @media (max-width: 480px) {
     .color-options-grid {
-        grid-template-columns: 1fr; /* 1 colonna su dispositivi molto piccoli */
+        grid-template-columns: 1fr;
     }
+    
+    .shoe-img {
+        max-height: 120px !important;
+    }
+}
+
+/* Stile per le opzioni delle scarpe */
+.shoe-option {
+    grid-column: span 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.shoe-img {
+    max-height: 200px !important;
+    width: auto !important;
+    margin-bottom: 10px !important;
+    object-fit: contain !important;
 }
