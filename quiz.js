@@ -1,10 +1,10 @@
 // Inizializza gli event listener quando il documento è caricato
 document.addEventListener('DOMContentLoaded', function() {
-    const loginPanel = document.querySelector('.login-panel');
-    const quizButton = document.querySelector('.quiz-button');
-    const quizContainer = document.querySelector('.quiz-container');
-    const quizWindow = document.querySelector('.quiz-window');
-    const quizButtonActive = document.querySelector('.quiz-button.active');
+const loginPanel = document.querySelector('.login-panel');
+const quizButton = document.querySelector('.quiz-button');
+const quizContainer = document.querySelector('.quiz-container');
+const quizWindow = document.querySelector('.quiz-window');
+const quizButtonActive = document.querySelector('.quiz-button.active');
     const closeButton = document.querySelector('.quiz-close-button');
 
     //event listener per il pulsante di chiusura
@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const questions = [
         {
-            domanda: "Sei un uomo o una donna?",
+    domanda: "Sei un uomo o una donna?",
             tipo: "select",
             opzioni: ["Uomo", "Donna"]
-        },
-        {
-            domanda: "Quanti anni hai?",
+},
+{
+    domanda: "Quanti anni hai?",
             tipo: "number",
             placeholder: "Inserisci la tua età"
         },
@@ -97,45 +97,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //Sondaggio uomo
     const sondaggioUomo = [
-        {
-            domanda: "Qual è il tuo stile preferito?",
-            tipo: "select",
-            opzioni: ["Classico", "Sportivo", "Casual", "Elegante", "Streetwear"]
-        },
-        {
-            domanda: "Quali accessori preferisci?",
-            tipo: "select",
-            opzioni: ["Orologi", "Cinture", "Cravatte", "Borse", "Nessuno"]
-        },
-        {
-            domanda: "Quanto ti piace sperimentare con il tuo stile?",
-            tipo: "select",
-            opzioni: ["Per niente", "Poco", "Abbastanza", "Molto", "Moltissimo"]
-        },
-        {
-            domanda: "Quali colori preferisci indossare?",
-            tipo: "select",
-            opzioni: ["Neutrali(nero, bianco, grigio)", "Scuri(nero, blu, marrone)", "Vivaci(verde, giallo, fucsia)", "Pastello", "Colorati"]
-        },
-        {
-            domanda: "Quale tra questi brand o negozi senti più vicino al tuo stile?",
-            tipo: "select",
-            opzioni: ["Zara", "H&M", "Uniqlo", "DoppleGanger", "Other"]
-        }
-    ];
-
-    //Sondaggio donna
-    const sondaggioDonna = [
+        //domanda 1
         {
             domanda: "Quale tra queste parole ti descrive meglio?",
             tipo: "select",
-            opzioni: ["Creativo", "Minimalista", "Elegante", "Sportivo"]
+            opzioni: ["Creativo", "Minimalista", "Elegante", "Sportivo"
+
+            ]
         },
-        {
+        //domanda 2
+        {   
             domanda: "Quanto ti piace sperimentare con il tuo stile?",
             tipo: "select",
             opzioni: ["Per niente", "Poco", "Abbastanza", "Molto", "Moltissimo"]
         },
+        //domanda 3
         {
             domanda: "Quali colori preferisci indossare?",
             tipo: "select",
@@ -149,6 +125,86 @@ document.addEventListener('DOMContentLoaded', function() {
                 "Navy": "colori/coloriNavy.png"
             }
         },
+        //domanda 4
+        {
+            domanda: "Quali accessori preferisci?",
+            tipo: "select",
+            opzioni: ["Orologio", "Cintura", "Cravatta", "Cappello", "Occhiali da sole" ,"Borsello"],
+            immagini: {
+                "Orologio": "accessori/orologio.png",
+                "Cintura": "accessori/cintura.png",
+                "Cravatta": "accessori/cravatta.png",
+                "Cappello": "accessori/cappello.png",
+                "Occhiali da sole": "accessori/occhiali.png",
+                "Borsello": "accessori/borsello.png"
+
+            }
+        },
+        //domanda 5
+        {
+            domanda: "Quale di queste occasioni vivi più spesso?",
+            tipo: "select",
+            opzioni: ["Università / Lavoro", "Aperitivi / Eventi", "Viaggi e weekend", "Serate fuori"]
+        },
+        //domanda 6
+        {
+            domanda: "Dove trovi ispirazione per i tuoi outfit?",
+            tipo: "select",
+            opzioni: ["Instagram", "TikTok", "Street style", "Amici o conoscenti", "Celebrità / Modelli", "Non ci penso troppo"]
+        },
+        //domanda 7
+        {
+            domanda: "Cosa cerchi principalmente nel tuo stile?",
+            tipo: "select",
+            opzioni: ["Comodità", "Stile personale", "Ordine e pulizia", "Distinzione", "Funzionalità"]
+        },
+        //domanda 8
+
+        //domanda 9
+        {
+            domanda: "Quali tra queste scarpe indosseresti?",
+            tipo: "select",
+            opzioni: ["Mocassini", "StanSmith", "Chelsea", "AirForce", "Jordan" ,"Elegante"],
+            immagini: {
+                "Mocassini": "scarpe/Mocassini.png",
+                "StanSmith": "scarpe/StanSmith.png",
+                "Chelsea": "scarpe/Chelsea.png",
+                "AirForce": "scarpe/AirForce.png",
+                "Jordan": "scarpe/Jordan.png",
+                "Elegante": "scarpe/Elegante.png"
+            }
+        }
+    ];
+
+    //Sondaggio donna
+    const sondaggioDonna = [
+        //domanda 1
+        {
+            domanda: "Quale tra queste parole ti descrive meglio?",
+            tipo: "select",
+            opzioni: ["Creativa", "Minimalista", "Elegante", "Sportiva"]
+        },
+        //domanda 2
+        {
+            domanda: "Quanto ti piace sperimentare con il tuo stile?",
+            tipo: "select",
+            opzioni: ["Per niente", "Poco", "Abbastanza", "Molto", "Moltissimo"]
+        },
+        //domanda 3
+        {
+            domanda: "Quali colori preferisci indossare?",
+            tipo: "select",
+            opzioni: ["Neutrali", "Scuri", "Vivaci", "Pastello", "Colorati", "Navy"],
+            immagini: {
+                "Neutrali": "colori/coloriNeutrali.png",
+                "Scuri": "colori/coloriScuri.png",
+                "Vivaci": "colori/coloriVivaci.png",
+                "Pastello": "colori/coloriPastello.png",
+                "Colorati": "colori/coloriColorati.png",
+                "Navy": "colori/coloriNavy.png"
+            }
+        },
+        //domanda 4
         {
             domanda: "Che tipo di gioielli preferisci?",
             tipo: "select",
@@ -158,26 +214,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 "Argento": "gioielli/argento.png"
             }
         },
+        //domanda 5
         {
             domanda: "Quale di queste occasioni vivi più spesso?",
             tipo: "select",
             opzioni: ["Università / Lavoro", "Aperitivi / Eventi", "Viaggi e weekend", "Serate fuori"]
         },
+        //domanda 6
         {
-            domanda: "Quale tra questi brand o negozi senti più vicino al tuo stile?",
+            domanda: "Dove trovi ispirazione per i tuoi outfit?",
             tipo: "select",
-            opzioni: ["Zara", "H&M", "Stradivarius", "DoppelGanger", "Nike", "Other"]
+            opzioni: ["Pinterest", "Instagram", "Video su YouTube/TikTok", "Le persone per strada", "Riviste o blog", "Creo da sola"]
         },
+        //domanda 7
         {
             domanda: "Quanto tempo dedichi a scegliere il tuo outfit",
             tipo: "select",
             opzioni: ["Pochi minuti", "Ci penso un po'", "Lo preparo il giorno prima", "Cambio idea mille volte"]
         },
+        //domanda 8
         {
             domanda: "Quando scegli un outfit, cosa consideri più importante?",
             tipo: "select",
             opzioni: ["Essere comoda", "Sentirmi alla moda", "Esprimere la mia personalità", "Vestirmi in modo curato e ordinato"]
         },
+        //domanda 9
         {
             domanda: "Quali tra queste scarpe indosseresti?",
             tipo: "select",
@@ -218,19 +279,20 @@ document.addEventListener('DOMContentLoaded', function() {
                             : answers[index] === opzione;
                     }
                     
-                    const isShoeQuestion = question.domanda.includes("scarpe");
                     const isJewelryQuestion = question.domanda.includes("gioielli");
+                    const isShoeQuestion = question.domanda.includes("scarpe");
+                    const isAccessoryQuestion = question.domanda.includes("accessori");
                     
                     html += `
-                        <label class="color-option ${!imgSrc ? 'text-only' : ''} ${isJewelryQuestion && imgSrc ? 'jewelry-option' : ''} ${isShoeQuestion ? 'shoe-option' : ''}">
+                        <label class="color-option ${!imgSrc ? 'text-only' : ''} ${isJewelryQuestion && imgSrc ? 'jewelry-option' : ''} ${isShoeQuestion ? 'shoe-option' : ''} ${isAccessoryQuestion ? 'accessory-option' : ''}">
                             <input type="checkbox" class="quiz-checkbox" 
                                 name="question-${index}" value="${opzione}" ${isChecked ? 'checked' : ''}>
                             <div class="color-option-content">
                                 ${imgSrc ? `
                                     <img src="${imgSrc}" alt="${opzione}" 
-                                        class="color-img ${isShoeQuestion ? 'shoe-img' : ''} ${isJewelryQuestion ? 'jewelry-img' : ''}">
+                                        class="color-img ${isShoeQuestion ? 'shoe-img' : ''} ${isJewelryQuestion ? 'jewelry-img' : ''} ${isAccessoryQuestion ? 'accessory-img' : ''}">
                                 ` : ''}
-                                ${!isShoeQuestion ? `<span class="color-option-text">${opzione}</span>` : ''}
+                                ${!isShoeQuestion && !isAccessoryQuestion ? `<span class="color-option-text">${opzione}</span>` : ''}
                             </div>
                         </label>`;
                 });
@@ -279,18 +341,18 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.style.display = index === currentSondaggio.length - 1 ? 'inline-block' : 'none';
         }
 
-        // Aggiungi event listener per i checkbox e radio
+        // Aggiungi event listener per i checkbox per renderli mutuamente esclusivi
         const checkboxes = questionElement.querySelectorAll('input[type="checkbox"]');
-        const radios = questionElement.querySelectorAll('input[type="radio"]');
-        
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', function() {
-                saveAnswer(index);
-            });
-        });
-        
-        radios.forEach(radio => {
-            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    // Deseleziona tutti gli altri checkbox
+                    checkboxes.forEach(cb => {
+                        if (cb !== this) {
+                            cb.checked = false;
+                        }
+                    });
+                }
                 saveAnswer(index);
             });
         });
