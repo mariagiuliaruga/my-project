@@ -5,7 +5,12 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    background: #ffffff;
+    background-color: rgb(240, 240, 240) !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
     padding-top: 15vh;
 }
 
@@ -15,6 +20,12 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    background-color: rgb(240, 240, 240) !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .container-gif {
@@ -33,6 +44,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgb(240, 240, 240) !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .gif-animata2 {
@@ -52,7 +69,7 @@
     transition: opacity 0.3s ease;
     max-width: 60vw;
     margin: 50px auto;
-    margin-top: 13vh;
+    margin-top: 20vh;
     padding: 3vh;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 2vh;
@@ -127,7 +144,7 @@
     grid-area: d;
     width: 100%;
     padding: 2rem 4vw;
-    background: #ffffff;
+    background: rgb(240, 240, 240);
     display: none;
 }
 
@@ -140,6 +157,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgb(240, 240, 240) !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .text-content .main-description {
@@ -403,3 +426,87 @@
     align-items: center;
     margin-top: 2rem;
 }
+
+.name-fields {
+    display: flex;
+    gap: 1.5vw;
+    width: 100%;
+}
+
+.name-fields input {
+    width: calc(50% - 0.75vw);
+    margin: 0;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vw;
+}/* Stili per il form di modifica profilo */
+
+
+
+profile-edit-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index:1000;
+    display: none;
+}
+
+
+.form-group {
+    margin-bottom: 1.5vw;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5vw;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8vw;
+    border: 1px solid #ddd;
+    border-radius: 0.5vw;
+    font-size: 1vw;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2vw;
+}
+
+.save-button, .cancel-button {
+    padding: 0.8vw 1.5vw;
+    border: none;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    font-size: 1vw;
+    font-weight: 500;
+}
+
+.save-button {
+    background-color: #ff3333;
+    color: white;
+}
+
+.cancel-button {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.save-button:hover {
+    background-color: #ff0000;
+}
+
+.cancel-button:hover {
+    background-color: #e0e0e0;
+}
+

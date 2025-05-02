@@ -14,9 +14,12 @@
     <link rel="stylesheet" href="quizstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="stili.css">
+    <link rel="stylesheet" href="profile-edit.css">
+
     
 </head>
 <body>
+    
     
     <div class="intestazione">
               
@@ -29,7 +32,7 @@
             </div>
         </div>
         <div class="titolo">
-            <a href="index.html" class="titolo-link" autofocus><span class="highlight">𝑴</span>𝒚<span class="highlight">𝑺</span>𝒕𝒚𝒍𝒆<span class="highlight">𝑬</span>𝒔𝒔𝒆𝒏𝒄𝒆</a>  
+            <a href="index.html" class="titolo-link" autofocus onclick="event.preventDefault(); window.location.href = 'index.html';"><span class="highlight">𝑴</span>𝒚<span class="highlight">𝑺</span>𝒕𝒚𝒍𝒆<span class="highlight">𝑬</span>𝒔𝒔𝒆𝒏𝒄𝒆</a>  
         </div>
         <button class="login-button">Login</button>
     </div>
@@ -49,13 +52,10 @@
                         <button class="quiz-button">
                             <span class="quiz-icon">Inizia il Quiz</span>
                         </button>
-                        <a href="#" class="explore-link" id="exploreStyles"><span><b>Esplora Stili</b></span></a>
+                        <a href=#area-stili class="explore-link" id="exploreStyles" target="_blank"><span><b>Esplora Stili</b></span></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-gif2">
-            <img src="spring_girls.gif" alt="GIF animata" class="gif-animata2">
         </div>
         <div class="quiz-container">
             <div class="quiz-window">
@@ -76,9 +76,9 @@
     <div class="login-panel">
         <button class="close-button">&times;</button>
         <h2>Login</h2>
-        <form class="login-form">
-            <input type="email" placeholder="Insert your e-mail" required>
-            <input type="password" placeholder="Insert your password" required>
+        <form class="login-form" action="login.php" method="POST">
+            <input type="email" name="email" placeholder="Insert your e-mail" required>
+            <input type="password" name="password" placeholder="Insert your password" required>
             <a href="#" class="forgot-password">Password dimenticata?</a>
             <button type="submit">Login</button>
         </form>
@@ -95,7 +95,6 @@
         </form>              
         <a href="#" class="login-link">Hai già un account? Accedi</a>
     </div>
-
     <div class="area-personale">
         <h2>Area Personale</h2>
         <div class="user-info">
@@ -108,8 +107,36 @@
             <button class="logout-button">Logout</button>
         </div>
     </div>
+
+    <div class="profile-edit-container">
+        <h2>Modifica Profilo</h2>
+        <div class="profile-form">
+            <form id="profile-edit-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Inserisci la tua email" required>
+                </div>
+                <div class="form-group">
+                    <label for="current-password">Password Attuale</label>
+                    <input type="password" id="current-password" name="current-password" placeholder="Inserisci la password attuale">
+                </div>
+                <div class="form-group">
+                    <label for="new-password">Nuova Password</label>
+                    <input type="password" id="new-password" name="new-password" placeholder="Inserisci la nuova password">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Conferma Nuova Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Conferma la nuova password">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="save-button">Salva Modifiche</button>
+                    <button type="button" class="cancel-button">Annulla</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="area-stili" style="display: none;">
+
+    <div class="area-stili" style="display: none;" id="#area-stili">
         <div class="titolo-stili">
             <h1><b>Vuoi dare una svolta al tuo stile ma non sai da dove iniziare?</b></h1>
             <p>Di seguito sono riportate alcune idee per outfit adatti a diverse occasioni, sia per un look casual che per uno più elegante.</p>
@@ -196,25 +223,11 @@
         </div>
     </div>
     </div>
+    
     <script src="quiz.js"></script>
     <script src="script.js"></script>
     <script src="caricamentoHome.js"></script>
     <script src="responsive.js"></script>
-    <script>
-        document.getElementById('exploreStyles').addEventListener('click', function(e) {
-            e.preventDefault();
-            // Carica dinamicamente il CSS degli stili
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'stili.css';
-            document.head.appendChild(link);
-            
-            // Mostra l'area degli stili
-            document.querySelector('.area-stili').style.display = 'block';
-            
-            // Scrolla fino alla sezione degli stili
-            document.querySelector('.area-stili').scrollIntoView({ behavior: 'smooth' });
-        });
-    </script>
+    <script src="profile-edit.js"></script>
 </body>
 </html>

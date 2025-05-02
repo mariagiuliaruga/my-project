@@ -176,11 +176,22 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = 'index.html';
         }, 1500);
     });
+    document.getElementById("profile-edit-form").addEventListener("submit", function(e) {
+        e.preventDefault(); // 🔒 Blocca il submit
+        console.log("Form inviato, ma la pagina non si ricarica.");
+        // Aggiungi qui eventuale logica di invio AJAX o modifica profilo
+    });
     
     // Gestione del pulsante Annulla
     cancelButton.addEventListener('click', function() {
-        // Imposta il flag per mostrare l'area personale
-        localStorage.setItem('showPersonalArea', 'true');
-        window.location.href = 'index.html';
+        const profileEdit = document.getElementById('profileEditContainer');
+        const areaPersonale = document.getElementById('areaPersonale');
+    
+        if (profileEdit){
+            profileEdit.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } 
+        
+        if (areaPersonale) areaPersonale.style.display = 'block';
     });
 }); 

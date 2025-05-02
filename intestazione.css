@@ -76,7 +76,7 @@ body {
     border: none;
     cursor: pointer;
     font-size: 4vh;
-    color: #6a11cb;
+    color: rgba(151, 14, 14, 0.823);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,7 +85,7 @@ body {
 }
 
 .close-button:hover {
-    color: fuchsia;
+    color: rgba(0, 0, 0, 0.823);
     transform: rotate(180deg);
     background-color: rgba(200, 200, 200, 0.3);
 }
@@ -140,7 +140,7 @@ body {
 .login-form input {
     padding: 2vh 1.2vw;
     font-size: 2.5vh;
-    border: 0.1rem solid fuchsia;
+    border: 0.1rem solid rgb(0, 0, 0);
     border-radius: 30vw;
     outline: none;
     transition: all 0.3s ease;
@@ -152,7 +152,7 @@ body {
     font-size: 2.7vh;
     font-weight: bold;
     color: white;
-    background-color: fuchsia;
+    background-color: rgb(0, 0, 0);
     border: none;
     border-radius: 30vh;
     cursor: pointer;
@@ -170,13 +170,13 @@ body {
 .login-link {
     text-align: right;
     margin-top: 2vh;
-    color: fuchsia;
+    color: rgba(0, 0, 0, 0.823);
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .login-link:hover {
-    color: fuchsia;
+    color: rgb(0, 0, 0);
     text-decoration: underline;
 }
 
@@ -186,7 +186,7 @@ body {
     right: -30%;
     width: 40vw;
     height: 100vh;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     box-shadow: -0.5vw 0 1vh rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
     z-index: 1003;
@@ -203,7 +203,7 @@ body {
 }
 
 .login-panel h2 {
-    color: fuchsia;
+    color: rgb(0, 0, 0);
     margin-bottom: 4vh;
     font-size: 4.5vh;
 }
@@ -244,20 +244,20 @@ body {
 }
 
 .menu-link:hover {
-    background-color: rgba(255, 189, 229, 0.423);
+    background-color: rgba(218, 8, 60, 0.423);
     padding-left: 7vw;
 }
 
 .register-link {
     text-align: right;
     margin-top: 2vh;
-    color: fuchsia;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .register-link:hover {
-    color: fuchsia;
+    color: rgb(0, 0, 0);
     text-decoration: underline;
 }
 
@@ -298,7 +298,7 @@ body {
 }
 
 .register-panel h2 {
-    color: fuchsia;
+    color: rgb(0, 0, 0);
     margin-bottom: 4vh;
     font-size: 4.5vh;
 }
@@ -312,7 +312,7 @@ body {
 .register-form input {
     padding: 2vh 1.2vw;
     font-size: 2.5vh;
-    border: 0.1rem solid fuchsia;
+    border: 0.1rem solid rgb(0, 0, 0);
     border-radius: 30vw;
     outline: none;
     transition: all 0.3s ease;
@@ -324,7 +324,7 @@ body {
     font-size: 2.7vh;
     font-weight: bold;
     color: white;
-    background-color: fuchsia;
+    background-color: rgb(0, 0, 0);
     border: none;
     border-radius: 30vh;
     cursor: pointer;
@@ -548,13 +548,14 @@ body {
 .forgot-password {
     text-align: right;
     margin-top: 1vh;
-    color: fuchsia;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
 .forgot-password:hover {
-    color: fuchsia;
+    color: rgb(0, 0, 0);
     text-decoration: underline;
 }
+

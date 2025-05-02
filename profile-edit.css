@@ -4,23 +4,17 @@
 }
 
 .profile-edit-container {
+    display: none;
     max-width: 80vw;
-    margin: 12vh auto 5vh;
+    margin: 4vh auto 5vh;
+    margin-top:10vh;
     padding: 4vh 5vw;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
     box-shadow: 0 0.5vw 1vh rgba(0, 0, 0, 0.1);
 }
 
-.profile-edit-container h2 {
-    color: rgb(247, 101, 227);
-    font-size: 2.5rem;
-    margin-bottom: 4vh;
-    text-align: center;
-    text-shadow: 0 0 1vh rgba(247, 101, 227, 0.3);
-    font-weight: 600;
-    letter-spacing: -0.5px;
-}
+
 
 .profile-form {
     width: 100%;
@@ -109,6 +103,16 @@
     background: #e0e0e0;
 }
 
+#profileEditContainer {
+    display: none; /* nascosto di default */
+    max-width: 600px;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
 /* Media query per tablet */
 @media (max-width: 1024px) {
     .profile-edit-container {
@@ -117,9 +121,6 @@
         padding: 3vh 4vw;
     }
     
-    .profile-edit-container h2 {
-        font-size: 2.3rem;
-    }
     
     .form-group label {
         font-size: 1.1rem;
@@ -142,9 +143,7 @@
         padding: 3vh 4vw;
     }
     
-    .profile-edit-container h2 {
-        font-size: 2rem;
-    }
+    
     
     .form-group label {
         font-size: 1rem;
@@ -167,9 +166,6 @@
         padding: 2.5vh 3vw;
     }
     
-    .profile-edit-container h2 {
-        font-size: 1.8rem;
-    }
     
     .form-group label {
         font-size: 0.95rem;

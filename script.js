@@ -9,27 +9,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const areaPersonale = document.querySelector('.area-personale');
     const container = document.querySelector('.container');
     const profileButton = document.querySelector('.profile-button');
-
+    const areaStili = document.querySelector('.area-stili');
+    const exploreLink = document.querySelector('.explore-link');
+    const titolo = document.querySelector('.titolo');
+    const profileEditContainer = document.querySelector('.profile-edit-container');
+    const cancButton = document.querySelector('.cancel-button')
     let isLoggedIn = false;
+
 
     if (localStorage.getItem('showPersonalArea') === 'true') {
         container.classList.add('invisible');
         areaPersonale.classList.add('visible');
-        loginButton.style.display = 'none';
         localStorage.removeItem('showPersonalArea');
     }
-
+    
     function handleUserIconClick(e) {
         e.preventDefault();
         e.stopPropagation();
         if (isLoggedIn) {
             container.classList.add('invisible');
             areaPersonale.classList.add('visible');
+            profileEditContainer.style.display = 'none'; // <-- Nasconde il modulo modifica profilo
             loginButton.style.display = 'none';
             loginPanel.classList.remove('visible');
             registerPanel.classList.remove('visible');
         }
     }
+    
 
     function handleBackToHome() {
         container.classList.remove('invisible');
@@ -37,6 +43,40 @@ document.addEventListener('DOMContentLoaded', function() {
         loginButton.style.display = 'block';
     }
 
+    function handleExploreLinkClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        areaStili.classList.add('visible');
+        exploreLink.style.display = 'none';
+
+    }
+
+    exploreLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        container.style.display = 'none';
+        areaStili.style.display = 'block';
+    });
+
+
+
+    profileButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        profileEditContainer.style.display = 'block';  // ✅ mostra con display
+        areaPersonale.classList.remove('visible');
+    });
+
+
+
+    
+    cancButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        profileEditContainer.style.display = 'none';
+        areaPersonale.classList.add('visible');
+    });
+    
+    
     function handleLogout() {
         isLoggedIn = false;
         loginButton.classList.remove('logged-in');
@@ -60,12 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             loginPanel.classList.add('visible');
         }
-    }
-
-    function handleProfileButtonClick(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        window.location.href = 'profile-edit.html';
     }
 
     loginButton.addEventListener('click', function(e) {
@@ -175,11 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-
-    if (profileButton) {
-        profileButton.addEventListener('click', handleProfileButtonClick);
-    }
-
+       
     const menuTendina = document.querySelector('.menu-tendina');
     if (menuTendina) {
         const homeLink = menuTendina.querySelector('a[href="index.html"]');
@@ -224,4 +254,16 @@ document.addEventListener('DOMContentLoaded', function() {
             menuTendina.classList.remove('visible');
         }
     });
+
+
+    // Gestione del submit del form
+    const profileForm = document.getElementById('profile-edit-form');
+    if (profileForm) {
+        profileForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Qui puoi aggiungere la logica per salvare le modifiche
+            profileEditContainer.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 });
