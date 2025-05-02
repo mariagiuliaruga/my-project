@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const quizWindow = document.querySelector('.quiz-window');
     const quizButtonActive = document.querySelector('.quiz-button.active');
     const closeButton = document.querySelector('.quiz-close-button');
+    const v = localhost + /api/random-items;
 
     //event listener per il pulsante di chiusura
     if (closeButton) {
@@ -375,9 +376,41 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Funzione per inviare il quiz
-    function submitQuiz() {
-        console.log('Risposte:', answers);
-        // Qui puoi aggiungere la logica per inviare le risposte
+    async function submitQuiz() { // Make the function async
+        console.log('Risposte da inviare:', answers);
+
+        // Send answers to the server
+        try {
+            const response = await fetch('http://localhost:3001/api/random-quiz', { // Assuming server runs on port 3001
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(answers), // Send the answers object
+            });
+
+            if (!response.ok) {
+                // Handle server errors (e.g., 4xx, 5xx)
+                const errorData = await response.json();
+                console.error('Errore dal server:', response.status, errorData.message);
+                alert(`Errore nell'invio delle risposte: ${errorData.message || response.statusText}`);
+                // Optionally, keep the quiz open or provide feedback
+                return; // Stop execution if server returned an error
+            }
+
+            const result = await response.json();
+            console.log('Risposta dal server:', result);
+            alert('Quiz inviato con successo!'); // Or show a more integrated success message
+
+        } catch (error) {
+            // Handle network errors or issues with the fetch itself
+            console.error('Errore durante l\'invio del quiz:', error);
+            alert('Si è verificato un problema di rete. Riprova più tardi.');
+            // Optionally, keep the quiz open or provide feedback
+            return; // Stop execution on network error
+        }
+
+        // Close the quiz window only after successful submission
         quizContainer.classList.remove('visible');
         quizWindow.classList.remove('visible');
     }

@@ -6,16 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginLink = document.querySelector('.login-link');
     const closeButtons = document.querySelectorAll('.close-button');
     const quizButton = document.querySelector('.quiz-button');
-    const areaPersonale = document.querySelector('.area-personale');
     const container = document.querySelector('.container');
-    const profileButton = document.querySelector('.profile-button');
+    const profileEditButton = document.querySelector('.profile-edit-button');
+    const profileCancButton = document.querySelector('.cancel-button');
+    
+    const areaPersonale = document.querySelector('.area-personale');
+    const profileEditContainer = document.querySelector('.profile-edit-container');
 
     let isLoggedIn = false;
 
     if (localStorage.getItem('showPersonalArea') === 'true') {
         container.classList.add('invisible');
         areaPersonale.classList.add('visible');
-        loginButton.style.display = 'none';
         localStorage.removeItem('showPersonalArea');
     }
 
@@ -65,7 +67,28 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleProfileButtonClick(e) {
         e.preventDefault();
         e.stopPropagation();
-        window.location.href = 'profile-edit.html';
+        if (areaPersonale.classList.contains('visible')) {
+            areaPersonale.classList.remove('visible');
+            profileEditContainer.classList.add('visible');
+        }
+    }
+
+
+    function handleProfileCancButtonClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (profileEditContainer.classList.contains('visible')) {
+            areaPersonale.classList.add('visible');
+            profileEditContainer.classList.remove('visible');
+        }
+    }
+
+    if (profileEditButton) {
+        profileEditButton.addEventListener('click', handleProfileButtonClick);
+    }
+
+    if (profileCancButton){
+        profileCancButton.addEventListener('click', handleProfileCancButtonClick);
     }
 
     loginButton.addEventListener('click', function(e) {
@@ -100,65 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loginPanel.classList.add('visible');
     });
 
-    // --- Gestione del form di login ---
-    const loginForm = document.querySelector('.login-form');
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const email = this.querySelector('input[type="email"]').value;
-        const password = this.querySelector('input[type="password"]').value;
-        
-        if (email && password) {
-            console.log('Email:', email);
-            console.log('Password:', password);
-
-            isLoggedIn = true;
-
-            localStorage.setItem('userEmail', email);
-            localStorage.setItem('userPassword', password);
-
-            // Imposta l'icona dell'utente
-            loginButton.classList.add('logged-in');
-            loginButton.innerHTML = '<div class="user-icon"></div>';  // Aggiungi l'icona dell'utente
-            quizButton.innerHTML = '<div class="quiz-icon">Inizia il quiz</div>';
-
-            loginPanel.classList.remove('visible');
-            registerPanel.classList.remove('visible');
-
-            this.reset(); // Resetta il form di login
-
-            loginButton.addEventListener('click', handleUserIconClick);
-            quizButton.addEventListener('click', handleQuizButtonClick);
-        }
-    });
-
-    // --- Registrazione ora invia direttamente al server ---
-    const registerForm = document.querySelector('.register-form');
-    registerForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Aggiungi preventDefault per impedire l'invio immediato
-        const email = this.querySelector('input[type="email"]').value;
-        const password = this.querySelector('input[type="password"]').value;
-
-        if (email && password) {
-            console.log('Registrato con Email:', email);
-            console.log('Password:', password);
-
-            isLoggedIn = true;
-
-            localStorage.setItem('userEmail', email);
-            localStorage.setItem('userPassword', password);
-
-            // Imposta l'icona dell'utente
-            loginButton.classList.add('logged-in');
-            loginButton.innerHTML = '<div class="user-icon"></div>';  // Aggiungi l'icona dell'utente
-            quizButton.innerHTML = '<div class="quiz-icon">Inizia il quiz</div>';
-
-            registerPanel.classList.remove('visible'); // Rimuovi il pannello di registrazione
-
-            loginButton.addEventListener('click', handleUserIconClick);
-            quizButton.addEventListener('click', handleQuizButtonClick);
-        }
-    });
+   
 
     const logoutButton = document.querySelector('.logout-button');
     if (logoutButton) {
@@ -174,10 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 handleLogout();
             });
         }
-    }
-
-    if (profileButton) {
-        profileButton.addEventListener('click', handleProfileButtonClick);
     }
 
     const menuTendina = document.querySelector('.menu-tendina');
