@@ -225,7 +225,7 @@
 }
 
 .quiz-close-button:hover {
-    color: rgb(0, 0, 0);
+    color: fuchsia;
     transform: rotate(180deg);
     background-color: rgba(200, 200, 200, 0.3);
 }

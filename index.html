@@ -7,13 +7,16 @@
     <title>Style Quiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/agentur" rel="stylesheet">
     <link rel="stylesheet" href="intestazione.css">
     <link rel="stylesheet" href="centro.css">
     <link rel="stylesheet" href="quizstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="stili.css">
     <link rel="stylesheet" href="profile-edit.css">
 
-
+    
 </head>
 <body>
     
@@ -73,9 +76,9 @@
     <div class="login-panel">
         <button class="close-button">&times;</button>
         <h2>Login</h2>
-        <form class="login-form" action="login.php" method="POST">
-            <input type="email" name="email" placeholder="Insert your e-mail" required>
-            <input type="password" name="password" placeholder="Insert your password" required>
+        <form class="login-form">
+            <input type="email" placeholder="Insert your e-mail" required>
+            <input type="password" placeholder="Insert your password" required>
             <a href="#" class="forgot-password">Password dimenticata?</a>
             <button type="submit">Login</button>
         </form>
@@ -86,12 +89,17 @@
         <button class="close-button">&times;</button>
         <h2>Register</h2>
         <form class="register-form" action="register.php" method="POST">
+            <div class="name-fields">
+                <input type="text" name="nome" placeholder="Nome" required>
+                <input type="text" name="cognome" placeholder="Cognome" required>
+            </div>
             <input type="email" name="email" placeholder="Insert your e-mail" required>
             <input type="password" name="password" placeholder="Insert your password" required>
             <button type="submit">Register</button>
         </form>              
         <a href="#" class="login-link">Hai già un account? Accedi</a>
     </div>
+    
     <div class="area-personale">
         <h2>Area Personale</h2>
         <div class="user-info">
@@ -220,14 +228,10 @@
         </div>
     </div>
     </div>
-    
     <script src="quiz.js"></script>
     <script src="script.js"></script> 
     <script src="profile-edit.js"></script>
     <script src="caricamentoHome.js"></script>
-    <script src="responsive.js"></script>
-    <script src="profile-edit.js"></script>
     <script src="login-register.js"></script>
-
 </body>
 </html>
