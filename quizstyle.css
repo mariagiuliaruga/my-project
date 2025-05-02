@@ -134,12 +134,13 @@
     background-color: white;
     border-radius: 20px;
     width: 70vw;
-    height: 70vh;
+    height: 85vh;
+    max-height: 90vh;
     overflow-y: auto;
-    overflow-x: hidden; /* Previene lo scrolling orizzontale */
+    overflow-x: hidden;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
     animation: scaleIn 0.3s ease-out;
-    padding-right: 10px; /* Spazio per lo scrollbar */
+    padding-right: 10px;
 }
 
 .quiz-window.visible {
@@ -194,7 +195,7 @@
 }
 
 .quiz-window::-webkit-scrollbar-thumb {
-    background: #6a11cb;
+    background: fuchsia;
     border-radius: 10px;
     border: 2px solid white; /* Bordo per far sembrare lo scrollbar contenuto */
     /*personalizza la parte che scorre*/
@@ -215,7 +216,7 @@
     border: none;
     cursor: pointer;
     font-size: 4vh;
-    color: #6a11cb;
+    color: fuchsia;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -342,7 +343,7 @@ che contiene un input(casella del checkbox) e un div(contenitore dell'immagine e
     }
     
     .shoe-img {
-        max-height: 150px !important;
+        max-height: 200px;
     }
 }
 
@@ -361,13 +362,56 @@ che contiene un input(casella del checkbox) e un div(contenitore dell'immagine e
     grid-column: span 1;
     padding: 10px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
 .shoe-img {
-    max-height: 200px !important;
-    width: auto !important;
-    margin-bottom: 10px !important;
-    object-fit: contain !important;
+    max-height: 250px;
+    width: auto;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.accessory-option {
+    grid-column: span 1;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accessory-img {
+    max-height: 250px;
+    width: auto;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+/* Media query per dispositivi mobili */
+@media (max-width: 768px) {
+    .shoe-img, .accessory-img {
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .shoe-img, .accessory-img {
+        max-height: 150px;
+    }
+}
+
+/* Media query per dispositivi mobili */
+@media (max-width: 768px) {
+    .quiz-window {
+        width: 90vw;
+        height: 80vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz-window {
+        width: 95vw;
+        height: 75vh;
+    }
 }

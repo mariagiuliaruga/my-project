@@ -559,3 +559,9 @@ body {
     text-decoration: underline;
 }
 
+
+.email-error {
+    color: red;
+    margin-top: 5px;
+    font-size: 14px;
+}

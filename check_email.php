@@ -47,4 +47,3 @@ echo json_encode($response); // restituisce al frontend {"success":true}
 
 // Chiudi la connessione al database
 $conn->close();
-?>

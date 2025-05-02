@@ -166,5 +166,24 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Errore registrazione:', error));
         }
+            // --- Gestione "Password dimenticata" ---
+    const forgotPasswordLink = document.querySelector('.forgot-password');
+    const forgotPasswordPanel = document.querySelector('.forgot-password-panel');
+    const loginPanel = document.querySelector('.login-panel');
+    const closeForgotPassword = document.querySelector('.forgot-password-panel .close-button');
+
+    if (forgotPasswordLink && forgotPasswordPanel && loginPanel && closeForgotPassword) {
+        forgotPasswordLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            forgotPasswordPanel.style.display = 'block';
+            loginPanel.style.display = 'none';
+        });
+
+        closeForgotPassword.addEventListener('click', function () {
+            forgotPasswordPanel.style.display = 'none';
+            loginPanel.style.display = 'block';
+        });
+    }
+
     });
 });
