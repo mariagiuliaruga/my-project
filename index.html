@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="stili.css">
     <link rel="stylesheet" href="profile-edit.css">
 
+    <script src="login-register.js" defer></script>
     
 </head>
 <body>
@@ -52,7 +53,7 @@
                         <button class="quiz-button">
                             <span class="quiz-icon">Inizia il Quiz</span>
                         </button>
-                        <a href=#area-stili class="explore-link" id="exploreStyles" target="_blank"><span><b>Esplora Stili</b></span></a>
+                        <a href="#area-stili" class="explore-link" id="exploreStyles" target="_blank"><span><b>Esplora Stili</b></span></a>
                     </div>
                 </div>
             </div>
@@ -99,7 +100,14 @@
         </form>              
         <a href="#" class="login-link">Hai già un account? Accedi</a>
     </div>
-    
+    <div class="forgot-password-panel">
+  <button class="close-button">&times;</button>
+  <h2>Reimposta la tua password</h2>
+  <form class="forgot-password-form">
+    <input type="email" placeholder="Inserisci la tua email" required>
+    <button type="submit">Invia link</button>
+  </form>
+</div>
     <div class="area-personale">
         <h2>Area Personale</h2>
         <div class="user-info">

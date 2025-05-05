@@ -510,3 +510,42 @@ profile-edit-overlay{
     background-color: #e0e0e0;
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* sfondo scuro semi-trasparente */
+  display: none; /* lo nascondiamo di default */
+  z-index: 1000;
+}
+
+.forgot-password-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 60px;
+  border-radius: 10px;
+  display: none; /* anche il pannello nascosto inizialmente */
+  z-index: 1100; /* più alto dell'overlay */
+}
+
+  
+  /* Bottone "Chiudi" */
+  .forgot-password-panel .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #a00;
+  }
+  
+  /* Quando visibile */
+  .modal-overlay.visible,
+  .forgot-password-panel.visible {
+    display: block;
+  }
