@@ -19,8 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const profileButton = document.querySelector('.profile-button');
     let isLoggedIn = localStorage.getItem('userEmail') && localStorage.getItem('showPersonalArea') === 'true';
 
-    // Mostra l'area personale dopo il login (se flag salvato da login-register.js)
-
+    // Controllo se l'utente è loggato all'inizio
+    function checkLoginStatus() {
+        return localStorage.getItem('userEmail') && localStorage.getItem('userPassword');
+    }
 
     // Mostra l'area personale dopo il login
     if (localStorage.getItem('showPersonalArea') === 'true') {
@@ -60,17 +62,19 @@ document.addEventListener('DOMContentLoaded', function () {
     function handleQuizButtonClick(e) {
         e.preventDefault();
         e.stopPropagation();
-    
-        const quizContainer = document.querySelector('.quiz-container');
-        const isLoggedInNow = !!localStorage.getItem('userEmail');
-    
-        if (isLoggedInNow) {
+        
+        const quizContainer = document.querySelector('.quiz-container'); // Spostato fuori
+        
+        if (isLoggedIn) {
             if (quizContainer) quizContainer.classList.add('visible');
         } else {
-            if (quizContainer) quizContainer.classList.remove('visible'); // assicurati che non venga mostrato
+            const loginPanel = document.querySelector('.login-panel');
             loginPanel.classList.add('visible');
+            if (quizContainer) quizContainer.classList.remove('visible');
         }
     }
+    
+
 
     // Login con fetch
     const loginForm = document.querySelector('.login-form');
