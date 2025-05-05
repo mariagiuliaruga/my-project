@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    const loginButton = document.querySelector('.login-button');
+    const quizButton = document.querySelector('.quiz-button');
+    const loginPanel = document.querySelector('.login-panel');
+    const registerPanel = document.querySelector('.register-panel');
+    const closeButtons = document.querySelectorAll('.close-button');
+    const registerLink = document.querySelector('.register-link');
+    const loginLink = document.querySelector('.login-link');
     const profileEditContainer = document.querySelector('.profile-edit-container');
     const areaPersonale = document.querySelector('.area-personale');
     const container = document.querySelector('.container');
@@ -9,42 +17,271 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuButton = document.querySelector('.bottone');
     const menuTendina = document.querySelector('.menu-tendina');
     const profileButton = document.querySelector('.profile-button');
-    const quizButton = document.querySelector('.quiz-button');
-
-    let isLoggedIn = !!localStorage.getItem('userEmail');
+    let isLoggedIn = localStorage.getItem('userEmail') && localStorage.getItem('showPersonalArea') === 'true';
 
     // Mostra l'area personale dopo il login (se flag salvato da login-register.js)
+
+
+    // Mostra l'area personale dopo il login
     if (localStorage.getItem('showPersonalArea') === 'true') {
         container.classList.add('invisible');
         areaPersonale.classList.add('visible');
         localStorage.removeItem('showPersonalArea');
     }
 
+    function handleUserIconClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (isLoggedIn) {
+            container.classList.add('invisible');
+            areaPersonale.classList.add('visible');
+            profileEditContainer.style.display = 'none';
+            loginPanel.classList.remove('visible');
+            registerPanel.classList.remove('visible');
+        }
+    }
+
+    function handleBackToHome() {
+        container.classList.remove('invisible');
+        areaPersonale.classList.remove('visible');
+        loginButton.style.display = 'block';
+    }
+
     function handleLogout() {
         isLoggedIn = false;
-        localStorage.removeItem('userEmail');
-        const loginButton = document.querySelector('.login-button');
         loginButton.classList.remove('logged-in');
         loginButton.innerHTML = 'Login';
         loginButton.style.display = 'block';
         quizButton.innerHTML = '<div class="quiz-icon">Scopri il tuo stile</div>';
-        container.classList.remove('invisible');
-        areaPersonale.classList.remove('visible');
+        loginButton.removeEventListener('click', handleUserIconClick);
+        quizButton.removeEventListener('click', handleQuizButtonClick);
+        handleBackToHome();
     }
-
     function handleQuizButtonClick(e) {
         e.preventDefault();
         e.stopPropagation();
-        if (isLoggedIn) {
-            const quizContainer = document.querySelector('.quiz-container');
+    
+        const quizContainer = document.querySelector('.quiz-container');
+        const isLoggedInNow = !!localStorage.getItem('userEmail');
+    
+        if (isLoggedInNow) {
             if (quizContainer) quizContainer.classList.add('visible');
         } else {
-            const loginPanel = document.querySelector('.login-panel');
+            if (quizContainer) quizContainer.classList.remove('visible'); // assicurati che non venga mostrato
             loginPanel.classList.add('visible');
         }
     }
 
-    quizButton?.addEventListener('click', handleQuizButtonClick);
+    // Login con fetch
+    const loginForm = document.querySelector('.login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+    
+            const emailInput = this.querySelector('input[type="email"]');
+            const passwordInput = this.querySelector('input[type="password"]');
+            const email = emailInput.value;
+            const password = passwordInput.value;
+    
+            // Rimuovi eventuali messaggi di errore precedenti
+            const existingError = document.querySelector('.login-error');
+            if (existingError) {
+                existingError.remove();
+            }
+
+            if (email && password) {
+                fetch('login.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({ email, password })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        
+                        // Rendi visibile l'area personale o altre azioni
+                    localStorage.setItem('userEmail', email);
+                        
+                    console.log('Email:', email);
+                    console.log('Password:', password);
+    
+                    isLoggedIn = true;
+    
+                    localStorage.setItem('userEmail', email);
+                    localStorage.setItem('userPassword', password);
+    
+                    // Imposta l'icona dell'utente
+                    loginButton.classList.add('logged-in');
+                    loginButton.innerHTML = '<div class="user-icon"></div>';  // Aggiungi l'icona dell'utente
+                    quizButton.innerHTML = '<div class="quiz-icon">Inizia il quiz</div>';
+    
+                    loginPanel.classList.remove('visible');
+                    registerPanel.classList.remove('visible');
+                    profileEditContainer.classList.remove('visible');
+    
+                     // Resetta il form di login
+                    emailInput.value = '';
+                    passwordInput.value = ''; 
+                    
+                    loginButton.addEventListener('click', handleUserIconClick);
+                    quizButton.addEventListener('click', handleQuizButtonClick);
+                } else {
+                    // Rimuovi eventuali messaggi di errore precedenti
+                    const existingError = document.querySelector('.login-error');
+                    if (existingError) {
+                        existingError.remove();
+                    }
+            
+                    // Crea e mostra il messaggio di errore
+                    const errorMessage = document.createElement('div');
+                    errorMessage.classList.add('login-error');
+                    errorMessage.style.color = 'red';
+                    errorMessage.style.marginTop = '5px';
+                    errorMessage.textContent = data.message || 'Errore durante il login';
+                    emailInput.insertAdjacentElement('beforebegin', errorMessage);
+            
+                    // Nascondi l'area personale e mostra il contenitore principale
+                    isLoggedIn = false;
+                    areaPersonale.classList.remove('visible');
+                    container.classList.remove('invisible');
+                    loginButton.style.display = 'block';
+            
+                    // Rimuovi il messaggio di errore dopo 4 secondi
+                    setTimeout(() => {
+                        errorMessage.remove();
+                    }, 4000);
+                }
+            });
+        }
+    });
+}
+
+    // Registrazione con fetch
+    const registerForm = document.querySelector('.register-form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            const passwordInput = this.querySelector('input[type="password"]');
+            const email = emailInput.value;
+            const password = passwordInput.value;
+    
+            // Rimuovi eventuali messaggi di errore precedenti
+            const existingError = document.querySelector('.email-error');
+            if (existingError) {
+                existingError.remove();
+            }
+            if (email && password) {
+                fetch('register.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({ email, password })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        emailInput.value = '';
+                        passwordInput.value = ''; 
+                        // Registrazione riuscita
+                        alert('Registrazione completata! Ora effettua il login.');
+                        
+                        loginPanel.classList.add('visible'); // Mostra il pannello di login
+                        console.log('Registrato con Email:', email);
+                        console.log('Password:', password);
+            
+                        isLoggedIn = true;
+            
+                        localStorage.setItem('userEmail', email);
+                        localStorage.setItem('userPassword', password);
+            
+                        // Imposta l'icona dell'utente
+                        loginButton.classList.add('logged-in');
+                        loginButton.innerHTML = '<div class="user-icon"></div>';  // Aggiungi l'icona dell'utente
+                        quizButton.innerHTML = '<div class="quiz-icon">Inizia il quiz</div>';
+            
+                        registerPanel.classList.remove('visible'); // Rimuovi il pannello di registrazione
+                        profileEditContainer.classList.remove('visible');
+            
+                        loginButton.addEventListener('click', handleUserIconClick);
+                        quizButton.addEventListener('click', handleQuizButtonClick);
+                    } else {
+                        // Email già registrata, mostriamo il messaggio d'errore sotto il campo email
+                        errorMessage.remove(); // Rimuovi eventuali messaggi di errore precedenti
+                        const errorMessage = document.createElement('div');
+                        errorMessage.classList.add('email-error');
+                        errorMessage.style.color = 'red';
+                        errorMessage.style.marginTop = '5px';
+                        errorMessage.textContent = data.message;  // "Email già registrata"
+                        setTimeout(() => { 
+                            errorMessage.remove();  // Rimuovi il messaggio dopo 3 secondi
+                        }
+                        , 4000);
+                        // Aggiungiamo il messaggio sopra il campo email
+                        emailInput.insertAdjacentElement('beforebegin', errorMessage);
+                        registerPanel.classList.add('visible');
+                        // Dopo 5 secondi, nascondiamo il pannello di registrazione e mostriamo il pannello di login
+                        setTimeout(() => {
+                            registerPanel.classList.remove('visible');
+                        }, 3000);
+                        setTimeout(() => {
+                            loginPanel.classList.add('visible');
+                        }, 3250);
+                    }
+                    
+                })
+                .catch(error => console.error('Errore registrazione:', error));
+            }
+        });
+        function showLoginError(message) {
+        const error = document.createElement('div');
+        error.classList.add('login-error');
+        error.style.color = 'red';
+        error.textContent = message || 'Errore';
+        loginForm?.querySelector('input[type="email"]')?.insertAdjacentElement('beforebegin', error);
+    }
+
+    loginButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!isLoggedIn) {
+            loginPanel.classList.toggle('visible');
+            registerPanel.classList.remove('visible');
+        } else {
+            handleUserIconClick(e);
+        }
+    });
+
+    quizButton.addEventListener('click', handleQuizButtonClick);
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+    
+            // Chiude pannello login se visibile
+            if (loginPanel.classList.contains('visible')) {
+                loginPanel.classList.remove('visible');
+                loginPanel.querySelectorAll('input').forEach(input => input.value = '');
+            }
+    
+            // Chiude pannello registrazione se visibile
+            if (registerPanel.classList.contains('visible')) {
+                registerPanel.classList.remove('visible');
+                registerPanel.querySelectorAll('input').forEach(input => input.value = '');
+            }
+        });
+    });
+
+    registerLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        loginPanel.classList.remove('visible');
+        registerPanel.classList.add('visible');
+    });
+
+    loginLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        registerPanel.classList.remove('visible');
+        loginPanel.classList.add('visible');
+    });
 
     profileButton?.addEventListener('click', function (e) {
         e.preventDefault();
@@ -87,4 +324,5 @@ document.addEventListener('DOMContentLoaded', function () {
         profileEditContainer.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+}
 });
