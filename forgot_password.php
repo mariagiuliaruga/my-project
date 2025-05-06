@@ -68,7 +68,7 @@ function sendPasswordResetEmail($toEmail, $resetLink) {
             )
         );
         // Mittente e destinatario
-        $mail->setFrom('tuoemail@gmail.com', 'Il tuo sito');
+        $mail->setFrom('tuoemail@gmail.com', 'MyStileEssence');
         $mail->addAddress($toEmail);  // L'email dell'utente che ha richiesto il reset
 
         // Contenuto dell'email
