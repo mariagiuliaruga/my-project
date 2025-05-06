@@ -63,6 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmt_insert->execute()) {
                 // Registrazione riuscita
                 echo json_encode(["success" => true, "message" => "Registrazione riuscita"]);
+                // Salva anche in un file SQL appendibile, in modo da pote avere gli stessi dati da dispositivi diversi connessi allo stesso db
+                $sqlString = "INSERT INTO utenti (email, password, data_registrazione) VALUES ('$email', '$hashedPassword', '$data_registrazione');\n";
+                file_put_contents("backup_utenti.sql", $sqlString, FILE_APPEND);
             } else {
                 echo json_encode(["success" => false, "message" => ""]);
             }
