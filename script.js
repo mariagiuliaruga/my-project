@@ -211,27 +211,29 @@ document.addEventListener('DOMContentLoaded', function () {
                         quizButton.addEventListener('click', handleQuizButtonClick);
                     } else {
                         // Email già registrata, mostriamo il messaggio d'errore sotto il campo email
-                        errorMessage.remove(); // Rimuovi eventuali messaggi di errore precedenti
+                        const prevError = document.querySelector('.email-error');
+                        if (prevError) prevError.remove();
+                    
                         const errorMessage = document.createElement('div');
                         errorMessage.classList.add('email-error');
                         errorMessage.style.color = 'red';
                         errorMessage.style.marginTop = '5px';
-                        errorMessage.textContent = data.message;  // "Email già registrata"
-                        setTimeout(() => { 
-                            errorMessage.remove();  // Rimuovi il messaggio dopo 3 secondi
-                        }
-                        , 4000);
-                        // Aggiungiamo il messaggio sopra il campo email
+                        errorMessage.textContent = data.message || 'Errore durante la registrazione';
+                        
                         emailInput.insertAdjacentElement('beforebegin', errorMessage);
+                    
                         registerPanel.classList.add('visible');
-                        // Dopo 5 secondi, nascondiamo il pannello di registrazione e mostriamo il pannello di login
+                    
+                        setTimeout(() => {
+                            errorMessage.remove();
+                        }, 4000);
+                    
                         setTimeout(() => {
                             registerPanel.classList.remove('visible');
-                        }, 3000);
-                        setTimeout(() => {
                             loginPanel.classList.add('visible');
                         }, 3250);
                     }
+                    
                     
                 })
                 .catch(error => console.error('Errore registrazione:', error));
