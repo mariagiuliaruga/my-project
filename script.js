@@ -73,8 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (quizContainer) quizContainer.classList.remove('visible');
         }
     }
-    
-
 
     // Login con fetch
     const loginForm = document.querySelector('.login-form');
@@ -212,23 +210,27 @@ document.addEventListener('DOMContentLoaded', function () {
                     } else {
                         // Email già registrata, mostriamo il messaggio d'errore sotto il campo email
                         const prevError = document.querySelector('.email-error');
-                         if (prevError) prevError.remove();
+                        if (prevError) prevError.remove();
+
                         const errorMessage = document.createElement('div');
                         errorMessage.classList.add('email-error');
                         errorMessage.style.color = 'red';
                         errorMessage.style.marginTop = '5px';
                         errorMessage.textContent = data.message || 'Errore durante la registrazione';
-                        // Aggiungiamo il messaggio sopra il campo email
                         emailInput.insertAdjacentElement('beforebegin', errorMessage);
+                    
                         registerPanel.classList.add('visible');
+                    
                         setTimeout(() => {
                             errorMessage.remove();
-                         }, 4000);
+                        }, 4000);
+
                         setTimeout(() => {
                             registerPanel.classList.remove('visible');
                             loginPanel.classList.add('visible');
                         }, 3250);
                     }
+                    
                     
                 })
                 .catch(error => console.error('Errore registrazione:', error));
