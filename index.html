@@ -77,9 +77,9 @@
     <div class="login-panel">
         <button class="close-button">&times;</button>
         <h2>Login</h2>
-        <form class="login-form">
-            <input type="email" placeholder="Insert your e-mail" required>
-            <input type="password" placeholder="Insert your password" required>
+        <form class="login-form" action="login.php" method="POST">
+            <input type="email" name="email" placeholder="Insert your e-mail" required>
+            <input type="password" name="password" placeholder="Insert your password" required>
             <a href="#" class="forgot-password">Password dimenticata?</a>
             <button type="submit">Login</button>
         </form>
@@ -103,8 +103,8 @@
     <div class="forgot-password-panel">
   <button class="close-button">&times;</button>
   <h2>Reimposta la tua password</h2>
-  <form class="forgot-password-form">
-    <input type="email" placeholder="Inserisci la tua email" required>
+  <form class="forgot-password-form" action="forgot_password.php" method="POST">
+    <input type="email" name="email" placeholder="Inserisci la tua email" required>
     <button type="submit">Invia link</button>
   </form>
 </div>
@@ -240,5 +240,17 @@
     <script src="script.js"></script> 
     <script src="profile-edit.js"></script>
     <script src="caricamentoHome.js"></script>
+    <script>
+        document.querySelector('.forgot-password').addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector('.login-panel').style.display = 'none';
+          document.querySelector('.forgot-password-panel').style.display = 'block';
+        });
+      
+        document.querySelector('.forgot-password-panel .close-button').addEventListener('click', function () {
+          document.querySelector('.forgot-password-panel').style.display = 'none';
+        });
+      </script>
+      
 </body>
 </html>

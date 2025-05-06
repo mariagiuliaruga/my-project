@@ -1,4 +1,12 @@
 <?php
+include __DIR__ . '/connessione.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
 // Imposta il report degli errori
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
