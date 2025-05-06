@@ -19,4 +19,4 @@ INSERT INTO utenti (email, password, data_registrazione) VALUES ('stefi@star', '
 DROP USER IF EXISTS 'admin'@'localhost';
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'pass';
 GRANT ALL PRIVILEGES ON mystyleessence_db.* TO 'admin'@'localhost' IDENTIFIED BY 'pass';
-FLUSH PRIVILEGES;
+FLUSH PRIVILEGES; 
