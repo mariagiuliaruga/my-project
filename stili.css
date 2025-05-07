@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
-
 
 .area-stili{
+    display: none;
     position: relative;
     background-color: white;
     display: flex;
@@ -14,6 +13,10 @@
     background-repeat: no-repeat;
     padding: 2rem;
     font-family: 'Courier New', Courier, monospace;
+}
+
+.area-stili{
+    display: block;
 }
 
 .titolo-stili{

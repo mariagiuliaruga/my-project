@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
         handleLogout();
     });
 
-    exploreLink?.addEventListener('click', function (e) {
+    exploreLink.addEventListener('click', function (e) {
         e.preventDefault();
         container.style.display = 'none';
         areaStili.style.display = 'block';
@@ -318,10 +318,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 handleLogout();
             });
         }
-    }
-       
-    const menuTendina = document.querySelector('.menu-tendina');
-    if (menuTendina) {
         const homeLink = menuTendina.querySelector('a[href="index.html"]');
         if (homeLink) {
             homeLink.addEventListener('click', function(e) {
@@ -330,6 +326,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
+       
+    
 
     const menuButton = document.querySelector('.bottone');
     if (menuButton) {
