@@ -140,17 +140,6 @@
     box-shadow: 0 2vh 1vh rgba(106, 17, 203, 0.4) !important;
 }
 
-.area-stili {
-    grid-area: d;
-    width: 100%;
-    padding: 2rem 4vw;
-    background: rgb(240, 240, 240);
-    display: none;
-}
-
-.area-stili.visible {
-    display: block;
-}
 
 .text-content {
     width: 130%;

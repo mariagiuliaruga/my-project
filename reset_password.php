@@ -23,11 +23,11 @@ if (isset($_GET['token'])) {
             $new_pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
             // Aggiorna la password
-            $stmt = $conn->prepare("UPDATE utenti SET password = :password WHERE email = :email");
+            $stmt = $conn->prepare("UPDATE utenti SET password = :password, data_registrazione = NOW() WHERE email = :email");
             $stmt->bindParam(':password', $new_pass, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
-
+            
             // Elimina il token usato
             $stmt = $conn->prepare("DELETE FROM password_reset WHERE email = :email");
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);

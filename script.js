@@ -186,9 +186,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         emailInput.value = '';
                         passwordInput.value = ''; 
                         // Registrazione riuscita
-                        alert('Registrazione completata! Ora effettua il login.');
+                        alert('Registrazione completata!');
                         
-                        loginPanel.classList.add('visible'); // Mostra il pannello di login
+                   
                         console.log('Registrato con Email:', email);
                         console.log('Password:', password);
             
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         emailInput.insertAdjacentElement('beforebegin', errorMessage);
                     
                         registerPanel.classList.add('visible');
-                    
+
                         setTimeout(() => {
                             errorMessage.remove();
                         }, 4000);
@@ -309,16 +309,59 @@ document.addEventListener('DOMContentLoaded', function () {
         areaStili.style.display = 'block';
     });
 
-    // Menù a tendina
-    menuButton?.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        menuTendina?.classList.toggle('visible');
+    const menuTendinaContainer = document.querySelector('.menu-tendina');
+    if (menuTendinaContainer) {
+        const resetLink = menuTendinaContainer.querySelector('a[href="#"]:nth-child(2)');
+        if (resetLink) {
+            resetLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                handleLogout();
+            });
+        }
+    }
+       
+    const menuTendina = document.querySelector('.menu-tendina');
+    if (menuTendina) {
+        const homeLink = menuTendina.querySelector('a[href="index.html"]');
+        if (homeLink) {
+            homeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                handleBackToHome();
+            });
+        }
+    }
+
+    const menuButton = document.querySelector('.bottone');
+    if (menuButton) {
+        menuButton.removeEventListener('click', function() {}); // Assicurati di rimuovere l'eventuale listener precedente
+        menuButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const menuTendina = this.querySelector('.menu-tendina');
+            if (menuTendina) {
+                document.querySelectorAll('.menu-tendina').forEach(menu => {
+                    if (menu !== menuTendina) {
+                        menu.classList.remove('visible');
+                    }
+                });
+                menuTendina.classList.toggle('visible');
+            }
+        });
+    }
+
+    document.addEventListener('click', function(e) {
+        const menuTendina = document.querySelector('.menu-tendina');
+        const menuButton = document.querySelector('.bottone');
+        if (menuTendina && menuButton && !menuButton.contains(e.target) && !menuTendina.contains(e.target)) {
+            menuTendina.classList.remove('visible');
+        }
     });
 
-    document.addEventListener('click', function (e) {
-        if (!menuButton.contains(e.target) && !menuTendina.contains(e.target)) {
-            menuTendina?.classList.remove('visible');
+    document.addEventListener('touchstart', function(e) {
+        const menuTendina = document.querySelector('.menu-tendina');
+        const menuButton = document.querySelector('.bottone');
+        if (menuTendina && menuButton && !menuButton.contains(e.target) && !menuTendina.contains(e.target)) {
+            menuTendina.classList.remove('visible');
         }
     });
 

@@ -1,6 +1,5 @@
-.prova{
-    display: none;
-}
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+
 
 .area-stili{
     position: relative;
@@ -41,7 +40,7 @@
     margin-left: 5vw;
 }
 
-/* Style entry - a container for each image+text pair */
+/* Style entry - un container per ogni coppia image+text */
 .style-entry-sx {
     display: flex;
     flex-direction: row;
