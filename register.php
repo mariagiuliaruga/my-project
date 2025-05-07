@@ -15,10 +15,10 @@ ini_set('display_errors', 1);
 header('Content-Type: application/json');
 
 // Connessione al database
-$servername = "localhost";
-$username = "root"; // Nome utente DB
-$password = "";     // Password DB
-$dbname = "mystyleessence_db"; // Nome del database
+$servername = "sql7.freesqldatabase.com";
+$username = "sql7777430"; // Nome utente DB
+$password = "CacMXZdVbr";     // Password DB
+$dbname = "sql7777430"; // Nome del database
 
 // Crea connessione
 $conn = new mysqli($servername, $username, $password, $dbname);
