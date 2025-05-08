@@ -502,6 +502,7 @@
 .modal-overlay.visible,
 .forgot-password-panel.visible {
   display: block;
+  animation: fadeInScale 0.35s ease-out forwards;
 }
 
 /* Pannello principale */
@@ -522,12 +523,7 @@
   text-align: center;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
-
-/* Animazione entrata */
-.forgot-password-panel.visible {
-  display: block;
-  animation: fadeInScale 0.35s ease-out forwards;
-}
+ 
 
 @keyframes fadeInScale {
   from {
@@ -588,12 +584,6 @@
   background-color: #a11515;
 }
 
-  
-  /* Quando visibile */
-.modal-overlay.visible,
-.forgot-password-panel.visible {
-    display: block;
-}
 
 .about-container {
     position: fixed;

@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const loginButton = document.querySelector('.login-button');
     const quizButton = document.querySelector('.quiz-button');
+    const quizContainer = document.querySelector('.quiz-container');
     const loginPanel = document.querySelector('.login-panel');
     const registerPanel = document.querySelector('.register-panel');
     const closeButtons = document.querySelectorAll('.close-button');
@@ -17,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuButton = document.querySelector('.bottone');
     const menuTendina = document.querySelector('.menu-tendina');
     const profileButton = document.querySelector('.profile-button');
+    const forgotPasswordLink = document.querySelector('.forgot-password'); //link per il recupero password
+    const forgotPasswordPanel = document.querySelector('.forgot-password-panel');
+
     let isLoggedIn = localStorage.getItem('userEmail') && localStorage.getItem('showPersonalArea') === 'true';
 
     // Controllo se l'utente è loggato all'inizio
@@ -42,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
             registerPanel.classList.remove('visible');
         }
     }
+    
 
     function handleBackToHome() {
         container.classList.remove('invisible');
@@ -50,15 +55,41 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleLogout() {
-        isLoggedIn = false;
+        container.classList.remove('invisible');
+        areaPersonale.classList.remove('visible');
+        areaStili.style.display = 'none';
+        profileEditContainer.style.display = 'none';
+        quizContainer.classList.remove('visible');
+        loginPanel.classList.remove('visible');
+        registerPanel.classList.remove('visible');
+
+        loginButton.style.display = 'block';
         loginButton.classList.remove('logged-in');
         loginButton.innerHTML = 'Login';
-        loginButton.style.display = 'block';
-        quizButton.innerHTML = '<div class="quiz-icon">Scopri il tuo stile</div>';
+
+        quizButton.innerHTML = '<span class="quiz-icon">Inizia il Quiz</span>';
+
+        document.querySelector('.explore-link').style.display = 'block';
+
+        isLoggedIn = false;
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userPassword');
+        localStorage.removeItem('showPersonalArea');
+
         loginButton.removeEventListener('click', handleUserIconClick);
-        quizButton.removeEventListener('click', handleQuizButtonClick);
-        handleBackToHome();
+        quizButton.addEventListener('click', handleQuizButtonClick);
+
+        const loginForm=document.querySelector('.login-form');
+        if(loginForm){
+            loginForm.querySelectorAll('input').forEach(input=> input.value='');
+        }
+        const registerForm=document.querySelector('.register-form');
+        if(registerForm){
+            registerForm.querySelectorAll('input').forEach(input=> input.value='');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
     function handleQuizButtonClick(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -73,6 +104,22 @@ document.addEventListener('DOMContentLoaded', function () {
             if (quizContainer) quizContainer.classList.remove('visible');
         }
     }
+    
+
+    forgotPasswordLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        forgotPasswordPanel.classList.add('visible');
+        loginPanel.classList.remove('visible');
+
+        const closeForgotPasswordButton = forgotPasswordPanel.querySelector('.forgot-password-panel .close-button');
+        if (closeForgotPasswordButton) {
+            closeForgotPasswordButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                forgotPasswordPanel.classList.remove('visible');
+                loginPanel.classList.add('visible');
+            });
+        }
+    });
 
     // Login con fetch
     const loginForm = document.querySelector('.login-form');
@@ -148,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     areaPersonale.classList.remove('visible');
                     container.classList.remove('invisible');
                     loginButton.style.display = 'block';
-            
+
                     // Rimuovi il messaggio di errore dopo 4 secondi
                     setTimeout(() => {
                         errorMessage.remove();
@@ -164,6 +211,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (registerForm) {
         registerForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            const nameInput = this.querySelector('input[name="name"]');
+            const surnameInput = this.querySelector('input[name="surname"]');
             const emailInput = this.querySelector('input[type="email"]');
             const passwordInput = this.querySelector('input[type="password"]');
             const email = emailInput.value;
@@ -183,6 +232,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        nameInput.value = '';
+                        surnameInput.value = '';
+                        // Resetta il form di registrazione
                         emailInput.value = '';
                         passwordInput.value = ''; 
                         // Registrazione riuscita
@@ -228,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         setTimeout(() => {
                             registerPanel.classList.remove('visible');
                             loginPanel.classList.add('visible');
-                        }, 3250);
+                        }, 2000);
                     }
                     
                     
@@ -315,39 +367,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (resetLink) {
             resetLink.addEventListener('click', function (e) {
                 e.preventDefault();
-                container.classList.remove('invisible');
-                areaPersonale.classList.remove('visible');
-                areaStili.style.display = 'none';
-                profileEditContainer.style.display = 'none';
-                document.querySelector('.quiz-container').classList.remove('visible');
-                loginPanel.classList.remove('visible');
-                registerPanel.classList.remove('visible');
-
-                loginButton.style.display = 'block';
-                loginButton.classList.remove('logged-in');
-                loginButton.innerHTML = 'Login';
-
-                quizButton.innerHTML = '<span class="quiz-icon">Inizia il Quiz</span>';
-
-                document.querySelector('.explore-link').style.display = 'block';
-
-                isLoggedIn = false;
-                localStorage.removeItem('userEmail');
-                localStorage.removeItem('userPassword');
-                localStorage.removeItem('showPersonalArea');
-
-                loginButton.removeEventListener('click', handleUserIconClick);
-                quizButton.removeEventListener('click', handleQuizButtonClick);
-
-                const loginForm=document.querySelector('.login-form');
-                if(loginForm){
-                    loginForm.querySelectorAll('input').forEach(input=> input.value='');
-                }
-                const registerForm=document.querySelector('.register-form');
-                if(registerForm){
-                    registerForm.querySelectorAll('input').forEach(input=> input.value='');
-                }
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                handleLogout();
             });
         }
 
