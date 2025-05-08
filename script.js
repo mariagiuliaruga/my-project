@@ -313,14 +313,47 @@ document.addEventListener('DOMContentLoaded', function () {
     if (menuTendinaContainer) {
         const resetLink = menuTendinaContainer.querySelector('a[href="#"]:nth-child(2)');
         if (resetLink) {
-            resetLink.addEventListener('click', function(e) {
+            resetLink.addEventListener('click', function (e) {
                 e.preventDefault();
-                handleLogout();
+                container.classList.remove('invisible');
+                areaPersonale.classList.remove('visible');
+                areaStili.style.display = 'none';
+                profileEditContainer.style.display = 'none';
+                document.querySelector('.quiz-container').classList.remove('visible');
+                loginPanel.classList.remove('visible');
+                registerPanel.classList.remove('visible');
+
+                loginButton.style.display = 'block';
+                loginButton.classList.remove('logged-in');
+                loginButton.innerHTML = 'Login';
+
+                quizButton.innerHTML = '<span class="quiz-icon">Inizia il Quiz</span>';
+
+                document.querySelector('.explore-link').style.display = 'block';
+
+                isLoggedIn = false;
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userPassword');
+                localStorage.removeItem('showPersonalArea');
+
+                loginButton.removeEventListener('click', handleUserIconClick);
+                quizButton.removeEventListener('click', handleQuizButtonClick);
+
+                const loginForm=document.querySelector('.login-form');
+                if(loginForm){
+                    loginForm.querySelectorAll('input').forEach(input=> input.value='');
+                }
+                const registerForm=document.querySelector('.register-form');
+                if(registerForm){
+                    registerForm.querySelectorAll('input').forEach(input=> input.value='');
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
+
         const homeLink = menuTendina.querySelector('a[href="index.html"]');
         if (homeLink) {
-            homeLink.addEventListener('click', function(e) {
+            homeLink.addEventListener('click', function (e) {
                 e.preventDefault();
                 handleBackToHome();
             });

@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
             $stmt->execute();
 
             // Link di reset (modifica con il tuo dominio reale)
-            $resetLink = "http://localhost:3000/Users/Fabio/Documents/my-project/reset_password.php?token=$token";
+            $resetLink = "http://localhost/my-project/reset_password.php?token=$token";
 
             // Funzione per inviare l'email
             sendPasswordResetEmail($email, $resetLink);
