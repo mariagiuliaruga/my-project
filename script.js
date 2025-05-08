@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    const titolo = document.querySelector('.titolo-link');
     const loginButton = document.querySelector('.login-button');
     const quizButton = document.querySelector('.quiz-button');
     const quizContainer = document.querySelector('.quiz-container');
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const forgotPasswordPanel = document.querySelector('.forgot-password-panel');
 
     let isLoggedIn = localStorage.getItem('userEmail') && localStorage.getItem('showPersonalArea') === 'true';
-
+    
     // Controllo se l'utente è loggato all'inizio
     function checkLoginStatus() {
         return localStorage.getItem('userEmail') && localStorage.getItem('userPassword');
@@ -44,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
             profileEditContainer.style.display = 'none';
             loginPanel.classList.remove('visible');
             registerPanel.classList.remove('visible');
+            areaStili.classList.remove('visible');
         }
     }
     
@@ -51,13 +53,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function handleBackToHome() {
         container.classList.remove('invisible');
         areaPersonale.classList.remove('visible');
+        areaStili.classList.remove('visible');
         loginButton.style.display = 'block';
     }
 
     function handleLogout() {
         container.classList.remove('invisible');
         areaPersonale.classList.remove('visible');
-        areaStili.style.display = 'none';
+        areaStili.classList.remove('visible');
         profileEditContainer.style.display = 'none';
         quizContainer.classList.remove('visible');
         loginPanel.classList.remove('visible');
@@ -69,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         quizButton.innerHTML = '<span class="quiz-icon">Inizia il Quiz</span>';
 
-        document.querySelector('.explore-link').style.display = 'block';
+        exploreLink.style.display = 'block';
 
         isLoggedIn = false;
         localStorage.removeItem('userEmail');
@@ -105,6 +108,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     
+    titolo.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        handleBackToHome();
+    });
 
     forgotPasswordLink.addEventListener('click', function (e) {
         e.preventDefault();
@@ -288,7 +296,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 .catch(error => console.error('Errore registrazione:', error));
             }
         });
-        function showLoginError(message) {
+
+    function showLoginError(message) {
         const error = document.createElement('div');
         error.classList.add('login-error');
         error.style.color = 'red';
@@ -357,8 +366,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     exploreLink.addEventListener('click', function (e) {
         e.preventDefault();
-        container.style.display = 'none';
-        areaStili.style.display = 'block';
+        e.stopPropagation();
+        areaStili.classList.add('visible');
+        container.classList.add('invisible');
+        
     });
 
     const menuTendinaContainer = document.querySelector('.menu-tendina');
@@ -421,5 +432,12 @@ document.addEventListener('DOMContentLoaded', function () {
         profileEditContainer.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-}
+
+    window.addEventListener('beforeunload', (event) =>{
+        if (isLoggedIn) {
+            event.preventDefault();
+        }
+    });
+
+    }
 });
