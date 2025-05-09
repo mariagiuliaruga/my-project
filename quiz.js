@@ -16,84 +16,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     
-        const questions = [
+    
+        //Domande iniziali 
+        const sondaggioIniziale = [
             {
-        domanda: "Sei un uomo o una donna?",
+                domanda: "Sei un uomo o una donna?",
                 tipo: "select",
                 opzioni: ["Uomo", "Donna"]
-    },
-    {
-        domanda: "Quanti anni hai?",
+            },
+            {
+                domanda: "Quanti anni hai?",
                 tipo: "number",
                 placeholder: "Inserisci la tua età"
-            },
-            {
-                domanda: "Quale tra queste parole ti descrive meglio?",
-                tipo: "select",
-                opzioni: ["Creativo", "Minimalista", "Elegante", "Sportivo"]
-            },
-            {
-                domanda: "Quanto ti piace sperimentare con il tuo stile?",
-                tipo: "select",
-                opzioni: ["Per niente", "Poco", "Abbastanza", "Molto", "Moltissimo"]
-            },
-            {
-                domanda: "Quali colori preferisci indossare?",
-                tipo: "select",
-                opzioni: ["Neutrali", "Scuri", "Vivaci", "Pastello", "Colorati", "Navy"],
-                immagini: {
-                    "Neutrali": "colori/coloriNeutrali.png",
-                    "Scuri": "colori/coloriScuri.png",
-                    "Vivaci": "colori/coloriVivaci.png",
-                    "Pastello": "colori/coloriPastello.png",
-                    "Colorati": "colori/coloriColorati.png",
-                    "Navy": "colori/coloriNavy.png"
-                }
-            },
-            {
-                domanda: "Che tipo di gioielli preferisci?",
-                tipo: "select",
-                opzioni: ["Oro", "Argento", "Entrambi", "Nessuno"],
-                immagini: {
-                    "Oro": "gioielli/oro.png",
-                    "Argento": "gioielli/argento.png"
-                }
-            },
-            {
-                domanda: "Quale di queste occasioni vivi più spesso?",
-                tipo: "select",
-                opzioni: ["Università / Lavoro", "Aperitivi / Eventi", "Viaggi e weekend", "Serate fuori"]
-            },
-            {
-                domanda: "Quale tra questi brand o negozi senti più vicino al tuo stile?",
-                tipo: "select",
-                opzioni: ["Zara", "H&M", "Stradivarius", "DoppelGanger", "Nike", "Other"]
-            },
-            {
-                domanda: "Quanto tempo dedichi a scegliere il tuo outfit",
-                tipo: "select",
-                opzioni: ["Pochi minuti", "Ci penso un po'", "Lo preparo il giorno prima", "Cambio idea mille volte"]
-            },
-            {
-                domanda: "Qual è il tuo stile di vita?",
-                tipo: "select",
-                opzioni: ["Sportivo", "Elegante", "Minimalista", "Creativo"]
             }
         ];
-    
-            //Domande iniziali 
-            const sondaggioIniziale = [
-                {
-                    domanda: "Sei un uomo o una donna?",
-                    tipo: "select",
-                    opzioni: ["Uomo", "Donna"]
-                },
-                {
-                    domanda: "Quanti anni hai?",
-                    tipo: "number",
-                    placeholder: "Inserisci la tua età"
-                }
-            ];
     
         //Sondaggio uomo
         const sondaggioUomo = [
@@ -438,10 +374,87 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Funzione per inviare il quiz
         function submitQuiz() {
-            console.log('Risposte:', answers);
-            // Qui puoi aggiungere la logica per inviare le risposte
-            quizContainer.classList.remove('visible');
-            quizWindow.classList.remove('visible');
+            // Salva l'ultima risposta
+            saveAnswer(currentQuestion);
+
+            // Filtra le risposte per rimuovere le domande iniziali (genere ed età)
+            const risposteStile = Object.entries(answers)
+                .filter(([index]) => parseInt(index) > 1) // Esclude le prime due domande
+                .reduce((acc, [index, value]) => {
+                    acc[index] = value;
+                    return acc;
+                }, {});
+
+            // Calcola lo stile
+            const risultato = calcolaStile(risposteStile);
+            
+            // Crea il contenuto del risultato
+            const resultContent = `
+                <div class="quiz-result">
+                    <h2>Il tuo stile è: ${risultato.stileVincente}</h2>
+                    <div class="style-description">
+                        ${getStyleDescription(risultato.stileVincente)}
+                    </div>
+                    <div class="style-scores">
+                        <h3>Punteggi per ogni stile:</h3>
+                        ${Object.entries(risultato.punteggi)
+                            .map(([stile, punteggio]) => `
+                                <div class="style-score">
+                                    <span>${stile}:</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: ${(punteggio / risultato.punteggioMassimo) * 100}%"></div>
+                                    </div>
+                                    <span>${punteggio}</span>
+                                </div>
+                            `).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Mostra il risultato
+            const questionElement = document.querySelector('.quiz-domanda');
+            if (questionElement) {
+                questionElement.innerHTML = resultContent;
+            } else {
+                console.error('Elemento .quiz-domanda non trovato');
+            }
+            
+            // Nascondi i pulsanti di navigazione
+            const navigationElement = document.querySelector('.quiz-navigation');
+            if (navigationElement) {
+                navigationElement.style.display = 'none';
+            }
+
+            // Mantieni il container del quiz visibile
+            if (quizContainer) {
+                quizContainer.classList.add('visible');
+            }
+            if (quizWindow) {
+                quizWindow.classList.add('visible');
+            }
+
+            // Aggiungi un pulsante per chiudere i risultati
+            const closeButton = document.createElement('button');
+            closeButton.className = 'quiz-close-button';
+            closeButton.innerHTML = '×';
+            closeButton.onclick = function() {
+                quizContainer.classList.remove('visible');
+                quizWindow.classList.remove('visible');
+            };
+            quizWindow.appendChild(closeButton);
+        }
+    
+        // Funzione per ottenere la descrizione dello stile
+        function getStyleDescription(stile) {
+            const descrizioni = {
+                bohoChic: "Sei una persona creativa e libera, che ama esprimersi attraverso uno stile unico e artistico. Il tuo look è caratterizzato da colori vivaci, texture naturali e accessori originali.",
+                fisherman: "Hai uno stile pratico e funzionale, che privilegia il comfort senza rinunciare all'eleganza. Il tuo guardaroba è composto da capi versatili e duraturi.",
+                messy: "Sei una persona spontanea e anticonformista. Il tuo stile è unico e personale, che combina elementi diversi in modo creativo e originale.",
+                preppy: "Hai uno stile curato e raffinato, che riflette la tua attenzione ai dettagli. Il tuo look è caratterizzato da linee pulite e colori classici.",
+                quietLuxury: "Sei una persona sofisticata che apprezza la qualità e l'eleganza discreta. Il tuo stile è caratterizzato da capi di alta qualità e design minimalista.",
+                scandi: "Hai uno stile minimalista e funzionale, influenzato dal design scandinavo. Il tuo look è caratterizzato da linee pulite, colori neutri e un'estetica moderna."
+            };
+            return descrizioni[stile] || "Nessuna descrizione disponibile per questo stile.";
         }
     
         // Event listener per il pulsante del quiz
@@ -489,4 +502,155 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
+
+        // Oggetto per tenere traccia dei punteggi degli stili
+        const stiliDonna = {
+            bohoChic: 0,
+            fisherman: 0,
+            messy: 0,
+            preppy: 0,
+            quietLuxury: 0,
+            scandi: 0
+        };
+
+        // Mappa delle risposte agli stili
+        const mappaStiliDonna = {
+            // Domanda 1: Quale tra queste parole ti descrive meglio?
+            "Creativa": "bohoChic",
+            "Minimalista": "scandi",
+            "Elegante": "quietLuxury",
+            "Sportiva": "fisherman",
+
+            // Domanda 2: Quanto ti piace sperimentare con il tuo stile?
+            "Per niente": "quietLuxury",
+            "Poco": "preppy",
+            "Abbastanza": "fisherman",
+            "Molto": "messy",
+            "Moltissimo": "bohoChic",
+
+            // Domanda 3: Quali colori preferisci indossare?
+            "Neutrali": "quietLuxury",
+            "Scuri": "quietLuxury",
+            "Vivaci": "bohoChic",
+            "Pastello": "preppy",
+            "Colorati": "messy",
+            "Navy": "preppy",
+
+            // Domanda 4: Che tipo di gioielli preferisci?
+            "Oro": "quietLuxury",
+            "Argento": "scandi",
+            "Entrambi": "bohoChic",
+            "Nessuno": "fisherman",
+
+            // Domanda 5: Quale di queste occasioni vivi più spesso?
+            "Università / Lavoro": "preppy",
+            "Aperitivi / Eventi": "quietLuxury",
+            "Viaggi e weekend": "bohoChic",
+            "Serate fuori": "messy",
+
+            // Domanda 6: Dove trovi ispirazione per i tuoi outfit?
+            "Pinterest": "bohoChic",
+            "Instagram": "messy",
+            "Video su YouTube/TikTok": "messy",
+            "Le persone per strada": "fisherman",
+            "Riviste o blog": "quietLuxury",
+            "Creo da sola": "bohoChic",
+
+            // Domanda 7: Quanto tempo dedichi a scegliere il tuo outfit
+            "Pochi minuti": "bohoChic",
+            "Ci penso un po'": "scandi",
+            "Lo preparo il giorno prima": "preppy",
+            "Cambio idea mille volte": "messy",
+
+            // Domanda 8: Quando scegli un outfit, cosa consideri più importante?
+            "Essere comoda": "fisherman",
+            "Sentirmi alla moda": "messy",
+            "Esprimere la mia personalità": "bohoChic",
+            "Vestirmi in modo curato e ordinato": "quietLuxury",
+
+            // Domanda 9: Quali tra queste scarpe indosseresti?
+            "Ballerine": "preppy",
+            "Birkenstock": "bohoChic",
+            "UGGS": "messy",
+            "Converse": "messy",
+            "Samba": "scandi",
+            "Stivali": "quietLuxury"
+        };
+
+        // Funzione per ottenere la descrizione dello stile
+        function getStyleDescription(stile) {
+            const descrizioni = {
+                bohoChic: "Sei una persona creativa e libera, che ama esprimersi attraverso uno stile unico e artistico. Il tuo look è caratterizzato da colori vivaci, texture naturali e accessori originali.",
+                fisherman: "Hai uno stile pratico e funzionale, che privilegia il comfort senza rinunciare all'eleganza. Il tuo guardaroba è composto da capi versatili e duraturi.",
+                messy: "Sei una persona spontanea e anticonformista. Il tuo stile è unico e personale, che combina elementi diversi in modo creativo e originale.",
+                preppy: "Hai uno stile curato e raffinato, che riflette la tua attenzione ai dettagli. Il tuo look è caratterizzato da linee pulite e colori classici.",
+                quietLuxury: "Sei una persona sofisticata che apprezza la qualità e l'eleganza discreta. Il tuo stile è caratterizzato da capi di alta qualità e design minimalista.",
+                scandi: "Hai uno stile minimalista e funzionale, influenzato dal design scandinavo. Il tuo look è caratterizzato da linee pulite, colori neutri e un'estetica moderna."
+            };
+            return descrizioni[stile] || "Nessuna descrizione disponibile per questo stile.";
+        }
+
+        // Funzione per calcolare lo stile
+        function calcolaStile(answers) {
+            // Resetta i punteggi
+            Object.keys(stiliDonna).forEach(stile => {
+                stiliDonna[stile] = 0;
+            });
+
+            // Calcola i punteggi per ogni stile
+            Object.keys(answers).forEach(questionIndex => {
+                const answer = answers[questionIndex];
+                if (mappaStiliDonna[answer]) {
+                    const stile = mappaStiliDonna[answer];
+                    stiliDonna[stile]++;
+                }
+            });
+
+            // Trova lo stile con il punteggio più alto
+            let stileVincente = '';
+            let punteggioMassimo = -1;
+
+            Object.entries(stiliDonna).forEach(([stile, punteggio]) => {
+                if (punteggio > punteggioMassimo) {
+                    punteggioMassimo = punteggio;
+                    stileVincente = stile;
+                }
+            });
+
+            return {
+                stileVincente,
+                punteggioMassimo,
+                punteggi: { ...stiliDonna }
+            };
+        }
+
+        // Funzione per generare l'HTML del risultato
+        function generaRisultatoHTML(risultato) {
+            const { stileVincente, punteggioMassimo, punteggi } = risultato;
+
+            return `
+                <div class="quiz-result">
+                    <h2>Il tuo stile è: ${stileVincente}</h2>
+                    <div class="style-description">
+                        ${getStyleDescription(stileVincente)}
+                    </div>
+                    <div class="style-scores">
+                        <h3>Punteggi per ogni stile:</h3>
+                        ${Object.entries(punteggi)
+                            .map(([stile, punteggio]) => `
+                                <div class="style-score">
+                                    <span>${stile}:</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: ${(punteggio / punteggioMassimo) * 100}%"></div>
+                                    </div>
+                                    <span>${punteggio}</span>
+                                </div>
+                            `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+
+
     });
