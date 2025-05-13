@@ -1,27 +1,101 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    background-color: rgb(236, 110, 141);
+  padding: 0;
+  top: 0;
+  position: relative;
+  width: 200vw;
+  height: 200vh;
+  background-color: rgba(255, 234, 159, 0.686);
 }
+
+.selezione-genere{
+  z-index: 1000;
+  margin-top: 0;
+}
+
+#btn-donna {
+  background-color: pink;
+  border-radius: 30px;
+  width: 10vw;
+  height: 8vh;
+}
+
+#btn-uomo {
+  background-color: rgb(129, 177, 255);
+  border-radius: 30px;
+  width: 10vw;
+  height: 8vh;
+}
+
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* centrato verticalmente */
-    flex-direction: row;
-    width: 100vw;
-    height: 85vh; 
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* centrato verticalmente */
+  flex-direction: column;
+  padding: 0;
+  margin-top: 25vh; /*istruzione da togliere quando aggiusteremo il container della donna perchè i vestiti sono giganti*/
 }
 
-#manichino {
-    position: relative;
-    height: 100%; /* massimo quanto il container */
-    aspect-ratio: 1 / 3; /* rapporto verticale (1 di larghezza per 3 di altezza) */
-    background-image: url('manichinoUomo.png');
-    background-size: cover;
-    background-position: center;
-    border: 2px solid #333;
+.area-sx{
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+.area-uomo{
+  display: flex;
+  flex-direction: row;
+  gap: 1vh;
+}
+
+.area-donna{
+  display: flex;
+  flex-direction: row;
+  gap: 1vh;
+}
+
+.sx-alto-uomo {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: column;             /* riempie per righe → colonne */
+  gap: 0vh;
+}
+
+.sx-basso-uomo {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-auto-flow: column;             /* riempie per righe → colonne */
+  gap: 0vh;
+}
+
+.dx-uomo {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: column;
+  gap: 0vh;
+}
+
+.sx-alto-donna {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: column;             
+  gap: 0vh;
+}
+
+.sx-basso-donna {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-auto-flow: column;             
+  gap: 0vh;
+}
+
+.dx-donna {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: column;             
+  gap: 0vh;
 }
 
 #manichino .indumento {
@@ -39,38 +113,34 @@ html, body {
 }
 
 #zona-testa {
-  top: 0;
-  height: 16vh;
+  top: 0%;
+  height: 20%;
   background-color: rgba(255, 93, 206, 0);
 
 }
 
 #zona-busto {
-  top: 16vh;
-  height: 20vh;
-  background-color: rgba(255, 172, 78, 0);
-
+  top: 21%;
+  height: 24%;
+  background-color: rgba(255, 172, 78, 0.481);
 }
 
-
 #zona-over-busto {
-  top: 16vh;
-  height: 20vh;
-  background-color: rgba(255, 172, 78, 0);
-
+  top: 21%;
+  height: 24%;
 }
 
 #zona-gambe {
-  top: 36vh;
-  height: 40vh;
-  background-color: rgba(0, 255, 0, 0);
+  top: 42%;
+  height: 46%;
+  background-color: rgba(0, 255, 0, 0.441);
     
 }
 
 #zona-piedi {
-  top: 74vh;
-  height: 8vh;
-  background-color: rgba(255, 0, 0, 0);
+  top: 88%;
+  height: 15%;
+  background-color: rgba(255, 0, 0, 0.481);
 
 }
 
@@ -88,24 +158,10 @@ html, body {
     cursor: grab;
 }
 
-.area-vestiti-sx {
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    grid-auto-flow: column;             /* riempie per righe → colonne */
-    gap: 0vh;
-}
-
-.area-vestiti-dx {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-auto-flow: column;             /* riempie per righe → colonne */
-    gap: 0vh;
-}
-
 .indumento {
-    position: absolute;
-    width: 100px;
-    pointer-events: none; /* evita di rispostarli una volta messi */
+  position: absolute;
+  width: 100px;
+  pointer-events: none; /* evita di rispostarli una volta messi */
 }
 
 #cestino {
@@ -122,7 +178,7 @@ html, body {
   z-index: 50;
 }
 
-/* From Uiverse.io by vinodjangid07 */ 
+/* bottone del cestino */
 .button {
   width: 50px;
   height: 50px;
