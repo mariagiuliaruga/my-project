@@ -32,46 +32,54 @@ html, body {
 }
 
 .zona {
-    position: absolute;
-    width: 100%;
-    pointer-events: none;
-    
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+  
 }
 
 #zona-testa {
-    top: 0;
-    height: 16vh;
-    background-color: rgba(255, 93, 206, 0);
+  top: 0;
+  height: 16vh;
+  background-color: rgba(255, 93, 206, 0);
 
 }
 
 #zona-busto {
-    top: 16vh;
-    height: 20vh;
-    background-color: rgba(255, 172, 78, 0);
+  top: 16vh;
+  height: 20vh;
+  background-color: rgba(255, 172, 78, 0);
 
 }
 
 
 #zona-over-busto {
-    top: 16vh;
-    height: 20vh;
-    background-color: rgba(255, 172, 78, 0);
+  top: 16vh;
+  height: 20vh;
+  background-color: rgba(255, 172, 78, 0);
 
 }
 
 #zona-gambe {
-    top: 36vh;
-    height: 40vh;
-    background-color: rgba(0, 255, 0, 0);
+  top: 36vh;
+  height: 40vh;
+  background-color: rgba(0, 255, 0, 0);
     
 }
 
 #zona-piedi {
-    top: 74vh;
-    height: 8vh;
-    background-color: rgba(255, 0, 0, 0);
+  top: 74vh;
+  height: 8vh;
+  background-color: rgba(255, 0, 0, 0);
 
+}
+
+#zona-orologio{
+  top: 40vh;
+  left: 11vw;
+  height: 4vh;
+  width: 2vw;
+  background-color: rgba(78, 243, 255, 0);
 }
 
 .vestito {

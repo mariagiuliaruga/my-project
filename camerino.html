@@ -36,7 +36,7 @@
       <img src="style/men/piedi/timberland.png" id="timberland" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
       <img src="style/men/piedi/vans.png" id="vans" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
 
-      <img src="style/men/polso/orologio.png" id="orologio" class="vestito" data-zona="polso" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/orologio/orologio.png" id="orologio" class="vestito" data-zona="orologio" draggable="true" ondragstart="drag(event)">
       <img src="style/men/testa/cappelloMarrone.png" id="cappello-marrone" class="vestito" data-zona="testa" draggable="true" ondragstart="drag(event)">
       <img src="style/men/testa/cappelloPoloBlu.png" id="cappello-polo" class="vestito" data-zona="testa" draggable="true" ondragstart="drag(event)">
      
@@ -48,6 +48,7 @@
       <div id="zona-over-busto" class="zona"></div>
       <div id="zona-gambe" class="zona"></div>
       <div id="zona-piedi" class="zona"></div>
+      <div id="zona-orologio" class="zona"></div>
     </div>
 
     <div class="area-vestiti-dx">
@@ -176,6 +177,8 @@
       zona = document.getElementById('zona-gambe');
     } else if (zonaNome === "piedi") {
       zona = document.getElementById('zona-piedi');
+    } else if (zonaNome === "orologio") {
+      zona = document.getElementById('zona-orologio');
     } 
 
     // si occupa di evitare sovrapposizioni e sostituire un indumento esistente nella stessa zona
