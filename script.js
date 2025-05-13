@@ -372,9 +372,9 @@ document.addEventListener('DOMContentLoaded', function () {
         
     });
 
-    const menuTendinaContainer = document.querySelector('.menu-tendina');
-    if (menuTendinaContainer) {
-        const resetLink = menuTendinaContainer.querySelector('a[href="#"]:nth-child(2)');
+    const menuTendina = document.querySelector('.menu-tendina');
+    if (menuTendina) {
+        const resetLink = menuTendina.querySelector('a[href="#"]:nth-child(2)');
         if (resetLink) {
             resetLink.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -387,6 +387,14 @@ document.addEventListener('DOMContentLoaded', function () {
             homeLink.addEventListener('click', function (e) {
                 e.preventDefault();
                 handleBackToHome();
+            });
+        }
+
+        const camerinoLink = menuTendina.querySelector('a[href="camerino.html"]');
+        if (camerinoLink) {
+            camerinoLink.addEventListener('click', function (e) {
+                console.log('Navigando verso camerino.html');
+                window.location.href = "camerino.html"; // Forza la navigazione
             });
         }
     }

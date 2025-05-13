@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Manichino</title>
+  <link rel="stylesheet" href="camerino.css">
+</head>
+<body>
+
+  <h2>Trascina i vestiti sul manichino</h2>
+  <div class="container">
+    
+    <div class="area-vestiti-sx">
+      <img src="style/men/busto/magliaMarrone.png" id="maglia-marrone" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/busto/magliaBianca.png" id="maglia" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/busto/magliaBlu.png" id="maglia-blu" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/busto/magliaNera.png" id="maglia-nera" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/busto/magliaLanetta.png" id="maglia-lanetta" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/busto/camicia.png" id="camicia" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/busto/camicetta.png" id="camicetta" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/overBusto/maglioneMaglietta.png" id="maglia-maglione" data-zona="over-busto" class="vestito" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/overBusto/maglioneMarrone.png" id="maglia-maglione-marrone" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/overBusto/giaccaLevis.png" id="camicia-jeans" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/overBusto/giaccaColorata.png" id="giacca-colorata" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/overBusto/giaccaJeans.png" id="giacca-jeans" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/overBusto/giaccaNike.png" id="giacca-nike" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/overBusto/giaccaPelle.png" id="giacca-pelle" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/overBusto/felpa.png" id="felpa" class="vestito" draggable="true" data-zona="over-busto" ondragstart="drag(event)">
+
+      <img src="style/men/piedi/campus.png" id="campus" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/piedi/jordan.png" id="jordan" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/piedi/mocassini.png" id="mocassini" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/piedi/mocassiniMarroni.png" id="mocassini-marroni" data-zona="piedi" class="vestito" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/piedi/scarpeBianche.png" id="scarpe-bianche" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/piedi/stivalettiMarroni.png" id="stivaletti-marroni" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/piedi/timberland.png" id="timberland" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/piedi/vans.png" id="vans" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
+
+      <img src="style/men/polso/orologio.png" id="orologio" class="vestito" data-zona="polso" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/testa/cappelloMarrone.png" id="cappello-marrone" class="vestito" data-zona="testa" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/testa/cappelloPoloBlu.png" id="cappello-polo" class="vestito" data-zona="testa" draggable="true" ondragstart="drag(event)">
+     
+    </div>
+    
+    <div id="manichino" ondragover="allowDrop(event)" ondrop="drop(event)">
+      <div id="zona-testa" class="zona"></div>
+      <div id="zona-busto" class="zona"></div>
+      <div id="zona-over-busto" class="zona"></div>
+      <div id="zona-gambe" class="zona"></div>
+      <div id="zona-piedi" class="zona"></div>
+    </div>
+
+    <div class="area-vestiti-dx">
+      <img src="style/men/gambe/cargoBeige.png" id="cargo" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/gambe/jeans.png" id="jeans" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/gambe/jeansGrigi.png" id="jeans-grigi" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/gambe/jeansNeri.png" id="jeans-neri" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/gambe/pantaloncinoJeansGrigio.png" id="pantaloncino-jeans" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/gambe/pantaloncinoJeansNero.png" id="pantaloncino-jeans-nero" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/gambe/pantaloniNeri.png" id="pantaloni-neri" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/gambe/pantaloniLino.png" id="pantaloni-lino" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/gambe/tuta.png" id="tuta" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/gambe/pantaloncinoTuta.png" id="pantalocnino-tuta" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+      <img src="style/men/gambe/skinny.png" id="skinny" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+
+      
+    </div>
+  </div>
+
+  <div id="cestino" ondragover="allowDrop(event)" ondrop="dropInCestino(event)">
+    <button class="button">
+      <svg viewBox="0 0 448 512" class="svgIcon"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
+    </button>
+  </div>
+
+  <div id="colorPalette" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.2);">
+    <h3 style="margin: 0 0 15px 0; color: #333;">Scegli il colore</h3>
+    <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px;">
+      <div class="color-option" style="background: #FF0000;" data-color="#FF0000"></div>
+      <div class="color-option" style="background: #FF4500;" data-color="#FF4500"></div>
+      <div class="color-option" style="background: #FFA500;" data-color="#FFA500"></div>
+      <div class="color-option" style="background: #FFFF00;" data-color="#FFFF00"></div>
+      <div class="color-option" style="background: #00FF00;" data-color="#00FF00"></div>
+      <div class="color-option" style="background: #00FFFF;" data-color="#00FFFF"></div>
+      <div class="color-option" style="background: #0000FF;" data-color="#0000FF"></div>
+      <div class="color-option" style="background: #800080;" data-color="#800080"></div>
+      <div class="color-option" style="background: #FF69B4;" data-color="#FF69B4"></div>
+      <div class="color-option" style="background: #A52A2A;" data-color="#A52A2A"></div>
+      <div class="color-option" style="background: #808080;" data-color="#808080"></div>
+      <div class="color-option" style="background: #000000;" data-color="#000000"></div>
+      <div class="color-option" style="background: #FFFFFF; border: 1px solid #ccc;" data-color="#FFFFFF"></div>
+      <div class="color-option" style="background: #FFD700;" data-color="#FFD700"></div>
+      <div class="color-option" style="background: #4B0082;" data-color="#4B0082"></div>
+      <div class="color-option" style="background: #FF1493;" data-color="#FF1493"></div>
+    </div>
+    <div style="margin-top: 15px; text-align: right;">
+      <button id="closePalette" style="padding: 5px 15px; border: none; background: #f0f0f0; border-radius: 5px; cursor: pointer;">Chiudi</button>
+    </div>
+  </div>
+
+  <script>
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("isClone", "false");
+    // quando faccio dragstart, viene salvato l’id e un flag "isClone": false
+  }
+
+  function dragIndumento(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("isClone", "true");
+  }
+
+  function drop(ev) {
+    ev.preventDefault();
+    const data = ev.dataTransfer.getData("text");
+    const isClone = ev.dataTransfer.getData("isClone") === "true";
+    const draggedElement = document.getElementById(data); // elemento originale o clone
+
+    // Se clone e drop fuori da una zona valida → rimuovi e ripristina originale
+    const manichino = document.getElementById('manichino');
+    const rectManichino = manichino.getBoundingClientRect(); // restituisce un oggetto che contiene le dimensioni del manichino
+    if (
+      ev.clientX < rectManichino.left ||
+      ev.clientX > rectManichino.right ||
+      ev.clientY < rectManichino.top ||
+      ev.clientY > rectManichino.bottom
+    ) {
+      // Se è un clone o comunque è stato rilasciato fuori, va rimosso
+      const originalId = data.replace("-clone", "");
+      const original = document.getElementById(originalId);
+
+      // Rendi di nuovo selezionabile l'originale
+      if (original) {
+        original.setAttribute("draggable", "true");
+        original.style.opacity = "1";
+        original.style.cursor = "grab";
+      }
+
+      // Se è un clone, lo eliminiamo (non tocchiamo gli originali)
+      if (isClone) {
+        draggedElement.remove();
+      }
+
+      return;
+    }
+
+    
+    // quando rilascio l'elemento sul manichino
+    // Se sto manipolando un clone, original sarà l'elemento originale da cui il clone è stato creato (rimuove il suffisso -clone dall'elemento clonato, ritornando l'originale)
+    // Se sto manipolando un originale, original sarà l'elemento stesso che sto trascinando.
+
+    const original = isClone ? document.getElementById(data.replace("-clone", "")) : draggedElement;
+    const clone = draggedElement.cloneNode(true); // se non è ancora un clone, qui clona l'elemento originale
+    clone.classList.add('indumento');
+    clone.setAttribute("id", original.id + "-clone");
+    clone.setAttribute("draggable", "true");
+    clone.addEventListener("dragstart", dragIndumento);
+    clone.style.cursor = "grab";
+
+
+    const src = original.src;
+    const zonaNome = original.dataset.zona;
+    let zona = null;
+
+    if (zonaNome === "testa") {
+      zona = document.getElementById('zona-testa');
+    } else if (zonaNome === "busto") {
+      zona = document.getElementById('zona-busto');
+    } else if (zonaNome === "over-busto") {
+      zona = document.getElementById('zona-over-busto');
+    } else if (zonaNome === "gambe") {
+      zona = document.getElementById('zona-gambe');
+    } else if (zonaNome === "piedi") {
+      zona = document.getElementById('zona-piedi');
+    } 
+
+    // si occupa di evitare sovrapposizioni e sostituire un indumento esistente nella stessa zona
+    if (zonaNome) {
+      const esistenti = manichino.querySelectorAll(`.indumento[data-zona="${zonaNome}"]`);
+      esistenti.forEach(el => {
+        el.remove();
+
+        // Ripristina l'elemento originale nella lista vestiti
+        const originalId = el.id.replace("-clone", "");
+        const original = document.getElementById(originalId);
+        if (original) {
+          original.setAttribute("draggable", "true");
+          original.style.opacity = "1";
+          original.style.cursor = "grab";
+        }
+      });
+    }
+
+    clone.setAttribute("data-zona", zonaNome);
+
+    let zIndex = 1;
+    if (zonaNome === "over-busto") {
+      zIndex = 3;
+    } else if (zonaNome === "busto") {
+      zIndex = 2;
+    } else if (zonaNome === "gambe") {
+      zIndex = 1;
+    } else if (zonaNome === "piedi"){
+      zIndex = 0;
+    } else {
+      zIndex = 4;
+    }
+    clone.style.zIndex = zIndex;
+
+    if (zona) {
+      const zonaRect = zona.getBoundingClientRect();
+      const xPx = zonaRect.left - rectManichino.left + (zona.clientWidth / 2 - 130);
+      const yPx = zona.offsetTop;
+      const vw = (xPx / window.innerWidth) * 100;
+      const vh = (yPx / window.innerHeight) * 100;
+
+      clone.style.position = 'absolute';
+      clone.style.left = vw + 1.8 + 'vw';
+      clone.style.top = vh + 'vh';
+      clone.style.width = original.width * 0.29 + 'vh';
+      clone.style.height = 'auto';
+
+      manichino.appendChild(clone);
+      
+    } else {
+      clone.style.visibility = 'hidden';
+      document.body.appendChild(clone);
+      const cloneRect = clone.getBoundingClientRect();
+      const x = ev.clientX - rectManichino.left - cloneRect.width / 2;
+      const y = ev.clientY - rectManichino.top - cloneRect.height / 2;
+      const vw = (x / window.innerWidth) * 100;
+      const vh = (y / window.innerHeight) * 100;
+
+      clone.style.left = vw + 'vw';
+      clone.style.top = vh + 'vh';
+      clone.style.visibility = 'visible';
+      document.body.removeChild(clone);
+      clone.style.position = 'absolute';
+      clone.style.width = original.width * 0.29 + 'vh';
+      clone.style.height = 'auto';
+
+      manichino.appendChild(clone);
+    }
+
+    // Se l'elemento è un originale, lo rendiamo non più trascinabile e opaco
+  if (!isClone) {
+    original.setAttribute("draggable", "false");
+    original.style.opacity = "0.4";
+    original.style.cursor = "not-allowed";
+  }
+   
+  }
+
+  document.getElementById("manichino").addEventListener("click", function (event) {
+    if (event.target.classList.contains('indumento')) {
+      const cloneId = event.target.id;
+      const originalId = cloneId.replace("-clone", "");
+      const original = document.getElementById(originalId);
+
+      if (original) {
+        original.setAttribute("draggable", "true");
+        original.style.opacity = "1";
+        original.style.cursor = "grab";
+        
+      }
+
+      event.target.remove();
+    }
+  });
+
+  function dropInCestino(ev) {
+    ev.preventDefault();
+    const data = ev.dataTransfer.getData("text");
+    const isClone = ev.dataTransfer.getData("isClone") === "true";
+
+    if (isClone) {
+      const clone = document.getElementById(data);
+      const originalId = data.replace("-clone", "");
+      const original = document.getElementById(originalId);
+
+      if (original) {
+        original.setAttribute("draggable", "true");
+        original.style.opacity = "1";
+        original.style.cursor = "grab";
+      }
+
+      if (clone) {
+        clone.remove();
+      }
+    }
+  }
+
+  function handleColorChange(color, elementId) {
+    const originalElement = document.getElementById(elementId);
+    const cloneElement = document.getElementById(elementId + '-clone');
+    
+    // salva la dinensione e posizione del clone se esiste
+    let cloneDimensions = null;
+    if (cloneElement) {
+      cloneDimensions = {
+        width: originalElement.width * 0.29 + 'vh',
+        position: cloneElement.style.position,
+        left: cloneElement.style.left,
+        top: cloneElement.style.top,
+        zIndex: cloneElement.style.zIndex,
+        dataZona: cloneElement.getAttribute('data-zona')
+      };
+    }
+    
+    // Crea un canvas per modificare l'immagine
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    
+    //Il canvas è un elemento HTML usato per disegnare immagini
+    img.onload = function() {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      
+      // disegna l’immagine sul canvas a partire da (0,0)
+      ctx.drawImage(img, 0, 0);
+      
+      // estrae dati RGB dell'immagine
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+      // ottiene un array (data) contenente le informazioni di tutti i pixel dell’immagine
+      const data = imageData.data;
+      
+      // converte il colore selezionato da RGB ad HS, per preservare la luminosità
+      const r = parseInt(color.substr(1,2), 16) / 255;
+      const g = parseInt(color.substr(3,2), 16) / 255;
+      const b = parseInt(color.substr(5,2), 16) / 255;
+      
+      // h: Hue → tonalità (0–1)
+      // s: Saturation → saturazione (0–1)
+      // l: Lightness → luminosità (0–1)
+      // HSL separa la tonalità dalla luminosità, cosa che RGB non fa
+      const max = Math.max(r, g, b);
+      const min = Math.min(r, g, b);
+      let h, s, l = (max + min) / 2;
+
+      if (max === min) {
+        h = s = 0; // gestisce i colori "neutri" (achromatici)
+      } else {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+      }
+      
+      // Modifica l'immagine preservando la luminosità
+      // data è un array dove ogni gruppo di 4 elementi rappresenta un pixel:
+      // data[i]: rosso (R)
+      // data[i+1]: verde (G)
+      // data[i+2]: blu (B)
+      // data[i+3]: trasparenza (alpha)
+      // Con i += 4, si salta da un pixel al successivo
+      for(let i = 0; i < data.length; i += 4) {
+        if(data[i+3] > 0) { // Se il pixel non è trasparente
+          // converte i canali RGB del pixel da 0–255 a 0–1,
+          const originalR = data[i] / 255;
+          const originalG = data[i+1] / 255;
+          const originalB = data[i+2] / 255;
+          
+          // calcola luminosità media del pixel
+          // questo rappresenta quanto è chiaro o scuro il pixel.
+          const originalBrightness = (originalR + originalG + originalB) / 3;
+          
+          // applica il nuovo colore mantenendo la stessa luminosità
+          // Serve per normalizzare la luminosità: 0.5 è la "luminosità media". 
+          // Se il pixel è più scuro (<0.5), il fattore sarà <1 (si scurisce); 
+          // se è più chiaro (>0.5), il fattore sarà >1 (si schiarisce).
+          const brightnessFactor = originalBrightness / 0.5; 
+          
+          // Converte di nuovo HSL a RGB
+          let r1, g1, b1;
+          
+          if (s === 0) {
+            r1 = g1 = b1 = l; // achromatic
+          } else {
+            const hue2rgb = (p, q, t) => {
+              if (t < 0) t += 1;
+              if (t > 1) t -= 1;
+              if (t < 1/6) return p + (q - p) * 6 * t;
+              if (t < 1/2) return q;
+              if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+              return p;
+            };
+            
+            const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            const p = 2 * l - q;
+            
+            r1 = hue2rgb(p, q, h + 1/3);
+            g1 = hue2rgb(p, q, h);
+            b1 = hue2rgb(p, q, h - 1/3);
+          }
+          // Moltiplica ogni componente R, G, B del colore scelto per il fattore di luminosità
+          // calcolato prima. In questo modo:
+          // I pixel scuri rimangono scuri
+          // I pixel chiari rimangono chiari
+          // Ma il colore cambia
+          r1 = Math.min(1, r1 * brightnessFactor);
+          g1 = Math.min(1, g1 * brightnessFactor);
+          b1 = Math.min(1, b1 * brightnessFactor);
+          
+          // i valori modificati (da 0–1) vengono riportati alla scala 0–255 e scritti nel canvas.
+          data[i] = r1 * 255;     // Red
+          data[i+1] = g1 * 255;   // Green
+          data[i+2] = b1 * 255;   // Blue
+        }
+      }
+      
+      // ho cambiato i pixel nel imageData
+      // ora dico a canvas di disegnare quell'immagine aggiornata partendo da (0, 0)
+      ctx.putImageData(imageData, 0, 0);
+      
+      // crea una nuova immagine a partire dal canvas modificato, codificandola in formato base64 (data URL)
+      // rappresenta la nuova immagine colorata, che può essere assegnata a un src di un tag <img>
+      const newImageUrl = canvas.toDataURL();
+      
+      // originalElement è l’oggetto img su cui hai fatto clic per cambiare colore
+      // gli viene assegnato il nuovo contenuto (data URL)
+      originalElement.src = newImageUrl;
+      
+      // se esiste un elemento clone, allora
+      if (cloneElement && cloneDimensions) {
+        cloneElement.src = newImageUrl; //assegna anche al clone la nuova immagine colorata
+        cloneElement.style.width = cloneDimensions.width; //ripristina le dimensioni originali del clone
+        cloneElement.style.position = cloneDimensions.position; //ripristina la posizione sullo schermo
+        cloneElement.style.left = cloneDimensions.left; 
+        cloneElement.style.top = cloneDimensions.top;
+        cloneElement.style.zIndex = cloneDimensions.zIndex;
+        cloneElement.setAttribute('data-zona', cloneDimensions.dataZona); //identifica l'area o tipo di capo
+      }
+    };
+    
+    // quando si assegna img.src = originalElement.src, si fa partire l’img.onload
+    img.src = originalElement.src; 
+  }
+
+  // per ogni vestito
+  document.querySelectorAll('.vestito').forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.stopPropagation(); // evita che il click venga "propagato" ad altri elementi
+      const colorPalette = document.getElementById('colorPalette');
+      colorPalette.style.display = 'block';
+      colorPalette.dataset.currentElement = this.id;
+    });
+  });
+
+  // per ogni colore nella palette
+  document.querySelectorAll('.color-option').forEach(option => {
+    option.addEventListener('click', function() {
+      const color = this.dataset.color;
+      const elementId = document.getElementById('colorPalette').dataset.currentElement;
+      handleColorChange(color, elementId);
+      document.getElementById('colorPalette').style.display = 'none';
+    });
+  });
+
+  // per chiudere la palette se clicchi 'chiudi'
+  document.getElementById('closePalette').addEventListener('click', function() {
+    document.getElementById('colorPalette').style.display = 'none';
+  });
+
+  // per chiudere la palette se clicchi fuori
+  document.addEventListener('click', function(e) {
+    const colorPalette = document.getElementById('colorPalette');
+    if (!colorPalette.contains(e.target) && e.target.classList.contains('vestito') === false) {
+      colorPalette.style.display = 'none';
+    }
+  });
+
+</script>
+
+
+</body>
+</html>
