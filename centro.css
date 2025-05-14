@@ -14,18 +14,19 @@
     padding-top: 15vh;
 }
 
+
 .centro {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: rgb(240, 240, 240) !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    background-color: rgb(240, 240, 240);
+    border: none;
+    outline: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
 }
 
 .container-gif {
@@ -52,10 +53,6 @@
     padding: 0 !important;
 }
 
-.gif-animata2 {
-    width: 100%;
-    margin-top: 2rem;
-}
 
 .container.invisible {
     display: none;
@@ -142,7 +139,8 @@
 
 
 .text-content {
-    width: 130%;
+    max-width: 800px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -155,6 +153,7 @@
 }
 
 .text-content .main-description {
+    margin-top: 160px;
     position: relative;
     font-size: 200%;
     font-weight: 400;
@@ -177,6 +176,10 @@
     letter-spacing: 0.3px;
 }
 
+.description {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
 
 .quiz-button {
     font-size: clamp(0.8rem, 1.5vw, 1.2rem);
@@ -189,7 +192,6 @@
     cursor: pointer;
     transition: all 0.3s ease;
     align-self: center;
-    margin-bottom: 1.5rem;
     width: 200%;
     text-transform: uppercase;
     background: linear-gradient(rgba(151, 14, 14, 0.823), rgba(185, 31, 31, 0.84));
@@ -394,6 +396,7 @@
 }
 
 .explore-link span {
+    margin-bottom: 180px;
     color: rgba(100, 0, 0, 0.642);
     text-decoration: underline;
     text-decoration-color: rgba(100, 0, 0, 0.886);

@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="profile-edit.css">
     <link rel="stylesheet" href="style_results.css">
     <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="about.css">
+
+
 </head>
 <body>
     
@@ -43,13 +44,17 @@
             <div class="content-section">
                 <div class="text-content">
                     <h1 class="main-description"><b>Scopri l'essenza del tuo stile</b></h1>
-                    <p>Hai mai avuto la sensazione che il tuo look non racconti davvero chi sei?</p>
-                    <p>Fai questo quiz per scoprire lo stile che fa per te!</p>
-                    <p>Oppure esplora gli stili disponibili per trovare ispirazione.</p>
+                    <p>Ti sei mai fermato a pensare che il tuo look potrebbe dire molto di più su chi sei davvero?</p>
+                    <p>Spesso, la moda non è solo una questione di tendenze, ma di come ci sentiamo e come vogliamo esprimerci. Il nostro stile è un riflesso della nostra personalità, ma non sempre è facile trovarlo o identificarlo.</p>
+                    <p>Per questo motivo, abbiamo creato questo quiz: per aiutarti a scoprire quale stile ti rappresenta al meglio. Che tu sia alla ricerca di qualcosa di audace, elegante, casual o creativo, qui troverai la risposta che cercavi.</p>
                     <div class="action-buttons">
                         <button class="quiz-button">
                             <span class="quiz-icon">Inizia il Quiz</span>
                         </button>
+                        <p class="description">
+                            Se preferisci, puoi anche esplorare i vari stili disponibili per trovare ispirazione, 
+                            e magari scoprire qualcosa che non avevi mai preso in considerazione.
+                        </p>
                         <a href="#" class="explore-link" id="exploreStyles" target="_blank"><span><b>Esplora Stili</b></span></a>
                     </div>
                 </div>
@@ -58,7 +63,7 @@
         <div class="quiz-container">
             <div class="quiz-window">
                 <button class="quiz-close-button">&times;</button>
-                <div class="quiz-progress">Domanda 1 di 8</div>
+                <div class="quiz-progress">Domanda 1 di 11</div>
                 <div class="quiz-domanda">
                     <!-- Il contenuto della domanda verrà inserito dinamicamente da JS -->
                 </div>
@@ -224,9 +229,10 @@
             </div>
         </div>
     </div>
-    <div id="about-section">
-        <div id="about-inner">
-          <img src="About.png" alt="About Us" />
+    <div id="about-section" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 999;">
+        <div id="about-inner" style="position: relative; background: transparent; display: flex; justify-content: center; align-items: center;">
+          <img src="About.png" alt="About Us" style="max-width: 90vw; max-height: 90vh; border-radius: 10px;">
+          <button class="close-button" style="position: absolute; top: -10px; right: -10px; background: none; color: white; border: none; font-size: 30px; cursor: pointer;">&times;</button>
         </div>
       </div>
     <footer class="contact-footer">
