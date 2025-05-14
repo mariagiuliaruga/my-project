@@ -1,6 +1,6 @@
 html, body {
   padding: 0;
-  top: 0;
+  margin: 0;
   position: relative;
   width: 200vw;
   height: 200vh;
@@ -36,6 +36,23 @@ html, body {
   flex-direction: column;
   padding: 0;
   margin-top: 25vh; /*istruzione da togliere quando aggiusteremo il container della donna perchè i vestiti sono giganti*/
+}
+
+/* #manichino {
+  position: relative;
+  height: 85vh; 
+  aspect-ratio: 1 / 3;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #333;
+} se non lo tolgo da camerino.html, questo non serve ma devo dividere id=manichino in due classi o due id per forza*/
+
+
+#manichino .indumento {
+  position: absolute;
+  z-index: 50; /* assicurati che stia sopra a tutto */
+  cursor: grab;
+  pointer-events: auto; /* molto importante */
 }
 
 .area-sx{
@@ -98,13 +115,6 @@ html, body {
   gap: 0vh;
 }
 
-#manichino .indumento {
-  position: absolute;
-  z-index: 50; /* assicurati che stia sopra a tutto */
-  cursor: grab;
-  pointer-events: auto; /* molto importante */
-}
-
 .zona {
   position: absolute;
   width: 100%;
@@ -120,25 +130,25 @@ html, body {
 }
 
 #zona-busto {
-  top: 21%;
-  height: 24%;
+  top: 16%;
+  height: 25%;
   background-color: rgba(255, 172, 78, 0.481);
 }
 
 #zona-over-busto {
-  top: 21%;
-  height: 24%;
+  top: 16%;
+  height: 25%;
 }
 
 #zona-gambe {
   top: 42%;
-  height: 46%;
+  height: 50%;
   background-color: rgba(0, 255, 0, 0.441);
     
 }
 
 #zona-piedi {
-  top: 88%;
+  top: 92%;
   height: 15%;
   background-color: rgba(255, 0, 0, 0.481);
 

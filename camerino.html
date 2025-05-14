@@ -182,6 +182,8 @@
   </div>
 
 <script>
+
+  window.scrollTo(0, 0); 
   const selezionaArea = document.getElementById('selezionaArea');
   const areaUomo = document.querySelector('.area-uomo');
   const areaDonna = document.querySelector('.area-donna');
@@ -314,40 +316,51 @@
     }
     clone.style.zIndex = zIndex;
 
-    if (zona) {
-      const zonaRect = zona.getBoundingClientRect();
-      const xPx = zonaRect.left - rectManichino.left + (zona.clientWidth / 2 - 130);
-      const yPx = zona.offsetTop;
-      const vw = (xPx / window.innerWidth) * 100;
-      const vh = (yPx / window.innerHeight) * 100;
+  if (zona) {
+    const zonaRect = zona.getBoundingClientRect();
+    const manichinoRect = manichino.getBoundingClientRect();
 
-      clone.style.position = 'absolute';
-      clone.style.left = vw + 1.8 + 'vw';
-      clone.style.top = vh + 'vh';
-      clone.style.width = original.width * 0.29 + 'vh';
-      clone.style.height = 'auto';
+    const x = zonaRect.left - manichinoRect.left + (zona.clientWidth / 2) - 102;
+    const y = zonaRect.top - manichinoRect.top;
 
-      manichino.appendChild(clone);
-      
-    } else {
-      clone.style.visibility = 'hidden';
-      document.body.appendChild(clone);
-      const cloneRect = clone.getBoundingClientRect();
-      const x = ev.clientX - rectManichino.left - cloneRect.width / 2;
-      const y = ev.clientY - rectManichino.top - cloneRect.height / 2;
-      const vw = (x / window.innerWidth) * 100;
-      const vh = (y / window.innerHeight) * 100;
+    const percentX = (x / manichino.offsetWidth) * 100;
+    const percentY = (y / manichino.offsetHeight) * 100;
 
-      clone.style.left = vw + 'vw';
-      clone.style.top = vh + 'vh';
-      clone.style.visibility = 'visible';
-      document.body.removeChild(clone);
-      clone.style.position = 'absolute';
-      clone.style.width = original.width * 0.29 + 'vh';
-      clone.style.height = 'auto';
+    clone.style.position = 'absolute';
+    clone.style.left = `${percentX}%`;
+    clone.style.top = `${percentY}%`;
 
-      manichino.appendChild(clone);
-    }
+    // larghezza in base al manichino (es: 40% della larghezza del manichino)
+    clone.style.width = '90%';
+    clone.style.height = 'auto';
+
+    manichino.appendChild(clone);
+
+  } else {
+    clone.style.visibility = 'hidden';
+    document.body.appendChild(clone);
+
+    const cloneRect = clone.getBoundingClientRect();
+    const manichinoRect = manichino.getBoundingClientRect();
+    const x = ev.clientX - manichinoRect.left - cloneRect.width / 2;
+    const y = ev.clientY - manichinoRect.top - cloneRect.height / 2;
+
+    const percentX = (x / manichino.offsetWidth) * 100;
+    const percentY = (y / manichino.offsetHeight) * 100;
+
+    clone.style.left = `${percentX}%`;
+    clone.style.top = `${percentY}%`;
+    clone.style.visibility = 'visible';
+    document.body.removeChild(clone);
+
+    clone.style.position = 'absolute';
+    clone.style.width = '29%';
+    clone.style.height = 'auto';
+
+    manichino.appendChild(clone);
+  }
+
+
 
     // Se l'elemento è un originale, lo rendiamo non più trascinabile e opaco
   if (!isClone) {
