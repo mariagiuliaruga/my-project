@@ -27,7 +27,7 @@ html, body {
 }
 
 
-.container {
+.container-camerino {
   width: 100%;
   height: 85vh;
   display: flex;
@@ -141,7 +141,7 @@ html, body {
 }
 
 #zona-gambe {
-  top: 42%;
+  top: 40%;
   height: 50%;
   background-color: rgba(0, 255, 0, 0.441);
     
