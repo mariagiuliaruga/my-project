@@ -1,0 +1,29 @@
+#about-section {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  #about-inner {
+    position: relative;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(30px); 
+  }
+  
+  
+  #about-inner img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 10px;
+  }
+  
