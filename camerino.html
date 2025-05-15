@@ -52,14 +52,14 @@
         </div>
       </div>
 
-      <!-- <div id="manichino" style="background-image: url('manichinoUomo.png'); position: relative; height: 80%; aspect-ratio: 1 / 3; background-size: cover; background-position: center; border: 2px solid #333;" ondragover="allowDrop(event)" ondrop="drop(event)">
+      <div id="manichino-uomo" class="manichino" ondragover="allowDrop(event)" ondrop="drop(event)">
         <div id="zona-testa" class="zona"></div>
         <div id="zona-busto" class="zona"></div>
         <div id="zona-over-busto" class="zona"></div>
         <div id="zona-gambe" class="zona"></div>
         <div id="zona-piedi" class="zona"></div>
         <div id="zona-orologio" class="zona"></div>
-      </div> -->
+      </div>
 
       <div class="dx-uomo">
         <img src="style/men/gambe/cargoBeige.png" id="cargo" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
@@ -75,7 +75,7 @@
         <img src="style/men/gambe/skinny.png" id="skinny" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
       </div>
     </div>
-
+  
     <div class="area-donna">
       <div class="area-sx">
         <div  class="sx-alto-donna">
@@ -103,8 +103,7 @@
         <div class="sx-basso-donna">
           <img src="style/women/piedi/campus.png" id="campus-donna" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
           <img src="style/women/piedi/converse.png" id="converse" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-          <img src="style/women/piedi/jordan.png" id="jordan-donna" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-          <img src="style/women/piedi/scarpeBianche.png" id="scarpe-bianche" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
+          <img src="style/women/piedi/scarpeBianche.png" id="scarpe-bianche-donnaa" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
           <img src="style/women/piedi/stivaletti.png" id="stivaletti" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
           <img src="style/women/piedi/stivaliCowboy.png" id="cowboy" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
           <img src="style/women/piedi/stivaliFrange.png" id="frange" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
@@ -114,22 +113,22 @@
         </div>
       </div>
 
-      <div id="manichino" style="background-image: url('manichinoDonna.png'); position: relative; height: 70%; aspect-ratio: 1 / 3; background-size: cover; background-position: center; border: 2px solid #333;" ondragover="allowDrop(event)" ondrop="drop(event)">
-        <div id="zona-busto" class="zona"></div>
-        <div id="zona-over-busto" class="zona"></div>
-        <div id="zona-gambe" class="zona"></div>
-        <div id="zona-piedi" class="zona"></div>
-        <div id="zona-cintura" class="zona"></div>
+      <div id="manichino-donna" class="manichino" ondragover="allowDrop(event)" ondrop="drop(event)">
+        <div id="zona-busto-donna" class="zona"></div>
+        <div id="zona-over-busto-donna" class="zona"></div>
+        <div id="zona-gambe-donna" class="zona"></div>
+        <div id="zona-piedi-donna" class="zona"></div>
+        <!-- <div id="zona-cintura" class="zona"></div>
         <div id="zona-vestito" class="zona"></div>
         <div id="zona-borsa" class="zona"></div>
-        <div id="zona-sciarpa" class="zona"></div>
+        <div id="zona-sciarpa" class="zona"></div> -->
       </div>
 
       <div class="dx-donna">
         <img src="style/women/gambe/jeansGrigi2.png" id="jeans-grigi2-donna" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
         <img src="style/women/gambe/gonnaGrigia.png" id="gonna-grigia" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
         <img src="style/women/gambe/pantaloniPalazzo.png" id="pantaloni-palazzo" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-        <img src="style/women/gambe/jeansNeri.png" id="jeans-neri" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+        <img src="style/women/gambe/jeansNeri.png" id="jeans-neri-donna" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
         <img src="style/women/gambe/gonnaJeansSporty.png" id="gonna-jeans-sporty" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
         <img src="style/women/gambe/pantaloniNeri.png" id="pantaloni-neri-donna" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
         <img src="style/women/gambe/jeansGrigi.png" id="jeans-grigi-donna" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
@@ -182,25 +181,31 @@
   </div>
 
 <script>
-
-  window.scrollTo(0, 0); 
-  const selezionaArea = document.getElementById('selezionaArea');
+  
   const areaUomo = document.querySelector('.area-uomo');
   const areaDonna = document.querySelector('.area-donna');
 
   areaUomo.style.display = 'none';
   areaDonna.style.display = 'none';
+  let varGlobDonna = true;
 
- document.getElementById("btn-donna").addEventListener("click", function () {
-    document.querySelector(".area-donna").style.display = "flex";
-    document.querySelector(".area-uomo").style.display = "none";
-    
-  });
+  document.getElementById("btn-donna").addEventListener("click", function () {
+      areaDonna.style.display = "flex";
+      areaUomo.style.display = "none";
+      areaDonna.classList.add('visible');
+      areaUomo.classList.remove('visible');
+      document.getElementById("manichino-donna").style.backgroundImage = "url('manichinoDonna.png')";
+      varGlobDonna = true;
+    });
 
-  document.getElementById("btn-uomo").addEventListener("click", function () {
-    document.querySelector(".area-uomo").style.display = "flex";
-    document.querySelector(".area-donna").style.display = "none";
-  });
+    document.getElementById("btn-uomo").addEventListener("click", function () {
+      areaUomo.style.display = "flex";
+      areaDonna.style.display = "none";
+      areaUomo.classList.add('visible');
+      areaDonna.classList.remove('visible');
+      document.getElementById("manichino-uomo").style.backgroundImage = "url('manichinoUomo.png')";
+      varGlobDonna = false;
+    });
 
   function allowDrop(ev) {
     ev.preventDefault();
@@ -223,8 +228,15 @@
     const isClone = ev.dataTransfer.getData("isClone") === "true";
     const draggedElement = document.getElementById(data); // elemento originale o clone
 
+    
+    let manichino = null;
+    if (varGlobDonna) {
+      manichino = document.getElementById("manichino-donna");
+    } else {
+      manichino = document.getElementById("manichino-uomo");
+    }
+
     // Se clone e drop fuori da una zona valida → rimuovi e ripristina originale
-    const manichino = document.getElementById('manichino');
     const rectManichino = manichino.getBoundingClientRect(); // restituisce un oggetto che contiene le dimensioni del manichino
     if (
       ev.clientX < rectManichino.left ||
@@ -269,16 +281,16 @@
     const zonaNome = original.dataset.zona;
     let zona = null;
 
-    if (zonaNome === "testa") {
-      zona = document.getElementById('zona-testa');
-    } else if (zonaNome === "busto") {
-      zona = document.getElementById('zona-busto');
+    if (zonaNome === "busto") {
+      zona = varGlobDonna ? document.getElementById('zona-busto-donna') : document.getElementById('zona-busto');
+    } else if (zonaNome === "testa") {
+      zona = varGlobDonna ? document.getElementById('zona-testa-donna') : document.getElementById('zona-testa');
     } else if (zonaNome === "over-busto") {
-      zona = document.getElementById('zona-over-busto');
+      zona = varGlobDonna ? document.getElementById('zona-over-busto-donna') : document.getElementById('zona-over-busto');
     } else if (zonaNome === "gambe") {
-      zona = document.getElementById('zona-gambe');
+      zona = varGlobDonna ? document.getElementById('zona-gambe-donna') : document.getElementById('zona-gambe');
     } else if (zonaNome === "piedi") {
-      zona = document.getElementById('zona-piedi');
+      zona = varGlobDonna ? document.getElementById('zona-piedi-donna') : document.getElementById('zona-piedi');
     } else if (zonaNome === "orologio") {
       zona = document.getElementById('zona-orologio');
     } 
@@ -317,24 +329,31 @@
     clone.style.zIndex = zIndex;
 
   if (zona) {
-    const zonaRect = zona.getBoundingClientRect();
-    const manichinoRect = manichino.getBoundingClientRect();
+    const x = zona.offsetLeft + (zona.offsetWidth / 2) - (manichino.offsetWidth * 0.45);  // centrato orizzontalmente
+    const y = zona.offsetTop;
 
-    const x = zonaRect.left - manichinoRect.left + (zona.clientWidth / 2) - 102;
-    const y = zonaRect.top - manichinoRect.top;
-
-    const percentX = (x / manichino.offsetWidth) * 100;
-    const percentY = (y / manichino.offsetHeight) * 100;
+    let percentX = (x / manichino.offsetWidth) * 100;
+    let percentY = (y / manichino.offsetHeight) * 100;
 
     clone.style.position = 'absolute';
-    clone.style.left = `${percentX}%`;
-    clone.style.top = `${percentY}%`;
-
-    // larghezza in base al manichino (es: 40% della larghezza del manichino)
     clone.style.width = '90%';
     clone.style.height = 'auto';
+    
+    clone.style.top = `${percentY}%`;
+    let offsetX = 0;
+
+    if (varGlobDonna) {
+      offsetX = -10; //da regolare
+      clone.style.left = `${percentX + offsetX}%`;
+      
+    } else {
+      offsetX = 2;
+      clone.style.left = `${percentX + offsetX}%`;
+      
+    }
 
     manichino.appendChild(clone);
+
 
   } else {
     clone.style.visibility = 'hidden';
@@ -351,6 +370,18 @@
     clone.style.left = `${percentX}%`;
     clone.style.top = `${percentY}%`;
     clone.style.visibility = 'visible';
+
+    let offsetX = 0;
+    
+    if (varGlobDonna) {
+      offsetX = -10; //da regolare
+      clone.style.left = `${percentX + offsetX}%`;
+      
+    } else {
+      offsetX = 2;
+      clone.style.left = `${percentX + offsetX}%`;
+      
+    }
     document.body.removeChild(clone);
 
     clone.style.position = 'absolute';
@@ -371,7 +402,9 @@
    
   }
 
-  document.getElementById("manichino").addEventListener("click", function (event) {
+
+  document.querySelectorAll(".manichino").forEach(manichino => {
+    manichino.addEventListener("click", function (event) {
     if (event.target.classList.contains('indumento')) {
       const cloneId = event.target.id;
       const originalId = cloneId.replace("-clone", "");
@@ -386,6 +419,7 @@
 
       event.target.remove();
     }
+    });
   });
 
   function dropInCestino(ev) {
@@ -518,6 +552,14 @@
       cloneElement.style.top = cloneDimensions.top;
       cloneElement.style.zIndex = cloneDimensions.zIndex;
       cloneElement.setAttribute('data-zona', cloneDimensions.dataZona);
+
+      // Mantieni l'ID del clone
+      cloneElement.setAttribute('id', elementId + '-clone');
+    }
+
+    originalElement.setAttribute('draggable', 'true');
+    if (cloneElement) {
+        cloneElement.setAttribute('draggable', 'true');
     }
   };
 

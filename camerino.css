@@ -2,9 +2,9 @@ html, body {
   padding: 0;
   margin: 0;
   position: relative;
-  width: 200vw;
+  width: 200vh;
   height: 200vh;
-  background-color: rgba(255, 234, 159, 0.686);
+  background-color: rgba(247, 232, 179, 0.686);
 }
 
 .selezione-genere{
@@ -26,29 +26,40 @@ html, body {
   height: 8vh;
 }
 
-
 .container-camerino {
+  position: relative;
   width: 100%;
   height: 85vh;
   display: flex;
-  justify-content: center;
   align-items: flex-start; /* centrato verticalmente */
   flex-direction: column;
   padding: 0;
-  margin-top: 20vh; /*istruzione da togliere quando aggiusteremo il container della donna perchè i vestiti sono giganti*/
 }
 
-/* #manichino {
-  position: relative;
-  height: 85vh; 
+.area-uomo, .area-donna{
+  top: 0;
+  right: 100%;
+  display: flex;
+  flex-direction: row;
+  transform: translateX(100%); /*lo sposto a destra per renderlo invisibile*/
+  gap: 1vh;
+}
+
+.area-uomo.visible, .area-donna.visible {
+  transform: translateX(0);  /*lo sposto a sinistra per renderlo visibile*/
+  right: 0;
+}
+
+.manichino {
+  height: 80%;
+  position: relative; 
   aspect-ratio: 1 / 3;
   background-size: cover;
   background-position: center;
-  border: 2px solid #333;
-} se non lo tolgo da camerino.html, questo non serve ma devo dividere id=manichino in due classi o due id per forza*/
+}
 
 
-#manichino .indumento {
+.manichino .indumento {
   position: absolute;
   z-index: 50; /* assicurati che stia sopra a tutto */
   cursor: grab;
@@ -61,22 +72,20 @@ html, body {
   gap: 1vh;
 }
 
-.area-uomo{
-  display: flex;
-  flex-direction: row;
-  gap: 1vh;
-}
-
-.area-donna{
-  display: flex;
-  flex-direction: row;
-  gap: 1vh;
-}
 
 .sx-alto-uomo {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-auto-flow: column;             /* riempie per righe → colonne */
+  gap: 0vh;
+}
+
+.sx-alto-donna {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: column;        
+  width: 660px;
+  height: 385.69px;     
   gap: 0vh;
 }
 
@@ -87,6 +96,15 @@ html, body {
   gap: 0vh;
 }
 
+.sx-basso-donna {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-auto-flow: column;             /* riempie per righe → colonne */
+  gap: 0vh;
+  width: 660px;
+  height: 127.6px;
+}
+
 .dx-uomo {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
@@ -94,25 +112,13 @@ html, body {
   gap: 0vh;
 }
 
-.sx-alto-donna {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-auto-flow: column;             
-  gap: 0vh;
-}
-
-.sx-basso-donna {
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-auto-flow: column;             
-  gap: 0vh;
-}
-
 .dx-donna {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-auto-flow: row;             
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: column;
   gap: 0vh;
+  width: 440px;
+  height: 612.23px;
 }
 
 .zona {
@@ -122,43 +128,49 @@ html, body {
   
 }
 
-#zona-testa {
-  top: 0%;
+#manichino-uomo #zona-testa {
+  top: -2%;
   height: 20%;
   background-color: rgba(255, 93, 206, 0);
 
 }
 
-#zona-busto {
-  top: 16%;
+#manichino-uomo #zona-busto, #zona-busto-donna {
+  top: 17%;
   height: 25%;
-  background-color: rgba(255, 172, 78, 0.481);
+  background-color: rgba(255, 172, 78, 0);
 }
 
-#zona-over-busto {
+#manichino-uomo #zona-over-busto, #zona-over-busto-donna {
   top: 16%;
   height: 25%;
 }
 
-#zona-gambe {
+#manichino-uomo #zona-gambe, #zona-gambe-donna {
   top: 40%;
   height: 50%;
-  background-color: rgba(0, 255, 0, 0.441);
+  background-color: rgba(0, 255, 0, 0);
     
 }
 
-#zona-piedi {
+#manichino-uomo #zona-piedi {
   top: 92%;
-  height: 15%;
-  background-color: rgba(255, 0, 0, 0.481);
+  height: 12%;
+  background-color: rgba(255, 0, 0, 0);
+}
+
+#zona-piedi-donna {
+  top: 72%;
+  height: 32%;
+  background-color: rgba(255, 0, 0, 0);
 
 }
 
-#zona-orologio{
-  top: 40vh;
-  left: 11vw;
-  height: 4vh;
-  width: 2vw;
+#manichino-uomo #zona-orologio{
+  top: 46%;
+  left: 2%;
+  height: 2%;
+  width: 8%;
   background-color: rgba(78, 243, 255, 0);
 }
 
@@ -166,12 +178,6 @@ html, body {
     width: 100px;
     margin-right: 10px;
     cursor: grab;
-}
-
-.indumento {
-  position: absolute;
-  width: 100px;
-  pointer-events: none; /* evita di rispostarli una volta messi */
 }
 
 #cestino {
