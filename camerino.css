@@ -7,24 +7,36 @@ html, body {
   background-color: rgba(247, 232, 179, 0.686);
 }
 
-.selezione-genere{
-  z-index: 1000;
-  margin-top: 0;
+
+.selezione-genere {
+  display: flex;
+  justify-content: center; /* centro orizzontale */
+  gap: 3vw;
+  margin-top: -300px; /* se vuoi abbassarlo un po' */
 }
 
+.titolo-camerino {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30vw; 
+}
+
+
 #btn-donna {
-  background-color: pink;
+  background-color: rgba(255, 192, 203, 0);
   border-radius: 30px;
-  width: 10vw;
-  height: 8vh;
+  width: 30vw;
+  height: 60vh;
 }
 
 #btn-uomo {
-  background-color: rgb(129, 177, 255);
+  background-color: rgba(129, 177, 255, 0);
   border-radius: 30px;
-  width: 10vw;
-  height: 8vh;
+  width: 30vw;
+  height: 60vh;
 }
+
 
 .container-camerino {
   position: relative;
@@ -34,6 +46,10 @@ html, body {
   align-items: flex-start; /* centrato verticalmente */
   flex-direction: column;
   padding: 0;
+}
+
+.ridotto {
+  transform: scale(0.6) translateX(-200px); /* rimpicciolisci e vai a sinistra */
 }
 
 .area-uomo, .area-donna{
@@ -265,4 +281,9 @@ html, body {
 
 #colorPalette {
   font-family: Arial, sans-serif;
+}
+
+.spostato-sinistra {
+  transform: scale(0.5) translateX(-40vw);
+  transition: transform 0.8s ease;
 }

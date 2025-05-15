@@ -8,10 +8,14 @@
 <body>
 
   <h2>Trascina i vestiti sul manichino</h2>
-  
-  <div class="selezione-genere">
-    <button id="btn-donna">Donna</button>
-    <button id="btn-uomo">Uomo</button>
+  <div class="wrapper">
+    <div class="titolo-camerino">
+    <img src="dressingroom/camerini.png" alt="Camerino" class="titolo-camerino" />
+      <div class="selezione-genere">
+        <img src="dressingroom/man.png" alt="Uomo" id="btn-uomo" class="genere-img">
+        <img src="dressingroom/woman.png" alt="Donna" id="btn-donna" class="genere-img">
+      </div>
+    </div>
   </div>
 
   <div class="container-camerino">
@@ -196,6 +200,8 @@
       areaUomo.classList.remove('visible');
       document.getElementById("manichino-donna").style.backgroundImage = "url('manichinoDonna.png')";
       varGlobDonna = true;
+      btnUomo.addEventListener("click", spostaTuttoASinistra);
+      btnDonna.addEventListener("click", spostaTuttoASinistra);
     });
 
     document.getElementById("btn-uomo").addEventListener("click", function () {
@@ -205,6 +211,8 @@
       areaDonna.classList.remove('visible');
       document.getElementById("manichino-uomo").style.backgroundImage = "url('manichinoUomo.png')";
       varGlobDonna = false;
+      riduciDimensioni("btn-uomo");
+      riduciDimensioni("btn-donna");
     });
 
   function allowDrop(ev) {
@@ -220,6 +228,13 @@
   function dragIndumento(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
     ev.dataTransfer.setData("isClone", "true");
+  }
+
+  function riduciDimensioni(id) {
+    const btn = document.getElementById(id);
+    btn.style.transition = "all 0.3s ease";
+    btn.style.width = "80px";
+    btn.style.height = "70px";
   }
 
   function drop(ev) {
@@ -599,6 +614,9 @@
       colorPalette.style.display = 'none';
     }
   });
+
+  
+
 
 </script>
 
