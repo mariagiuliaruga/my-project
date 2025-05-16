@@ -98,14 +98,14 @@ document.addEventListener('DOMContentLoaded', function () {
         e.stopPropagation();
         
         const quizContainer = document.querySelector('.quiz-container'); // Spostato fuori
-        
-        if (isLoggedIn) {
-            if (quizContainer) quizContainer.classList.add('visible');
-        } else {
-            const loginPanel = document.querySelector('.login-panel');
-            loginPanel.classList.add('visible');
-            if (quizContainer) quizContainer.classList.remove('visible');
-        }
+        quizContainer.classList.add('visible');
+        // if (isLoggedIn) {
+        //     if (quizContainer) quizContainer.classList.add('visible');
+        // } else {
+        //     const loginPanel = document.querySelector('.login-panel');
+        //     loginPanel.classList.add('visible');
+        //     if (quizContainer) quizContainer.classList.remove('visible');
+        // }
     }
     
     titolo.addEventListener('click', function (e) {

@@ -1,12 +1,3 @@
-html, body {
-  padding: 0;
-  margin: 0;
-  position: relative;
-  width: 200vh;
-  height: 200vh;
-  background-color: rgba(247, 232, 179, 0.686);
-}
-
 
 .selezione-genere {
   display: flex;
@@ -83,54 +74,7 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 1vh;
-}
-
-
-.sx-alto-uomo {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-auto-flow: column;             /* riempie per righe → colonne */
-  gap: 0vh;
-}
-
-.sx-alto-donna {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-auto-flow: column;        
   width: 660px;
-  height: 385.69px;     
-  gap: 0vh;
-}
-
-.sx-basso-uomo {
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-auto-flow: column;             /* riempie per righe → colonne */
-  gap: 0vh;
-}
-
-.sx-basso-donna {
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-auto-flow: column;             /* riempie per righe → colonne */
-  gap: 0vh;
-  width: 660px;
-  height: 127.6px;
-}
-
-.dx-uomo {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-auto-flow: column;
-  gap: 0vh;
-}
-
-.dx-donna {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-auto-flow: column;
-  gap: 0vh;
-  width: 440px;
   height: 612.23px;
 }
 
@@ -185,12 +129,6 @@ html, body {
   height: 2%;
   width: 8%;
   background-color: rgba(78, 243, 255, 0);
-}
-
-.vestito {
-    width: 100px;
-    margin-right: 10px;
-    cursor: grab;
 }
 
 #cestino {
@@ -280,3 +218,93 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fdf1f5;
+  margin: 0;
+  padding: 60px 20px; /* i caroselli stanno più in basso */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px; /* meno spazio tra caroselli */
+}
+
+.carousel-container-sx-alto, .carousel-container-sx-basso {
+  position: relative;
+  width: 400px;
+  overflow: hidden;
+  margin-left: 20px;
+  background-color: #ffffff68;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.carousel-container-dx {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  overflow: hidden;
+  margin-left: 20px;
+  background-color: #ffffff68;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+
+.carousel {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.vestito {
+  width: 100px;
+  height: auto;
+  cursor: grab;
+}
+
+.vestito {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  border-radius: 10px;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.8em;
+  background-color: #f16384; /* rosa chiaro */
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.arrow:hover {
+  background-color: #f48fb1; /* rosa più intenso al passaggio del mouse */
+  transform: translateY(-50%) scale(1.1);
+}
+
+.left {
+  left: -30px;
+}
+
+.right {
+  right: -30px;
+}
