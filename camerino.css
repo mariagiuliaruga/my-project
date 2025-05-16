@@ -11,8 +11,8 @@ html, body {
 .selezione-genere {
   display: flex;
   justify-content: center; /* centro orizzontale */
-  gap: 3vw;
-  margin-top: -300px; /* se vuoi abbassarlo un po' */
+  margin-top: -400px; /* se vuoi abbassarlo un po' */
+  
 }
 
 .titolo-camerino {
@@ -48,9 +48,6 @@ html, body {
   padding: 0;
 }
 
-.ridotto {
-  transform: scale(0.6) translateX(-200px); /* rimpicciolisci e vai a sinistra */
-}
 
 .area-uomo, .area-donna{
   top: 0;
@@ -283,7 +280,3 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
-.spostato-sinistra {
-  transform: scale(0.5) translateX(-40vw);
-  transition: transform 0.8s ease;
-}
