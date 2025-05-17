@@ -35,7 +35,37 @@
     margin-bottom: 1rem;
 }
 
+.genere-navigation{
+    position: sticky;      /* la mantiene visibile mentre scorri */
+    top: 80px;                
+    z-index: 1000;         /* resta sopra agli altri elementi */
+    display: flex;         
+    justify-content: center;
+    gap: 1.5rem;  
+    padding: 0.75rem 0;
+    background: #ffffff00; 
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.genere-navigation a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 3vh;
+  color: #f54e8e;
+}
+
+.genere-navigation a:hover {
+  text-decoration: underline;
+}
+
 .stili-donna{
+    position: relative;
+    margin-top: 2rem;
+    width: 80vw;
+    margin-left: 5vw;
+}
+
+.stili-uomo{
     position: relative;
     margin-top: 2rem;
     width: 80vw;
@@ -65,7 +95,6 @@
     width: 45%;
     max-width: 600px;
     height: auto;
-    border-radius: 30px;
     margin-right: 2rem;
 }
 

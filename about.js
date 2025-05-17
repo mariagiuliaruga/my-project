@@ -7,16 +7,19 @@ document.addEventListener('DOMContentLoaded', function () {
     aboutLink.addEventListener('click', function (e) {
       e.preventDefault();
       aboutSection.style.display = 'flex';
+      document.querySelector('.genere-navigation').style.display = 'none';
     });
 
     
     closeButton.addEventListener('click', function () {
-      window.location.href = 'index.html';
+      aboutSection.style.display = 'none';
+      document.querySelector('.genere-navigation').style.display = 'flex';
     });
   
     aboutSection.addEventListener('click', function (e) {
       if (!aboutInner.contains(e.target)) {
-        window.location.href = 'index.html';
+        aboutSection.style.display = 'none';
+        document.querySelector('.genere-navigation').style.display = 'flex';
       }
     });
   });
