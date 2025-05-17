@@ -10,11 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
       document.querySelector('.genere-navigation').style.display = 'none';
     });
 
-    
-    closeButton.addEventListener('click', function () {
-      aboutSection.style.display = 'none';
-      document.querySelector('.genere-navigation').style.display = 'flex';
-    });
   
     aboutSection.addEventListener('click', function (e) {
       if (!aboutInner.contains(e.target)) {
