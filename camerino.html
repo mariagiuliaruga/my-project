@@ -7,7 +7,7 @@
 </head>
 <body> 
 
-  <h2>Trascina i vestiti sul manichino</h2>
+  <h2 id="istruzioni" style="display: none;">Trascina i vestiti sul manichino</h2>
   
   <div class="wrapper">
     <img src="dressingroom/camerini.png" alt="Camerino" class="scritta-camerino" />
@@ -256,6 +256,7 @@
   }
 
   document.getElementById("btn-donna").addEventListener("click", function () {
+    document.getElementById("istruzioni").style.display = "block";
     areaDonna.style.display = "flex";
     areaUomo.style.display = "none";
     areaDonna.classList.add('visible');
@@ -267,6 +268,7 @@
   });
 
   document.getElementById("btn-uomo").addEventListener("click", function () {
+    document.getElementById("istruzioni").style.display = "block";
     areaUomo.style.display = "flex";
     areaDonna.style.display = "none";
     areaUomo.classList.add('visible');
