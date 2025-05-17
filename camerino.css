@@ -1,29 +1,25 @@
 
 .selezione-genere {
+  position: relative;
   display: flex;
   justify-content: center; /* centro orizzontale */
   margin-top: -400px; /* se vuoi abbassarlo un po' */
   
 }
 
-.titolo-camerino {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30vw; 
+.wrapper {
+  width: 450px; 
+  gap: 10vh;
 }
-
 
 #btn-donna {
   background-color: rgba(255, 192, 203, 0);
-  border-radius: 30px;
   width: 30vw;
   height: 60vh;
 }
 
 #btn-uomo {
   background-color: rgba(129, 177, 255, 0);
-  border-radius: 30px;
   width: 30vw;
   height: 60vh;
 }
@@ -38,7 +34,6 @@
   flex-direction: column;
   padding: 0;
 }
-
 
 .area-uomo, .area-donna{
   top: 0;
@@ -223,7 +218,6 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #fdf1f5;
   margin: 0;
-  padding: 60px 20px; /* i caroselli stanno più in basso */
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -10,12 +10,10 @@
   <h2>Trascina i vestiti sul manichino</h2>
   
   <div class="wrapper">
-    <div class="titolo-camerino">
     <img src="dressingroom/camerini.png" alt="Camerino" class="scritta-camerino" />
-      <div class="selezione-genere">
-        <img src="dressingroom/man.png" alt="Uomo" id="btn-uomo" class="genere-img">
-        <img src="dressingroom/woman.png" alt="Donna" id="btn-donna" class="genere-img">
-      </div>
+    <div class="selezione-genere">
+      <img src="dressingroom/man.png" alt="Uomo" id="btn-uomo" class="genere-img">
+      <img src="dressingroom/woman.png" alt="Donna" id="btn-donna" class="genere-img">
     </div>
   </div>
 
@@ -240,32 +238,32 @@
     const btnDonna = document.getElementById("btn-donna");
 
     // Sposta molto più in alto e a sinistra, con scala
-    btnDonna.style.transform = "translate(-580px, -150px) scale(0.2)";
-    btnUomo.style.transform = "translate(-375px, -150px) scale(0.2)";
+    btnDonna.style.transform = "translate(-50vw, -150px) scale(0.2)";
+    btnUomo.style.transform = "translate(-30vw, -150px) scale(0.2)";
 
     btnUomo.style.transition = "transform 0.3s ease";
     btnDonna.style.transition = "transform 0.3s ease";
 
-    wrapper.style.transform = "translateY(-100px)";
+    wrapper.style.transform = "translateY(-15vh)";
     wrapper.style.transition = "transform 0.3s ease";
 
-    scritta.style.transform = "translateX(30px) scale(0.85)";
+    scritta.style.transform = "translateX(-40vw) translateY(-5vh) scale(0.6)";
     scritta.style.transition = "transform 0.3s ease";
 
-    document.querySelector(".container-camerino").style.transform = "translateY(-380px)";
+    document.querySelector(".container-camerino").style.transform = "translateY(-450px)";
     document.querySelector(".container-camerino").style.transition = "transform 0.3s ease";
   }
 
   document.getElementById("btn-donna").addEventListener("click", function () {
-      areaDonna.style.display = "flex";
-      areaUomo.style.display = "none";
-      areaDonna.classList.add('visible');
-      areaUomo.classList.remove('visible');
-      document.getElementById("manichino-donna").style.backgroundImage = "url('manichinoDonna.png')";
-      varGlobDonna = true;
-      spostaTuttoASinistra();
+    areaDonna.style.display = "flex";
+    areaUomo.style.display = "none";
+    areaDonna.classList.add('visible');
+    areaUomo.classList.remove('visible');
+    document.getElementById("manichino-donna").style.backgroundImage = "url('manichinoDonna.png')";
+    varGlobDonna = true;
+    spostaTuttoASinistra();
 
-    });
+  });
 
   document.getElementById("btn-uomo").addEventListener("click", function () {
     areaUomo.style.display = "flex";
