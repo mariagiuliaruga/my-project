@@ -129,6 +129,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+    
+            // Chiude pannello login se visibile
+            if (loginPanel.classList.contains('visible')) {
+                loginPanel.classList.remove('visible');
+                loginPanel.querySelectorAll('input').forEach(input => input.value = '');
+            }
+    
+            // Chiude pannello registrazione se visibile
+            if (registerPanel.classList.contains('visible')) {
+                registerPanel.classList.remove('visible');
+                registerPanel.querySelectorAll('input').forEach(input => input.value = '');
+            }
+        });
+    });
+
     // Login con fetch
     const loginForm = document.querySelector('.login-form');
     if (loginForm) {
@@ -317,24 +335,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     quizButton.addEventListener('click', handleQuizButtonClick);
 
-    closeButtons.forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-    
-            // Chiude pannello login se visibile
-            if (loginPanel.classList.contains('visible')) {
-                loginPanel.classList.remove('visible');
-                loginPanel.querySelectorAll('input').forEach(input => input.value = '');
-            }
-    
-            // Chiude pannello registrazione se visibile
-            if (registerPanel.classList.contains('visible')) {
-                registerPanel.classList.remove('visible');
-                registerPanel.querySelectorAll('input').forEach(input => input.value = '');
-            }
-        });
-    });
-
     registerLink.addEventListener('click', function (e) {
         e.preventDefault();
         loginPanel.classList.remove('visible');
@@ -448,4 +448,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     }
+
+    const linkDonna = document.getElementById("link-donna");
+    const linkUomo = document.getElementById("link-uomo");
+
+    linkDonna.addEventListener("click", () => {
+        linkDonna.classList.add("active");
+        linkUomo.classList.remove("active");
+    });
+
+    linkUomo.addEventListener("click", () => {
+        linkUomo.classList.add("active");
+        linkDonna.classList.remove("active");
+    });
 });

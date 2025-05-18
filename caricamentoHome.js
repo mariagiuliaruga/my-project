@@ -3,16 +3,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.querySelector('.explore-link').addEventListener('click', function(e){
-        e.preventDefault();
+    e.preventDefault();
 
-        const targetId = this.getAttribute('data-target');
-        const targetContainer = document.getElementById(targetId);
+    const targetId = this.getAttribute('data-target');
+    const targetContainer = document.getElementById(targetId);
 
-        if(targetContainer){
-            targetContainer.classList.add('visible');
-        }
+    if(targetContainer){
+        targetContainer.classList.add('visible');
+    }
 
-        window.scrollTo({ top: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth'});
 });
 
 // funziona solo se scritto in questo punto. serve per far caricare l'area stili dall'alto

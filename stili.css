@@ -47,6 +47,19 @@
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+.nav-link {
+  font-size: 1rem;
+  color: #666;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-link.active {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #d81b60; /* rosa acceso */
+}
+
 .genere-navigation a {
   text-decoration: none;
   font-weight: 600;
