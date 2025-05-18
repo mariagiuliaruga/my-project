@@ -1,0 +1,109 @@
+.stili-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 1rem;
+    position: relative;
+}
+
+.stile {
+    display: block;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 1300px;
+    margin: 1rem auto;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stile img {
+    width: 100%;
+    max-width: 1300px;
+    height: auto;
+    
+    border-radius: 15px;
+    margin: 1.0rem auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.stile:hover img {
+    transform: scale(1.02);
+}
+
+.stile h2 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin: 1.5rem 0;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.stile h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 2px;
+    background: linear-gradient(135deg, #6c5ce7, #a363d5);
+    border-radius: 2px;
+}
+
+.stile p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.7;
+    margin: 1.5rem auto;
+    max-width: 1000px;
+}
+
+.link-manichino {
+    display: inline-block;
+    background: linear-gradient(135deg, #6c5ce7, #a363d5);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+    margin: 1.5rem 0;
+}
+
+.link-manichino:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(108, 92, 231, 0.4);
+    background: linear-gradient(135deg, #7b6ce7, #b363d5);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .stili-container {
+        padding: 0.5rem;
+    }
+    
+    .stile {
+        padding: 1.5rem;
+        margin: 0.5rem auto;
+    }
+    
+    .stile h2 {
+        font-size: 2rem;
+    }
+    
+    .stile p {
+        font-size: 1.1rem;
+        margin: 1rem auto;
+    }
+    
+    .link-manichino {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+    }
+}

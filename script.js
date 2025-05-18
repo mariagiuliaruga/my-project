@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const profileButton = document.querySelector('.profile-button');
     const forgotPasswordLink = document.querySelector('.forgot-password'); //link per il recupero password
     const forgotPasswordPanel = document.querySelector('.forgot-password-panel');
+    const areaRisultati = document.querySelector('.area-risultati');
 
     let isLoggedIn = localStorage.getItem('userEmail') && localStorage.getItem('showPersonalArea') === 'true';
     
@@ -98,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
         e.stopPropagation();
         
         const quizContainer = document.querySelector('.quiz-container'); // Spostato fuori
+        
         quizContainer.classList.add('visible');
         // if (isLoggedIn) {
         //     if (quizContainer) quizContainer.classList.add('visible');
@@ -461,4 +463,36 @@ document.addEventListener('DOMContentLoaded', function () {
         linkUomo.classList.add("active");
         linkDonna.classList.remove("active");
     });
+    //rendere visibile il moodboard corrispondente allo stile dell'utente
+    const stili = document.querySelectorAll('.stile');
+    stili.forEach(stile => stile.style.display = 'block');
+
+    // Gestisci i link che portano al camerino
+    const links = document.querySelectorAll('a[href*="camerino.html"]');
+    links.forEach(link => {
+        // Rimuovi il preventDefault per permettere la navigazione
+        link.addEventListener('click', function() {
+            // Il link funzionerà normalmente, portando a camerino.html con il parametro stile
+        });
+    });
+
+    const stileSelezionato = localStorage.getItem('stileSelezionato');
+
+    if (stileSelezionato) {
+        // Nasconde tutti i container di stile
+        document.querySelectorAll('.stile-container').forEach(container => {
+        container.style.display = 'none';
+        });
+
+        // Mostra solo il container dello stile selezionato
+        const containerVisibile = document.getElementById(stileSelezionato);
+        if (containerVisibile) {
+        containerVisibile.style.display = 'block';
+        }
+    }
+
+    document.querySelectorAll('.stile-container').forEach(el => {
+        el.style.display = 'none';
+    });
+
 });

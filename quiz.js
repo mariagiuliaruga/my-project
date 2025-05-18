@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const quizContainer = document.querySelector('.quiz-container');
     const quizWindow = document.querySelector('.quiz-window');
     const quizButtonActive = document.querySelector('.quiz-button.active');
-        const closeButton = document.querySelector('.quiz-close-button');
+    const closeButton = document.querySelector('.quiz-close-button');
+    
     
         //event listener per il pulsante di chiusura
         if (closeButton) {
@@ -376,15 +377,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Funzione per inviare il quiz
         function submitQuiz() {
-            // Salva l'ultima risposta
             saveAnswer(currentQuestion);
             console.log('Tutte le risposte:', answers);
-
-            // Calcola lo stile
+        
             const risultato = calcolaStile(answers);
             console.log('Risultato calcolo:', risultato);
-            
-            // Crea il contenuto del risultato
+        
+            // Salva lo stile vincente
+            localStorage.setItem('stileSelezionato', risultato.stileVincente);
+        
             const resultContent = `
                 <div class="quiz-result">
                     <h2>Il tuo stile è: ${risultato.stileVincente}</h2>
@@ -404,41 +405,64 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </div>
                             `).join('')}
                     </div>
+                    <button id="scopriStileButton" class="scopri-stile-button">Scopri di più sul tuo stile</button>
                 </div>
             `;
-
-            // Mostra il risultato
+        
             const questionElement = document.querySelector('.quiz-domanda');
             if (questionElement) {
                 questionElement.innerHTML = resultContent;
-            } else {
-                console.error('Elemento .quiz-domanda non trovato');
+        
+                // Attiva pulsante "Scopri il tuo stile"
+                setTimeout(() => {
+                    const scopriBtn = document.getElementById('scopriStileButton');
+                    scopriBtn?.addEventListener('click', () => {
+                        const stile = risultato.stileVincente;
+        
+                        // Chiudi il quiz
+                        quizContainer.classList.remove('visible');
+                        quizWindow.classList.remove('visible');
+        
+                        // Nascondi tutti i risultati
+                        document.querySelectorAll('.stile-container').forEach(el => {
+                            el.style.display = 'none';
+                        });
+        
+                        // Mostra solo quello giusto
+                        const target = document.getElementById('stile-' + stile);
+                        if (target) {
+                            target.style.display = 'block';
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+        
+                        // Mostra sezione risultati
+                        const areaRisultati = document.querySelector('.area-risultati');
+                        if (areaRisultati) {
+                            areaRisultati.classList.add('visible');
+                        }
+                    });
+                }, 0);
             }
-            
-            // Nascondi i pulsanti di navigazione
+        
+            // Nascondi i pulsanti navigazione
             const navigationElement = document.querySelector('.quiz-navigation');
             if (navigationElement) {
                 navigationElement.style.display = 'none';
             }
-
-            // Mantieni il container del quiz visibile
-            if (quizContainer) {
-                quizContainer.classList.add('visible');
-            }
-            if (quizWindow) {
-                quizWindow.classList.add('visible');
-            }
-
-            // Aggiungi un pulsante per chiudere i risultati
+        
+            quizContainer.classList.add('visible');
+            quizWindow.classList.add('visible');
+        
             const closeButton = document.createElement('button');
             closeButton.className = 'quiz-close-button';
             closeButton.innerHTML = '×';
-            closeButton.onclick = function() {
+            closeButton.onclick = function () {
                 quizContainer.classList.remove('visible');
                 quizWindow.classList.remove('visible');
             };
             quizWindow.appendChild(closeButton);
         }
+        
     
         // Funzione per ottenere la descrizione dello stile
         function getStyleDescription(stile) {
@@ -741,33 +765,28 @@ document.addEventListener('DOMContentLoaded', function() {
             };
         }
 
-        // Funzione per generare l'HTML del risultato
-        function generaRisultatoHTML(risultato) {
-            const { stileVincente, punteggioMassimo, punteggi } = risultato;
 
-            return `
-                <div class="quiz-result">
-                    <h2>Il tuo stile è: ${stileVincente}</h2>
-                    <div class="style-description">
-                        ${getStyleDescription(stileVincente)}
-                    </div>
-                    <div class="style-scores">
-                        <h3>Punteggi per ogni stile:</h3>
-                        ${Object.entries(punteggi)
-                            .map(([stile, punteggio]) => `
-                                <div class="style-score">
-                                    <span>${stile}:</span>
-                                    <div class="score-bar">
-                                        <div class="score-fill" style="width: ${(punteggio / punteggioMassimo) * 100}%"></div>
-                                    </div>
-                                    <span>${punteggio}</span>
-                                </div>
-                            `).join('')}
-                    </div>
+        const resultContent = `
+            <div class="quiz-result">
+                <h2>Il tuo stile è: ${risultato.stileVincente}</h2>
+                <div class="style-description">
+                    ${getStyleDescription(risultato.stileVincente)}
                 </div>
-            `;
-        }
-
-
+                <div class="style-scores">
+                    <h3>Punteggi per ogni stile:</h3>
+                    ${Object.entries(risultato.punteggi)
+                        .map(([stile, punteggio]) => `
+                            <div class="style-score">
+                                <span>${stile}:</span>
+                                <div class="score-bar">
+                                    <div class="score-fill" style="width: ${(punteggio / risultato.punteggioMassimo) * 100}%"></div>
+                                </div>
+                                <span>${punteggio}</span>
+                            </div>
+                        `).join('')}
+                </div>
+                <button id="scopriStileButton" class="scopri-stile-button">Scopri il tuo stile</button>
+            </div>
+        `;
 
     });
