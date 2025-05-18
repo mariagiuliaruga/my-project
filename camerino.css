@@ -302,3 +302,26 @@ body {
 .right {
   right: -30px;
 }
+
+.color-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  margin: 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+}
+
+.rosa   { background-color: #fabda2; }
+.marrone  { background-color: #bf886f; }
+.nero { background-color: #bf886f; }
+
+.color-btn.attivo {
+  border: 3px solid white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}

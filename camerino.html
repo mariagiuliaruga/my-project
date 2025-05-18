@@ -16,6 +16,7 @@
       <img src="dressingroom/woman.png" alt="Donna" id="btn-donna" class="genere-img">
     </div>
   </div>
+  
 
   <div class="container-camerino">
     <div class="area-uomo">
@@ -71,6 +72,12 @@
       </div>
 
       <div id="manichino-uomo" class="manichino" ondragover="allowDrop(event)" ondrop="drop(event)">
+        <div  class="color-button" style="margin-top: -50px;">
+          <button class="color-btn rosa" onclick="cambiaColoreManichino('uomo', 'rosa')"></button>
+          <button class="color-btn marrone" onclick="cambiaColoreManichino('uomo', 'marrone')"></button>
+          <button class="color-btn nero" onclick="cambiaColoreManichino('uomo', 'nero')"></button>
+        </div>
+        <img id="manichinoUomo" src="manichinoUomo.png" alt="Manichino Uomo" style="display: none;">
         <div id="zona-testa" class="zona"></div>
         <div id="zona-busto" class="zona"></div>
         <div id="zona-over-busto" class="zona"></div>
@@ -78,6 +85,7 @@
         <div id="zona-piedi" class="zona"></div>
         <div id="zona-orologio" class="zona"></div>
       </div>
+      
 
       <div class="carousel-container-dx" id="carousel3" data-visible="7">
         <button class="arrow left" onclick="scrollCarousel('carousel3', -1)">&#9664;</button>
@@ -159,6 +167,11 @@
         <div id="zona-vestito" class="zona"></div>
         <div id="zona-borsa" class="zona"></div>
         <div id="zona-sciarpa" class="zona"></div> -->
+        <div  class="color-button" style="margin-top: -50px;">
+          <button class="color-btn rosa" onclick="changeMannequinColor('rosa')"></button>
+          <button class="color-btn marrone" onclick="changeMannequinColor('marrone')"></button>
+          <button class="color-btn nero" onclick="changeMannequinColor('nero')"></button>
+        </div>
       </div>
 
       <div class="carousel-container-dx" id="carousel6"  data-visible="10">
@@ -276,7 +289,21 @@
     document.getElementById("manichino-uomo").style.backgroundImage = "url('manichinoUomo.png')";
     varGlobDonna = false;
     spostaTuttoASinistra();
+  
   });
+
+  function changeMannequinColor(color) {
+  const manichinoUomo = document.getElementById('manichinoUomo');
+  const manichinoDonna = document.getElementById('manichinoDonna');
+
+  if (manichinoUomo && manichinoUomo.style.display !== 'none') {
+    manichinoUomo.src = `manichinoUomo${(color)}.png`;
+  } else if (manichinoDonna && manichinoDonna.style.display !== 'none') {
+    manichinoDonna.src = `manichinoDonna${(color)}.png`;
+  }
+}
+
+
 
   function allowDrop(ev) {
     ev.preventDefault();
@@ -710,6 +737,28 @@
     console.log(`Carosello ${carouselId}: visibili ${visibleItems}, indice ${carouselIndices[carouselId]}`);
   }
 
+  function cambiaColoreManichino(genere, colore) {
+    const manichino = document.getElementById(`manichino-${genere}`);
+
+
+    if(genere === 'uomo'){
+      if (colore === 'rosa'){
+        manichino.style.backgroundImage = "url('manichinoUomoRosa.png')";
+      } else if (colore === 'marrone'){
+        manichino.style.backgroundImage = "url('manichinoUomoMarrone.png')";
+      } else if (colore === 'nero'){
+        manichino.style.backgroundImage = "url('manichinoUomoNero.png')";
+    }
+  } else if(genere === 'donna'){
+      if (colore === 'rosa'){
+        manichino.style.backgroundImage = "url('manichinoDonnaRosa.png')";
+      } else if (colore === 'marrone'){
+        manichino.style.backgroundImage = "url('manichinoDonnaMarrone.png')";
+      } else if (colore === 'nero'){
+        manichino.style.backgroundImage = "url('manichinoDonnaNero.png')";
+    }
+  }
+}
 
 </script>
 </body>
