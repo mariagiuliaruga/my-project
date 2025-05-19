@@ -12,7 +12,7 @@
     const vestitiPerStile = {
     oldMoney: [
         'camicia', 'camicetta', 'maglia', 'maglia-lanetta', 'mocassini', 'scarpe-bianche', 'stivaletti-marroni', 'pantaloni-lino',
-        'giacca-pelle', 'felpa-ralph', 'orologio', 'cappello-polo', 'skinny', 'pantaloni-neri'
+        'giacca-pelle', 'felpa-ralph', 'orologio', 'cappello-polo', 'skinny', 'pantaloni-neri', 'giacca-elegante'
     ],
     casual: [
         'maglia', 'jeans', 'maglia-lanetta', 'scarpe-bianche', 'cappello-polo', 'stivaletti-marroni', 'orologio', 'cargo', 'camicetta',
@@ -32,7 +32,8 @@
         'giacca-jeans', 'pantaloncino-jeans', 'jeans-neri'
     ],
     sportyMen: [
-        'pantaloncino-tuta', 'giacca-nike', 'campus', 'felpa-ralph', 'jordan', 'cappello-polo', 'maglia-stussy', 'maglia-blu', 'jeans', 'jeans-neri'
+        'maglia-aderente', 'pantaloncino-tuta', 'giacca-nike', 'campus', 'felpa-ralph', 'jordan', 'cappello-polo',
+         'maglia-stussy', 'maglia-blu', 'jeans', 'jeans-neri'
     ],
     bohoChic: [
         'gonna-lunga', 'maglia-frange', 'maglia-boho', 'giacca-pelle-donna', 'frange', 'top-bianco', 'uggs', 'cowboy', 
@@ -56,7 +57,7 @@
     ],
     sportyWomen: [
         'maglia-gialla', 'maglia-rossa', 'campus-donna', 'scarpe-bianche-donna', 'gonna-jeans-sporty', 'jeans-grigi-donna',
-        'pantaloncini-blu', 'pantaloncini-jeans', 'jeans-donna'
+        'pantaloncini-blu', 'pantaloncini-jeans', 'jeans-donna', 'top-verde', 'pantaloncino-verde'
     ]
     };
     
