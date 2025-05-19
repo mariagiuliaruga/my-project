@@ -149,8 +149,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 tipo: "select",
                 opzioni: ["Oro", "Argento", "Oro e Argento", "Fatti a mano", "Bigiotteria", "Nessuno"],
                 immagini: {
-                    "Oro": "gioielli/oro.png",
-                    "Argento": "gioielli/argento.png"
+                    "Oro": "gioielli/oro.jpeg",
+                    "Argento": "gioielli/argento.jpeg",
+                    "Oro e Argento": "gioielli/mix.jpeg",
+                    "Fatti a mano": "gioielli/artigianali.jpeg",
+                    "Bigiotteria": "gioielli/bigiotteria.jpeg",
+                    "Nessuno": "gioielli/senzaGioielli.jpeg"
                 }
             },
             //domanda 5
