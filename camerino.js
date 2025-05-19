@@ -36,16 +36,16 @@
          'maglia-stussy', 'maglia-blu', 'jeans', 'jeans-neri'
     ],
     bohoChic: [
-        'gonna-lunga', 'maglia-frange', 'maglia-boho', 'giacca-pelle-donna', 'frange', 'top-bianco', 'uggs', 'cowboy', 
-        'pantaloncini-marroni', 'pantaloncini-bianchi'
+        'gonna-lunga', 'maglia-frange', 'maglia-boho', 'giubbotto-pelle', 'frange', 'top-bianco', 'uggs', 'cowboy', 
+        'pantaloncini-marroni', 'pantaloncini-bianchi', 'canotta-bianca', 'top-marrone'
     ],
     quietLuxury: [
-        'giacca-pelle-donna', 'jeans-grigi2-donna', 'gonna-lunga-luxury', 'top-marrone', 'tube-top', 'stivaletti', 'stivali-tacco', 
-         'pantaloni-eleganti', 'pantaloni-palazzo', 'pantaloni-neri-donna'
+        'giacca-pelle-donna', 'camicetta-bianca', 'jeans-grigi2-donna', 'gonna-lunga-luxury', 'top-marrone', 'tube-top', 'stivaletti', 'stivali-tacco', 
+         'pantaloni-eleganti', 'pantaloni-palazzo', 'pantaloni-neri-donna', 'camicetta-nera', 'canotta-bianca'
     ],
     preppy: [
         'camicetta-bianca', 'stivaletti', 'maglione-azzurro', 'camicetta-gilet', 'scarpe-bianche-donna', 'gonna-grigia',
-         'pantaloni-palazzo', 'gonna-pieghe', 'gonna-lunga-preppy'
+         'pantaloni-palazzo', 'gonna-pieghe', 'gonna-lunga-preppy', 'camicetta-nera', 'maglia-boho'
     ],
     messy: [
         'maglia-offshoulders', 'converse', 'maglia-grafica', 'giubbotto-pelle', 'stivali-neri', 'jeans-neri-donna', 
@@ -53,11 +53,11 @@
     ],
     scandi: [
         'maglione-beige', 'uggs', 'maglione-azzurro', 'top-bianco', 'campus-donna', 'jeans-grigi-donna', 'pantaloni-marroni', 
-        'pantaloni-beige', 'jeans-donna'
+        'pantaloni-beige', 'jeans-donna', 'maglia-semplice', 'giubbotto-pelle'
     ],
     sportyWomen: [
         'maglia-gialla', 'maglia-rossa', 'campus-donna', 'scarpe-bianche-donna', 'gonna-jeans-sporty', 'jeans-grigi-donna',
-        'pantaloncini-blu', 'pantaloncini-jeans', 'jeans-donna', 'top-verde', 'pantaloncino-verde'
+        'pantaloncini-blu', 'pantaloncini-jeans', 'jeans-donna', 'top-verde', 'pantaloncino-verde', 'giubbotto-pelle'
     ]
     };
     
