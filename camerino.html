@@ -6,7 +6,17 @@
   <link rel="stylesheet" href="camerino.css">
 </head>
 <body> 
-
+  <div id="popup" class="popup-overlay" style="display:none;">
+    <div class="popup-content">
+      <button class="close-btn">×</button>
+      <p>Benvenuto nella tua area creativa!👗</p>
+      <p>Qui puoi dare libero sfogo al tuo stile creando outfit unici e personalizzati.</p>
+      <p>Trascina i vari capi sul manichino e scegli il colore che preferisci🎨.</p>
+      <p>Sei indeciso? Nessun problema! Basta un doppio clic sul capo per toglierlo o trascinarlo nel cestino in basso a sinistra.</p>
+      <p>Ricorda però, per ottenere outfit davvero su misura, prima devi completare il quiz!📝</p>
+      <p>Se l’hai già fatto, seleziona lo stile che hai scoperto essere perfetto per te.</p>
+    </div>
+  </div>
   <h2 id="istruzioni" style="display: none;">Trascina i vestiti sul manichino</h2>
   
   <div class="wrapper">
@@ -16,66 +26,85 @@
       <img src="dressingroom/woman.png" alt="Donna" id="btn-donna" class="genere-img">
     </div>
   </div>
+
+  <div class="container-stili" id="container-stili-uomo">
+    <button class="stile-btn" data-stile="oldMoney">old money</button>
+    <button class="stile-btn" data-stile="casual">casual</button>
+    <button class="stile-btn" data-stile="vintage">vintage</button>
+    <button class="stile-btn" data-stile="eBoy">eBoy</button>
+    <button class="stile-btn" data-stile="street">street</button>
+    <button class="stile-btn" data-stile="sportyMen">sporty</button>
+  </div>
+  <div class="container-stili" id="container-stili-donna">
+    <button class="stile-btn" data-stile="bohoChic">boho chic</button>
+    <button class="stile-btn" data-stile="quietLuxury">quiet luxury</button>
+    <button class="stile-btn" data-stile="preppy">preppy</button>
+    <button class="stile-btn" data-stile="messy">messy</button>
+    <button class="stile-btn" data-stile="scandi">scandi</button>
+    <button class="stile-btn" data-stile="sportyWomen">sporty</button>
+  </div>
   
   <div class="container-camerino">
     <div class="area-uomo">
-
+  
       <div class="area-sx">
-        <div class="carousel-container-sx-alto" id="carousel1" data-visible="9">
-          <button class="arrow left" onclick="scrollCarousel('carousel1', -1)">&#8678;</button>
+        <div class="carousel-container-sx-alto" id="carousel1" data-total="16" data-visible="9">
+          <button class="arrow left" data-carousel-id="carousel1">&#8678;</button>
 
           <div class="carousel">
-            <img src="style/men/busto/magliaMarrone.png" id="maglia-marrone" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/busto/magliaAderente.PNG" id="maglia-aderente" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/busto/magliaBianca.png" id="maglia" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/busto/magliaBlu.png" id="maglia-blu" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/busto/magliaNera.png" id="maglia-nera" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/busto/magliaLanetta.png" id="maglia-lanetta" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/busto/camicia.png" id="camicia" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/busto/camicetta.png" id="camicetta" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/busto/magliettaStussy.PNG" id="maglia-stussy" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/overBusto/maglioneMaglietta.png" id="maglia-maglione" data-zona="over-busto" class="vestito" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/overBusto/maglioneMarrone.png" id="maglia-maglione-marrone" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/overBusto/giaccaColorata.png" id="giacca-colorata" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/overBusto/giaccaJeans.png" id="giacca-jeans" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/overBusto/giaccaCarhartt.PNG" id="giacca-carhartt" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/overBusto/felpaRalph.png" id="felpa-ralph" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/overBusto/giaccaNike.png" id="giacca-nike" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/overBusto/giaccaPelle.png" id="giacca-pelle" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
+            <img src="style/men/busto/magliaMarrone.png" id="maglia-marrone" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/men/busto/magliaAderente.PNG" id="maglia-aderente" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/men/busto/magliaBianca.png" id="maglia" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/men/busto/magliaBlu.png" id="maglia-blu" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/men/busto/magliaNera.png" id="maglia-nera" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/men/busto/magliaLanetta.png" id="maglia-lanetta" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/men/busto/camicia.png" id="camicia" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/men/busto/camicetta.png" id="camicetta" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/men/busto/magliettaStussy.PNG" id="maglia-stussy" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/men/overBusto/maglioneMaglietta.png" id="maglia-maglione" data-zona="over-busto" class="vestito" draggable="true">
+            <img src="style/men/overBusto/maglioneMarrone.png" id="maglia-maglione-marrone" class="vestito" data-zona="over-busto" draggable="true">
+            <img src="style/men/overBusto/giaccaColorata.png" id="giacca-colorata" class="vestito" data-zona="over-busto" draggable="true">
+            <img src="style/men/overBusto/giaccaJeans.png" id="giacca-jeans" class="vestito" data-zona="over-busto" draggable="true">
+            <img src="style/men/overBusto/giaccaElegante.PNG" id="giacca-elegante" class="vestito" data-zona="over-busto" draggable="true">
+            <img src="style/men/overBusto/giaccaCarhartt.PNG" id="giacca-carhartt" class="vestito" data-zona="over-busto" draggable="true">
+            <img src="style/men/overBusto/felpaRalph.png" id="felpa-ralph" class="vestito" data-zona="over-busto" draggable="true">
+            <img src="style/men/overBusto/giaccaNike.png" id="giacca-nike" class="vestito" data-zona="over-busto" draggable="true">
+            <img src="style/men/overBusto/giaccaPelle.png" id="giacca-pelle" class="vestito" data-zona="over-busto" draggable="true">
+
             
           
           </div>
 
-          <button class="arrow right" onclick="scrollCarousel('carousel1', 1)">&#8680;</button>
+          <button class="arrow right" data-carousel-id="carousel1">&#8680;</button>
         </div>
 
-         <div class="carousel-container-sx-basso" id="carousel2" data-visible="7">
-            <button class="arrow left" onclick="scrollCarousel('carousel2', -1)">&#8678;</button>
+         <div class="carousel-container-sx-basso" id="carousel2" data-total="11" data-visible="7">
+            <button class="arrow left" data-carousel-id="carousel2">&#8678;</button>
 
           <div class="carousel">
-            <img src="style/men/piedi/campus.png" id="campus" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/piedi/jordan.png" id="jordan" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/piedi/mocassini.png" id="mocassini" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/piedi/mocassiniMarroni.png" id="mocassini-marroni" data-zona="piedi" class="vestito" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/piedi/scarpeBianche.png" id="scarpe-bianche" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/piedi/stivalettiMarroni.png" id="stivaletti-marroni" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/piedi/timberland.png" id="timberland" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/piedi/vans.png" id="vans" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
+            <img src="style/men/piedi/campus.png" id="campus" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/men/piedi/jordan.png" id="jordan" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/men/piedi/mocassini.png" id="mocassini" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/men/piedi/mocassiniMarroni.png" id="mocassini-marroni" data-zona="piedi" class="vestito" draggable="true">
+            <img src="style/men/piedi/scarpeBianche.png" id="scarpe-bianche" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/men/piedi/stivalettiMarroni.png" id="stivaletti-marroni" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/men/piedi/timberland.png" id="timberland" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/men/piedi/vans.png" id="vans" class="vestito" data-zona="piedi" draggable="true">
 
-            <img src="style/men/orologio/orologio.png" id="orologio" class="vestito" data-zona="orologio" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/testa/cappelloMarrone.png" id="cappello-marrone" class="vestito" data-zona="testa" draggable="true" ondragstart="drag(event)">
-            <img src="style/men/testa/cappelloPoloBlu.png" id="cappello-polo" class="vestito" data-zona="testa" draggable="true" ondragstart="drag(event)">
+            <img src="style/men/orologio/orologio.png" id="orologio" class="vestito" data-zona="orologio" draggable="true">
+            <img src="style/men/testa/cappelloMarrone.png" id="cappello-marrone" class="vestito" data-zona="testa" draggable="true">
+            <img src="style/men/testa/cappelloPoloBlu.png" id="cappello-polo" class="vestito" data-zona="testa" draggable="true">
           </div>
 
-          <button class="arrow right" onclick="scrollCarousel('carousel2', 1)">&#8680;</button>
+          <button class="arrow right" data-carousel-id="carousel2">&#8680;</button>
         </div>
       </div>
 
-      <div id="manichino-uomo" class="manichino" ondragover="allowDrop(event)" ondrop="drop(event)">
+      <div id="manichino-uomo" class="manichino">
         <div  class="color-button" style="margin-top: -50px; display: flex;">
-          <button class="color-btn rosa" onclick="cambiaColoreManichino('uomo', 'rosa')"></button>
-          <button class="color-btn marrone" onclick="cambiaColoreManichino('uomo', 'marrone')"></button>
-          <button class="color-btn nero" onclick="cambiaColoreManichino('uomo', 'nero')"></button>
+          <button class="color-btn rosa" data-genere="uomo" data-colore="rosa"></button>
+          <button class="color-btn marrone" data-genere="uomo" data-colore="marrone"></button>
+          <button class="color-btn nero" data-genere="uomo" data-colore="nero"></button>
         </div>
         <img id="manichinoUomo" src="manichinoUomo.png" alt="Manichino Uomo" style="display: none;">
         <div id="zona-testa" class="zona"></div>
@@ -87,23 +116,23 @@
       </div>
       
 
-      <div class="carousel-container-dx" id="carousel3" data-visible="6">
-        <button class="arrow left" onclick="scrollCarousel('carousel3', -1)">&#8678;</button>
+      <div class="carousel-container-dx" id="carousel3" data-total="10" data-visible="6">
+        <button class="arrow left" data-carousel-id="carousel3">&#8678;</button>
 
         <div class="carousel">
-          <img src="style/men/gambe/cargoBeige.png" id="cargo" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-          <img src="style/men/gambe/jeans.png" id="jeans" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-          <img src="style/men/gambe/pantaloncinoJeansGrigio.png" id="pantaloncino-jeans" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-          <img src="style/men/gambe/pantaloniLino.png" id="pantaloni-lino" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-          <img src="style/men/gambe/jeansNeri.png" id="jeans-neri" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-          <img src="style/men/gambe/pantaloncinoJeansNero.png" id="pantaloncino-jeans-nero" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-          <img src="style/men/gambe/pantaloniNeri.png" id="pantaloni-neri" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-          <img src="style/men/gambe/jeansGrigi.png" id="jeans-grigi" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-          <img src="style/men/gambe/pantaloncinoTuta.png" id="pantaloncino-tuta" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-          <img src="style/men/gambe/skinny.png" id="skinny" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+          <img src="style/men/gambe/cargoBeige.png" id="cargo" class="vestito" data-zona="gambe" draggable="true">
+          <img src="style/men/gambe/jeans.png" id="jeans" class="vestito" data-zona="gambe" draggable="true">
+          <img src="style/men/gambe/pantaloncinoJeansGrigio.png" id="pantaloncino-jeans" class="vestito" data-zona="gambe" draggable="true">
+          <img src="style/men/gambe/pantaloniLino.png" id="pantaloni-lino" class="vestito" data-zona="gambe" draggable="true">
+          <img src="style/men/gambe/jeansNeri.png" id="jeans-neri" class="vestito" data-zona="gambe" draggable="true">
+          <img src="style/men/gambe/pantaloncinoJeansNero.png" id="pantaloncino-jeans-nero" class="vestito" data-zona="gambe" draggable="true">
+          <img src="style/men/gambe/pantaloniNeri.png" id="pantaloni-neri" class="vestito" data-zona="gambe" draggable="true">
+          <img src="style/men/gambe/jeansGrigi.png" id="jeans-grigi" class="vestito" data-zona="gambe" draggable="true">
+          <img src="style/men/gambe/pantaloncinoTuta.png" id="pantaloncino-tuta" class="vestito" data-zona="gambe" draggable="true">
+          <img src="style/men/gambe/skinny.png" id="skinny" class="vestito" data-zona="gambe" draggable="true">
         </div>
 
-        <button class="arrow right" onclick="scrollCarousel('carousel3', 1)">&#8680;</button>
+        <button class="arrow right" data-carousel-id="carousel3">&#8680;</button>
       </div>
 
     </div>
@@ -111,55 +140,55 @@
     <div class="area-donna">
 
       <div class="area-sx">
-        <div class="carousel-container-sx-alto" id="carousel4" data-visible="10">
-          <button class="arrow left" onclick="scrollCarousel('carousel4', -1)">&#8678;</button>
+        <div class="carousel-container-sx-alto" id="carousel4" data-total="18" data-visible="10">
+          <button class="arrow left" data-carousel-id="carousel4">&#8678;</button>
 
           <div class="carousel">
-            <img src="style/women/busto/camicettaBianca.png" id="camicetta-bianca" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/camicettaGilet.png" id="camicetta-gilet" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/camicettaNera.png" id="camicetta-nera" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/canottaBianca.png" id="canotta-bianca" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/magliaBoho.png" id="maglia-boho" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/magliaFrange.png" id="maglia-frange" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/magliaGialla.png" id="maglia-gialla" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            
-            <img src="style/women/busto/magliaRossa.png" id="maglia-rossa" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/magliettaSemplice.png" id="maglia-semplice" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/magliettaGrafica.png" id="maglia-grafica" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/magliettaOffShoulders.png" id="maglia-offshoulders" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/topBianco.png" id="top-bianco" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/topMarrone.png" id="top-marrone" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/tubeTopVerde.png" id="tube-top" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/busto/felpaNera.PNG" id="felpa-nera" class="vestito" data-zona="busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/over-busto/giaccaPelle.png" id="giacca-pelle-donna" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/over-busto/giubbottoPelleMarrone.png" id="giubbotto-pelle" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/over-busto/maglioneAzzurro.png" id="maglione-azzurro" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/over-busto/maglioneBeige.png" id="maglione-beige" class="vestito" data-zona="over-busto" draggable="true" ondragstart="drag(event)">
+            <img src="style/women/busto/camicettaBianca.png" id="camicetta-bianca" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/camicettaGilet.png" id="camicetta-gilet" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/camicettaNera.png" id="camicetta-nera" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/canottaBianca.png" id="canotta-bianca" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/magliaBoho.png" id="maglia-boho" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/magliaFrange.png" id="maglia-frange" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/magliaGialla.png" id="maglia-gialla" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/magliaRossa.png" id="maglia-rossa" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/magliettaSemplice.png" id="maglia-semplice" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/topVerde.png" id="top-verde" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/magliettaGrafica.png" id="maglia-grafica" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/magliettaOffShoulders.png" id="maglia-offshoulders" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/topBianco.png" id="top-bianco" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/topMarrone.png" id="top-marrone" class="vestito" data-zona="busto" draggable="true">
+            <img src="style/women/busto/tubeTopVerde.png" id="tube-top" class="vestito" data-zona="busto" draggable="true">
+
+            <img src="style/women/over-busto/giaccaPelle.png" id="giacca-pelle-donna" class="vestito" data-zona="over-busto" draggable="true">
+            <img src="style/women/over-busto/giubbottoPelleMarrone.png" id="giubbotto-pelle" class="vestito" data-zona="over-busto" draggable="true">
+            <img src="style/women/over-busto/maglioneAzzurro.png" id="maglione-azzurro" class="vestito" data-zona="over-busto" draggable="true">
+            <img src="style/women/over-busto/maglioneBeige.png" id="maglione-beige" class="vestito" data-zona="over-busto" draggable="true">
           
           </div>
 
-          <button class="arrow right" onclick="scrollCarousel('carousel4', 1)">&#8680;</button>
+          <button class="arrow right" data-carousel-id="carousel4">&#8680;</button>
         </div>
 
-        <div class="carousel-container-sx-basso" id="carousel5" data-visible="6">
-          <button class="arrow left" onclick="scrollCarousel('carousel5', -1)">&#8678;</button>
+        <div class="carousel-container-sx-basso" id="carousel5" data-total="9" data-visible="6">
+          <button class="arrow left"data-carousel-id="carousel5">&#8678;</button>
 
           <div class="carousel">
-            <img src="style/women/piedi/campus.png" id="campus-donna" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/piedi/converse.png" id="converse" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/piedi/scarpeBianche.png" id="scarpe-bianche-donnaa" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/piedi/stivaletti.png" id="stivaletti" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/piedi/stivaliCowboy.png" id="cowboy" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/piedi/stivaliFrange.png" id="frange" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/piedi/stivaliNeri.png" id="stivali-neri" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/piedi/stivaliTacco.png" id="stivali-tacco" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/piedi/uggs.png" id="uggs" class="vestito" data-zona="piedi" draggable="true" ondragstart="drag(event)">
+            <img src="style/women/piedi/campus.png" id="campus-donna" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/women/piedi/converse.png" id="converse" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/women/piedi/scarpeBianche.png" id="scarpe-bianche-donna" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/women/piedi/stivaletti.png" id="stivaletti" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/women/piedi/stivaliCowboy.png" id="cowboy" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/women/piedi/stivaliFrange.png" id="frange" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/women/piedi/stivaliNeri.png" id="stivali-neri" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/women/piedi/stivaliTacco.png" id="stivali-tacco" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/women/piedi/uggs.png" id="uggs" class="vestito" data-zona="piedi" draggable="true">
           </div>
 
-          <button class="arrow right" onclick="scrollCarousel('carousel5', 1)">&#8680;</button>
+          <button class="arrow right" data-carousel-id="carousel5">&#8680;</button>
         </div>
       </div>
-      <div id="manichino-donna" class="manichino" ondragover="allowDrop(event)" ondrop="drop(event)">
+      <div id="manichino-donna" class="manichino">
         <div id="zona-busto-donna" class="zona"></div>
         <div id="zona-over-busto-donna" class="zona"></div>
         <div id="zona-gambe-donna" class="zona"></div>
@@ -169,45 +198,46 @@
         <div id="zona-borsa" class="zona"></div>
         <div id="zona-sciarpa" class="zona"></div> -->
         <div  class="color-button" style="margin-top: -50px; display: flex;">
-          <button class="color-btn rosa" onclick="cambiaColoreManichino('donna', 'rosa')"></button>
-          <button class="color-btn marrone" onclick="cambiaColoreManichino('donna', 'marrone')"></button>
-          <button class="color-btn nero" onclick="cambiaColoreManichino('donna', 'nero')"></button>
+          <button class="color-btn rosa" data-genere="donna" data-colore="rosa"></button>
+          <button class="color-btn marrone" data-genere="donna" data-colore="marrone"></button>
+          <button class="color-btn nero" data-genere="donna" data-colore="nero"></button>
         </div>
       </div>
 
-      <div class="carousel-container-dx" id="carousel6"  data-visible="10">
-          <button class="arrow left" onclick="scrollCarousel('carousel6', -1)">&#8678;</button>
+      <div class="carousel-container-dx" id="carousel6" data-total="20" data-visible="10">
+          <button class="arrow left" data-carousel-id="carousel6">&#8678;</button>
 
           <div class="carousel">
-            <img src="style/women/gambe/jeansGrigi2.png" id="jeans-grigi2-donna" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/gonnaGrigia.png" id="gonna-grigia" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/pantaloneTuta.PNG" id="pantalone-tuta" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/pantaloniPalazzo.png" id="pantaloni-palazzo" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/jeansNeri.png" id="jeans-neri-donna" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/gonnaJeansSporty.png" id="gonna-jeans-sporty" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/pantaloniNeri.png" id="pantaloni-neri-donna" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/jeansGrigi.png" id="jeans-grigi-donna" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/gonnaJeans.png" id="gonna-jeans" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/pantaloniMarroni.png" id="pantaloni-marroni" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/pantalonciniBlu.png" id="pantaloncini-blu" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/gonnaPieghe.png" id="gonna-pieghe" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/pantaloniBeige.png" id="pantaloni-beige" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/pantalonciniJeans.png" id="pantaloncini-jeans" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/gonnaLunga.png" id="gonna-lunga" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/pantaloniEleganti.png" id="pantaloni-eleganti" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/pantalonciniBianchi.png" id="pantaloncini-bianchi" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/gonnaLungaLuxury.png" id="gonna-lunga-luxury" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/jeans.png" id="jeans-donna" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/pantalonciniMarroni.png" id="pantaloncini-marroni" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
-            <img src="style/women/gambe/gonnaLungaPreppy.png" id="gonna-lunga-preppy" class="vestito" data-zona="gambe" draggable="true" ondragstart="drag(event)">
+            <img src="style/women/gambe/jeansGrigi2.png" id="jeans-grigi2-donna" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/gonnaGrigia.png" id="gonna-grigia" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/pantaloneTuta.PNG" id="pantalone-tuta" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/pantaloniPalazzo.png" id="pantaloni-palazzo" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/jeansNeri.png" id="jeans-neri-donna" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/gonnaJeansSporty.png" id="gonna-jeans-sporty" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/pantaloniNeri.png" id="pantaloni-neri-donna" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/jeansGrigi.png" id="jeans-grigi-donna" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/gonnaJeans.png" id="gonna-jeans" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/pantaloniMarroni.png" id="pantaloni-marroni" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/pantalonciniBlu.png" id="pantaloncini-blu" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/gonnaPieghe.png" id="gonna-pieghe" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/pantaloniBeige.png" id="pantaloni-beige" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/pantalonciniJeans.png" id="pantaloncini-jeans" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/gonnaLunga.png" id="gonna-lunga" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/pantaloniEleganti.png" id="pantaloni-eleganti" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/pantalonciniBianchi.png" id="pantaloncini-bianchi" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/gonnaLungaLuxury.png" id="gonna-lunga-luxury" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/jeans.png" id="jeans-donna" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/pantaloncinoVerde.PNG" id="pantaloncino-verde" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/pantalonciniMarroni.png" id="pantaloncini-marroni" class="vestito" data-zona="gambe" draggable="true">
+            <img src="style/women/gambe/gonnaLungaPreppy.png" id="gonna-lunga-preppy" class="vestito" data-zona="gambe" draggable="true">
           </div>
 
-          <button class="arrow right" onclick="scrollCarousel('carousel6', 1)">&#8680;</button>
+          <button class="arrow right"data-carousel-id="carousel6">&#8680;</button>
       </div>
       </div>
   </div>
 
-  <div id="cestino" ondragover="allowDrop(event)" ondrop="dropInCestino(event)">
+  <div id="cestino">
     <button class="button">
       <svg viewBox="0 0 448 512" class="svgIcon"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
     </button>
@@ -238,518 +268,6 @@
     </div>
   </div>
 
-  <script>
-    const areaUomo = document.querySelector('.area-uomo');
-    const areaDonna = document.querySelector('.area-donna');
-
-    areaUomo.style.display = 'none';
-    areaDonna.style.display = 'none';
-    let varGlobDonna = true;
-
-    function spostaTuttoASinistra() {
-        const wrapper = document.querySelector('.wrapper');
-        const scritta = document.querySelector('.scritta-camerino');
-        const btnUomo = document.getElementById("btn-uomo");
-        const btnDonna = document.getElementById("btn-donna");
-
-        // Sposta molto più in alto e a sinistra, con scala
-        btnDonna.style.transform = "translate(-50vw, -150px) scale(0.2)";
-        btnUomo.style.transform = "translate(-30vw, -150px) scale(0.2)";
-
-        btnUomo.style.transition = "transform 0.3s ease";
-        btnDonna.style.transition = "transform 0.3s ease";
-
-        wrapper.style.transform = "translateY(-15vh)";
-        wrapper.style.transition = "transform 0.3s ease";
-
-        scritta.style.transform = "translateX(-40vw) translateY(-5vh) scale(0.6)";
-        scritta.style.transition = "transform 0.3s ease";
-
-        document.querySelector(".container-camerino").style.transform = "translateY(-450px)";
-        document.querySelector(".container-camerino").style.transition = "transform 0.3s ease";
-    }
-
-    document.getElementById("btn-donna").addEventListener("click", function () {
-        document.getElementById("istruzioni").style.display = "block";
-        areaDonna.style.display = "flex";
-        areaUomo.style.display = "none";
-        areaDonna.classList.add('visible');
-        areaUomo.classList.remove('visible');
-        document.getElementById("manichino-donna").style.backgroundImage = "url('manichinoDonna.png')";
-        varGlobDonna = true;
-        spostaTuttoASinistra();
-
-    });
-
-    document.getElementById("btn-uomo").addEventListener("click", function () {
-        document.getElementById("istruzioni").style.display = "block";
-        areaUomo.style.display = "flex";
-        areaDonna.style.display = "none";
-        areaUomo.classList.add('visible');
-        areaDonna.classList.remove('visible');
-        document.getElementById("manichino-uomo").style.backgroundImage = "url('manichinoUomo.png')";
-        varGlobDonna = false;
-        spostaTuttoASinistra();
-    
-    });
-
-    function changeMannequinColor(color) {
-        const manichinoUomo = document.getElementById('manichinoUomo');
-        const manichinoDonna = document.getElementById('manichinoDonna');
-
-        if (manichinoUomo && manichinoUomo.style.display !== 'none') {
-        manichinoUomo.src = `manichinoUomo${(color)}.png`;
-        } else if (manichinoDonna && manichinoDonna.style.display !== 'none') {
-        manichinoDonna.src = `manichinoDonna${(color)}.png`;
-        }
-    }
-
-    function allowDrop(ev) {
-        ev.preventDefault();
-    }
-
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-        ev.dataTransfer.setData("isClone", "false");
-        // quando faccio dragstart, viene salvato l’id e un flag "isClone": false
-    }
-
-    function dragIndumento(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-        ev.dataTransfer.setData("isClone", "true");
-    }
-
-    function drop(ev) {
-        ev.preventDefault();
-        const data = ev.dataTransfer.getData("text");
-        const isClone = ev.dataTransfer.getData("isClone") === "true";
-        const draggedElement = document.getElementById(data); // elemento originale o clone
-
-        
-        let manichino = null;
-        if (varGlobDonna) {
-        manichino = document.getElementById("manichino-donna");
-        } else {
-        manichino = document.getElementById("manichino-uomo");
-        }
-
-        // Se clone e drop fuori da una zona valida → rimuovi e ripristina originale
-        const rectManichino = manichino.getBoundingClientRect(); // restituisce un oggetto che contiene le dimensioni del manichino
-        if (
-        ev.clientX < rectManichino.left ||
-        ev.clientX > rectManichino.right ||
-        ev.clientY < rectManichino.top ||
-        ev.clientY > rectManichino.bottom
-        ) {
-        // Se è un clone o comunque è stato rilasciato fuori, va rimosso
-        const originalId = data.replace("-clone", "");
-        const original = document.getElementById(originalId);
-
-        // Rendi di nuovo selezionabile l'originale
-        if (original) {
-            original.setAttribute("draggable", "true");
-            original.style.opacity = "1";
-            original.style.cursor = "grab";
-        }
-
-        // Se è un clone, lo eliminiamo (non tocchiamo gli originali)
-        if (isClone) {
-            draggedElement.remove();
-        }
-
-        return;
-        }
-
-        
-        // quando rilascio l'elemento sul manichino
-        // Se sto manipolando un clone, original sarà l'elemento originale da cui il clone è stato creato (rimuove il suffisso -clone dall'elemento clonato, ritornando l'originale)
-        // Se sto manipolando un originale, original sarà l'elemento stesso che sto trascinando.
-
-        const original = isClone ? document.getElementById(data.replace("-clone", "")) : draggedElement;
-        const clone = draggedElement.cloneNode(true); // se non è ancora un clone, qui clona l'elemento originale
-        clone.classList.add('indumento');
-        clone.setAttribute("id", original.id + "-clone");
-        clone.setAttribute("draggable", "true");
-        clone.addEventListener("dragstart", dragIndumento);
-        clone.style.cursor = "grab";
-
-
-        const src = original.src;
-        const zonaNome = original.dataset.zona;
-        let zona = null;
-
-        if (zonaNome === "busto") {
-        zona = varGlobDonna ? document.getElementById('zona-busto-donna') : document.getElementById('zona-busto');
-        } else if (zonaNome === "testa") {
-        zona = varGlobDonna ? document.getElementById('zona-testa-donna') : document.getElementById('zona-testa');
-        } else if (zonaNome === "over-busto") {
-        zona = varGlobDonna ? document.getElementById('zona-over-busto-donna') : document.getElementById('zona-over-busto');
-        } else if (zonaNome === "gambe") {
-        zona = varGlobDonna ? document.getElementById('zona-gambe-donna') : document.getElementById('zona-gambe');
-        } else if (zonaNome === "piedi") {
-        zona = varGlobDonna ? document.getElementById('zona-piedi-donna') : document.getElementById('zona-piedi');
-        } else if (zonaNome === "orologio") {
-        zona = document.getElementById('zona-orologio');
-        } 
-
-        // si occupa di evitare sovrapposizioni e sostituire un indumento esistente nella stessa zona
-        if (zonaNome) {
-        const esistenti = manichino.querySelectorAll(`.indumento[data-zona="${zonaNome}"]`);
-        esistenti.forEach(el => {
-            el.remove();
-
-            // Ripristina l'elemento originale nella lista vestiti
-            const originalId = el.id.replace("-clone", "");
-            const original = document.getElementById(originalId);
-            if (original) {
-            original.setAttribute("draggable", "true");
-            original.style.opacity = "1";
-            original.style.cursor = "grab";
-            }
-        });
-        }
-
-        clone.setAttribute("data-zona", zonaNome);
-
-        let zIndex = 1;
-        if (zonaNome === "over-busto") {
-        zIndex = 3;
-        } else if (zonaNome === "busto") {
-        zIndex = 2;
-        } else if (zonaNome === "gambe") {
-        zIndex = 1;
-        } else if (zonaNome === "piedi"){
-        zIndex = 0;
-        } else {
-        zIndex = 4;
-        }
-        clone.style.zIndex = zIndex;
-
-    if (zona) {
-        const x = zona.offsetLeft + (zona.offsetWidth / 2) - (manichino.offsetWidth * 0.45);  // centrato orizzontalmente
-        const y = zona.offsetTop;
-
-        let percentX = (x / manichino.offsetWidth) * 100;
-        let percentY = (y / manichino.offsetHeight) * 100;
-
-        clone.style.position = 'absolute';
-        clone.style.width = '90%';
-        clone.style.height = 'auto';
-        
-        clone.style.top = `${percentY}%`;
-        let offsetX = 0;
-
-        if (varGlobDonna) {
-        offsetX = -10; //da regolare
-        clone.style.left = `${percentX + offsetX}%`;
-        
-        } else {
-        offsetX = 2;
-        clone.style.left = `${percentX + offsetX}%`;
-        
-        }
-
-        manichino.appendChild(clone);
-
-
-    } else {
-        clone.style.visibility = 'hidden';
-        document.body.appendChild(clone);
-
-        const cloneRect = clone.getBoundingClientRect();
-        const manichinoRect = manichino.getBoundingClientRect();
-        const x = ev.clientX - manichinoRect.left - cloneRect.width / 2;
-        const y = ev.clientY - manichinoRect.top - cloneRect.height / 2;
-
-        const percentX = (x / manichino.offsetWidth) * 100;
-        const percentY = (y / manichino.offsetHeight) * 100;
-
-        clone.style.left = `${percentX}%`;
-        clone.style.top = `${percentY}%`;
-        clone.style.visibility = 'visible';
-
-        let offsetX = 0;
-        
-        if (varGlobDonna) {
-        offsetX = -10; //da regolare
-        clone.style.left = `${percentX + offsetX}%`;
-        
-        } else {
-        offsetX = 2;
-        clone.style.left = `${percentX + offsetX}%`;
-        
-        }
-        document.body.removeChild(clone);
-
-        clone.style.position = 'absolute';
-        clone.style.width = '29%';
-        clone.style.height = 'auto';
-
-        manichino.appendChild(clone);
-    }
-
-
-
-        // Se l'elemento è un originale, lo rendiamo non più trascinabile e opaco
-    if (!isClone) {
-        original.setAttribute("draggable", "false");
-        original.style.opacity = "0.4";
-        original.style.cursor = "not-allowed";
-    }
-    
-    }
-
-    document.querySelectorAll(".manichino").forEach(manichino => {
-        manichino.addEventListener("click", function (event) {
-        if (event.target.classList.contains('indumento')) {
-        const cloneId = event.target.id;
-        const originalId = cloneId.replace("-clone", "");
-        const original = document.getElementById(originalId);
-
-        if (original) {
-            original.setAttribute("draggable", "true");
-            original.style.opacity = "1";
-            original.style.cursor = "grab";
-            
-        }
-
-        event.target.remove();
-        }
-        });
-    });
-
-    function dropInCestino(ev) {
-        ev.preventDefault();
-        const data = ev.dataTransfer.getData("text");
-        const isClone = ev.dataTransfer.getData("isClone") === "true";
-
-        if (isClone) {
-        const clone = document.getElementById(data);
-        const originalId = data.replace("-clone", "");
-        const original = document.getElementById(originalId);
-
-        if (original) {
-            original.setAttribute("draggable", "true");
-            original.style.opacity = "1";
-            original.style.cursor = "grab";
-        }
-
-        if (clone) {
-            clone.remove();
-        }
-        }
-    }
-
-    function handleColorChange(color, elementId) {
-        const originalElement = document.getElementById(elementId);
-        const cloneElement = document.getElementById(elementId + '-clone');
-
-        // Salva le dimensioni e la posizione del clone (se esiste)
-        let cloneDimensions = null;
-        if (cloneElement) {
-        cloneDimensions = {
-            width: cloneElement.style.width,
-            position: cloneElement.style.position,
-            left: cloneElement.style.left,
-            top: cloneElement.style.top,
-            zIndex: cloneElement.style.zIndex,
-            dataZona: cloneElement.getAttribute('data-zona')
-        };
-        }
-
-        // Salva l'immagine originale solo la prima volta
-        if (!originalElement.getAttribute('data-original-src')) {
-        originalElement.setAttribute('data-original-src', originalElement.src);
-        }
-
-        const originalSrc = originalElement.getAttribute('data-original-src');
-
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const img = new Image();
-
-        img.onload = function() {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
-
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const data = imageData.data;
-
-        const r = parseInt(color.substr(1, 2), 16) / 255;
-        const g = parseInt(color.substr(3, 2), 16) / 255;
-        const b = parseInt(color.substr(5, 2), 16) / 255;
-
-        const max = Math.max(r, g, b);
-        const min = Math.min(r, g, b);
-        let h, s, l = (max + min) / 2;
-
-        if (max === min) {
-            h = s = 0;
-        } else {
-            const d = max - min;
-            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-            switch (max) {
-            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-            case g: h = (b - r) / d + 2; break;
-            case b: h = (r - g) / d + 4; break;
-            }
-            h /= 6;
-        }
-
-        for (let i = 0; i < data.length; i += 4) {
-            if (data[i + 3] > 0) {
-            const originalR = data[i] / 255;
-            const originalG = data[i + 1] / 255;
-            const originalB = data[i + 2] / 255;
-
-            const originalBrightness = (originalR + originalG + originalB) / 3;
-            const brightnessFactor = originalBrightness / 0.5;
-
-            let r1, g1, b1;
-
-            if (s === 0) {
-                r1 = g1 = b1 = l;
-            } else {
-                const hue2rgb = (p, q, t) => {
-                if (t < 0) t += 1;
-                if (t > 1) t -= 1;
-                if (t < 1 / 6) return p + (q - p) * 6 * t;
-                if (t < 1 / 2) return q;
-                if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-                return p;
-                };
-
-                const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-                const p = 2 * l - q;
-
-                r1 = hue2rgb(p, q, h + 1 / 3);
-                g1 = hue2rgb(p, q, h);
-                b1 = hue2rgb(p, q, h - 1 / 3);
-            }
-
-            data[i] = Math.min(1, r1 * brightnessFactor) * 255;
-            data[i + 1] = Math.min(1, g1 * brightnessFactor) * 255;
-            data[i + 2] = Math.min(1, b1 * brightnessFactor) * 255;
-            }
-        }
-
-        ctx.putImageData(imageData, 0, 0);
-        const newImageUrl = canvas.toDataURL();
-
-        // Applica la nuova immagine colorata
-        originalElement.src = newImageUrl;
-
-        if (cloneElement && cloneDimensions) {
-            cloneElement.src = newImageUrl;
-            cloneElement.style.width = cloneDimensions.width;
-            cloneElement.style.position = cloneDimensions.position;
-            cloneElement.style.left = cloneDimensions.left;
-            cloneElement.style.top = cloneDimensions.top;
-            cloneElement.style.zIndex = cloneDimensions.zIndex;
-            cloneElement.setAttribute('data-zona', cloneDimensions.dataZona);
-
-            // Mantieni l'ID del clone
-            cloneElement.setAttribute('id', elementId + '-clone');
-        }
-
-        originalElement.setAttribute('draggable', 'true');
-        if (cloneElement) {
-            cloneElement.setAttribute('draggable', 'true');
-        }
-        };
-
-        img.src = originalSrc;
-    }
-
-    // per ogni vestito
-    document.querySelectorAll('.vestito').forEach(item => {
-        item.addEventListener('click', function(e) {
-        e.stopPropagation(); // evita che il click venga "propagato" ad altri elementi
-        const colorPalette = document.getElementById('colorPalette');
-        colorPalette.style.display = 'block';
-        colorPalette.dataset.currentElement = this.id;
-        });
-    });
-
-    // per ogni colore nella palette
-    document.querySelectorAll('.color-option').forEach(option => {
-        option.addEventListener('click', function() {
-        const color = this.dataset.color;
-        const elementId = document.getElementById('colorPalette').dataset.currentElement;
-        handleColorChange(color, elementId);
-        document.getElementById('colorPalette').style.display = 'none';
-        });
-    });
-
-    // per chiudere la palette se clicchi 'chiudi'
-    document.getElementById('closePalette').addEventListener('click', function() {
-        document.getElementById('colorPalette').style.display = 'none';
-    });
-
-    // per chiudere la palette se clicchi fuori
-    document.addEventListener('click', function(e) {
-        const colorPalette = document.getElementById('colorPalette');
-        if (!colorPalette.contains(e.target) && e.target.classList.contains('vestito') === false) {
-        colorPalette.style.display = 'none';
-        }
-    });
-
-    const carouselIndices = {};
-
-    function scrollCarousel(carouselId, direction) {
-        const carouselContainer = document.getElementById(carouselId);
-
-        const visibleItems = parseInt(carouselContainer.getAttribute('data-visible')) || 1;
-
-        const carousel = carouselContainer.querySelector('.carousel');
-
-        const items = carousel.querySelectorAll('.vestito');
-        const itemWidth = 190; // larghezza + margine
-        const totalItems = items.length;
-        const maxIndex = Math.max(0, totalItems - visibleItems);
-
-        if (!(carouselId in carouselIndices)) {
-        carouselIndices[carouselId] = 0;
-        }
-
-        carouselIndices[carouselId] += direction;
-
-        if (carouselIndices[carouselId] < 0) {
-        carouselIndices[carouselId] = 0;
-        }
-        if (carouselIndices[carouselId] > maxIndex) {
-        carouselIndices[carouselId] = maxIndex;
-        }
-
-        const offset = carouselIndices[carouselId] * itemWidth;
-        carousel.style.transform = `translateX(-${offset}px)`;
-
-        console.log(`Carosello ${carouselId}: visibili ${visibleItems}, indice ${carouselIndices[carouselId]}`);
-    }
-
-    function cambiaColoreManichino(genere, colore) {
-        const manichino = document.getElementById(`manichino-${genere}`);
-
-
-        if(genere === 'uomo'){
-        if (colore === 'rosa'){
-            manichino.style.backgroundImage = "url('manichinoUomoRosa.png')";
-        } else if (colore === 'marrone'){
-            manichino.style.backgroundImage = "url('manichinoUomoMarrone.png')";
-        } else if (colore === 'nero'){
-            manichino.style.backgroundImage = "url('manichinoUomoNero.png')";
-        }
-        } else if(genere === 'donna'){
-            if (colore === 'rosa'){
-                manichino.style.backgroundImage = "url('manichinoDonnaRosa.png')";
-            } else if (colore === 'marrone'){
-                manichino.style.backgroundImage = "url('manichinoDonnaMarrone.png')";
-            } else if (colore === 'nero'){
-                manichino.style.backgroundImage = "url('manichinoDonnaNero.png')";
-            }
-        }
-    }
-  </script>
+<script src="camerino.js"></script>
 </body>
 </html>
