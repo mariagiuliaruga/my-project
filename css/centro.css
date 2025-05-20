@@ -14,7 +14,6 @@
     padding-top: 15vh;
 }
 
-
 .centro {
     display: flex;
     flex-direction: row;
@@ -52,7 +51,6 @@
     margin: 0 !important;
     padding: 0 !important;
 }
-
 
 .container.invisible {
     display: none;
@@ -137,7 +135,6 @@
     box-shadow: 0 2vh 1vh rgba(106, 17, 203, 0.4) !important;
 }
 
-
 .text-content {
     max-width: 800px;
     width: 90%;
@@ -178,9 +175,8 @@
 
 .description {
     font-family: 'Montserrat', sans-serif;
-  }
+}
   
-
 .quiz-button {
     font-size: clamp(0.8rem, 1.5vw, 1.2rem);
     font-weight: bold;
@@ -436,8 +432,6 @@
     gap: 1.5vw;
 }/* Stili per il form di modifica profilo */
 
-
-
 .profile-edit-overlay{
     position: fixed;
     top: 0;
@@ -448,7 +442,6 @@
     z-index:1000;
     display: none;
 }
-
 
 .form-group {
     margin-bottom: 1.5vw;
@@ -587,7 +580,6 @@
   background-color: #a11515;
 }
 
-
 .about-container {
     position: fixed;
     top: 0;
@@ -634,7 +626,6 @@
     margin-right: auto;
 }
 
-
 .about-content .close-button {
     background-color: #f0f0f0;
     color: #333;
@@ -653,3 +644,79 @@
     }
 }
 
+.alert-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  transform: translateX(-50%);
+  background-color: #ffffffdf;
+  color: #900;
+  padding: 25px 35px;
+  border: 1px solid #900;
+  border-radius: 8px;
+  font-size: 2em;
+  z-index: 1004;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.alert-box.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#reload-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid red;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+#reload-modal p {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+#reload-modal button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#reload-modal #confirm-reload {
+  background-color: #e74c3c; /* rosso */
+  color: white;
+}
+
+#reload-modal #confirm-reload:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+#reload-modal #cancel-reload {
+  background-color: #bdc3c7; /* grigio */
+  color: white;
+}
+
+#reload-modal #cancel-reload:hover {
+  background-color: #95a5a6;
+  transform: scale(1.05);
+}

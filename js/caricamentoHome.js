@@ -16,3 +16,12 @@ document.querySelector('.explore-link').addEventListener('click', function(e){
 });
 
 // funziona solo se scritto in questo punto. serve per far caricare l'area stili dall'alto
+
+window.showAlert = function(message) {
+    const alertBox = document.getElementById('alert-box');
+    alertBox.textContent = message;
+    alertBox.classList.remove('hidden');
+    setTimeout(() => {
+        alertBox.classList.add('hidden');
+    }, 3000);
+};

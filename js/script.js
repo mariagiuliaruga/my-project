@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
             areaStili.classList.remove('visible');
         }
     }
-    
 
     function handleBackToHome() {
         container.classList.remove('invisible');
@@ -106,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const loginPanel = document.querySelector('.login-panel');
             loginPanel.classList.add('visible');
             if (quizContainer) quizContainer.classList.remove('visible');
+            showAlert("⚠️" + "Prima ti devi loggare!");
         }
     }
     
@@ -146,6 +146,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 registerPanel.querySelectorAll('input').forEach(input => input.value = '');
             }
         });
+    });
+
+    document.addEventListener("keydown", function (e) {
+        if (!isLoggedIn) return; // esce subito se non sei loggato
+
+        // Ctrl+R o F5
+        if ((e.key === "r" && e.ctrlKey) || e.key === "F5") {
+            e.preventDefault(); // blocca il comportamento predefinito
+            document.getElementById("reload-modal").style.display = "block";
+        }
+    });
+
+    document.getElementById("confirm-reload").addEventListener("click", function () {
+        location.reload(); // ricarica la pagina
+    });
+
+    document.getElementById("cancel-reload").addEventListener("click", function () {
+        document.getElementById("reload-modal").style.display = "none";
     });
 
     // Login con fetch
@@ -400,8 +418,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
        
-    
-
     const menuButton = document.querySelector('.bottone');
     if (menuButton) {
         menuButton.removeEventListener('click', function() {}); // Assicurati di rimuovere l'eventuale listener precedente
@@ -442,11 +458,6 @@ document.addEventListener('DOMContentLoaded', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    window.addEventListener('beforeunload', (event) =>{
-        if (isLoggedIn) {
-            event.preventDefault();
-        }
-    });
 
     }
 

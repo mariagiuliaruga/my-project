@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const input = questionElement.querySelector('input[type="number"]');
                 const age = parseInt(input.value);
                 if (isNaN(age) || age < 1 || age > 100) {
-                    alert('Per favore inserisci un\'età valida tra 1 e 100 anni');
+                    showAlert('Inserisci un\'età valida tra 1 e 100 anni!');
                     return false;
                 }
             }
