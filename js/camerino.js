@@ -500,19 +500,19 @@ function changeMannequinColor(genere, colore) {
 
     if(genere === 'uomo'){
     if (colore === 'rosa'){
-        manichino.style.backgroundImage = "url('manichinoUomoRosa.png')";
+        manichino.style.backgroundImage = "url('media/manichino/manichinoUomo/manichinoUomoRosa.png')";
     } else if (colore === 'marrone'){
-        manichino.style.backgroundImage = "url('manichinoUomoMarrone.png')";
+        manichino.style.backgroundImage = "url('media/manichino/manichinoUomo/manichinoUomoMarrone.png')";
     } else if (colore === 'nero'){
-        manichino.style.backgroundImage = "url('manichinoUomoNero.png')";
+        manichino.style.backgroundImage = "url('media/manichino/manichinoUomo/manichinoUomoNero.png')";
     }
     } else if(genere === 'donna'){
         if (colore === 'rosa'){
-            manichino.style.backgroundImage = "url('manichinoDonnaRosa.png')";
+            manichino.style.backgroundImage = "url('media/manichino/manichinoDonna/manichinoDonnaRosa.png')";
         } else if (colore === 'marrone'){
-            manichino.style.backgroundImage = "url('manichinoDonnaMarrone.png')";
+            manichino.style.backgroundImage = "url('media/manichino/manichinoDonna/manichinoDonnaMarrone.png')";
         } else if (colore === 'nero'){
-            manichino.style.backgroundImage = "url('manichinoDonnaNero.png')";
+            manichino.style.backgroundImage = "url('media/manichino/manichinoDonna/manichinoDonnaNero.png')";
         }
     }
 }
@@ -578,7 +578,7 @@ document.querySelectorAll(".genere-img").forEach(btn => {
             areaUomo.style.display = "none";
             areaDonna.classList.add('visible');
             areaUomo.classList.remove('visible');
-            document.getElementById("manichino-donna").style.backgroundImage = "url('manichinoDonna.png')";
+            document.getElementById("manichino-donna").style.backgroundImage = "url('media/manichino/manichinoDonna/manichinoDonna.png')";
             varGlobDonna = true;
             moveLeft();
             document.getElementById('container-stili-donna').style.display = "flex";
@@ -590,7 +590,7 @@ document.querySelectorAll(".genere-img").forEach(btn => {
             areaDonna.style.display = "none";
             areaUomo.classList.add('visible');
             areaDonna.classList.remove('visible');
-            document.getElementById("manichino-uomo").style.backgroundImage = "url('manichinoUomo.png')";
+            document.getElementById("manichino-uomo").style.backgroundImage = "url('media/manichino/manichinoUomo/manichinoUomo.png')";
             varGlobDonna = false;
             moveLeft();
             document.getElementById('container-stili-uomo').style.display = "flex";
