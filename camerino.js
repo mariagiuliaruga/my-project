@@ -7,6 +7,9 @@
     document.getElementById('container-stili-donna').style.display = 'none';
     document.getElementById('container-stili-uomo').style.display = 'none';
 
+    const cestino = document.getElementById('cestino');
+    const istruzioniScritta = document.getElementById('istruzioni');
+
     let varGlobDonna = true;
     let spostato = false;
 
@@ -75,6 +78,9 @@
         btnUomo.style.transition = "transform 0.3s ease";
         btnDonna.style.transition = "transform 0.3s ease";
 
+        btnDonna.classList.add("btn-mini");
+        btnUomo.classList.add("btn-mini");
+    
         wrapper.style.transform = "translateY(-15vh)";
         wrapper.style.transition = "transform 0.3s ease";
 
@@ -83,14 +89,6 @@
 
         document.querySelector(".container-camerino").style.transform = "translateY(-450px)";
         document.querySelector(".container-camerino").style.transition = "transform 0.3s ease";
-
-        btnDonna.addEventListener('click',  function () {
-            window.location.href = 'camerino.html';
-        });
-
-        btnUomo.addEventListener('click',  function () {
-            window.location.href = 'camerino.html';
-        });
     }
 
     function moveRight() {
@@ -105,6 +103,9 @@
         btnUomo.style.transition = "transform 0.3s ease";
         btnDonna.style.transition = "transform 0.3s ease";
 
+        btnDonna.classList.remove("btn-mini");
+        btnUomo.classList.remove("btn-mini");
+
         wrapper.style.transform = "translateY(0)";
         wrapper.style.transition = "transform 0.3s ease";
 
@@ -116,11 +117,7 @@
 
         document.querySelector(".container-camerino").style.transform = "translateY(0)";
         document.querySelector(".container-camerino").style.transition = "transform 0.3s ease";
-
-        // Nasconde i contenitori degli stili
-        document.querySelector('container-stili').style.display = "none";
     }
-
 
     function allowDrop(ev) {
         ev.preventDefault(); //per dire "qui è permesso fare il drop"
@@ -562,43 +559,47 @@
         });
     }
     
-    document.getElementById("btn-donna").addEventListener("click", function () {
-        document.getElementById("istruzioni").style.display = "block";
-        areaDonna.style.display = "flex";
-        areaUomo.style.display = "none";
-        areaDonna.classList.add('visible');
-        areaUomo.classList.remove('visible');
-        document.getElementById("manichino-donna").style.backgroundImage = "url('manichinoDonna.png')";
-        varGlobDonna = true;
-        if (!spostato) {
-            moveLeft();
-            spostato = true;
-        } else {
-            moveRight();
-            spostato = false;
-        }
-        document.getElementById('container-stili-donna').style.display = "flex";
-        document.getElementById('container-stili-uomo').style.display = "none";
+    document.querySelectorAll(".genere-img").forEach(btn => {
+        btn.addEventListener("click", function () {
+            const isMini = this.classList.contains("btn-mini");
+
+            if (isMini) {
+                // Se è mini, torna alla schermata iniziale
+                document.querySelector('.container-stili').style.display = "none";
+                document.getElementById('container-stili-uomo').style.display = "none";
+                document.getElementById('container-stili-donna').style.display = "none";
+                istruzioniScritta.style.display = 'none';
+                cestino.style.display = 'none';
+                moveRight();
+            } else if (this.id === "btn-donna") {
+                // Se è la donna in grande
+                document.getElementById("istruzioni").style.display = "block";
+                areaDonna.style.display = "flex";
+                areaUomo.style.display = "none";
+                areaDonna.classList.add('visible');
+                areaUomo.classList.remove('visible');
+                document.getElementById("manichino-donna").style.backgroundImage = "url('manichinoDonna.png')";
+                varGlobDonna = true;
+                moveLeft();
+                document.getElementById('container-stili-donna').style.display = "flex";
+                document.getElementById('container-stili-uomo').style.display = "none";
+            } else if (this.id === "btn-uomo") {
+                // Se è l'uomo in grande
+                document.getElementById("istruzioni").style.display = "block";
+                areaUomo.style.display = "flex";
+                areaDonna.style.display = "none";
+                areaUomo.classList.add('visible');
+                areaDonna.classList.remove('visible');
+                document.getElementById("manichino-uomo").style.backgroundImage = "url('manichinoUomo.png')";
+                varGlobDonna = false;
+                moveLeft();
+                document.getElementById('container-stili-uomo').style.display = "flex";
+                document.getElementById('container-stili-donna').style.display = "none";
+            }
+        });
     });
 
-    document.getElementById("btn-uomo").addEventListener("click", function () {
-        document.getElementById("istruzioni").style.display = "block";
-        areaUomo.style.display = "flex";
-        areaDonna.style.display = "none";
-        areaUomo.classList.add('visible');
-        areaDonna.classList.remove('visible');
-        document.getElementById("manichino-uomo").style.backgroundImage = "url('manichinoUomo.png')";
-        varGlobDonna = false;
-        if (!spostato) {
-            moveLeft();
-            spostato = true;
-        } else {
-            moveRight();
-            spostato = false;
-        }
-        document.getElementById('container-stili-uomo').style.display = "flex";
-        document.getElementById('container-stili-donna').style.display = "none";
-    });
+
 
     document.querySelectorAll(".manichino").forEach(manichino => {
         // per togliere gli indumenti dal manichino SOLO al doppio click
@@ -678,8 +679,6 @@
             scrollCarousel(carouselId, -1);
         });
     });
-
-    const cestino = document.getElementById('cestino');
 
     cestino.addEventListener('dragover', allowDrop);
     cestino.addEventListener('drop', throwInTheTrash);
