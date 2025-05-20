@@ -737,3 +737,55 @@
         btnDonna.addEventListener('click', openPopup);
         closeBtn.addEventListener('click', closePopup);
     });
+
+    
+    document.querySelector("#scaricaOutfitUomo input[type='checkbox']").addEventListener("click", function(event) {
+        event.preventDefault();
+        const manichino = document.getElementById("manichino-uomo");
+        const bookmark = document.getElementById("scaricaOutfitUomo");
+        const checkbox = this;
+      
+        checkbox.checked = true;
+        bookmark.style.display = "none";
+      
+        html2canvas(manichino, { backgroundColor: null }).then(function(canvas) {
+          const link = document.createElement("a");
+          link.href = canvas.toDataURL("image/png");
+          link.download = "outfit-uomo.png";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+      
+          bookmark.style.display = "flex";
+      
+          setTimeout(() => {
+            checkbox.checked = false;
+          }, 3000);
+        });
+      });
+      
+      document.querySelector("#scaricaOutfitDonna input[type='checkbox']").addEventListener("click", function(event) {
+        event.preventDefault();
+        const manichino = document.getElementById("manichino-donna");
+        const bookmark = document.getElementById("scaricaOutfitDonna");
+        const checkbox = this;
+      
+        checkbox.checked = true;
+        bookmark.style.display = "none";
+      
+        html2canvas(manichino, { backgroundColor: null }).then(function(canvas) {
+          const link = document.createElement("a");
+          link.href = canvas.toDataURL("image/png");
+          link.download = "outfit-donna.png";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+      
+          bookmark.style.display = "flex";
+      
+          setTimeout(() => {
+            checkbox.checked = false;
+          }, 3000);
+        });
+      });
+      
