@@ -463,6 +463,7 @@ document.addEventListener('DOMContentLoaded', function () {
         linkUomo.classList.add("active");
         linkDonna.classList.remove("active");
     });
+    
     //rendere visibile il moodboard corrispondente allo stile dell'utente
     const stili = document.querySelectorAll('.stile');
     stili.forEach(stile => stile.style.display = 'block');

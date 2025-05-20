@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeButton = document.querySelector('.quiz-close-button');
     
     
+    
         //event listener per il pulsante di chiusura
         if (closeButton) {
             closeButton.addEventListener('click', function() {
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     
     
-        //Domande iniziali 
+        //Domande iniziali (genere e età)
         const sondaggioIniziale = [
             {
                 domanda: "Sei un uomo o una donna?",
@@ -200,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         let currentQuestion = 0;
         let answers = {};
-        let currentSondaggio = [...sondaggioIniziale, ...sondaggioDonna]; // Inizialmente usa le domande per donne
+        let currentSondaggio = [...sondaggioIniziale, ...sondaggioDonna];
     
         // Funzione per mostrare la domanda corrente
         function showQuestion(index) {
@@ -391,27 +392,28 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('stileSelezionato', risultato.stileVincente);
         
             const resultContent = `
-                <div class="quiz-result">
-                    <h2>Il tuo stile è: ${risultato.stileVincente}</h2>
-                    <div class="style-description">
-                        ${getStyleDescription(risultato.stileVincente)}
-                    </div>
-                    <div class="style-scores">
-                        <h3>Punteggi per ogni stile:</h3>
-                        ${Object.entries(risultato.punteggi)
-                            .map(([stile, punteggio]) => `
-                                <div class="style-score">
-                                    <span>${stile}:</span>
-                                    <div class="score-bar">
-                                        <div class="score-fill" style="width: ${(punteggio / risultato.punteggioMassimo) * 100}%"></div>
-                                    </div>
-                                    <span>${punteggio}</span>
-                                </div>
-                            `).join('')}
-                    </div>
-                    <button id="scopriStileButton" class="scopri-stile-button">Scopri di più sul tuo stile</button>
+            <div class="quiz-result">
+                <h2>Il tuo stile è: ${risultato.stileVincente}</h2>
+                <div class="style-description">
+                    ${getStyleDescription(risultato.stileVincente)}
                 </div>
-            `;
+                <div class="style-scores">                    <h3>Punteggi per ogni stile:</h3>
+                    ${Object.entries(risultato.punteggi).map(([stile, punteggio]) => {
+                        const percentuale = ((punteggio / 10.1) * 100).toFixed(2);
+                        return `
+                            <div class="style-score">
+                                <span>${stile}:</span>
+                                <div class="score-bar">
+                                    <div class="score-fill" style="width: ${percentuale}%"></div>
+                                </div>
+                                <span>${percentuale}%</span>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+                <button id="scopriStileButton" class="scopri-stile-button">Scopri il tuo stile</button>
+            </div>
+        `;
         
             const questionElement = document.querySelector('.quiz-domanda');
             if (questionElement) {
@@ -707,6 +709,11 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
 
+        const pesiDomande = {
+            2: 1.6,   // Domanda 1 (indice 2)
+            9: 1.5   // Domanda 8 (indice 9)
+        };
+        
         // Funzione per calcolare lo stile
         function calcolaStile(answers) {
             console.log('Risposte ricevute:', answers);
@@ -733,15 +740,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 console.log(`Processando risposta ${questionIndex}:`, answer);
 
+                const peso = pesiDomande[questionIndex] || 1;
+
                 if (genere === "Uomo" && mappaStiliUomo[answer]) {
                     const stile = mappaStiliUomo[answer];
-                    stiliUomo[stile]++;
-                    console.log(`Aggiunto punto per stile ${stile} (Uomo)`);
+                    stiliUomo[stile] += peso;
+                    console.log(`Aggiunti ${peso} punti per stile ${stile} (Uomo)`);
                 } else if (genere === "Donna" && mappaStiliDonna[answer]) {
                     const stile = mappaStiliDonna[answer];
-                    stiliDonna[stile]++;
-                    console.log(`Aggiunto punto per stile ${stile} (Donna)`);
+                    stiliDonna[stile] += peso;
+                    console.log(`Aggiunti ${peso} punti per stile ${stile} (Donna)`);
                 }
+
             });
 
             console.log('Punteggi finali - Donna:', stiliDonna);
@@ -768,29 +778,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 punteggi: { ...stiliCorrenti }
             };
         }
-
-
-        const resultContent = `
-            <div class="quiz-result">
-                <h2>Il tuo stile è: ${risultato.stileVincente}</h2>
-                <div class="style-description">
-                    ${getStyleDescription(risultato.stileVincente)}
-                </div>
-                <div class="style-scores">
-                    <h3>Punteggi per ogni stile:</h3>
-                    ${Object.entries(risultato.punteggi)
-                        .map(([stile, punteggio]) => `
-                            <div class="style-score">
-                                <span>${stile}:</span>
-                                <div class="score-bar">
-                                    <div class="score-fill" style="width: ${(punteggio / risultato.punteggioMassimo) * 100}%"></div>
-                                </div>
-                                <span>${punteggio}</span>
-                            </div>
-                        `).join('')}
-                </div>
-                <button id="scopriStileButton" class="scopri-stile-button">Scopri il tuo stile</button>
-            </div>
-        `;
 
     });
