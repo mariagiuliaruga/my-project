@@ -195,3 +195,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (areaPersonale) areaPersonale.style.display = 'block';
     });
 }); 
+
+document.addEventListener('DOMContentLoaded', function () {
+    const emailInput = document.getElementById('email');
+    if (emailInput) {
+        emailInput.readOnly = true;
+    }
+});
