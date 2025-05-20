@@ -8,11 +8,12 @@
     document.getElementById('container-stili-uomo').style.display = 'none';
 
     let varGlobDonna = true;
+    let spostato = false;
 
     const vestitiPerStile = {
     oldMoney: [
         'camicia', 'camicetta', 'maglia', 'maglia-lanetta', 'mocassini', 'scarpe-bianche', 'stivaletti-marroni', 'pantaloni-lino',
-        'giacca-pelle', 'felpa-ralph', 'orologio', 'cappello-polo', 'skinny', 'pantaloni-neri', 'giacca-elegante'
+         'felpa-ralph', 'orologio', 'cappello-polo', 'skinny', 'pantaloni-neri', 'giacca-elegante'
     ],
     casual: [
         'maglia', 'jeans', 'maglia-lanetta', 'scarpe-bianche', 'cappello-polo', 'stivaletti-marroni', 'orologio', 'cargo', 'camicetta',
@@ -57,7 +58,7 @@
     ],
     sportyWomen: [
         'maglia-gialla', 'maglia-rossa', 'campus-donna', 'scarpe-bianche-donna', 'gonna-jeans-sporty', 'jeans-grigi-donna',
-        'pantaloncini-blu', 'pantaloncini-jeans', 'jeans-donna', 'top-verde', 'pantaloncino-verde', 'giubbotto-pelle'
+        'pantaloncini-blu', 'pantaloncini-jeans', 'jeans-donna', 'top-verde', 'pantaloncino-verde', 'giubbotto-pelle', 'pantalone-tuta'
     ]
     };
     
@@ -82,7 +83,44 @@
 
         document.querySelector(".container-camerino").style.transform = "translateY(-450px)";
         document.querySelector(".container-camerino").style.transition = "transform 0.3s ease";
+
+        btnDonna.addEventListener('click',  function () {
+            window.location.href = 'camerino.html';
+        });
+
+        btnUomo.addEventListener('click',  function () {
+            window.location.href = 'camerino.html';
+        });
     }
+
+    function moveRight() {
+        const wrapper = document.querySelector('.wrapper');
+        const scritta = document.querySelector('.scritta-camerino');
+        const btnUomo = document.getElementById("btn-uomo");
+        const btnDonna = document.getElementById("btn-donna");
+
+        btnDonna.style.transform = "translate(0, 0) scale(1)";
+        btnUomo.style.transform = "translate(0, 0) scale(1)";
+
+        btnUomo.style.transition = "transform 0.3s ease";
+        btnDonna.style.transition = "transform 0.3s ease";
+
+        wrapper.style.transform = "translateY(0)";
+        wrapper.style.transition = "transform 0.3s ease";
+
+        scritta.style.transform = "translateX(0) translateY(0) scale(1)";
+        scritta.style.transition = "transform 0.3s ease";
+
+        areaDonna.style.display = "none";
+        areaUomo.style.display = "none";
+
+        document.querySelector(".container-camerino").style.transform = "translateY(0)";
+        document.querySelector(".container-camerino").style.transition = "transform 0.3s ease";
+
+        // Nasconde i contenitori degli stili
+        document.querySelector('container-stili').style.display = "none";
+    }
+
 
     function allowDrop(ev) {
         ev.preventDefault(); //per dire "qui è permesso fare il drop"
@@ -532,7 +570,13 @@
         areaUomo.classList.remove('visible');
         document.getElementById("manichino-donna").style.backgroundImage = "url('manichinoDonna.png')";
         varGlobDonna = true;
-        moveLeft();
+        if (!spostato) {
+            moveLeft();
+            spostato = true;
+        } else {
+            moveRight();
+            spostato = false;
+        }
         document.getElementById('container-stili-donna').style.display = "flex";
         document.getElementById('container-stili-uomo').style.display = "none";
     });
@@ -545,7 +589,13 @@
         areaDonna.classList.remove('visible');
         document.getElementById("manichino-uomo").style.backgroundImage = "url('manichinoUomo.png')";
         varGlobDonna = false;
-        moveLeft();
+        if (!spostato) {
+            moveLeft();
+            spostato = true;
+        } else {
+            moveRight();
+            spostato = false;
+        }
         document.getElementById('container-stili-uomo').style.display = "flex";
         document.getElementById('container-stili-donna').style.display = "none";
     });
