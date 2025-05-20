@@ -100,14 +100,13 @@ document.addEventListener('DOMContentLoaded', function () {
         
         const quizContainer = document.querySelector('.quiz-container'); // Spostato fuori
         
-        quizContainer.classList.add('visible');
-        // if (isLoggedIn) {
-        //     if (quizContainer) quizContainer.classList.add('visible');
-        // } else {
-        //     const loginPanel = document.querySelector('.login-panel');
-        //     loginPanel.classList.add('visible');
-        //     if (quizContainer) quizContainer.classList.remove('visible');
-        // }
+        if (isLoggedIn) {
+            if (quizContainer) quizContainer.classList.add('visible');
+        } else {
+            const loginPanel = document.querySelector('.login-panel');
+            loginPanel.classList.add('visible');
+            if (quizContainer) quizContainer.classList.remove('visible');
+        }
     }
     
     titolo.addEventListener('click', function (e) {
@@ -168,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             if (email && password) {
-                fetch('login.php', {
+                fetch('php/login.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({ email, password })
@@ -252,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 existingError.remove();
             }
             if (email && password) {
-                fetch('register.php', {
+                fetch('php/register.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({ email, password })

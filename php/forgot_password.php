@@ -1,6 +1,6 @@
 <?php
 // forgot_password.php
-include 'connessione.php';
+include 'php/connessione.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
             $stmt->execute();
 
             // Link di reset (modifica con il tuo dominio reale)
-            $resetLink = "http://localhost/my-project/reset_password.php?token=$token";
+            $resetLink = "http://localhost/my-project/php/reset_password.php?token=$token";
 
             // Funzione per inviare l'email
             sendPasswordResetEmail($email, $resetLink);

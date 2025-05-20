@@ -53,12 +53,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 tipo: "select",
                 opzioni: ["Neutrali", "Scuri", "Vivaci", "Pastello", "Colorati", "Navy"],
                 immagini: {
-                    "Neutrali": "colori/coloriNeutrali.png",
-                    "Scuri": "colori/coloriScuri.png",
-                    "Vivaci": "colori/coloriVivaci.png",
-                    "Pastello": "colori/coloriPastello.png",
-                    "Colorati": "colori/coloriColorati.png",
-                    "Navy": "colori/coloriNavy.png"
+                    "Neutrali": "media/colori/coloriNeutrali.png",
+                    "Scuri": "media/colori/coloriScuri.png",
+                    "Vivaci": "media/colori/coloriVivaci.png",
+                    "Pastello": "media/colori/coloriPastello.png",
+                    "Colorati": "media/colori/coloriColorati.png",
+                    "Navy": "media/colori/coloriNavy.png"
                 }
             },
             //domanda 4
@@ -67,12 +67,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 tipo: "select",
                 opzioni: ["Orologio", "Cintura", "Cravatta", "Cappello", "Occhiali da sole" ,"Borsello"],
                 immagini: {
-                    "Orologio": "accessori/orologio.png",
-                    "Cintura": "accessori/cintura.png",
-                    "Cravatta": "accessori/cravatta.png",
-                    "Cappello": "accessori/cappello.png",
-                    "Occhiali da sole": "accessori/occhiali.png",
-                    "Borsello": "accessori/borsello.png"
+                    "Orologio": "media/accessori/orologio.png",
+                    "Cintura": "media/accessori/cintura.png",
+                    "Cravatta": "media/accessori/cravatta.png",
+                    "Cappello": "media/accessori/cappello.png",
+                    "Occhiali da sole": "media/accessori/occhiali.png",
+                    "Borsello": "media/accessori/borsello.png"
     
                 }
             },
@@ -106,12 +106,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 tipo: "select",
                 opzioni: ["Mocassini", "Vans", "Chelsea", "AirForce", "Jordan" ,"Elegante"],
                 immagini: {
-                    "Mocassini": "scarpe/Mocassini.png",
-                    "Vans": "scarpe/Vans.jpg",
-                    "Chelsea": "scarpe/Chelsea.png",
-                    "AirForce": "scarpe/AirForce.png",
-                    "Jordan": "scarpe/Jordan.png",
-                    "Elegante": "scarpe/Elegante.png"
+                    "Mocassini": "media/scarpe/Mocassini.png",
+                    "Vans": "media/scarpe/Vans.jpg",
+                    "Chelsea": "media/scarpe/Chelsea.png",
+                    "AirForce": "media/scarpe/AirForce.png",
+                    "Jordan": "media/scarpe/Jordan.png",
+                    "Elegante": "media/scarpe/Elegante.png"
                 }
             }
         ];
@@ -136,12 +136,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 tipo: "select",
                 opzioni: ["Neutrali", "Scuri", "Vivaci", "Pastello", "Colorati", "Navy"],
                 immagini: {
-                    "Neutrali": "colori/coloriNeutrali.png",
-                    "Scuri": "colori/coloriScuri.png",
-                    "Vivaci": "colori/coloriVivaci.png",
-                    "Pastello": "colori/coloriPastello.png",
-                    "Colorati": "colori/coloriColorati.png",
-                    "Navy": "colori/coloriNavy.png"
+                    "Neutrali": "media/colori/coloriNeutrali.png",
+                    "Scuri": "media/colori/coloriScuri.png",
+                    "Vivaci": "media/colori/coloriVivaci.png",
+                    "Pastello": "media/colori/coloriPastello.png",
+                    "Colorati": "media/colori/coloriColorati.png",
+                    "Navy": "media/colori/coloriNavy.png"
                 }
             },
             //domanda 4
@@ -150,12 +150,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 tipo: "select",
                 opzioni: ["Oro", "Argento", "Oro e Argento", "Fatti a mano", "Bigiotteria", "Nessuno"],
                 immagini: {
-                    "Oro": "gioielli/oro.jpeg",
-                    "Argento": "gioielli/argento.jpeg",
-                    "Oro e Argento": "gioielli/mix.jpeg",
-                    "Fatti a mano": "gioielli/artigianali.jpeg",
-                    "Bigiotteria": "gioielli/bigiotteria.jpeg",
-                    "Nessuno": "gioielli/senzaGioielli.jpeg"
+                    "Oro": "media/gioielli/oro.jpeg",
+                    "Argento": "media/gioielli/argento.jpeg",
+                    "Oro e Argento": "media/gioielli/mix.jpeg",
+                    "Fatti a mano": "media/gioielli/artigianali.jpeg",
+                    "Bigiotteria": "media/gioielli/bigiotteria.jpeg",
+                    "Nessuno": "media/gioielli/senzaGioielli.jpeg"
                 }
             },
             //domanda 5
@@ -188,12 +188,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 tipo: "select",
                 opzioni: ["Ballerine", "Birkenstock", "UGGS", "Converse", "Samba", "Stivali"],
                 immagini: {
-                    "Ballerine": "scarpe/Ballerina.png",
-                    "Birkenstock": "scarpe/Birkenstock.png",
-                    "UGGS": "scarpe/UGGS.png",
-                    "Converse": "scarpe/Converse.png",
-                    "Samba": "scarpe/Samba.png",
-                    "Stivali": "scarpe/Stivali.png"
+                    "Ballerine": "media/scarpe/Ballerina.png",
+                    "Birkenstock": "media/scarpe/Birkenstock.png",
+                    "UGGS": "media/scarpe/UGGS.png",
+                    "Converse": "media/scarpe/Converse.png",
+                    "Samba": "media/scarpe/Samba.png",
+                    "Stivali": "media/scarpe/Stivali.png"
                 }
             }
         ];

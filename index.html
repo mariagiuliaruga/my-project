@@ -7,13 +7,13 @@
     <title>Style Quiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="intestazione.css">
-    <link rel="stylesheet" href="centro.css">
-    <link rel="stylesheet" href="quizstyle.css">
-    <link rel="stylesheet" href="stili.css">
-    <link rel="stylesheet" href="profile-edit.css">
-    <link rel="stylesheet" href="style_results.css">
-    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="css/intestazione.css">
+    <link rel="stylesheet" href="css/centro.css">
+    <link rel="stylesheet" href="css/quizstyle.css">
+    <link rel="stylesheet" href="css/stili.css">
+    <link rel="stylesheet" href="css/profile-edit.css">
+    <link rel="stylesheet" href="css/style_results.css">
+    <link rel="stylesheet" href="css/footer.css">
 
 
 </head>
@@ -22,7 +22,7 @@
     
     <div class="intestazione">
         <div class="bottone">
-            <img src="menubar.png" alt="Menu" class="menu-icon">
+            <img src="media/logo/menubar.png" alt="Menu" class="menu-icon">
             <div class="menu-tendina"> 
                 <a href="index.html" class="menu-link">Home</a>
                 <a href="#" class="menu-link">Reset</a>
@@ -39,7 +39,7 @@
     <div class="container">
         <div class="centro">
             <div class="container-gif">
-                <img src="prima.gif" alt="GIF animata" class="gif-animata">
+                <img src="media/gif/prima.gif" alt="GIF animata" class="gif-animata">
             </div>
             <div class="content-section">
                 <div class="text-content">
@@ -56,8 +56,6 @@
                             e magari scoprire qualcosa che non avevi mai preso in considerazione.
                         </p>
                         <a href="#" class="explore-link" id="exploreStyles" data-target="stili-donna"><span><b>Esplora Stili</b></span></a>
-                        <!-- se non funziona più era così prima
-                        <a href="#" class="explore-link" id="exploreStyles" target="_blank"><span><b>Esplora Stili</b></span></a> -->
                     </div>
                 </div>
             </div>
@@ -81,7 +79,7 @@
     <div class="login-panel">
         <button class="close-button">&times;</button>
         <h2>Login</h2>
-        <form class="login-form" action="login.php" method="POST">
+        <form class="login-form" action="php/login.php" method="POST">
             <input type="email" name="email" placeholder="Insert your e-mail" required>
             <input type="password" name="password" placeholder="Insert your password" required>
             <a href="#" class="forgot-password">Password dimenticata?</a>
@@ -93,7 +91,7 @@
     <div class="register-panel">
         <button class="close-button">&times;</button>
         <h2>Register</h2>
-        <form class="register-form" action="register.php" method="POST">
+        <form class="register-form" action="php/register.php" method="POST">
             <div class="name-fields">
                 <input type="text" name="nome" placeholder="Nome" required>
                 <input type="text" name="cognome" placeholder="Cognome" required>
@@ -108,7 +106,7 @@
     <div class="forgot-password-panel">
         <button class="close-button">&times;</button>
         <h2>Reimposta la tua password</h2>
-        <form class="forgot-password-form" action="forgot_password.php" method="POST">
+        <form class="forgot-password-form" action="php/forgot_password.php" method="POST">
             <input type="email" name="email" placeholder="Inserisci la tua email" required>
             <button type="submit">Invia link</button>
         </form>
@@ -298,7 +296,7 @@
     </div>
     <div id="about-section" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 999;">
         <div id="about-inner" style="position: relative; background: transparent; display: flex; justify-content: center; align-items: center; transform: translateY(8%)">
-          <img src="About.png" alt="About Us" style="max-width: 80vw; max-height: 80vh; border-radius: 10px;">
+          <img src="media/logo/about.png" alt="About Us" style="max-width: 80vw; max-height: 80vh; border-radius: 10px;">
           <a href="https://github.com/mariagiuliaruga/my-project.git" target="_blank" 
        style="position: absolute; bottom: 20px; text-align: center; color: #a20000; text-decoration: underline; ">
        https://github.com/MSE
@@ -309,7 +307,7 @@
 
       <div class="area-risultati">
         <div id="stili-container">
-        <link rel="stylesheet" href="risultati.css">
+        <link rel="stylesheet" href="css/risultati.css">
 
         <div class="stile stile-container" id="stile-bohoChic">
                 <h2>Stile BohoChic</h2>
@@ -405,28 +403,29 @@
                 <div class="footer-text">GETTING DRESSED HAS NEVER BEEN THIS EASY - thanks to MSE! </div>
                 <div class="social-links">
                     <a href="mailto:mystylessence@gmail.com" class="social-link">
-                        <img src="immagini/gmail.png" alt="Email" class="social-icon">
+                        <img src="media/logo/gmail.png" alt="Email" class="social-icon">
                     </a>
                     <a href="https://www.facebook.com" class="social-link" target="_blank">
-                      <img src="immagini/facebook.png" alt="Facebook" class="social-icon">
+                      <img src="media/logo/facebook.png" alt="Facebook" class="social-icon">
                     </a>
                     <a href="https://www.instagram.com" class="social-link" target="_blank">
-                      <img src="immagini/instagram.png" alt="Instagram" class="social-icon">
+                      <img src="media/logo/instagram.png" alt="Instagram" class="social-icon">
                     </a>
                     <a href="https://x.com" class="social-link" target="_blank">
-                      <img src="immagini/twitter.png" alt="Twitter/X" class="social-icon">
+                      <img src="media/logo/twitter.png" alt="Twitter/X" class="social-icon">
                     </a>
                     <a href="https://pin.it/44W7h4r7O" class="social-link" target="_blank">
-                      <img src="immagini/pinterest.png" alt="Pinterest" class="social-icon">
+                      <img src="media/logo/pinterest.png" alt="Pinterest" class="social-icon">
                     </a>
                   </div>
             </div>
         </div>
     </footer>
-    <script src="quiz.js"></script>
-    <script src="script.js"></script> 
-    <script src="profile-edit.js"></script>
-    <script src="caricamentoHome.js"></script>
-    <script src="about.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/script.js"></script> 
+    <script src="js/profile-edit.js"></script>
+    <script src="js/caricamentoHome.js"></script>
+    <script src="js/about.js"></script>
+
 </body>
 </html>
