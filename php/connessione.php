@@ -1,14 +1,14 @@
 <?php
-$servername = "sql7.freesqldatabase.com";
-$username = "sql7777430";
-$password = "CacMXZdVbr";
-$dbname = "sql7777430";
+// connessione.php
+$host = 'sql7.freesqldatabase.com';
+$dbname = 'sql7777430';
+$user = 'sql7777430';
+$pass = 'CacMXZdVbr';
 
-// Crea connessione
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Controlla la connessione
-if ($conn->connect_error) {
-    die(json_encode(["success" => false, "message" => "Connessione fallita: " . $conn->connect_error]));
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connessione fallita: " . $e->getMessage());
 }
 ?>
