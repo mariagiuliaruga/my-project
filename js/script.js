@@ -383,17 +383,16 @@ document.addEventListener('DOMContentLoaded', function () {
         areaPersonale.classList.remove('visible');
     });
 
-    cancButton?.addEventListener('click', function (e) {
-        e.preventDefault();
-        profileEditContainer.style.display = 'none';
-        areaPersonale.classList.add('visible');
-    });
-
     logoutButton?.addEventListener('click', function (e) {
         e.preventDefault();
         handleLogout();
     });
 
+    cancButton?.addEventListener('click', function (e) {
+        e.preventDefault();
+        profileEditContainer.style.display = 'none';
+        areaPersonale.classList.add('visible');
+    });
     document.getElementById('profile-edit-form')?.addEventListener('submit', function (e) {
         e.preventDefault();
         profileEditContainer.style.display = 'block';
