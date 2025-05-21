@@ -101,18 +101,17 @@
       </div>
 
       <div id="manichino-uomo" class="manichino">
-        <div class="manichino-container">
-          <label class="ui-bookmark" id="scaricaOutfitUomo" style="position: absolute; top: 10px; right: -40px; transform: scale(0.8); z-index: 10;">
-            <input type="checkbox">
-            <div class="bookmark">
-              <svg viewBox="0 0 32 32">
-                <g>
-                  <path d="M27 4v27a1 1 0 0 1-1.625.781L16 24.281l-9.375 7.5A1 1 0 0 1 5 31V4a4 4 0 0 1 4-4h14a4 4 0 0 1 4 4z"></path>
-                </g>
-              </svg>
-            </div>
-          </label>
-        </div>        
+        <label class="ui-bookmark" id="scaricaOutfitUomo" style="position: absolute; top: 10px; right: -40px; transform: scale(0.8); z-index: 10;">
+          <input type="checkbox">
+          <div class="bookmark">
+            <svg viewBox="0 0 32 32">
+              <g>
+                <path d="M27 4v27a1 1 0 0 1-1.625.781L16 24.281l-9.375 7.5A1 1 0 0 1 5 31V4a4 4 0 0 1 4-4h14a4 4 0 0 1 4 4z"></path>
+              </g>
+            </svg>
+          </div>
+          <span class="tooltip-save">SAVE</span>  <!-- tooltip -->
+        </label>      
         <div  class="color-button" style="margin-top: -50px; display: flex;">
           <button class="color-btn rosa" data-genere="uomo" data-colore="rosa"></button>
           <button class="color-btn marrone" data-genere="uomo" data-colore="marrone"></button>
@@ -211,6 +210,7 @@
               </g>
             </svg>
           </div>
+          <span class="tooltip-save">SAVE</span>  <!-- tooltip -->
         </label>
         <div id="zona-busto-donna" class="zona"></div>
         <div id="zona-over-busto-donna" class="zona"></div>
@@ -292,6 +292,6 @@
   </div>
 
 <script src="js/camerino.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>

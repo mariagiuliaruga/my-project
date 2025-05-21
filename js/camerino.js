@@ -737,12 +737,16 @@ window.addEventListener('DOMContentLoaded', () => {
     closeBtn.addEventListener('click', closePopup);
 });
 
-
 document.querySelector("#scaricaOutfitUomo input[type='checkbox']").addEventListener("click", function(event) {
     event.preventDefault();
+
     const manichino = document.getElementById("manichino-uomo");
     const bookmark = document.getElementById("scaricaOutfitUomo");
     const checkbox = this;
+    const path = bookmark.querySelector("svg path");
+
+    // Colora di giallo il bookmark
+    if (path) path.style.fill = "gold";
 
     checkbox.checked = true;
     bookmark.style.display = "none";
@@ -764,6 +768,7 @@ document.querySelector("#scaricaOutfitUomo input[type='checkbox']").addEventList
             }
         });
 
+        // Scarica l'immagine
         const link = document.createElement("a");
         link.href = base64image;
         link.download = "outfit-uomo.png";
@@ -773,8 +778,10 @@ document.querySelector("#scaricaOutfitUomo input[type='checkbox']").addEventList
 
         bookmark.style.display = "flex";
 
+        // Dopo 3 secondi resetta checkbox e colore
         setTimeout(() => {
             checkbox.checked = false;
+            if (path) path.style.fill = ""; // reset colore
         }, 3000);
     });
 });
@@ -782,9 +789,14 @@ document.querySelector("#scaricaOutfitUomo input[type='checkbox']").addEventList
 
 document.querySelector("#scaricaOutfitDonna input[type='checkbox']").addEventListener("click", function(event) {
     event.preventDefault();
+
     const manichino = document.getElementById("manichino-donna");
     const bookmark = document.getElementById("scaricaOutfitDonna");
     const checkbox = this;
+    const path = bookmark.querySelector("svg path");
+
+    // Colora di giallo il bookmark
+    if (path) path.style.fill = "gold";
 
     checkbox.checked = true;
     bookmark.style.display = "none";
@@ -806,6 +818,7 @@ document.querySelector("#scaricaOutfitDonna input[type='checkbox']").addEventLis
             }
         });
 
+        // Scarica l'immagine
         const link = document.createElement("a");
         link.href = base64image;
         link.download = "outfit-donna.png";
@@ -815,10 +828,10 @@ document.querySelector("#scaricaOutfitDonna input[type='checkbox']").addEventLis
 
         bookmark.style.display = "flex";
 
+        // Dopo 3 secondi resetta checkbox e colore
         setTimeout(() => {
             checkbox.checked = false;
+            if (path) path.style.fill = ""; // reset colore
         }, 3000);
     });
 });
-
-  
