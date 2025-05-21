@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="css/profile-edit.css">
     <link rel="stylesheet" href="css/style_results.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="newsletter.css">
+
 
 </head>
 <body>
@@ -27,7 +29,7 @@
             <button type="submit">Iscriviti</button>
           </form>
         </div>
-    </div>
+      </div>
     
     <div class="intestazione">
         <div class="bottone">
@@ -449,9 +451,23 @@
     <script src="js/profile-edit.js"></script>
     <script src="js/caricamentoHome.js"></script>
     <script src="js/about.js"></script>
-    <script src="js/menuTendina.js"></script>
-    <script src="js/results.js"></script>
-
-
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+          const popup = document.getElementById('newsletterPopup');
+          const closeBtn = document.getElementById('closeBtn');
+      
+          // Mostra il popup dopo 8 secondi se non già mostrato in questa sessione
+          if (!sessionStorage.getItem('newsletterShown')) {
+            setTimeout(() => {
+              popup.classList.remove('hidden');
+              sessionStorage.setItem('newsletterShown', 'true');
+            }, 3000); // 8000ms = 8 secondi
+          }     
+          // Chiude il popup al click
+          closeBtn.addEventListener('click', () => {
+            popup.classList.add('hidden');
+          });
+        });
+      </script>
 </body>
 </html>
