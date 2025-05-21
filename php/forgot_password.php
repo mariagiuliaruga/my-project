@@ -13,12 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
 
     if (!empty($email)) {
         // Verifica se l'email esiste nel database
-        $stmt = $conn->prepare("SELECT * FROM utenti WHERE email = ?");
-        $stmt->bind_param("s", $email);
+        $stmt = $conn->prepare("SELECT * FROM utenti WHERE email = :email");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
-        $result = $stmt->get_result();
-        $utente = $result->fetch_assoc();
-        $stmt->close();
+
+        $utente = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($utente) {
             // Genera il token e la data di scadenza
@@ -26,10 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
             $expires_at = date("Y-m-d H:i:s", strtotime('+1 hour'));
 
             // Inserisce il token nella tabella di reset della password
-            $stmt = $conn->prepare("INSERT INTO password_reset (email, token, expires_at) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $email, $token, $expires_at);
+            $stmt = $conn->prepare("INSERT INTO password_reset (email, token, expires_at) VALUES (:email, :token, :expires_at)");
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+            $stmt->bindParam(':expires_at', $expires_at, PDO::PARAM_STR);
             $stmt->execute();
-            $stmt->close();
 
             // Link di reset (modifica con il tuo dominio reale)
             $resetLink = "http://localhost/my-project/php/reset_password.php?token=$token";
@@ -53,10 +53,10 @@ function sendPasswordResetEmail($toEmail, $resetLink) {
     try {
         // Configurazione SMTP
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = 'smtp.gmail.com'; // SMTP di Gmail
         $mail->SMTPAuth = true;
-        $mail->Username = 'mystylessence@gmail.com';
-        $mail->Password = 'qafa wgxz kuix cynk'; // password per app
+        $mail->Username = 'mystylessence@gmail.com'; // La tua email
+        $mail->Password = 'qafa wgxz kuix cynk'; // La tua password per app
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
@@ -67,10 +67,11 @@ function sendPasswordResetEmail($toEmail, $resetLink) {
                 'allow_self_signed' => true
             )
         );
-
+        // Mittente e destinatario
         $mail->setFrom('tuoemail@gmail.com', 'MyStileEssence');
-        $mail->addAddress($toEmail);
+        $mail->addAddress($toEmail);  // L'email dell'utente che ha richiesto il reset
 
+        // Contenuto dell'email
         $mail->isHTML(true);
         $mail->Subject = 'Reset della password';
         $mail->Body    = "Clicca questo link per reimpostare la tua password: <a href='$resetLink'>$resetLink</a>";
