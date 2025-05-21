@@ -1,0 +1,84 @@
+/* Nasconde l'elemento */
+.hidden {
+  display: none;
+}
+
+/* Stile generale del popup */
+.newsletter-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 3rem 2rem; /* più spazio verticale */
+  width: 95%;
+  max-width: 500px; /* aumentato da 400px a 500px */
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+/* Contenuto interno del popup */
+.newsletter-content {
+  position: relative;
+}
+
+/* Pulsante di chiusura */
+.close-btn {
+  position: absolute;
+  top: -30px;
+  right: -10px;
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Titolo */
+.newsletter-content h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+}
+
+/* Testo descrittivo */
+.newsletter-content p {
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Form */
+.newsletter-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Campo email */
+.newsletter-content input[type="email"] {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Bottone Iscriviti */
+.newsletter-content button[type="submit"] {
+  background-color: #ff00ff;
+  color: white;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newsletter-content button[type="submit"]:hover {
+  background-color: #180218;
+}

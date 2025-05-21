@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost';
-$dbname = 'mystyleessence_db'; // <-- Sostituisci con il nome del tuo database
-$user = 'root';
-$password = ''; // Se non hai impostato una password, lascialo vuoto
+$host = 'sql7.freesqldatabase.com';
+$dbname = 'sql7777430'; // <-- Sostituisci con il nome del tuo database
+$user = 'sql7777430';
+$password = 'CacMXZdVbr'; // Se non hai impostato una password, lascialo vuoto
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $password);
