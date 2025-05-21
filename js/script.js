@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.resetLink = document.getElementById('reset-link');
     window.camerinoLink = document.getElementById('camerino-link');
     window.contactFooter = document.querySelector('.contact-footer');
-
     let isLoggedIn = localStorage.getItem('userEmail') && localStorage.getItem('showPersonalArea') === 'true';
 
     // Mostra l'area personale dopo il login
@@ -37,17 +36,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     window.handleUserIconClick = function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (isLoggedIn) {
-            container.classList.add('invisible');
-            areaPersonale.classList.add('visible');
-            contactFooter.style.display = 'none';
-            profileEditContainer.style.display = 'none';
-            loginPanel.classList.remove('visible');
-            registerPanel.classList.remove('visible');
-            areaStili.classList.remove('visible');
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
         }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        profileEditContainer.style.display = 'none';
+
+        container.classList.add('invisible');
+        areaPersonale.classList.add('visible');
+        contactFooter.style.display = 'none';
+
+        loginPanel.classList.remove('visible');
+        registerPanel.classList.remove('visible');
+        areaStili.classList.remove('visible');
+
+        
+        localStorage.setItem('showPersonalArea', 'false');
     };
 
     window.handleBackToHome = function () {
@@ -65,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         quizContainer.classList.remove('visible');
         loginPanel.classList.remove('visible');
         registerPanel.classList.remove('visible');
+        contactFooter.style.display = 'block';
 
         loginButton.style.display = 'block';
         loginButton.classList.remove('logged-in');
@@ -80,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.removeItem('showPersonalArea');
         localStorage.removeItem(document.querySelector('.immagini-outfit'));
 
-        loginButton.removeEventListener('click', window.handleUserIconClick);
+        // loginButton.removeEventListener('click', window.handleUserIconClick);
         quizButton.addEventListener('click', window.handleQuizButtonClick);
 
         pulisciGalleria();
@@ -203,11 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.success) {
-                        
-                        // Rendi visibile l'area personale o altre azioni
-                    localStorage.setItem('userEmail', email);
-                        
+                    if (data.success) {                        
                     console.log('Email:', email);
                     console.log('Password:', password);
     
@@ -229,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     emailInput.value = '';
                     passwordInput.value = ''; 
                     
-                    loginButton.addEventListener('click', handleUserIconClick);
+                    // loginButton.addEventListener('click', handleUserIconClick);
                     quizButton.addEventListener('click', handleQuizButtonClick);
                 } else {
                     // Rimuovi eventuali messaggi di errore precedenti
@@ -260,63 +264,70 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     });
-}
+    }
 
     // Registrazione con fetch
     const registerForm = document.querySelector('.register-form');
     if (registerForm) {
         registerForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const nameInput = this.querySelector('input[name="name"]');
-            const surnameInput = this.querySelector('input[name="surname"]');
+
+            // Correggi i nomi dei campi (name => nome, surname => cognome)
+            const nameInput = this.querySelector('input[name="nome"]');
+            const surnameInput = this.querySelector('input[name="cognome"]');
             const emailInput = this.querySelector('input[type="email"]');
             const passwordInput = this.querySelector('input[type="password"]');
-            const email = emailInput.value;
+
+            const nome = nameInput.value.trim();
+            const cognome = surnameInput.value.trim();
+            const email = emailInput.value.trim();
             const password = passwordInput.value;
-    
+
             // Rimuovi eventuali messaggi di errore precedenti
             const existingError = document.querySelector('.email-error');
             if (existingError) {
                 existingError.remove();
             }
+
             if (email && password) {
                 fetch('php/register.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams({ email, password })
+                    body: new URLSearchParams({ email, password })  // nome/cognome non inviati
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        // Salva il nome completo nel localStorage
+                        const nomeCompleto = `${nome} ${cognome}`;
+                        localStorage.setItem('userName', nomeCompleto);
+
+                        // Resetta i campi del form
                         nameInput.value = '';
                         surnameInput.value = '';
-                        // Resetta il form di registrazione
                         emailInput.value = '';
-                        passwordInput.value = ''; 
-                        // Registrazione riuscita
+                        passwordInput.value = '';
+
                         alert('Registrazione completata!');
-                        
-                   
                         console.log('Registrato con Email:', email);
                         console.log('Password:', password);
-            
+
                         isLoggedIn = true;
-            
+
                         localStorage.setItem('userEmail', email);
                         localStorage.setItem('userPassword', password);
-            
-                        // Imposta l'icona dell'utente
+
+                        // Mostra icona utente e pulsante quiz
                         loginButton.classList.add('logged-in');
-                        loginButton.innerHTML = '<div class="user-icon"></div>';  // Aggiungi l'icona dell'utente
+                        loginButton.innerHTML = '<div class="user-icon"></div>';
                         quizButton.innerHTML = '<div class="quiz-icon">Inizia il quiz</div>';
-            
-                        registerPanel.classList.remove('visible'); // Rimuovi il pannello di registrazione
+
+                        registerPanel.classList.remove('visible');
                         profileEditContainer.classList.remove('visible');
-            
-                        loginButton.addEventListener('click', handleUserIconClick);
+
                         quizButton.addEventListener('click', handleQuizButtonClick);
                     } else {
-                        // Email già registrata, mostriamo il messaggio d'errore sotto il campo email
+                        // Email già registrata, mostra errore
                         const prevError = document.querySelector('.email-error');
                         if (prevError) prevError.remove();
 
@@ -326,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         errorMessage.style.marginTop = '5px';
                         errorMessage.textContent = data.message || 'Errore durante la registrazione';
                         emailInput.insertAdjacentElement('beforebegin', errorMessage);
-                    
+
                         registerPanel.classList.add('visible');
 
                         setTimeout(() => {
@@ -338,19 +349,10 @@ document.addEventListener('DOMContentLoaded', function () {
                             loginPanel.classList.add('visible');
                         }, 2000);
                     }
-                    
-                    
                 })
                 .catch(error => console.error('Errore registrazione:', error));
             }
         });
-
-    function showLoginError(message) {
-        const error = document.createElement('div');
-        error.classList.add('login-error');
-        error.style.color = 'red';
-        error.textContent = message || 'Errore';
-        loginForm?.querySelector('input[type="email"]')?.insertAdjacentElement('beforebegin', error);
     }
 
     loginButton.addEventListener('click', function (e) {
@@ -377,30 +379,16 @@ document.addEventListener('DOMContentLoaded', function () {
         loginPanel.classList.add('visible');
     });
 
-    profileButton?.addEventListener('click', function (e) {
+    profileButton.addEventListener('click', function (e) {
         e.preventDefault();
         profileEditContainer.style.display = 'block';
         areaPersonale.classList.remove('visible');
     });
 
-    logoutButton?.addEventListener('click', function (e) {
+    logoutButton.addEventListener('click', function (e) {
         e.preventDefault();
         handleLogout();
     });
-
-    cancButton?.addEventListener('click', function (e) {
-        e.preventDefault();
-        profileEditContainer.style.display = 'none';
-        areaPersonale.classList.add('visible');
-    });
-    document.getElementById('profile-edit-form')?.addEventListener('submit', function (e) {
-        e.preventDefault();
-        profileEditContainer.style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-
-    }
 
     if (window.exploreLink && window.areaStili && window.container) {
         window.exploreLink.addEventListener('click', function (e) {
@@ -417,7 +405,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
 
     const linkDonna = document.getElementById("link-donna");
     const linkUomo = document.getElementById("link-uomo");

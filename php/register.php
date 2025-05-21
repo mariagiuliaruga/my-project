@@ -1,5 +1,6 @@
 <?php
-include __DIR__ . 'php/connessione.php';
+include __DIR__ . '/connessione.php';  // Include la connessione mysqli
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -13,21 +14,6 @@ ini_set('display_errors', 1);
 
 // Imposta intestazione per rispondere in JSON
 header('Content-Type: application/json');
-
-// Connessione al database
-$servername = "sql7.freesqldatabase.com";
-$username = "sql7777430"; // Nome utente DB
-$password = "CacMXZdVbr";     // Password DB
-$dbname = "sql7777430"; // Nome del database
-
-// Crea connessione
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Controlla la connessione
-if ($conn->connect_error) {
-    echo json_encode(["success" => false, "message" => "Connessione al database fallita."]);
-    exit;
-}
 
 // Gestisci la richiesta POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -44,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result_check = $stmt_check->get_result();
 
             if ($result_check->num_rows > 0) {
-                // Restituisce risposta JSON per email già registrata
                 echo json_encode(["success" => false, "message" => "Email già registrata"]);
                 $stmt_check->close();
                 $conn->close();
@@ -61,13 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_insert->bind_param("sss", $email, $hashedPassword, $data_registrazione);
 
             if ($stmt_insert->execute()) {
-                // Registrazione riuscita
                 echo json_encode(["success" => true, "message" => "Registrazione riuscita"]);
-                // Salva anche in un file SQL appendibile, in modo da pote avere gli stessi dati da dispositivi diversi connessi allo stesso db
+
+                // Backup in file
                 $sqlString = "INSERT INTO utenti (email, password, data_registrazione) VALUES ('$email', '$hashedPassword', '$data_registrazione');\n";
                 file_put_contents("backup_utenti.sql", $sqlString, FILE_APPEND);
             } else {
-                echo json_encode(["success" => false, "message" => ""]);
+                echo json_encode(["success" => false, "message" => "Errore nell'inserimento"]);
             }
 
             $stmt_insert->close();
