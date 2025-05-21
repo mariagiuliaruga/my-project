@@ -1,43 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const titolo = document.querySelector('.titolo-link');
-    const loginButton = document.querySelector('.login-button');
-    const quizButton = document.querySelector('.quiz-button');
-    const quizContainer = document.querySelector('.quiz-container');
-    const loginPanel = document.querySelector('.login-panel');
-    const registerPanel = document.querySelector('.register-panel');
-    const closeButtons = document.querySelectorAll('.close-button');
-    const registerLink = document.querySelector('.register-link');
-    const loginLink = document.querySelector('.login-link');
-    const profileEditContainer = document.querySelector('.profile-edit-container');
-    const areaPersonale = document.querySelector('.area-personale');
-    const container = document.querySelector('.container');
-    const cancButton = document.querySelector('.cancel-button');
-    const logoutButton = document.querySelector('.logout-button');
-    const exploreLink = document.querySelector('.explore-link');
-    const areaStili = document.querySelector('.area-stili');
-    const menuButton = document.querySelector('.bottone');
-    const menuTendina = document.querySelector('.menu-tendina');
-    const profileButton = document.querySelector('.profile-button');
-    const forgotPasswordLink = document.querySelector('.forgot-password'); //link per il recupero password
-    const forgotPasswordPanel = document.querySelector('.forgot-password-panel');
-    const areaRisultati = document.querySelector('.area-risultati');
+    window.titolo = document.querySelector('.titolo-link');
+    window.loginButton = document.querySelector('.login-button');
+    window.quizButton = document.querySelector('.quiz-button');
+    window.quizContainer = document.querySelector('.quiz-container');
+    window.loginPanel = document.querySelector('.login-panel');
+    window.registerPanel = document.querySelector('.register-panel');
+    window.closeButtons = document.querySelectorAll('.close-button');
+    window.registerLink = document.querySelector('.register-link');
+    window.loginLink = document.querySelector('.login-link');
+    window.profileEditContainer = document.querySelector('.profile-edit-container');
+    window.areaPersonale = document.querySelector('.area-personale');
+    window.container = document.querySelector('.container');
+    window.cancButton = document.querySelector('.cancel-button');
+    window.logoutButton = document.querySelector('.logout-button');
+    window.exploreLink = document.querySelector('.explore-link');
+    window.areaStili = document.querySelector('.area-stili');
+    window.menuButton = document.querySelector('.bottone');
+    window.menuTendina = document.querySelector('.menu-tendina');
+    window.profileButton = document.querySelector('.profile-button');
+    window.forgotPasswordLink = document.querySelector('.forgot-password');
+    window.forgotPasswordPanel = document.querySelector('.forgot-password-panel');
+    window.areaRisultati = document.querySelector('.area-risultati');
+    window.homeLink = document.getElementById('home-link');
+    window.resetLink = document.getElementById('reset-link');
+    window.camerinoLink = document.getElementById('camerino-link');
 
     let isLoggedIn = localStorage.getItem('userEmail') && localStorage.getItem('showPersonalArea') === 'true';
-    
-    // Controllo se l'utente è loggato all'inizio
-    function checkLoginStatus() {
-        return localStorage.getItem('userEmail') && localStorage.getItem('userPassword');
-    }
 
     // Mostra l'area personale dopo il login
     if (localStorage.getItem('showPersonalArea') === 'true') {
         container.classList.add('invisible');
         areaPersonale.classList.add('visible');
         localStorage.removeItem('showPersonalArea');
+
     }
 
-    function handleUserIconClick(e) {
+    window.handleUserIconClick = function (e) {
         e.preventDefault();
         e.stopPropagation();
         if (isLoggedIn) {
@@ -48,16 +47,16 @@ document.addEventListener('DOMContentLoaded', function () {
             registerPanel.classList.remove('visible');
             areaStili.classList.remove('visible');
         }
-    }
+    };
 
-    function handleBackToHome() {
+    window.handleBackToHome = function () {
         container.classList.remove('invisible');
         areaPersonale.classList.remove('visible');
         areaStili.classList.remove('visible');
         loginButton.style.display = 'block';
-    }
+    };
 
-    function handleLogout() {
+    window.handleLogout = function () {
         container.classList.remove('invisible');
         areaPersonale.classList.remove('visible');
         areaStili.classList.remove('visible');
@@ -78,9 +77,12 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.removeItem('userEmail');
         localStorage.removeItem('userPassword');
         localStorage.removeItem('showPersonalArea');
+        localStorage.removeItem(document.querySelector('.immagini-outfit'));
 
-        loginButton.removeEventListener('click', handleUserIconClick);
-        quizButton.addEventListener('click', handleQuizButtonClick);
+        loginButton.removeEventListener('click', window.handleUserIconClick);
+        quizButton.addEventListener('click', window.handleQuizButtonClick);
+
+        pulisciGalleria();
 
         const loginForm=document.querySelector('.login-form');
         if(loginForm){
@@ -91,9 +93,16 @@ document.addEventListener('DOMContentLoaded', function () {
             registerForm.querySelectorAll('input').forEach(input=> input.value='');
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    };
 
-    function handleQuizButtonClick(e) {
+    window.pulisciGalleria = function() {
+        const sezioneImmagini = document.querySelector('.immagini-outfit');
+        if (galleria) galleria.innerHTML = ''; // Svuota le immagini
+        if (sezioneImmagini) sezioneImmagini.style.display = 'none'; // Nasconde la sezione immagini
+        resultsButton.textContent = 'Visualizza Risultati';
+    };
+
+    window.handleQuizButtonClick = function(e) {
         e.preventDefault();
         e.stopPropagation();
         
@@ -107,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (quizContainer) quizContainer.classList.remove('visible');
             showAlert("⚠️" + "Prima ti devi loggare!");
         }
-    }
+    };
     
     titolo.addEventListener('click', function (e) {
         e.preventDefault();
@@ -188,7 +197,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 fetch('php/login.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams({ email, password })
+                    body: new URLSearchParams({ email, password }),
+                    credentials: 'include'    // QUESTO FA SALVARE IL COOKIE DI SESSIONE
                 })
                 .then(response => response.json())
                 .then(data => {
@@ -383,75 +393,6 @@ document.addEventListener('DOMContentLoaded', function () {
         handleLogout();
     });
 
-    exploreLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        areaStili.classList.add('visible');
-        container.classList.add('invisible');
-        
-    });
-
-    const menuTendina = document.querySelector('.menu-tendina');
-    if (menuTendina) {
-        const resetLink = menuTendina.querySelector('a[href="#"]:nth-child(2)');
-        if (resetLink) {
-            resetLink.addEventListener('click', function (e) {
-                e.preventDefault();
-                handleLogout();
-            });
-        }
-
-        const homeLink = menuTendina.querySelector('a[href="index.html"]');
-        if (homeLink) {
-            homeLink.addEventListener('click', function (e) {
-                e.preventDefault();
-                handleBackToHome();
-            });
-        }
-
-        const camerinoLink = menuTendina.querySelector('a[href="camerino.html"]');
-        if (camerinoLink) {
-            camerinoLink.addEventListener('click', function (e) {
-                console.log('Navigando verso camerino.html');
-                window.location.href = "camerino.html"; // Forza la navigazione
-            });
-        }
-    }
-       
-    const menuButton = document.querySelector('.bottone');
-    if (menuButton) {
-        menuButton.removeEventListener('click', function() {}); // Assicurati di rimuovere l'eventuale listener precedente
-        menuButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const menuTendina = this.querySelector('.menu-tendina');
-            if (menuTendina) {
-                document.querySelectorAll('.menu-tendina').forEach(menu => {
-                    if (menu !== menuTendina) {
-                        menu.classList.remove('visible');
-                    }
-                });
-                menuTendina.classList.toggle('visible');
-            }
-        });
-    }
-
-    document.addEventListener('click', function(e) {
-        const menuTendina = document.querySelector('.menu-tendina');
-        const menuButton = document.querySelector('.bottone');
-        if (menuTendina && menuButton && !menuButton.contains(e.target) && !menuTendina.contains(e.target)) {
-            menuTendina.classList.remove('visible');
-        }
-    });
-
-    document.addEventListener('touchstart', function(e) {
-        const menuTendina = document.querySelector('.menu-tendina');
-        const menuButton = document.querySelector('.bottone');
-        if (menuTendina && menuButton && !menuButton.contains(e.target) && !menuTendina.contains(e.target)) {
-            menuTendina.classList.remove('visible');
-        }
-    });
-
     document.getElementById('profile-edit-form')?.addEventListener('submit', function (e) {
         e.preventDefault();
         profileEditContainer.style.display = 'block';
@@ -460,6 +401,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     }
+
+    if (window.exploreLink && window.areaStili && window.container) {
+        window.exploreLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation(); // blocca la propagazione che farebbe chiudere il menu
+
+            // Nascondi il contenuto principale e mostra l'area stili
+            window.areaStili.classList.add('visible');
+            window.container.classList.add('invisible');
+
+            // (opzionale) Chiudi anche il menu tendina, se aperto
+            if (window.menuTendina.classList.contains('visible')) {
+                window.menuTendina.classList.remove('visible');
+            }
+        });
+    }
+
 
     const linkDonna = document.getElementById("link-donna");
     const linkUomo = document.getElementById("link-uomo");

@@ -1,39 +1,38 @@
 <?php
+session_start();
+
 // Connessione al database
 $servername = "sql7.freesqldatabase.com";
-$username = "sql7777430"; // Nome utente DB
-$password = "CacMXZdVbr";     // Password DB
-$dbname = "sql7777430"; // Nome del database
+$username = "sql7777430";
+$password = "CacMXZdVbr";
+$dbname = "sql7777430";
 
-// Crea connessione
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Controlla la connessione
+// Controllo connessione
 if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
 
-$response = array('success' => false, 'message' => 'Credenziali errate');
+$response = ['success' => false, 'message' => 'Credenziali errate'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['email']) && isset($_POST['password'])) {
+    if (isset($_POST['email'], $_POST['password'])) {
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
-        // Verifica se email e password non sono vuoti
         if (!empty($email) && !empty($password)) {
-            // Prepara la query per verificare l'email e la password
-            $sql = "SELECT * FROM utenti WHERE email = ?";
-            $stmt = $conn->prepare($sql);
+            $stmt = $conn->prepare("SELECT * FROM utenti WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                // L'email è trovata, verifica la password
-                $user = $result->fetch_assoc(); 
+                $user = $result->fetch_assoc();
+
+                // Controlla la password
                 if (password_verify($password, $user['password'])) {
-                    // Credenziali corrette
+                    $_SESSION['email'] = $user['email']; // Salva in sessione
                     $response['success'] = true;
                     $response['message'] = 'Login riuscito';
                 }
@@ -42,9 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Risposta in formato JSON
 echo json_encode($response);
-
-// Chiudi la connessione al database
 $conn->close();
 ?>

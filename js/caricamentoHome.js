@@ -17,6 +17,7 @@ document.querySelector('.explore-link').addEventListener('click', function(e){
 
 // funziona solo se scritto in questo punto. serve per far caricare l'area stili dall'alto
 
+//window.funzione la rende globale
 window.showAlert = function(message) {
     const alertBox = document.getElementById('alert-box');
     alertBox.textContent = message;
@@ -25,3 +26,14 @@ window.showAlert = function(message) {
         alertBox.classList.add('hidden');
     }, 3000);
 };
+
+window.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('newsletterPopup');
+    const closeBtn = document.getElementById('closeBtn');
+
+    
+    // Chiude il popup al click del bottone
+    closeBtn.addEventListener('click', () => {
+    popup.classList.add('hidden');
+    });
+});

@@ -417,6 +417,11 @@ body {
   font-family: 'Courier New', Courier, monospace;
 }
 
+#popup a:hover {
+  transform: scale(1.05);        
+  transition: transform 0.2s ease;
+}
+
 .close-btn {
   position: absolute;
   top: 10px;
@@ -432,8 +437,7 @@ body {
 .close-btn:hover {
   color: #f48fb1;
 }
-
-
+ 
 .ui-bookmark {
   --icon-size: 24px;
   --icon-secondary-color: rgb(77, 77, 77);

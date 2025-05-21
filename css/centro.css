@@ -720,3 +720,39 @@
   background-color: #95a5a6;
   transform: scale(1.05);
 }
+
+/* Titolo */
+.galleria-titolo {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* contenitore galleria */
+.galleria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.galleria img {
+    max-width: 200px;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* al passaggio del mouse su ogni immagine */
+.galleria img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(255, 237, 35, 0.3);
+    cursor: pointer;
+}

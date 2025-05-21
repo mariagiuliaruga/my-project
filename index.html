@@ -15,19 +15,28 @@
     <link rel="stylesheet" href="css/style_results.css">
     <link rel="stylesheet" href="css/footer.css">
 
-
 </head>
 <body>
-    
+    <div id="newsletterPopup" class="newsletter-popup hidden">
+        <div class="newsletter-content">
+          <button id="closeBtn" class="close-btn">&times;</button>
+          <h2>✨ Iscriviti alla nostra Newsletter ✨</h2>
+          <p>Novità, ispirazioni e segreti di stile... tutto con un semplice clic!💌</p>
+          <form method="POST" action="subscribe.php">
+            <input type="email" name="email" required placeholder="Inserisci la tua email">
+            <button type="submit">Iscriviti</button>
+          </form>
+        </div>
+    </div>
     
     <div class="intestazione">
         <div class="bottone">
             <img src="media/logo/menubar.png" alt="Menu" class="menu-icon">
             <div class="menu-tendina"> 
-                <a href="index.html" class="menu-link">Home</a>
-                <a href="#" class="menu-link">Reset</a>
+                <a href="index.html" class="menu-link" id="home-link">Home</a>
+                <a href="#" class="menu-link" id="reset-link">Reset</a>
                 <a href="#" class="menu-link" id="about-link">About</a>
-                <a href="camerino.html" class="menu-link">Dressing Room</a>
+                <a href="camerino.html" class="menu-link" id="camerino-link">Dressing Room</a>
             </div>
         </div>
         <div class="titolo">
@@ -133,6 +142,11 @@
             <button class="results-button">Visualizza Risultati</button>
             <button class="logout-button">Logout</button>
         </div>
+    </div>
+
+    <div class="immagini-outfit" style="display: none;">
+        <h1 class="galleria-titolo">Ecco gli outfit che hai salvato:</h1>
+        <div id="galleria" class="galleria"></div>
     </div>
 
     <div class="profile-edit-container">
@@ -304,6 +318,7 @@
             </div>            
         </div>
     </div>
+
     <div id="about-section" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 999;">
         <div id="about-inner" style="position: relative; background: transparent; display: flex; justify-content: center; align-items: center; transform: translateY(8%)">
           <img src="media/logo/about.png" alt="About Us" style="max-width: 80vw; max-height: 80vh; border-radius: 10px;">
@@ -314,99 +329,97 @@
         </div>
       </div>
 
+    <div class="area-risultati">
+    <div id="stili-container">
+    <link rel="stylesheet" href="css/risultati.css">
 
-      <div class="area-risultati">
-        <div id="stili-container">
-        <link rel="stylesheet" href="css/risultati.css">
-
-        <div class="stile stile-container" id="stile-bohoChic">
-                <h2>Stile BohoChic</h2>
-                <p>Libera, romantica e un po' selvaggia: il tuo stile abbraccia la natura e la creatività con un tocco bohémien.</p>
-                <img src="style/women/bohoChic/bohoChicCollage.png" alt="Moodboard bohoChic">
-                <a href="camerino.html?stile=bohoChic">Vai al manichino</a>
-            </div>
-
-            <div class="stile stile-container" id="stile-messy">
-                <h2>Stile Messy</h2>
-                <p>Disordinatamente affascinante, spontanea e autentica: trasformi il caos in carattere.</p>
-                <img src="style/women/messy/MessyCollage.png" alt="Moodboard Messy">
-                
-                <a href="camerino.html?stile=messy">Vai al manichino</a>
-            </div>
-
-            <div class="stile stile-container" id="stile-preppy">
-                <h2>Stile Preppy</h2>
-                <p>Elegante, ordinata e curata nei dettagli: il tuo stile è raffinato ma sempre fresco.</p>
-                <img src="style/women/preppy/PreppyCollage.png" alt="Moodboard preppy">
-                <a href="camerino.html?stile=preppy">Vai al manichino</a>
-            </div>
-
-            <div class="stile stile-container" id="stile-quietLuxury">
-                <h2>Stile Quiet Luxury</h2>
-                <p>Ami l’eleganza sussurrata e la qualità senza ostentazione: ogni scelta è pura classe.</p>
-                <img src="style/women/quietLuxury/QuietLuxuryCollage.png" alt="Moodboard Quiet Luxury">
-                <a href="camerino.html?stile=quietLuxury">Vai al manichino</a>
-            </div>
-
-            <div class="stile stile-container" id="stile-scandi">
-                <h2>Stile Scandi</h2>
-                <p>Minimal, pulita e funzionale: il tuo stile è essenziale ma mai banale.</p>
-                <img src="style/women/scandi/ScandiCollage.png" alt="Moodboard Scandi">
-                <a href="camerino.html?stile=scandi">Vai al manichino</a>
-            </div>
-
-            <div class="stile stile-container" id="stile-sporty">
-                <h2>Stile Sporty</h2>
-                <p>Attiva e dinamica, il comfort è la tua parola d’ordine — ma con stile.</p>
-                <img src="style/women/sporty/SportyCollage.png" alt="Moodboard Sporty">
-                <a href="camerino.html?stile=eboy">Vai al manichino</a>
-            </div>
-
-            <div class="stile stile-container" id="stile-casual">
-                <h2>Stile Casual</h2>
-                <p>Semplice, pratico e senza stress: sei a tuo agio ovunque con un look rilassato.</p>
-                <img src="style/men/casual/casualMoodboard.png" alt="Moodboard Casual">
-                <a href="camerino.html?stile=casual">Vai al manichino</a>
-            </div>
-
-            <div class="stile stile-container" id="stile-oldMoney">
-                <h2>Stile Old Money</h2>
-                <p>Eleganza classica e senza tempo: il tuo stile parla di tradizione e sicurezza.</p>
-                <img src="style/men/oldMoney/oldMoneyMoodboard.png" alt="Moodboard Old Money">
-                <a href="camerino.html?stile=oldMoney">Vai al manichino</a>
-            </div>
-
-            <div class="stile stile-container" id="stile-sporty">
-                <h2>Stile Sporty</h2>
-                <p>Sempre pronto all’azione, scegli look comodi e dinamici che ti seguono in ogni movimento.</p>
-                <img src="style/men/sporty/sportyMoodboard.png" alt="Moodboard Sporty">
-                <a href="camerino.html?stile=sporty">Vai al manichino</a>
-            </div>
-
-            <div class="stile stile-container" id="stile-street">
-                <h2>Stile Street</h2>
-                <p>Urbano, audace e creativo: il tuo stile riflette la cultura metropolitana che vivi.</p>
-                <img src="style/men/street/streetMoodboard.png" alt="Moodboard Street">
-                <a href="camerino.html?stile=street">Vai al manichino</a>
-            </div>
-
-            <div class="stile stile-container" id="stile-vintage">
-                <h2>Stile Vintage</h2>
-                <p>Affascinato dal passato, il tuo look è un mix ricercato di epoche e personalità.</p>
-                <img src="style/men/vintage/vintageMoodboard.png" alt="Moodboard Vintage">
-                <a href="camerino.html?stile=vintage">Vai al manichino</a>
-            </div>
-
-            <div class="stile stile-container" id="stile-eboy">
-                <h2>Stile Eboy</h2>
-                <p>Alternativo, digitale e provocante: il tuo stile esprime una personalità originale e fuori dagli schemi.</p>
-                <img src="style/men/eBoy/eBoyMoodboard.png" alt="Moodboard eBoy">
-                <a href="camerino.html?stile=eboy">Vai al manichino</a>
-            </div>
+    <div class="stile stile-container" id="stile-bohoChic">
+            <h2>Stile BohoChic</h2>
+            <p>Libera, romantica e un po' selvaggia: il tuo stile abbraccia la natura e la creatività con un tocco bohémien.</p>
+            <img src="style/women/bohoChic/bohoChicCollage.png" alt="Moodboard bohoChic">
+            <a href="camerino.html?stile=bohoChic">Vai al manichino</a>
         </div>
-      </div>
 
-      
+        <div class="stile stile-container" id="stile-messy">
+            <h2>Stile Messy</h2>
+            <p>Disordinatamente affascinante, spontanea e autentica: trasformi il caos in carattere.</p>
+            <img src="style/women/messy/MessyCollage.png" alt="Moodboard Messy">
+            
+            <a href="camerino.html?stile=messy">Vai al manichino</a>
+        </div>
+
+        <div class="stile stile-container" id="stile-preppy">
+            <h2>Stile Preppy</h2>
+            <p>Elegante, ordinata e curata nei dettagli: il tuo stile è raffinato ma sempre fresco.</p>
+            <img src="style/women/preppy/PreppyCollage.png" alt="Moodboard preppy">
+            <a href="camerino.html?stile=preppy">Vai al manichino</a>
+        </div>
+
+        <div class="stile stile-container" id="stile-quietLuxury">
+            <h2>Stile Quiet Luxury</h2>
+            <p>Ami l’eleganza sussurrata e la qualità senza ostentazione: ogni scelta è pura classe.</p>
+            <img src="style/women/quietLuxury/QuietLuxuryCollage.png" alt="Moodboard Quiet Luxury">
+            <a href="camerino.html?stile=quietLuxury">Vai al manichino</a>
+        </div>
+
+        <div class="stile stile-container" id="stile-scandi">
+            <h2>Stile Scandi</h2>
+            <p>Minimal, pulita e funzionale: il tuo stile è essenziale ma mai banale.</p>
+            <img src="style/women/scandi/ScandiCollage.png" alt="Moodboard Scandi">
+            <a href="camerino.html?stile=scandi">Vai al manichino</a>
+        </div>
+
+        <div class="stile stile-container" id="stile-sporty">
+            <h2>Stile Sporty</h2>
+            <p>Attiva e dinamica, il comfort è la tua parola d’ordine — ma con stile.</p>
+            <img src="style/women/sporty/SportyCollage.png" alt="Moodboard Sporty">
+            <a href="camerino.html?stile=eboy">Vai al manichino</a>
+        </div>
+
+        <div class="stile stile-container" id="stile-casual">
+            <h2>Stile Casual</h2>
+            <p>Semplice, pratico e senza stress: sei a tuo agio ovunque con un look rilassato.</p>
+            <img src="style/men/casual/casualMoodboard.png" alt="Moodboard Casual">
+            <a href="camerino.html?stile=casual">Vai al manichino</a>
+        </div>
+
+        <div class="stile stile-container" id="stile-oldMoney">
+            <h2>Stile Old Money</h2>
+            <p>Eleganza classica e senza tempo: il tuo stile parla di tradizione e sicurezza.</p>
+            <img src="style/men/oldMoney/oldMoneyMoodboard.png" alt="Moodboard Old Money">
+            <a href="camerino.html?stile=oldMoney">Vai al manichino</a>
+        </div>
+
+        <div class="stile stile-container" id="stile-sporty">
+            <h2>Stile Sporty</h2>
+            <p>Sempre pronto all’azione, scegli look comodi e dinamici che ti seguono in ogni movimento.</p>
+            <img src="style/men/sporty/sportyMoodboard.png" alt="Moodboard Sporty">
+            <a href="camerino.html?stile=sporty">Vai al manichino</a>
+        </div>
+
+        <div class="stile stile-container" id="stile-street">
+            <h2>Stile Street</h2>
+            <p>Urbano, audace e creativo: il tuo stile riflette la cultura metropolitana che vivi.</p>
+            <img src="style/men/street/streetMoodboard.png" alt="Moodboard Street">
+            <a href="camerino.html?stile=street">Vai al manichino</a>
+        </div>
+
+        <div class="stile stile-container" id="stile-vintage">
+            <h2>Stile Vintage</h2>
+            <p>Affascinato dal passato, il tuo look è un mix ricercato di epoche e personalità.</p>
+            <img src="style/men/vintage/vintageMoodboard.png" alt="Moodboard Vintage">
+            <a href="camerino.html?stile=vintage">Vai al manichino</a>
+        </div>
+
+        <div class="stile stile-container" id="stile-eboy">
+            <h2>Stile Eboy</h2>
+            <p>Alternativo, digitale e provocante: il tuo stile esprime una personalità originale e fuori dagli schemi.</p>
+            <img src="style/men/eBoy/eBoyMoodboard.png" alt="Moodboard eBoy">
+            <a href="camerino.html?stile=eboy">Vai al manichino</a>
+        </div>
+    </div>
+    </div>
+
     <footer class="contact-footer">
         <div class="footer-content">
             <div class="contact-info">
@@ -436,6 +449,9 @@
     <script src="js/profile-edit.js"></script>
     <script src="js/caricamentoHome.js"></script>
     <script src="js/about.js"></script>
+    <script src="js/menuTendina.js"></script>
+    <script src="js/results.js"></script>
+
 
 </body>
 </html>
