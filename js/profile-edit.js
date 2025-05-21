@@ -120,6 +120,19 @@ document.addEventListener('DOMContentLoaded', function() {
             removeError(this);
         }
     });
+
+    //funzione per tornare all'area personale
+    window.handleBackToAreaPersonale = function (){
+        const profileEdit = document.getElementById('profileEditContainer');
+        const areaPersonale = document.getElementById('areaPersonale');
+        
+        if (profileEdit){
+            profileEdit.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } 
+        
+        if (areaPersonale) areaPersonale.style.display = 'block';
+    }
     
     // Gestione del submit del form
     profileForm.addEventListener('submit', function(e) {
@@ -175,24 +188,17 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             window.location.href = 'index.html';
         }, 1500);
+        window.handleBackToAreaPersonale();
+        
     });
     document.getElementById("profile-edit-form").addEventListener("submit", function(e) {
-        e.preventDefault(); // 🔒 Blocca il submit
+        e.preventDefault(); //  Blocca il submit
         console.log("Form inviato, ma la pagina non si ricarica.");
-        // Aggiungi qui eventuale logica di invio AJAX o modifica profilo
     });
     
     // Gestione del pulsante Annulla
     cancelButton.addEventListener('click', function() {
-        const profileEdit = document.getElementById('profileEditContainer');
-        const areaPersonale = document.getElementById('areaPersonale');
-    
-        if (profileEdit){
-            profileEdit.style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } 
-        
-        if (areaPersonale) areaPersonale.style.display = 'block';
+        window.handleBackToAreaPersonale();
     });
 }); 
 

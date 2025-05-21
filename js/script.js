@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.homeLink = document.getElementById('home-link');
     window.resetLink = document.getElementById('reset-link');
     window.camerinoLink = document.getElementById('camerino-link');
+    window.contactFooter = document.querySelector('.contact-footer');
 
     let isLoggedIn = localStorage.getItem('userEmail') && localStorage.getItem('showPersonalArea') === 'true';
 
@@ -33,15 +34,15 @@ document.addEventListener('DOMContentLoaded', function () {
         container.classList.add('invisible');
         areaPersonale.classList.add('visible');
         localStorage.removeItem('showPersonalArea');
-
     }
-
+    
     window.handleUserIconClick = function (e) {
         e.preventDefault();
         e.stopPropagation();
         if (isLoggedIn) {
             container.classList.add('invisible');
             areaPersonale.classList.add('visible');
+            contactFooter.style.display = 'none';
             profileEditContainer.style.display = 'none';
             loginPanel.classList.remove('visible');
             registerPanel.classList.remove('visible');
