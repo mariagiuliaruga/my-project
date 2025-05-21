@@ -4,14 +4,9 @@ include __DIR__ . '/connessione.php';  // Include la connessione mysqli
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '/../PHPMailer/src/Exception.php';
-require __DIR__ . '/../PHPMailer/src/PHPMailer.php';
-require __DIR__ . '/../PHPMailer/src/SMTP.php';
-
-if (!class_exists('PHPMailer\PHPMailer\PHPMailer')) {
-    echo json_encode(["success" => false, "message" => "PHPMailer non caricato"]);
-    exit;
-}
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 // Imposta il report degli errori
 error_reporting(E_ALL);

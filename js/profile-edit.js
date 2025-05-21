@@ -171,19 +171,34 @@ document.addEventListener('DOMContentLoaded', function() {
         // Mostra la notifica toast invece dell'alert
         showToast('Profilo aggiornato con successo!');
         
-        // Mostra l'area personale dopo un breve delay per permettere di vedere la notifica
+        // Reindirizza dopo un breve delay per permettere di vedere la notifica
         setTimeout(() => {
-            if (typeof window.handleUserIconClick === 'function') {
-                window.handleUserIconClick(e);  // non serve 'e' qui
-            }
-        }, 2500);
-        
+            window.location.href = 'index.html';
+        }, 1500);
+    });
+    document.getElementById("profile-edit-form").addEventListener("submit", function(e) {
+        e.preventDefault(); // 🔒 Blocca il submit
+        console.log("Form inviato, ma la pagina non si ricarica.");
+        // Aggiungi qui eventuale logica di invio AJAX o modifica profilo
     });
     
     // Gestione del pulsante Annulla
-    cancelButton.addEventListener('click', function(e) {
-        if (typeof window.handleUserIconClick === 'function') {
-            window.handleUserIconClick(e);
-        }
+    cancelButton.addEventListener('click', function() {
+        const profileEdit = document.getElementById('profileEditContainer');
+        const areaPersonale = document.getElementById('areaPersonale');
+    
+        if (profileEdit){
+            profileEdit.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } 
+        
+        if (areaPersonale) areaPersonale.style.display = 'block';
     });
 }); 
+
+document.addEventListener('DOMContentLoaded', function () {
+    const emailInput = document.getElementById('email');
+    if (emailInput) {
+        emailInput.readOnly = true;
+    }
+});

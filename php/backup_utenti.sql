@@ -3,3 +3,7 @@ INSERT INTO utenti (email, password, data_registrazione) VALUES ('ruga@a', '$2y$
 INSERT INTO utenti (email, password, data_registrazione) VALUES ('s@sss', '$2y$10$z4/2XOc3MmmQQiVwlDlIye.jJSGjOYlLm8R7StNy6/Yc61jSsFXOS', '2025-05-21 17:34:43');
 INSERT INTO utenti (email, password, data_registrazione) VALUES ('ciao@a', '$2y$10$jPm08QmdxZN3CgQjmYv5MOyoOTgHS5LEIuU4BgM8DcoJbUEEJjN0W', '2025-05-21 17:59:51');
 INSERT INTO utenti (email, password, data_registrazione) VALUES ('marco@marco', '$2y$10$R.h49/KXe.j84yjHZwirW.aKBprps3YAquGsvlFy7L9qB6O3kVN9K', '2025-05-21 18:15:53');
+INSERT INTO utenti (email, password, data_registrazione) VALUES ('a@aaaaa', '$2y$10$VVMZ9QIS8qr9MIWBiRpY.uFMbtndq/zqknewZWt2/lU6Yb0Qc3saO', '2025-05-21 07:48:38');
+INSERT INTO utenti (email, password, data_registrazione) VALUES ('ele@tommasina', '$2y$10$j.Axhnn1FvolRINUnEozA.QAHdTDB0W3UMbxW69ZwZdPLCYZ.S.Hu', '2025-05-21 07:53:52');
+INSERT INTO utenti (email, password, data_registrazione) VALUES ('marco@ma', '$2y$10$rxKCW1XboIV.GP4VlStFAuRVsNOJc1XZU522ZXbYmai4RzTTEYZ2q', '2025-05-21 09:45:54');
+INSERT INTO utenti (email, password, data_registrazione) VALUES ('eleruga@gmail.com', '$2y$10$SkC8/a0xsSkoaGS6jMfIb.69W3y1MOBfVjenuf/7adhm8b0w3mnza', '2025-05-21 09:50:31');
