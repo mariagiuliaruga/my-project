@@ -452,6 +452,7 @@
     <script src="js/caricamentoHome.js"></script>
     <script src="js/about.js"></script>
     <script src="js/menuTendina.js"></script>
+    <script src="js/results.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
           const popup = document.getElementById('newsletterPopup');
@@ -462,7 +463,7 @@
             setTimeout(() => {
               popup.classList.remove('hidden');
               sessionStorage.setItem('newsletterShown', 'true');
-            }, 3000);
+            }, 3000); 
           }     
           // Chiude il popup al click
           closeBtn.addEventListener('click', () => {
