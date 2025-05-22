@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.camerinoLink = document.getElementById('camerino-link');
     window.contactFooter = document.querySelector('.contact-footer');
     window.aboutSection = document.getElementById('about-section');
+    window.sezioneImmagini = document.querySelector('.immagini-outfit');
     isLoggedIn = false;
 
     // Mostra l'area personale dopo il login
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     window.pulisciGalleria = function() {
-        const sezioneImmagini = document.querySelector('.immagini-outfit');
+        
         if (galleria) galleria.innerHTML = ''; // Svuota le immagini
         if (sezioneImmagini) sezioneImmagini.style.display = 'none'; // Nasconde la sezione immagini
         resultsButton.textContent = 'Visualizza Risultati';
@@ -611,6 +612,8 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         profileEditContainer.style.display = 'block';
         areaPersonale.classList.remove('visible');
+        sezioneImmagini.style.display = 'none';
+        window.resultsButton.textContent = 'Visualizza Risultati';
     });
 
     logoutButton.addEventListener('click', function (e) {

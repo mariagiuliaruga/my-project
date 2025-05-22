@@ -101,7 +101,7 @@
         <button class="close-button">&times;</button>
         <h2>Login</h2>
         <form class="login-form" action="php/login.php" method="POST">
-            <input type="email" name="email" placeholder="Insert your e-mail" required>
+            <input type="email" name="email" required pattern="[^@]+@[^@]+\.[^@]+" placeholder="Insert your e-mail" required>
             <input type="password" name="password" placeholder="Insert your password" required>
             <a href="#" class="forgot-password">Password dimenticata?</a>
             <button type="submit">Login</button>
@@ -117,7 +117,7 @@
                 <input type="text" name="nome" placeholder="Nome" required>
                 <input type="text" name="cognome" placeholder="Cognome" required>
             </div>
-            <input type="email" name="email" placeholder="Insert your e-mail" required>
+            <input type="email" name="email" required pattern="[^@]+@[^@]+\.[^@]+" placeholder="Insert your e-mail" required>
             <input type="password" name="password" placeholder="Insert your password" required>
             <button type="submit">Register</button>
         </form>              
@@ -335,7 +335,7 @@
     <div id="stili-container">
     <link rel="stylesheet" href="css/risultati.css">
 
-    <div class="stile stile-container" id="stile-bohoChic">
+        <div class="stile stile-container" id="stile-bohoChic">
             <h2>Stile BohoChic</h2>
             <p>Libera, romantica e un po' selvaggia: il tuo stile abbraccia la natura e la creatività con un tocco bohémien.</p>
             <img src="style/women/bohoChic/bohoChicCollage.png" alt="Moodboard bohoChic">
