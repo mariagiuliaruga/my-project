@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.resetLink = document.getElementById('reset-link');
     window.camerinoLink = document.getElementById('camerino-link');
     window.contactFooter = document.querySelector('.contact-footer');
+    window.aboutSection = document.getElementById('about-section');
     isLoggedIn = false;
 
     // Mostra l'area personale dopo il login
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         areaPersonale.classList.remove('visible');
         areaStili.classList.remove('visible');
         loginButton.style.display = 'block';
+        aboutSection.style.display = 'none';
     };
 
     window.handleLogout = function () {
