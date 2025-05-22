@@ -38,10 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_insert = $conn->prepare("INSERT INTO utenti (email, password, data_registrazione) VALUES (?, ?, ?)");
             if ($stmt_insert->execute([$email, $hashedPassword, $data_registrazione])) {
                 echo json_encode(["success" => true, "message" => "Registrazione riuscita"]);
-
-                // Backup
                 $sqlString = "INSERT INTO utenti (email, password, data_registrazione) VALUES ('$email', '$hashedPassword', '$data_registrazione');\n";
-                file_put_contents("backup_utenti.sql", $sqlString, FILE_APPEND);
             } else {
                 echo json_encode(["success" => false, "message" => "Errore nell'inserimento"]);
             }

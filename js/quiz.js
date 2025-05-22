@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const quizWindow = document.querySelector('.quiz-window');
     const quizButtonActive = document.querySelector('.quiz-button.active');
     const closeButton = document.querySelector('.quiz-close-button');
-    
+    const quizResult = document.querySelector('.quiz-result');
+    const questionElement = document.querySelector('.quiz-domanda');
+    const navigationElement = document.querySelector('.quiz-navigation');
     
     
         //event listener per il pulsante di chiusura
@@ -205,7 +207,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Funzione per mostrare la domanda corrente
         function showQuestion(index) {
-            const questionElement = document.querySelector('.quiz-domanda');
             const question = currentSondaggio[index];
             
             let html = `<h3>${question.domanda}</h3>`;
@@ -313,7 +314,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Funzione per salvare la risposta
         function saveAnswer(index) {
             const question = currentSondaggio[index];
-            const questionElement = document.querySelector('.quiz-domanda');
             
             if (question.tipo === "select") {
                 // Caso speciale per la domanda sui colori che usa checkbox
@@ -350,7 +350,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Funzione per validare la risposta corrente
         function validateCurrentQuestion() {
             const question = currentSondaggio[currentQuestion];
-            const questionElement = document.querySelector('.quiz-domanda');
             
             if (question.tipo === "select") {
                 if (question.immagini) {
@@ -388,9 +387,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const risultato = calcolaStile(answers);
             console.log('Risultato calcolo:', risultato);
         
-            // Salva lo stile vincente
-            localStorage.setItem('stileSelezionato', risultato.stileVincente);
-        
             const resultContent = `
             <div class="quiz-result">
                 <h2>Il tuo stile è: ${risultato.stileVincente}</h2>
@@ -415,7 +411,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         
-            const questionElement = document.querySelector('.quiz-domanda');
             if (questionElement) {
                 questionElement.innerHTML = resultContent;
         
@@ -451,8 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         
             // Nascondi i pulsanti navigazione
-            const navigationElement = document.querySelector('.quiz-navigation');
-            if (navigationElement) {
+            if (quizResult) {
                 navigationElement.style.display = 'none';
             }
         
@@ -494,11 +488,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Event listener per il pulsante del quiz
         if (quizButton) {
             quizButton.addEventListener('click', function() {
+                currentSondaggio = [...sondaggioIniziale];
                 currentQuestion = 0;
                 answers = {};
-                quizContainer.classList.add('visible');
-                quizWindow.classList.add('visible');
-                showQuestion(currentQuestion);
+                // Mostra la barra di navigazione
+            if (navigationElement) {
+                navigationElement.style.display = 'flex';
+            }
+            
+            // Mostra il quiz
+            showQuestion(currentQuestion);
+            quizContainer.classList.add('visible');
+            quizWindow.classList.add('visible');
+            quizResult.style.display = 'none';
             });
         }
     
@@ -533,6 +535,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (validateCurrentQuestion()) {
                     saveAnswer(currentQuestion);
                     submitQuiz();
+                    navigationElement.style.display = 'none';
                 }
             });
         }
@@ -772,11 +775,37 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Stile vincente:', stileVincente);
             console.log('Punteggio massimo:', punteggioMassimo);
 
+            fetch('php/save_style.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'stile=' + encodeURIComponent(stileVincente),
+            });
+
             return {
                 stileVincente,
                 punteggioMassimo,
                 punteggi: { ...stiliCorrenti }
             };
+
         }
+
+        const risultato = calcolaStile(answers);
+
+        fetch("php/save_style.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: "stile=" + encodeURIComponent(risultato.stileVincente),
+        })
+        .then((response) => response.text())
+        .then((data) => {
+            console.log("Risposta dal server:", data);
+        })
+        .catch((error) => {
+            console.error("Errore nella fetch:", error);
+        });
 
     });

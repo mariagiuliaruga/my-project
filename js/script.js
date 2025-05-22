@@ -65,6 +65,9 @@ document.addEventListener('DOMContentLoaded', function () {
         areaStili.classList.remove('visible');
         loginButton.style.display = 'block';
         aboutSection.style.display = 'none';
+        profileEditContainer.style.display = 'none';
+        contactFooter.style.display = 'block';
+        areaRisultati.style.display = 'none';
     };
 
     window.handleLogout = function () {
@@ -76,6 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
         loginPanel.classList.remove('visible');
         registerPanel.classList.remove('visible');
         contactFooter.style.display = 'block';
+        areaRisultati.style.display = 'none';
+        profileEditContainer.style.display = 'none';
 
         loginButton.style.display = 'block';
         loginButton.classList.remove('logged-in');
