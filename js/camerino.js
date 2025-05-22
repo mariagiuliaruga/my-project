@@ -209,6 +209,8 @@ function drop(ev) {
     zona = document.getElementById('zona-orologio');
     } else if (zonaNome === "borsa"){
     zona = document.getElementById('zona-borsa-donna')
+    } else if (zonaNome === "borsa-mano"){
+    zona = document.getElementById('zona-borsa-mano-donna')
     }
 
     // si occupa di evitare sovrapposizioni e sostituire un indumento esistente nella stessa zona
@@ -226,6 +228,38 @@ function drop(ev) {
         original.style.cursor = "grab";
         }
     });
+    }
+
+    if (zonaNome==="borsa") {
+        const esistenti = manichino.querySelectorAll(`.indumento[data-zona="${"borsa-mano"}"]`);
+        esistenti.forEach(el => {
+            el.remove();
+
+            // Ripristina l'elemento originale nella lista vestiti
+            const originalId = el.id.replace("-clone", "");
+            const original = document.getElementById(originalId);
+            if (original) {
+            original.setAttribute("draggable", "true");
+            original.style.opacity = "1";
+            original.style.cursor = "grab";
+            }
+        });
+    }
+
+    if (zonaNome==="borsa-mano") {
+        const esistenti = manichino.querySelectorAll(`.indumento[data-zona="${"borsa"}"]`);
+        esistenti.forEach(el => {
+            el.remove();
+
+            // Ripristina l'elemento originale nella lista vestiti
+            const originalId = el.id.replace("-clone", "");
+            const original = document.getElementById(originalId);
+            if (original) {
+            original.setAttribute("draggable", "true");
+            original.style.opacity = "1";
+            original.style.cursor = "grab";
+            }
+        });
     }
 
     clone.setAttribute("data-zona", zonaNome);
