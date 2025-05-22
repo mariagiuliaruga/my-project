@@ -1,18 +1,7 @@
 <?php
 session_start();
 
-// Connessione al database
-$servername = "sql7.freesqldatabase.com";
-$username = "sql7777430";
-$password = "CacMXZdVbr";
-$dbname = "sql7777430";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Controllo connessione
-if ($conn->connect_error) {
-    die("Connessione fallita: " . $conn->connect_error);
-}
+include __DIR__ . '/connessione.php';  // Include la connessione mysqli
 
 $response = ['success' => false, 'message' => 'Credenziali errate'];
 

@@ -30,9 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Verifica se l'email è già registrata
             $sql_check_email = "SELECT * FROM utenti WHERE email = ?";
             $stmt_check = $conn->prepare($sql_check_email);
-            $stmt_check->bind_param("s", $email);
+            $stmt_check->bind_param("s", $email); // ✅ mysqli: bind_param
             $stmt_check->execute();
-            $result_check = $stmt_check->get_result();
+            $result_check = $stmt_check->get_result(); // ✅ mysqli: get_result
 
             if ($result_check->num_rows > 0) {
                 echo json_encode(["success" => false, "message" => "Email già registrata"]);
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Inserisci l'utente
             $sql_insert = "INSERT INTO utenti (email, password, data_registrazione) VALUES (?, ?, ?)";
             $stmt_insert = $conn->prepare($sql_insert);
-            $stmt_insert->bind_param("sss", $email, $hashedPassword, $data_registrazione);
+            $stmt_insert->bind_param("sss", $email, $hashedPassword, $data_registrazione); // ✅ mysqli: bind_param
 
             if ($stmt_insert->execute()) {
                 echo json_encode(["success" => true, "message" => "Registrazione riuscita"]);

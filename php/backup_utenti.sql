@@ -7,3 +7,4 @@ INSERT INTO utenti (email, password, data_registrazione) VALUES ('a@aaaaa', '$2y
 INSERT INTO utenti (email, password, data_registrazione) VALUES ('ele@tommasina', '$2y$10$j.Axhnn1FvolRINUnEozA.QAHdTDB0W3UMbxW69ZwZdPLCYZ.S.Hu', '2025-05-21 07:53:52');
 INSERT INTO utenti (email, password, data_registrazione) VALUES ('marco@ma', '$2y$10$rxKCW1XboIV.GP4VlStFAuRVsNOJc1XZU522ZXbYmai4RzTTEYZ2q', '2025-05-21 09:45:54');
 INSERT INTO utenti (email, password, data_registrazione) VALUES ('eleruga@gmail.com', '$2y$10$SkC8/a0xsSkoaGS6jMfIb.69W3y1MOBfVjenuf/7adhm8b0w3mnza', '2025-05-21 09:50:31');
+INSERT INTO utenti (email, password, data_registrazione) VALUES ('mamma@mia', '$2y$10$nB3z9QCRsdPxHxAT/vdjr.ZOET8SeLudvIXFXyhJj2WDjDQ4gHCJe', '2025-05-22 13:05:20');

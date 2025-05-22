@@ -162,11 +162,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Simulazione di aggiornamento profilo
-        // In un'applicazione reale, qui ci sarebbe una chiamata API
-        localStorage.setItem('userEmail', email);
-        localStorage.setItem('userPassword', newPassword);
-        // Imposta il flag per mostrare l'area personale
-        localStorage.setItem('showPersonalArea', 'true');
+        fetch('/php/update_password.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `email=${encodeURIComponent(email)}&newPassword=${encodeURIComponent(newPassword)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                localStorage.setItem('userPassword', newPassword); // aggiorna anche localStorage
+                showToast('Password aggiornata con successo!');
+                setTimeout(() => {
+                    if (typeof window.handleUserIconClick === 'function') {
+                        window.handleUserIconClick(e);
+                    }
+                }, 2500);
+            } else {
+                showToast('Errore: ' + data.message, 'error');
+            }
+        })
+        .catch(error => {
+            showToast('Errore di rete', 'error');
+            console.error('Errore:', error);
+        });
+        
         
         // Mostra la notifica toast invece dell'alert
         showToast('Profilo aggiornato con successo!');
