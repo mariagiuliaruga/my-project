@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: application/json'); // DICHIARA IL TIPO DI RISPOSTA
+header('Content-Type: application/json'); // ✅ DICHIARA IL TIPO DI RISPOSTA
 require_once 'connessione.php'; // che istanzia $pdo
 
 $email = trim($_POST['email'] ?? '');
