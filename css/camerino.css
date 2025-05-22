@@ -106,12 +106,12 @@ body {
   right: 100%;
   display: flex;
   flex-direction: row;
-  transform: translateX(100%); /*lo sposto a destra per renderlo invisibile*/
+  transform: translateX(100%); 
   gap: 1vh;
 }
 
 .area-uomo.visible, .area-donna.visible {
-  transform: translateX(0);  /*lo sposto a sinistra per renderlo visibile*/
+  transform: translateX(0);  
   right: 0;
 }
 
@@ -202,6 +202,12 @@ body {
   height: 2%;
   width: 8%;
   background: transparent;
+}
+
+#zona-vestito{
+  top: 17%;
+  height: 70%;
+  background: rgba(0, 128, 0, 0);
 }
 
 #cestino {

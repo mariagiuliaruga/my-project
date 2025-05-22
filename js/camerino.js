@@ -211,7 +211,10 @@ function drop(ev) {
     zona = document.getElementById('zona-borsa-donna')
     } else if (zonaNome === "borsa-mano"){
     zona = document.getElementById('zona-borsa-mano-donna')
-    }
+    } else if (zonaNome === "vestito"){
+    zona = document.getElementById('zona-vestito')
+    } 
+    
 
     // si occupa di evitare sovrapposizioni e sostituire un indumento esistente nella stessa zona
     if (zonaNome) {
@@ -874,4 +877,3 @@ document.querySelector("#scaricaOutfitDonna input[type='checkbox']").addEventLis
         }, 3000);
     });
 });
-
