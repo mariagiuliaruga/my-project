@@ -181,7 +181,12 @@ body {
   top: 72%;
   height: 32%;
   background-color: rgba(255, 0, 0, 0);
+}
 
+#zona-borsa-donna {
+  bottom: 10%;
+  height: 73%;
+  background-color: rgba(0, 57, 201, 0);
 }
 
 #manichino-uomo #zona-orologio{

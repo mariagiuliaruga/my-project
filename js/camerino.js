@@ -207,7 +207,9 @@ function drop(ev) {
     zona = varGlobDonna ? document.getElementById('zona-piedi-donna') : document.getElementById('zona-piedi');
     } else if (zonaNome === "orologio") {
     zona = document.getElementById('zona-orologio');
-    } 
+    } else if (zonaNome === "borsa"){
+    zona = document.getElementById('zona-borsa-donna')
+    }
 
     // si occupa di evitare sovrapposizioni e sostituire un indumento esistente nella stessa zona
     if (zonaNome) {
