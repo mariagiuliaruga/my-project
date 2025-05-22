@@ -1,6 +1,8 @@
 <?php
 // forgot_password.php
-include 'connessione.php';
+session_start();
+require 'connessione.php'; // Deve restituire un oggetto $conn di tipo PDO
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -12,33 +14,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
     $email = trim($_POST['email']);
 
     if (!empty($email)) {
-        // Verifica se l'email esiste nel database
-        $stmt = $conn->prepare("SELECT * FROM utenti WHERE email = :email");
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->execute();
-
-        $utente = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($utente) {
-            // Genera il token e la data di scadenza
-            $token = bin2hex(random_bytes(16));
-            $expires_at = date("Y-m-d H:i:s", strtotime('+1 hour'));
-
-            // Inserisce il token nella tabella di reset della password
-            $stmt = $conn->prepare("INSERT INTO password_reset (email, token, expires_at) VALUES (:email, :token, :expires_at)");
+        try {
+            // Verifica se l'email esiste nel database
+            $stmt = $conn->prepare("SELECT * FROM utenti WHERE email = :email");
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt->bindParam(':token', $token, PDO::PARAM_STR);
-            $stmt->bindParam(':expires_at', $expires_at, PDO::PARAM_STR);
             $stmt->execute();
 
-            // Link di reset (modifica con il tuo dominio reale)
-            $resetLink = "http://localhost/my-project/php/reset_password.php?token=$token";
+            $utente = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Funzione per inviare l'email
-            sendPasswordResetEmail($email, $resetLink);
-            echo 'Email inviata con successo! Controlla la casella di spam';
-        } else {
-            echo "Email non trovata nel nostro sistema.";
+            if ($utente) {
+                // Genera token e scadenza
+                $token = bin2hex(random_bytes(16));
+                $expires_at = date("Y-m-d H:i:s", strtotime('+1 hour'));
+
+                // Inserisce il token
+                $stmt = $conn->prepare("INSERT INTO password_reset (email, token, expires_at) VALUES (:email, :token, :expires_at)");
+                $stmt->bindParam(':email', $email);
+                $stmt->bindParam(':token', $token);
+                $stmt->bindParam(':expires_at', $expires_at);
+                $stmt->execute();
+
+                // Link di reset
+                $resetLink = "http://localhost:3000/Documents/GitHub//my-project/php/reset_password.php?token=$token";
+                // $resetLink = "http://localhost/my-project/php/reset_password.php?token=$token"; questo funziona ma non a mari
+
+                // Invia l'email
+                sendPasswordResetEmail($email, $resetLink);
+                echo 'Email inviata con successo! Controlla anche la casella di spam.';
+            } else {
+                echo "Email non trovata nel nostro sistema.";
+            }
+        } catch (PDOException $e) {
+            echo "Errore: " . $e->getMessage();
         }
     } else {
         echo "Inserisci un'email valida.";
@@ -47,34 +54,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
     echo "Richiesta non valida.";
 }
 
-// Funzione per inviare l'email
+// Funzione per l'invio dell'email con PHPMailer
 function sendPasswordResetEmail($toEmail, $resetLink) {
     $mail = new PHPMailer(true);
     try {
-        // Configurazione SMTP
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // SMTP di Gmail
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'mystylessence@gmail.com'; // La tua email
-        $mail->Password = 'qafa wgxz kuix cynk'; // La tua password per app
+        $mail->Username = 'mystylessence@gmail.com';
+        $mail->Password = 'qafa wgxz kuix cynk'; // Password per app Gmail
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
-        $mail->SMTPOptions = array(
-            'ssl' => array(
+        $mail->SMTPOptions = [
+            'ssl' => [
                 'verify_peer' => false,
                 'verify_peer_name' => false,
-                'allow_self_signed' => true
-            )
-        );
-        // Mittente e destinatario
-        $mail->setFrom('tuoemail@gmail.com', 'MyStileEssence');
-        $mail->addAddress($toEmail);  // L'email dell'utente che ha richiesto il reset
+                'allow_self_signed' => true,
+            ]
+        ];
 
-        // Contenuto dell'email
+        $mail->setFrom('mystylessence@gmail.com', 'MyStileEssence');
+        $mail->addAddress($toEmail);
+
         $mail->isHTML(true);
         $mail->Subject = 'Reset della password';
-        $mail->Body    = "Clicca questo link per reimpostare la tua password: <a href='$resetLink'>$resetLink</a>";
+        $mail->Body = "Clicca questo link per reimpostare la tua password: <a href='$resetLink'>$resetLink</a>";
 
         $mail->send();
     } catch (Exception $e) {

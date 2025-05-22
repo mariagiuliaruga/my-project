@@ -18,7 +18,7 @@ if (!isset($data['immagine'])) {
     exit;
 }
 
-// crea la cartella immagini_salvate/ nella stessa directory del file PHP, se ancora non esiste
+// Crea la cartella se non esiste
 $cartella = 'immagini_salvate/';
 if (!file_exists($cartella)) {
     mkdir($cartella, 0777, true);
@@ -34,23 +34,23 @@ $immagineBinaria = base64_decode($base64);
 $nomeFile = uniqid('outfit_', true) . '.png';
 $percorsoFile = $cartella . $nomeFile;
 
-// Salva l'immagine sul server
+// Salva l'immagine nel server
 file_put_contents($percorsoFile, $immagineBinaria);
 
+// Connessione PDO
+try {
+    $conn = new PDO("mysql:host=sql7.freesqldatabase.com;dbname=sql7777430", "sql7777430", "CacMXZdVbr");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Salva nel database
-$conn = new mysqli("sql7.freesqldatabase.com", "sql7777430", "CacMXZdVbr", "sql7777430");
+    // Inserisci percorso immagine nel database
+    $stmt = $conn->prepare("INSERT INTO immagini (email, percorso_file) VALUES (:email, :percorso)");
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    $stmt->bindParam(':percorso', $percorsoFile, PDO::PARAM_STR);
+    $stmt->execute();
 
-if ($conn->connect_error) {
-    echo json_encode(['errore' => true, 'messaggio' => 'Errore connessione DB']);
-    exit;
+    echo json_encode(['errore' => false, 'messaggio' => 'Immagine salvata con successo']);
+
+} catch (PDOException $e) {
+    echo json_encode(['errore' => true, 'messaggio' => 'Errore DB: ' . $e->getMessage()]);
 }
-
-$stmt = $conn->prepare("INSERT INTO immagini (email, percorso_file) VALUES (?, ?)");
-$stmt->bind_param("ss", $email, $percorsoFile);
-$stmt->execute();
-$stmt->close();
-$conn->close();
-
-echo json_encode(['errore' => false, 'messaggio' => 'Immagine salvata con successo']);
 ?>

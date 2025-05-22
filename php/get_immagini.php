@@ -10,26 +10,28 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
-// Connessione DB (usa i tuoi dati)
-$conn = new mysqli("sql7.freesqldatabase.com", "sql7777430", "CacMXZdVbr", "sql7777430");
-if ($conn->connect_error) {
-    echo json_encode(['errore' => true, 'messaggio' => 'Errore connessione DB']);
-    exit;
+// Connessione DB con PDO
+$host = "sql7.freesqldatabase.com";
+$dbname = "sql7777430";
+$username = "sql7777430";
+$password = "CacMXZdVbr";
+
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $conn->prepare("SELECT percorso_file FROM immagini WHERE email = :email");
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+
+    $immagini = [];
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $immagini[] = 'php/' . $row['percorso_file'];
+    }
+
+    echo json_encode(['errore' => false, 'immagini' => $immagini]);
+
+} catch (PDOException $e) {
+    echo json_encode(['errore' => true, 'messaggio' => 'Errore connessione DB: ' . $e->getMessage()]);
 }
-
-$stmt = $conn->prepare("SELECT percorso_file FROM immagini WHERE email = ?");
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
-
-$immagini = [];
-while ($row = $result->fetch_assoc()) {
-    $immagini[] = 'php/' . $row['percorso_file'];
-
-}
-
-$stmt->close();
-$conn->close();
-
-echo json_encode(['errore' => false, 'immagini' => $immagini]);
 ?>

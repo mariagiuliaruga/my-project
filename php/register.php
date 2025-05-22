@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/connessione.php';  // Include la connessione mysqli
+include __DIR__ . '/connessione.php';  // Connessione con PDO
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -13,54 +13,38 @@ if (!class_exists('PHPMailer\PHPMailer\PHPMailer')) {
     exit;
 }
 
-// Imposta il report degli errori
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-// Imposta intestazione per rispondere in JSON
 header('Content-Type: application/json');
 
-// Gestisci la richiesta POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
         if (!empty($email) && !empty($password)) {
-            // Verifica se l'email è già registrata
-            $sql_check_email = "SELECT * FROM utenti WHERE email = ?";
-            $stmt_check = $conn->prepare($sql_check_email);
-            $stmt_check->bind_param("s", $email);
-            $stmt_check->execute();
-            $result_check = $stmt_check->get_result();
-
-            if ($result_check->num_rows > 0) {
+            // Controllo email già registrata
+            $stmt_check = $conn->prepare("SELECT * FROM utenti WHERE email = ?");
+            $stmt_check->execute([$email]);
+            if ($stmt_check->rowCount() > 0) {
                 echo json_encode(["success" => false, "message" => "Email già registrata"]);
-                $stmt_check->close();
-                $conn->close();
                 exit;
             }
 
-            // Cripta la password
+            // Cripta password e registra
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
             $data_registrazione = date("Y-m-d H:i:s");
 
-            // Inserisci l'utente
-            $sql_insert = "INSERT INTO utenti (email, password, data_registrazione) VALUES (?, ?, ?)";
-            $stmt_insert = $conn->prepare($sql_insert);
-            $stmt_insert->bind_param("sss", $email, $hashedPassword, $data_registrazione);
-
-            if ($stmt_insert->execute()) {
+            $stmt_insert = $conn->prepare("INSERT INTO utenti (email, password, data_registrazione) VALUES (?, ?, ?)");
+            if ($stmt_insert->execute([$email, $hashedPassword, $data_registrazione])) {
                 echo json_encode(["success" => true, "message" => "Registrazione riuscita"]);
 
-                // Backup in file
+                // Backup
                 $sqlString = "INSERT INTO utenti (email, password, data_registrazione) VALUES ('$email', '$hashedPassword', '$data_registrazione');\n";
                 file_put_contents("backup_utenti.sql", $sqlString, FILE_APPEND);
             } else {
                 echo json_encode(["success" => false, "message" => "Errore nell'inserimento"]);
             }
-
-            $stmt_insert->close();
         } else {
             echo json_encode(["success" => false, "message" => "Email o password mancanti"]);
         }
@@ -70,6 +54,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo json_encode(["success" => false, "message" => "Richiesta non valida"]);
 }
-
-$conn->close();
 ?>
