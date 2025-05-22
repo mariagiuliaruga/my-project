@@ -23,10 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = trim($_POST['password']);
 
         if (!empty($email) && !empty($password)) {
-            // Controllo email già registrata
-            $stmt_check = $conn->prepare("SELECT * FROM utenti WHERE email = ?");
-            $stmt_check->execute([$email]);
-            if ($stmt_check->rowCount() > 0) {
+            // Verifica se l'email è già registrata
+            $sql_check_email = "SELECT * FROM utenti WHERE email = ?";
+            $stmt_check = $conn->prepare($sql_check_email);
+            $stmt_check->bind_param("s", $email);
+            $stmt_check->execute();
+            $result_check = $stmt_check->get_result();
+
+            if ($result_check->num_rows > 0) {
                 echo json_encode(["success" => false, "message" => "Email già registrata"]);
                 exit;
             }
@@ -35,8 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
             $data_registrazione = date("Y-m-d H:i:s");
 
-            $stmt_insert = $conn->prepare("INSERT INTO utenti (email, password, data_registrazione) VALUES (?, ?, ?)");
-            if ($stmt_insert->execute([$email, $hashedPassword, $data_registrazione])) {
+            // Inserisci l'utente
+            $sql_insert = "INSERT INTO utenti (email, password, data_registrazione) VALUES (?, ?, ?)";
+            $stmt_insert = $conn->prepare($sql_insert);
+            $stmt_insert->bind_param("sss", $email, $hashedPassword, $data_registrazione);
+
+            if ($stmt_insert->execute()) {
                 echo json_encode(["success" => true, "message" => "Registrazione riuscita"]);
 
                 // Backup

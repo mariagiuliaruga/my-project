@@ -196,7 +196,6 @@ body {
   width: 100px;
   height: 100px;
   position: fixed;
-  display: flex;
   justify-content: center;
   align-items: center;
   bottom: 20px;
@@ -234,10 +233,10 @@ body {
 }
 
 .button:hover {
-  width: 140px;
+  width: 100px;
   border-radius: 50px;
   transition-duration: .3s;
-  background-color: rgb(255, 69, 69);
+  background-color: rgb(255, 196, 245);
   align-items: center;
 }
 
@@ -482,4 +481,34 @@ body {
 .ui-bookmark:hover .tooltip-save {
   visibility: visible;
   opacity: 1;
+}
+
+.button-group {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
+}
+
+.button-container a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffffcc;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgb(255, 152, 212);
+  transition: background-color 0.3s ease;
+}
+
+.button-container a:hover {
+  background-color: #ffc1f0;
+}
+
+.button-container svg {
+  fill: #130000;
+}
+
+.hidden {
+  display: none;
 }
