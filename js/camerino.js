@@ -561,6 +561,7 @@ function updateDataVisible(vestitiVisibili) {
 
 document.querySelectorAll(".genere-img").forEach(btn => {
     btn.addEventListener("click", function () {
+        const cestino = document.getElementById("cestino");
         const isMini = this.classList.contains("btn-mini");
 
         if (isMini) {
@@ -569,7 +570,7 @@ document.querySelectorAll(".genere-img").forEach(btn => {
             document.getElementById('container-stili-uomo').style.display = "none";
             document.getElementById('container-stili-donna').style.display = "none";
             istruzioniScritta.style.display = 'none';
-            cestino.style.display = 'none';
+            cestino.classList.add("hidden");
             moveRight();
         } else if (this.id === "btn-donna") {
             // Se è la donna in grande
@@ -583,6 +584,7 @@ document.querySelectorAll(".genere-img").forEach(btn => {
             moveLeft();
             document.getElementById('container-stili-donna').style.display = "flex";
             document.getElementById('container-stili-uomo').style.display = "none";
+            cestino.classList.remove("hidden");
         } else if (this.id === "btn-uomo") {
             // Se è l'uomo in grande
             document.getElementById("istruzioni").style.display = "block";
@@ -595,6 +597,7 @@ document.querySelectorAll(".genere-img").forEach(btn => {
             moveLeft();
             document.getElementById('container-stili-uomo').style.display = "flex";
             document.getElementById('container-stili-donna').style.display = "none";
+            cestino.classList.remove("hidden");
         }
     });
 });
@@ -835,3 +838,4 @@ document.querySelector("#scaricaOutfitDonna input[type='checkbox']").addEventLis
         }, 3000);
     });
 });
+
