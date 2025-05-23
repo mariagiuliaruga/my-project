@@ -20,7 +20,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: rgb(240, 240, 240);
+    background-color: #FCCAE9;
     border: none;
     outline: none;
     box-shadow: none;
@@ -44,7 +44,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(240, 240, 240) !important;
+    background-color: #FCCAE9;
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
@@ -141,7 +141,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(240, 240, 240) !important;
+    background-color: #FCCAE9;
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
