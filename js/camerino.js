@@ -119,6 +119,35 @@ function moveRight() {
     document.querySelector(".container-camerino").style.transition = "transform 0.3s ease";
 }
 
+function showAllClothesUomo() {
+    // Prendo tutti i vestiti nei 3 caroselli dell'area uomo
+    const caroselli = document.querySelectorAll('.area-uomo .carousel');
+
+    caroselli.forEach(carousel => {
+        const vestiti = carousel.querySelectorAll('.vestito');
+        vestiti.forEach(vestito => {
+            vestito.style.display = 'inline-block'; // o flex se serve, in base al CSS
+        });
+    });
+
+    // Mostro tutta l'area uomo
+    const areaUomo = document.querySelector('.area-uomo');
+    if (areaUomo) areaUomo.style.display = 'flex';
+}
+
+function showAllClothesDonna() {
+    const caroselliDonna = document.querySelectorAll('.area-donna .carousel');
+    caroselliDonna.forEach(carousel => {
+        const vestiti = carousel.querySelectorAll('.vestito');
+        vestiti.forEach(vestito => {
+            vestito.style.display = 'inline-block';
+        });
+    });
+    const areaDonna = document.querySelector('.area-donna');
+    if (areaDonna) areaDonna.style.display = 'flex';
+}
+
+
 function allowDrop(ev) {
     ev.preventDefault(); //per dire "qui è permesso fare il drop"
 }
@@ -598,6 +627,7 @@ function updateDataVisible(vestitiVisibili) {
     });
 }
 
+// listener per btnUomo e btnDonna
 document.querySelectorAll(".genere-img").forEach(btn => {
     btn.addEventListener("click", function () {
         const cestino = document.getElementById("cestino");
@@ -613,6 +643,7 @@ document.querySelectorAll(".genere-img").forEach(btn => {
             moveRight();
         } else if (this.id === "btn-donna") {
             // Se è la donna in grande
+            showAllClothesDonna();
             document.getElementById("istruzioni").style.display = "block";
             areaDonna.style.display = "flex";
             areaUomo.style.display = "none";
@@ -626,6 +657,7 @@ document.querySelectorAll(".genere-img").forEach(btn => {
             cestino.classList.remove("hidden");
         } else if (this.id === "btn-uomo") {
             // Se è l'uomo in grande
+            showAllClothesUomo();
             document.getElementById("istruzioni").style.display = "block";
             areaUomo.style.display = "flex";
             areaDonna.style.display = "none";
