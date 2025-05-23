@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <title>Manichino</title>
   <link rel="stylesheet" href="css/camerino.css">
+  <style>
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  </style>
 </head>
 <body> 
   <body>
@@ -96,13 +104,18 @@
 
           <div class="carousel">
             <img src="style/men/piedi/campus.png" id="campus" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/men/piedi/scarpeSamba.png" id="scarpe-samba" class="vestito" data-zona="piedi" draggable="true">
             <img src="style/men/piedi/jordan.png" id="jordan" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/men/piedi/asics.png" id="asics" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/men/piedi/airForce.png" id="airForce" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/men/piedi/campus.png" id="campus" class="vestito" data-zona="piedi" draggable="true">
             <img src="style/men/piedi/mocassini.png" id="mocassini" class="vestito" data-zona="piedi" draggable="true">
             <img src="style/men/piedi/mocassiniMarroni.png" id="mocassini-marroni" data-zona="piedi" class="vestito" draggable="true">
             <img src="style/men/piedi/scarpeJordan.png" id="scarpe-jordan" data-zona="piedi" class="vestito" draggable="true">
             <img src="style/men/piedi/scarpeBianche.png" id="scarpe-bianche" class="vestito" data-zona="piedi" draggable="true">
             <img src="style/men/piedi/stivalettiMarroni.png" id="stivaletti-marroni" class="vestito" data-zona="piedi" draggable="true">
             <img src="style/men/piedi/dunkNere.png" id="dunk-nere" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/men/piedi/newBalance.png" id="new-balance" class="vestito" data-zona="piedi" draggable="true">
             <img src="style/men/piedi/timberland.png" id="timberland" class="vestito" data-zona="piedi" draggable="true">
             <img src="style/men/piedi/vans.png" id="vans" class="vestito" data-zona="piedi" draggable="true">
 
@@ -213,7 +226,7 @@
             <img src="style/women/piedi/stivaliFrange.png" id="frange" class="vestito" data-zona="piedi" draggable="true">
             <img src="style/women/piedi/stivaliNeri.png" id="stivali-neri" class="vestito" data-zona="piedi" draggable="true">
             <img src="style/women/piedi/stivaliTacco.png" id="stivali-tacco" class="vestito" data-zona="piedi" draggable="true">
-            <img src="style/women/piedi/scarpeSamba.png" id="scarpe-samba" class="vestito" data-zona="piedi" draggable="true">
+            <img src="style/women/piedi/samba.png" id="samba" class="vestito" data-zona="piedi" draggable="true">
             <img src="style/women/piedi/uggs.png" id="uggs" class="vestito" data-zona="piedi" draggable="true">
             <img src="style/women/borsa/borsaMarrone.png" id="borsa-marrone" class="vestito" data-zona="borsa-mano" draggable="true">
             <img src="style/women/borsa/borsettaFrange.png" id="borsetta-frange" class="vestito" data-zona="borsa-mano" draggable="true">
@@ -298,6 +311,9 @@
   <div id="colorPalette" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.2);">
     <h3 style="margin: 0 0 15px 0; color: #333;">Scegli il colore</h3>
     <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px;">
+      <div class="color-option" data-color="reset" style="display: flex; align-items: center; justify-content: center; background: #f5f5f500; font-size: 20px; border: 1px solid #ccc;">
+        🚫
+      </div>
       <div class="color-option" style="background: #ff0000;" data-color="#991111"></div>
       <div class="color-option" style="background: #ff4400;" data-color="#9f320a"></div>
       <div class="color-option" style="background: #ffa600;" data-color="#9c6500"></div>
@@ -310,7 +326,7 @@
       <div class="color-option" style="background: #ff4a4a;" data-color="#a42f2f"></div>
       <div class="color-option" style="background: #86755b;" data-color="#86755b"></div>
       <div class="color-option" style="background: #2b2b2b;" data-color="#2b2b2b"></div>
-      <div class="color-option" style="background: #ffffff; border: 1px solid #ccc;" data-color="#b1b1b1"></div>
+      <div class="color-option" style="background: #ffffff; border: 1px solid #ccc;" data-color="#878787"></div>
       <div class="color-option" style="background: #022163;" data-color="#022163"></div>
       <div class="color-option" style="background: #441b0b;" data-color="#441b0b"></div>
       <div class="color-option" style="background: #ff0088;" data-color="#9a0052"></div>
