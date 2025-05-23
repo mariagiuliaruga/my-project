@@ -641,8 +641,6 @@ document.querySelectorAll(".genere-img").forEach(btn => {
     });
 });
 
-
-
 document.querySelectorAll(".manichino").forEach(manichino => {
     // per togliere gli indumenti dal manichino SOLO al doppio click
     manichino.addEventListener("dblclick", function (event) {
@@ -689,7 +687,18 @@ document.querySelectorAll('.color-option').forEach(option => {
     option.addEventListener('click', function() {
     const color = this.dataset.color;
     const elementId = document.getElementById('colorPalette').dataset.currentElement;
-    handleColorChange(color, elementId);
+    if (color === "reset") {
+      // Ripristina immagine originale
+      const originalElement = document.getElementById(elementId);
+      const originalSrc = originalElement.getAttribute('data-original-src');
+      if (originalSrc) {
+        originalElement.src = originalSrc;
+        const cloneElement = document.getElementById(elementId + '-clone');
+        if (cloneElement) cloneElement.src = originalSrc;
+      }
+    } else {
+      handleColorChange(color, elementId);
+    }
     document.getElementById('colorPalette').style.display = 'none';
     });
 });
