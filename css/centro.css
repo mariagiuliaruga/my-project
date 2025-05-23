@@ -580,21 +580,40 @@
   background-color: #a11515;
 }
 
-.about-container {
+#about-section{
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
-    background-color: white;
-    z-index: 9999;
-    display: none;
-    overflow-y: auto;
+    background-color: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
 }
 
-.about-container.visible {
-    display: block !important;
-    animation: fadeIn 0.3s ease;
+#about-inner{
+    position: relative;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(8%);
+    
+}
+
+.github-link{
+    position: absolute;
+    bottom: 20px;
+    width: 10vw;
+    text-align: center;
+    width: auto;
+    max-width: 80vw;
+    word-wrap: break-word;
+    font-size: 1.2rem;
+    color: #a20000;
+    text-decoration: underline;
 }
 
 .about-overlay {
@@ -633,6 +652,22 @@
 
 .about-content .close-button:hover {
     background-color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+    .github-link {
+        font-size: 0.5rem;
+        bottom: 10px;
+        text-align: center;
+    }
+
+    .about-content h2 {
+        font-size: 6vw;
+    }
+
+    .about-content p {
+        font-size: 4vw;
+    }
 }
 
 @keyframes fadeIn {
