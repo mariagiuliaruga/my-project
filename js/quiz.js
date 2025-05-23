@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const quizResult = document.querySelector('.quiz-result');
     const questionElement = document.querySelector('.quiz-domanda');
     const navigationElement = document.querySelector('.quiz-navigation');
+    const progressElement = document.querySelector('.quiz-progress');
     
     
         //event listener per il pulsante di chiusura
@@ -200,10 +201,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         ];
     
-    
+
         let currentQuestion = 0;
         let answers = {};
-        let currentSondaggio = [...sondaggioIniziale, ...sondaggioDonna];
+        let currentSondaggio = [...sondaggioIniziale];
+        
+        progressElement.style.display = 'block';
     
         // Funzione per mostrare la domanda corrente
         function showQuestion(index) {
@@ -333,6 +336,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         } else if (answers[0] === "Donna") {
                             currentSondaggio = [...sondaggioIniziale, ...sondaggioDonna];
                         }
+                    
+                        // Salva anche in modo esplicito il genere
+                        answers["genere"] = answers[0].toLowerCase(); // diventa "uomo" o "donna"
+                    
                         // Resetta le risposte successive alla prima domanda
                         Object.keys(answers).forEach(key => {
                             if (parseInt(key) > 0) {
@@ -379,12 +386,16 @@ document.addEventListener('DOMContentLoaded', function() {
             return true;
         }
     
+        
         // Funzione per inviare il quiz
         function submitQuiz() {
+            
             saveAnswer(currentQuestion);
             console.log('Tutte le risposte:', answers);
         
             const risultato = calcolaStile(answers);
+            risultato.genere = answers["genere"];
+
             console.log('Risultato calcolo:', risultato);
         
             const resultContent = `
@@ -413,13 +424,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
             if (questionElement) {
                 questionElement.innerHTML = resultContent;
-        
+                
+                progressElement.style.display = 'none';
+                const isDonna = risultato.genere === "donna";
+
                 // Attiva pulsante "Scopri il tuo stile"
                 setTimeout(() => {
                     const scopriBtn = document.getElementById('scopriStileButton');
                     scopriBtn?.addEventListener('click', () => {
                         const stile = risultato.stileVincente;
-        
+
                         // Chiudi il quiz
                         quizContainer.classList.remove('visible');
                         quizWindow.classList.remove('visible');
@@ -430,19 +444,28 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
         
                         // Mostra solo quello giusto
-                        const target = document.getElementById('stile-' + stile);
+                        let targetId;
+                    
+                        if (stile === "sporty") {
+                            targetId = isDonna ? `stile-sportyWomen` : `stile-sportyMen`;
+                        } else {
+                            targetId = `stile-${stile}`;
+                        }
+                    
+                        const target = document.getElementById(targetId);
                         if (target) {
                             target.style.display = 'block';
                             target.scrollIntoView({ behavior: 'smooth' });
                         }
-        
+                        
                         // Mostra sezione risultati
                         const areaRisultati = document.querySelector('.area-risultati');
                         if (areaRisultati) {
                             areaRisultati.classList.add('visible');
+                            areaRisultati.scrollIntoView({ behavior: 'smooth' });
                         }
                     });
-                }, 0);
+                }, 2000);
             }
         
             // Nascondi i pulsanti navigazione
@@ -469,6 +492,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const descrizioni = {
                 bohoChic: "Sei una persona creativa e libera, che ama esprimersi attraverso uno stile unico e artistico. Il tuo look è caratterizzato da colori vivaci, texture naturali e accessori originali.",
                 sporty: "Energia e dinamicità si riflettono nel tuo modo di vestire. Adori lo stile athleisure, fatto di tute, sneakers di tendenza, cappellini e loghi sportivi. Che tu stia andando in palestra o al bar con gli amici, il tuo look comunica sempre movimento, forza e praticità.",
+                sportyMen: null,
+                sportyWomen: null,
                 messy: "Sei una persona spontanea e anticonformista. Il tuo stile è unico e personale, che combina elementi diversi in modo creativo e originale.",
                 preppy: "Hai uno stile curato e raffinato, che riflette la tua attenzione ai dettagli. Il tuo look è caratterizzato da linee pulite e colori classici.",
                 quietLuxury: "Sei una persona sofisticata che apprezza la qualità e l'eleganza discreta. Il tuo stile è caratterizzato da capi di alta qualità e design minimalista.",
@@ -480,9 +505,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 oldMoney: "Il tuo stile parla di classe e discrezione. Prediligi capi eleganti ma mai appariscenti: blazer ben tagliati, pantaloni sartoriali, camicie impeccabili e maglioni in tessuti pregiati. I colori sono neutri, i materiali di qualità. Hai un’eleganza innata che non ha bisogno di loghi o eccessi per farsi notare: bastano la cura dei dettagli e la sicurezza nei tuoi gesti.",
                 street: "Urban vibes e tanta personalità. Ami lo stile streetwear fatto di felpe oversize, pantaloni cargo, cappellini e sneakers limited edition. Prendi ispirazione dai trend delle metropoli e ti piace distinguerti con dettagli audaci e pezzi statement.",
 
-
             };
-            return descrizioni[stile] || "Nessuna descrizione disponibile per questo stile.";
+
+            descrizioni.sportyMen = descrizioni.sporty;
+            descrizioni.sportyWomen = descrizioni.sporty;
+            return descrizioni[stile] || "Descrizione non disponibile.";
+
         }
     
         // Event listener per il pulsante del quiz
@@ -495,6 +523,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (navigationElement) {
                 navigationElement.style.display = 'flex';
             }
+
+            progressElement.style.display = "block";
             
             // Mostra il quiz
             showQuestion(currentQuestion);
@@ -539,6 +569,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
+
+        
 
         //Oggetto per tenere traccia dei punteggi degli stili donna
         const stiliDonna = {
@@ -638,6 +670,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Mappa delle risposte agli stili degli uomini
         const mappaStiliUomo = {
+
             // Domanda 1: "Quale tra queste parole ti descrive meglio?"
             "Creativo": "eBoy",
             "Minimalista": "casual",
@@ -808,4 +841,28 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Errore nella fetch:", error);
         });
 
+
+        fetch("php/save_style.php", {
+            method: "GET",
+            credentials: "include"
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("Stile salvato:", data.stile);
+            const stile = data.stile;
+            if (stile) {
+                document.querySelectorAll('.stile-container').forEach(el => {
+                    el.style.display = 'none';
+                });
+        
+                const target = document.getElementById('stile-' + stile);
+                if (target) {
+                    target.style.display = 'block';
+                }
+            }
+        })
+        .catch((error) => {
+            console.error("Errore nella fetch GET:", error);
+        });
+        
     });

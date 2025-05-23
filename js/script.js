@@ -67,7 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
         aboutSection.style.display = 'none';
         profileEditContainer.style.display = 'none';
         contactFooter.style.display = 'block';
+        sezioneImmagini.style.display = 'none';
         areaRisultati.style.display = 'none';
+        resultsButton.textContent = 'Visualizza Risultati';
     };
 
     window.handleLogout = function () {
@@ -79,8 +81,9 @@ document.addEventListener('DOMContentLoaded', function () {
         loginPanel.classList.remove('visible');
         registerPanel.classList.remove('visible');
         contactFooter.style.display = 'block';
-        areaRisultati.style.display = 'none';
+        sezioneImmagini.style.display = 'none';
         profileEditContainer.style.display = 'none';
+        areaRisultati.style.display = 'none';
 
         loginButton.style.display = 'block';
         loginButton.classList.remove('logged-in');
@@ -307,7 +310,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         window.registerPanel.classList.remove('visible');
                         window.profileEditContainer.classList.remove('visible');
-
+                        window.sezioneImmagini.classList.remove('visible');
+                        window.areaRisultati.classList.remove('visible');
                         window.quizButton.addEventListener('click', window.handleQuizButtonClick);
                     } else {
                         // Email già registrata, mostra errore
@@ -618,6 +622,7 @@ document.addEventListener('DOMContentLoaded', function () {
         profileEditContainer.style.display = 'block';
         areaPersonale.classList.remove('visible');
         sezioneImmagini.style.display = 'none';
+        areaRisultati.style.display = 'none';
         window.resultsButton.textContent = 'Visualizza Risultati';
     });
 

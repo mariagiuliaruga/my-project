@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.resultsButton = document.querySelector('.results-button');
     window.galleria = document.getElementById('galleria');
     window.sezioneImmagini = document.querySelector('.immagini-outfit');
+    window.areaRisultati = document.querySelector('.area-risultati');
 
     resultsButton.addEventListener('click', function (e) {
         e.preventDefault();
@@ -9,9 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (sezioneImmagini.style.display === 'block') {
             sezioneImmagini.style.display = 'none';
             galleria.innerHTML = ''; // Pulisce anche le immagini se vuoi
+            areaRisultati.style.display = 'none';
             resultsButton.textContent = 'Visualizza Risultati';
+
         } else {
             document.querySelector('.immagini-outfit').style.display = 'block';
+            document.querySelector('.area-risultati').style.display = 'block';
+
             resultsButton.textContent = 'Nascondi Risultati';
             fetch('php/get_immagini.php', { credentials: 'include' })
                 .then(res => res.json())
@@ -32,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         img.style.margin = '10px';
                         galleria.appendChild(img);
                     });
+
                 })
                 .catch(err => {
                     console.error(err);

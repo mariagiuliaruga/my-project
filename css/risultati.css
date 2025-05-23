@@ -1,3 +1,11 @@
+.area-risultati{
+    display: none;
+}
+
+.area-risultati.visible{
+    display: block;
+}
+
 .stili-container {
     width: 100%;
     min-height: 100vh;
@@ -62,25 +70,46 @@
     max-width: 1000px;
 }
 
-.link-manichino {
+.manichino-link {
     display: inline-block;
-    background: linear-gradient(135deg, #6c5ce7, #a363d5);
+    background: linear-gradient(135deg, #af3a82, #ffb3f1);
     color: white;
     padding: 15px 40px;
     border-radius: 30px;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.2rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(175, 58, 130, 0.4);
     margin: 1.5rem 0;
 }
 
-.link-manichino:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(108, 92, 231, 0.4);
-    background: linear-gradient(135deg, #7b6ce7, #b363d5);
+/* Hover glow + movimento */
+.manichino-link:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(175, 58, 130, 0.6);
+    background: linear-gradient(135deg, #ffb3f1, #af3a82);
 }
+
+/* Effetto luce che attraversa */
+.manichino-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-25deg);
+    transition: left 0.5s ease;
+}
+
+.manichino-link:hover::before {
+    left: 130%;
+}
+
 
 /* Responsive design */
 @media (max-width: 768px) {
