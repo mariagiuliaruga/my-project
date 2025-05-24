@@ -126,7 +126,7 @@ function showAllClothesUomo() {
     caroselli.forEach(carousel => {
         const vestiti = carousel.querySelectorAll('.vestito');
         vestiti.forEach(vestito => {
-            vestito.style.display = 'inline-block'; // o flex se serve, in base al CSS
+            vestito.style.display = 'inline-block';
         });
     });
 
@@ -152,7 +152,7 @@ function allowDrop(ev) {
     ev.preventDefault(); //per dire "qui è permesso fare il drop"
 }
 
-// quando faccio dragstart, viene salvato nell'oggetto dataTransfer l’id
+// quando faccio dragstart, viene salvato nell'oggetto dataTransfer l’id dell'elemento che sto trascinando
 // e un flag "isClone": false perchè sto trascinando l'elemento originale, non il clone
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
@@ -166,12 +166,11 @@ function dragIndumento(ev) {
 }
 
 function drop(ev) {
-    ev.preventDefault();
-    const data = ev.dataTransfer.getData("text");
+    ev.preventDefault(); //impedisce comportamento di default del browser, senza questo non potrei rilasciare l'elemento dove voglio
+    const data = ev.dataTransfer.getData("text"); //ev.dataTransfer.getData("text") recupera i dati dell'elemento trascinato settati prima con setData("text", id)
     const isClone = ev.dataTransfer.getData("isClone") === "true";
     const draggedElement = document.getElementById(data); // elemento originale o clone
 
-    
     let manichino = null;
     if (varGlobDonna) {
     manichino = document.getElementById("manichino-donna");
@@ -179,34 +178,6 @@ function drop(ev) {
     manichino = document.getElementById("manichino-uomo");
     }
 
-    // Se clone e drop fuori da una zona valida → rimuovi e ripristina originale
-    const rectManichino = manichino.getBoundingClientRect(); // restituisce un oggetto che contiene le dimensioni del manichino
-    if (
-    ev.clientX < rectManichino.left ||
-    ev.clientX > rectManichino.right ||
-    ev.clientY < rectManichino.top ||
-    ev.clientY > rectManichino.bottom
-    ) {
-    // Se è un clone o comunque è stato rilasciato fuori, va rimosso
-    const originalId = data.replace("-clone", "");
-    const original = document.getElementById(originalId);
-
-    // Rendi di nuovo selezionabile l'originale
-    if (original) {
-        original.setAttribute("draggable", "true");
-        original.style.opacity = "1";
-        original.style.cursor = "grab";
-    }
-
-    // Se è un clone, lo eliminiamo (non tocchiamo gli originali)
-    if (isClone) {
-        draggedElement.remove();
-    }
-
-    return;
-    }
-
-    
     // quando rilascio l'elemento sul manichino
     // Se sto manipolando un clone, original sarà l'elemento originale da cui il clone è stato creato (rimuove il suffisso -clone dall'elemento clonato, ritornando l'originale)
     // Se sto manipolando un originale, original sarà l'elemento stesso che sto trascinando.
@@ -219,8 +190,6 @@ function drop(ev) {
     clone.addEventListener("dragstart", dragIndumento);
     clone.style.cursor = "grab";
     
-
-    const src = original.src;
     const zonaNome = original.dataset.zona;
     let zona = null;
 
@@ -244,8 +213,7 @@ function drop(ev) {
     zona = document.getElementById('zona-vestito')
     } 
     
-
-    // si occupa di evitare sovrapposizioni e sostituire un indumento esistente nella stessa zona
+    // per evitare sovrapposizioni e sostituire un indumento esistente nella stessa zona
     if (zonaNome) {
     const esistenti = manichino.querySelectorAll(`.indumento[data-zona="${zonaNome}"]`);
     esistenti.forEach(el => {
@@ -294,7 +262,7 @@ function drop(ev) {
         });
     }
 
-    clone.setAttribute("data-zona", zonaNome);
+    clone.setAttribute("data-zona", zonaNome); //perchè anche il clone deve avere la stessa zona dell'originale, per futuri controlli
 
     let zIndex = 1;
     if (zonaNome === "over-busto") {
@@ -325,7 +293,7 @@ function drop(ev) {
         let offsetX = 0;
 
         if (varGlobDonna) {
-        offsetX = -10; //da regolare
+        offsetX = -10;
         clone.style.left = `${percentX + offsetX}%`;
         
         } else {
@@ -336,46 +304,9 @@ function drop(ev) {
 
         manichino.appendChild(clone);
 
+    }  
 
-    } else {
-        clone.style.visibility = 'hidden';
-        document.body.appendChild(clone);
-
-        const cloneRect = clone.getBoundingClientRect();
-        const manichinoRect = manichino.getBoundingClientRect();
-        const x = ev.clientX - manichinoRect.left - cloneRect.width / 2;
-        const y = ev.clientY - manichinoRect.top - cloneRect.height / 2;
-
-        const percentX = (x / manichino.offsetWidth) * 100;
-        const percentY = (y / manichino.offsetHeight) * 100;
-
-        clone.style.left = `${percentX}%`;
-        clone.style.top = `${percentY}%`;
-        clone.style.visibility = 'visible';
-
-        let offsetX = 0;
-        
-        if (varGlobDonna) {
-        offsetX = -10; //da regolare
-        clone.style.left = `${percentX + offsetX}%`;
-        
-        } else {
-        offsetX = 2;
-        clone.style.left = `${percentX + offsetX}%`;
-        
-        }
-        document.body.removeChild(clone);
-
-        clone.style.position = 'absolute';
-        clone.style.width = '29%';
-        clone.style.height = 'auto';
-
-        manichino.appendChild(clone);
-    }
-
-
-
-    // Se l'elemento è un originale, lo rendiamo non più trascinabile e opaco
+    // l'elemento originale (il cui clone è stato rilasciato sul manichino), viene reso non più trascinabile e opaco
     if (!isClone) {
         original.setAttribute("draggable", "false");
         original.style.opacity = "0.4";
@@ -394,6 +325,7 @@ function throwInTheTrash(ev) {
     const originalId = data.replace("-clone", "");
     const original = document.getElementById(originalId);
 
+    // l'originale può essere di nuovo selezionato, dopo essere stato tolto dal manichino
     if (original) {
         original.setAttribute("draggable", "true");
         original.style.opacity = "1";
@@ -423,7 +355,7 @@ function handleColorChange(color, elementId) {
     };
     }
 
-    // Salva l'immagine originale solo la prima volta
+    // Salva l'immagine originale solo la prima volta per poter ripristinarne il colore con il tasto reset
     if (!originalElement.getAttribute('data-original-src')) {
     originalElement.setAttribute('data-original-src', originalElement.src);
     }
@@ -431,124 +363,132 @@ function handleColorChange(color, elementId) {
     const originalSrc = originalElement.getAttribute('data-original-src');
 
     const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d'); //contesto 2d
     const img = new Image();
 
+    // solo quando l'immagine è pronta, si attiva la funzione onload
     img.onload = function() {
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
+        //imposta il canvas alle stesse dimensioni dell'immagine in modo da
+        // porter prendere esattamente i dati pixel dell'immagine con ctx.getImageData dal canvas 
+        //  ed inizia a disegnare dall'angolo in alto a sx
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
 
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const data = imageData.data;
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
 
-    const r = parseInt(color.substr(1, 2), 16) / 255;
-    const g = parseInt(color.substr(3, 2), 16) / 255;
-    const b = parseInt(color.substr(5, 2), 16) / 255;
+        // converte da esadecimale (#878787) il colore passato, in valori RGB normalizzati
+        // parseInt(..., 16) converte da esadecimale a decimale (es. "FF" → 255)
+        // /255 normalizza tutti i valori tra 0 e 1 
+        const r = parseInt(color.substr(1, 2), 16) / 255; //(1,2) sono i due caratteri dopo il cancelletto # per il rosso
+        const g = parseInt(color.substr(3, 2), 16) / 255; // per il giallo
+        const b = parseInt(color.substr(5, 2), 16) / 255; // per il blu
 
-    const max = Math.max(r, g, b);
-    const min = Math.min(r, g, b);
-    let h, s, l = (max + min) / 2;
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        let h, s, l = (max + min) / 2; // luminosità : media tra max e min
 
-    if (max === min) {
-        h = s = 0;
-    } else {
-        const d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch (max) {
-        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-        case g: h = (b - r) / d + 2; break;
-        case b: h = (r - g) / d + 4; break;
-        }
-        h /= 6;
-    }
-
-    for (let i = 0; i < data.length; i += 4) {
-        if (data[i + 3] > 0) {
-        const originalR = data[i] / 255;
-        const originalG = data[i + 1] / 255;
-        const originalB = data[i + 2] / 255;
-
-        const originalBrightness = (originalR + originalG + originalB) / 3;
-        const brightnessFactor = originalBrightness / 0.5;
-
-        let r1, g1, b1;
-
-        if (s === 0) {
-            r1 = g1 = b1 = l;
+        // calcolo di tonalità H e saturazione S
+        if (max === min) {
+            h = s = 0;
         } else {
-            const hue2rgb = (p, q, t) => {
-            if (t < 0) t += 1;
-            if (t > 1) t -= 1;
-            if (t < 1 / 6) return p + (q - p) * 6 * t;
-            if (t < 1 / 2) return q;
-            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-            return p;
-            };
-
-            const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-            const p = 2 * l - q;
-
-            r1 = hue2rgb(p, q, h + 1 / 3);
-            g1 = hue2rgb(p, q, h);
-            b1 = hue2rgb(p, q, h - 1 / 3);
+            const d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            switch (max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+            }
+            h /= 6; // siccome quei valori sono in una scala da 0 a 6, lo devo normalizzare
         }
 
-        data[i] = Math.min(1, r1 * brightnessFactor) * 255;
-        data[i + 1] = Math.min(1, g1 * brightnessFactor) * 255;
-        data[i + 2] = Math.min(1, b1 * brightnessFactor) * 255;
+        // qui normalizza i pixel dell'immagine originale
+        for (let i = 0; i < data.length; i += 4) {
+            if (data[i + 3] > 0) {
+            const originalR = data[i] / 255;
+            const originalG = data[i + 1] / 255;
+            const originalB = data[i + 2] / 255;
+
+            const originalBrightness = (originalR + originalG + originalB) / 3;
+            const brightnessFactor = originalBrightness / 0.5;
+
+            let r1, g1, b1;
+
+            if (s === 0) {
+                r1 = g1 = b1 = l;
+            } else {
+                // per convertire tonalità HSL in RGB
+                const hue2rgb = (p, q, t) => {
+                    if (t < 0) t += 1;
+                    if (t > 1) t -= 1;
+                    if (t < 1 / 6) return p + (q - p) * 6 * t;
+                    if (t < 1 / 2) return q;
+                    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+                    return p;
+                    };
+
+                const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                const p = 2 * l - q;
+
+                r1 = hue2rgb(p, q, h + 1 / 3);
+                g1 = hue2rgb(p, q, h);
+                b1 = hue2rgb(p, q, h - 1 / 3);
+            }
+
+            data[i] = Math.min(1, r1 * brightnessFactor) * 255;
+            data[i + 1] = Math.min(1, g1 * brightnessFactor) * 255;
+            data[i + 2] = Math.min(1, b1 * brightnessFactor) * 255;
+            }
         }
-    }
 
-    ctx.putImageData(imageData, 0, 0);
-    const newImageUrl = canvas.toDataURL();
+        ctx.putImageData(imageData, 0, 0);
+        const newImageUrl = canvas.toDataURL(); // converte il contenuto del canvas in una stringa base64 che rappresenta un'immagine in formato PNG
 
-    // Applica la nuova immagine colorata
-    originalElement.src = newImageUrl;
+        originalElement.src = newImageUrl; // sostituisce la sorgente dell'immagine originale con l'url appena generato
 
-    if (cloneElement && cloneDimensions) {
-        cloneElement.src = newImageUrl;
-        cloneElement.style.width = cloneDimensions.width;
-        cloneElement.style.position = cloneDimensions.position;
-        cloneElement.style.left = cloneDimensions.left;
-        cloneElement.style.top = cloneDimensions.top;
-        cloneElement.style.zIndex = cloneDimensions.zIndex;
-        cloneElement.setAttribute('data-zona', cloneDimensions.dataZona);
+        if (cloneElement && cloneDimensions) {
+            cloneElement.src = newImageUrl;
+            cloneElement.style.width = cloneDimensions.width;
+            cloneElement.style.position = cloneDimensions.position;
+            cloneElement.style.left = cloneDimensions.left;
+            cloneElement.style.top = cloneDimensions.top;
+            cloneElement.style.zIndex = cloneDimensions.zIndex;
+            cloneElement.setAttribute('data-zona', cloneDimensions.dataZona);
 
-        // Mantieni l'ID del clone
-        cloneElement.setAttribute('id', elementId + '-clone');
-    }
+            // Mantieni l'ID del clone
+            cloneElement.setAttribute('id', elementId + '-clone');
+        }
 
-    originalElement.setAttribute('draggable', 'true');
-    if (cloneElement) {
-        cloneElement.setAttribute('draggable', 'true');
-    }
+        originalElement.setAttribute('draggable', 'true');
+        if (cloneElement) {
+            cloneElement.setAttribute('draggable', 'true');
+        }
     };
 
-    img.src = originalSrc;
+    img.src = originalSrc; // fa partire il caricamento dell’immagine originale, il che attiva l’evento onload
 }
 
 const carouselIndices = {};
 
 function scrollCarousel(carouselId, direction) {
     const carouselContainer = document.getElementById(carouselId);
-
     const visibleItems = parseInt(carouselContainer.getAttribute('data-visible')) || 1;
-
     const carousel = carouselContainer.querySelector('.carousel');
 
-    const items = carousel.querySelectorAll('.vestito');
     const itemWidth = 190; // larghezza + margine
     const totalItems = parseInt(carouselContainer.getAttribute('data-total'))
     const maxIndex = Math.max(0, totalItems - visibleItems);
     console.log(`maxIndex ${maxIndex}: totalItems ${totalItems}, visibleItems ${visibleItems}`);
 
+    // l'indice tiene traccia di quale "pagina" del carosello sto mostrando
     if (!(carouselId in carouselIndices)) {
     carouselIndices[carouselId] = 0;
     }
 
-    carouselIndices[carouselId] += direction;
+    carouselIndices[carouselId] += direction; //aggiorna l'indice in base alla direzione
 
+    // blocco l'indice per non far scorrere oltre i limiti
     if (carouselIndices[carouselId] < 0) {
     carouselIndices[carouselId] = 0;
     }
@@ -676,20 +616,21 @@ document.querySelectorAll(".genere-img").forEach(btn => {
 document.querySelectorAll(".manichino").forEach(manichino => {
     // per togliere gli indumenti dal manichino SOLO al doppio click
     manichino.addEventListener("dblclick", function (event) {
-    if (event.target.classList.contains('indumento')) {
-    const cloneId = event.target.id;
-    const originalId = cloneId.replace("-clone", "");
-    const original = document.getElementById(originalId);
+        if (event.target.classList.contains('indumento')) {
+            const cloneId = event.target.id;
+            const originalId = cloneId.replace("-clone", "");
+            const original = document.getElementById(originalId); //per tornare all'originale in modo da renderlo di nuovo selezionabile
+            
+            // l'originale può di nuovo essere selezionato, dopo essere stato tolto dal manichino
+            if (original) {
+                original.setAttribute("draggable", "true");
+                original.style.opacity = "1";
+                original.style.cursor = "grab";
+                
+            }
 
-    if (original) {
-        original.setAttribute("draggable", "true");
-        original.style.opacity = "1";
-        original.style.cursor = "grab";
-        
-    }
-
-    event.target.remove();
-    }
+            event.target.remove();
+        }
     });
 
     manichino.addEventListener("dragover", allowDrop);
@@ -708,7 +649,7 @@ document.querySelectorAll('.vestito').forEach(item => {
     // Quando inizio a trascinare un vestito originale
     item.addEventListener('dragstart', drag);
 
-    // Quando termino il trascinamento (utile per debug o effetti visivi)
+    // Quando termino il trascinamento
     item.addEventListener('dragend', function(event) {
         console.log(`Trascinamento terminato: ${item.id}`);
     });
@@ -717,21 +658,21 @@ document.querySelectorAll('.vestito').forEach(item => {
 // per ogni colore nella palette
 document.querySelectorAll('.color-option').forEach(option => {
     option.addEventListener('click', function() {
-    const color = this.dataset.color;
-    const elementId = document.getElementById('colorPalette').dataset.currentElement;
-    if (color === "reset") {
-      // Ripristina immagine originale
-      const originalElement = document.getElementById(elementId);
-      const originalSrc = originalElement.getAttribute('data-original-src');
-      if (originalSrc) {
-        originalElement.src = originalSrc;
-        const cloneElement = document.getElementById(elementId + '-clone');
-        if (cloneElement) cloneElement.src = originalSrc;
-      }
-    } else {
-      handleColorChange(color, elementId);
-    }
-    document.getElementById('colorPalette').style.display = 'none';
+        const color = this.dataset.color;
+        const elementId = document.getElementById('colorPalette').dataset.currentElement;
+        if (color === "reset") {
+        // Ripristina immagine originale
+        const originalElement = document.getElementById(elementId);
+        const originalSrc = originalElement.getAttribute('data-original-src');
+        if (originalSrc) {
+            originalElement.src = originalSrc;
+            const cloneElement = document.getElementById(elementId + '-clone');
+            if (cloneElement) cloneElement.src = originalSrc;
+        }
+        } else {
+        handleColorChange(color, elementId);
+        }
+        document.getElementById('colorPalette').style.display = 'none';
     });
 });
 
@@ -788,9 +729,9 @@ stileButtons.forEach(button => {
         const stile = button.getAttribute('data-stile');
         // rendo di nuovo draggable tutti i vestiti nel caso in cui passi da uno stile all'altro
         document.querySelectorAll('.vestito').forEach(el => {
-        el.setAttribute('draggable', 'true');
-        el.style.opacity = '1';
-        el.style.cursor = "grab";
+            el.setAttribute('draggable', 'true');
+            el.style.opacity = '1';
+            el.style.cursor = "grab";
         });
     });
 });
@@ -802,7 +743,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const btnDonna = document.getElementById('btn-donna');
     const closeBtn = document.querySelector('.close-btn');
 
-    //vogli9o che si apra una sola volta 
+    //voglio che si apra una sola volta 
     function openPopup() {
         // Controlla se il popup è già stato mostrato
         if (!sessionStorage.getItem('popupShown')) {
@@ -835,14 +776,14 @@ document.querySelector("#scaricaOutfitUomo input[type='checkbox']").addEventList
     bookmark.style.display = "none";
 
     html2canvas(manichino, { backgroundColor: null }).then(function(canvas) {
-        const base64image = canvas.toDataURL("image/png");
+        const base64image = canvas.toDataURL("image/png"); // estrae l’immagine contenuta nel canvas e la converte in PNG data:image/png;base64,...
 
         fetch('php/salva_immagine.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ immagine: base64image })
+            headers: {'Content-Type': 'application/json'}, // dice al server che i dati nel body sono in JSON
+            body: JSON.stringify({ immagine: base64image }) // invia i dati, trasformando l'immagine js in una stringa JSON tipo {"immagine": "data:image/png;base64,..."} .
         })
-        .then(res => res.json())
+        .then(res => res.json()) // quando il server PHP risponde, ottieni un oggetto Response. Con res.json() trasformo il corpo della risposta in un oggetto JS
         .then(data => {
             if (!data.errore) {
                 alert('Immagine salvata!');
@@ -854,9 +795,9 @@ document.querySelector("#scaricaOutfitUomo input[type='checkbox']").addEventList
         // Scarica l'immagine
         const link = document.createElement("a");
         link.href = base64image;
-        link.download = "outfit-uomo.png";
+        link.download = "outfit-uomo.png"; // quando il link viene cliccato, scarica il file e lo chiama "outfit-uomo.png”, invece di aprirlo nel browser.
         document.body.appendChild(link);
-        link.click();
+        link.click(); //  simula un clic sul link, in modo da farpartire il download automatico
         document.body.removeChild(link);
 
         bookmark.style.display = "flex";

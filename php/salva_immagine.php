@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); //attiva la sessione PHP per accedere ai dati salvati, come l’email dell’utente che servirà per collegarsi al database
 header('Content-Type: application/json');
 
 // Verifica che l'utente sia loggato
@@ -8,9 +8,10 @@ if (!isset($_SESSION['email'])) {
     exit;
 }
 
-$email = $_SESSION['email'];
+$email = $_SESSION['email']; // se è loggato, salva l'email in $email 
 
-// Leggi i dati JSON dal frontend
+// Leggi i dati JSON dal frontend e li decodifica in array associativo $data = ['immagine' => 'base64dataqui'];
+// in modo che $data['immagine'] sia accessibile
 $data = json_decode(file_get_contents('php://input'), true);
 
 if (!isset($data['immagine'])) {
@@ -24,17 +25,17 @@ if (!file_exists($cartella)) {
     mkdir($cartella, 0777, true);
 }
 
-// Decodifica l'immagine base64
+// decodifica l'immagine base64
 $base64 = $data['immagine'];
 $base64 = str_replace('data:image/png;base64,', '', $base64);
 $base64 = str_replace(' ', '+', $base64);
 $immagineBinaria = base64_decode($base64);
 
-// Crea nome file unico
+// crea nome file unico
 $nomeFile = uniqid('outfit_', true) . '.png';
-$percorsoFile = $cartella . $nomeFile;
+$percorsoFile = $cartella . $nomeFile; // crea un array associativo del tipo percorsoFile -> immagini_salvate/outfit_xxx.png
 
-// Salva l'immagine nel server
+// salva l'immagine nel server
 file_put_contents($percorsoFile, $immagineBinaria);
 
 // Connessione PDO

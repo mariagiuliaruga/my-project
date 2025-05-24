@@ -25,7 +25,10 @@ try {
     $stmt->execute();
 
     $immagini = [];
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    // stmt->fetch restituisce un singolo risultato come array associativo $row,
+    // dove la chiave è il nome della colonna e il valore è il contenuto della cella
+    //$row = ["percorso_file" => "immagini_salvate/outfit_123.png"];
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { 
         $immagini[] = 'php/' . $row['percorso_file'];
     }
 
