@@ -15,12 +15,12 @@ let spostato = false;
 
 const vestitiPerStile = {
 oldMoney: [
-    'camicia', 'camicetta', 'maglia', 'maglia-lanetta', 'mocassini', 'scarpe-bianche', 'stivaletti-marroni', 'pantaloni-lino',
-     'felpa-ralph', 'orologio', 'cappello-polo', 'skinny', 'pantaloni-neri', 'giacca-elegante'
+    'camicia-verde', 'gilet-azzurro', 'camicetta', 'maglia', 'maglia-lanetta', 'mocassini', 'scarpe-bianche', 'stivaletti-marroni', 'pantaloni-lino',
+    'felpa-ralph', 'orologio', 'cappello-polo', 'skinny', 'pantaloni-neri', 'giacca-elegante', 'air-force'
 ],
 casual: [
-    'maglia', 'jeans', 'maglia-lanetta', 'scarpe-bianche', 'cappello-polo', 'stivaletti-marroni', 'orologio', 'cargo', 'camicetta',
-     'maglia-maglione-marrone', 'giacca-jeans', 'giacca-pelle', 'pantaloni-neri', 'jeans-grigi'
+    'maglia', 'camicia-verde', 'jeans', 'maglia-lanetta', 'scarpe-bianche', 'cappello-polo', 'stivaletti-marroni', 'orologio', 'cargo', 'camicetta',
+     'maglia-maglione-marrone', 'giacca-jeans', 'giacca-pelle', 'pantaloni-neri', 'jeans-grigi', 'scarpe-samba', 'new-balance', 'dunk-nere'
 ],
 vintage: [
     'maglia-lanetta', 'maglia-marrone', 'giacca-jeans', 'jeans-grigi', 'campus', 'mocassini', 'mocassini-marroni', 
@@ -29,39 +29,44 @@ vintage: [
 ],
 eBoy: [
     'maglia-nera',  'cappello-marrone', 'giacca-colorata', 'vans', 'cappello-marrone', 'felpa-ralph', 'giacca-pelle',
-    'pantaloncino-jeans-nero', 'jeans-neri'
+    'pantaloncino-jeans-nero', 'jeans-neri', 'new-balance'
 ],
 street: [
     'maglia-marrone', 'maglia-stussy', 'cargoBeige', 'giacca-carhartt', 'jordan', 'giacca-nike', 'timberland', 'cappello-marrone', 
-    'giacca-jeans', 'pantaloncino-jeans', 'jeans-neri'
+    'giacca-jeans', 'pantaloncino-jeans', 'jeans-neri', 'asics', 'dunk-nere', 'new-balance'
 ],
 sportyMen: [
     'maglia-aderente', 'pantaloncino-tuta', 'giacca-nike', 'campus', 'felpa-ralph', 'jordan', 'cappello-polo',
-     'maglia-stussy', 'maglia-blu', 'jeans', 'jeans-neri'
+     'maglia-stussy', 'maglia-blu', 'jeans', 'jeans-neri', 'asics', 'scarpe-jordan', 'new-balance'
 ],
 bohoChic: [
     'gonna-lunga', 'maglia-frange', 'maglia-boho', 'giubbotto-pelle', 'frange', 'top-bianco', 'uggs', 'cowboy', 
-    'pantaloncini-marroni', 'pantaloncini-bianchi', 'canotta-bianca', 'top-marrone'
+    'pantaloncini-marroni', 'pantaloncini-bianchi', 'canotta-bianca', 'top-marrone', 'top-righe', 'top-stampa',
+    'jeans-zampa', 'pantaloni-beige', 'borsa-marrone', 'borsetta-frange', 'borsetta-marrone'
 ],
 quietLuxury: [
     'giacca-pelle-donna', 'camicetta-bianca', 'jeans-grigi2-donna', 'gonna-lunga-luxury', 'top-marrone', 'tube-top', 'stivaletti', 'stivali-tacco', 
-     'pantaloni-eleganti', 'pantaloni-palazzo', 'pantaloni-neri-donna', 'camicetta-nera', 'canotta-bianca'
+     'pantaloni-eleganti', 'pantaloni-palazzo', 'pantaloni-neri-donna', 'camicetta-nera', 'canotta-bianca', 'gilet-righe', 'vestito-tiffany',
+     'borsa-nera', 'borsetta-marrone'
 ],
 preppy: [
     'camicetta-bianca', 'stivaletti', 'maglione-azzurro', 'camicetta-gilet', 'scarpe-bianche-donna', 'gonna-grigia',
-     'pantaloni-palazzo', 'gonna-pieghe', 'gonna-lunga-preppy', 'camicetta-nera', 'maglia-boho'
+     'pantaloni-palazzo', 'gonna-pieghe', 'gonna-lunga-preppy', 'camicetta-nera', 'maglia-boho', 'gilet-righe', 'top-azzurro', 
+     'vestito-tiffany', 'gazzelle', 'samba', 'pantaloni-rosa', 'borsetta-rosa', 'borsa-nera'
 ],
 messy: [
     'maglia-offshoulders', 'converse', 'maglia-grafica', 'giubbotto-pelle', 'stivali-neri', 'jeans-neri-donna', 
-    'pantaloni-neri-donna', 'gonna-jeans'
+    'pantaloni-neri-donna', 'gonna-jeans', 'top-azzurro', 'top-righe', 'gazzelle', 'jeans-zampa', 'borsa-nera', 'borsa-marrone'
 ],
 scandi: [
     'maglione-beige', 'uggs', 'maglione-azzurro', 'top-bianco', 'campus-donna', 'jeans-grigi-donna', 'pantaloni-marroni', 
-    'pantaloni-beige', 'jeans-donna', 'maglia-semplice', 'giubbotto-pelle'
+    'pantaloni-beige', 'jeans-donna', 'maglia-semplice', 'giubbotto-pelle', 'tuta-nera', 'gazzelle',
+    'borsa-marrone', 'borsetta-marrone', 'borsetta-rosa'
 ],
 sportyWomen: [
     'maglia-gialla', 'maglia-rossa', 'campus-donna', 'scarpe-bianche-donna', 'gonna-jeans-sporty', 'jeans-grigi-donna',
-    'pantaloncini-blu', 'pantaloncini-jeans', 'jeans-donna', 'top-verde', 'pantaloncino-verde', 'giubbotto-pelle', 'pantalone-tuta'
+    'pantaloncini-blu', 'pantaloncini-jeans', 'jeans-donna', 'top-verde', 'pantaloncino-verde', 'giubbotto-pelle', 'pantalone-tuta',
+    'felpa-nera', 'tuta-nera', 'borsa-nera'
 ]
 };
 
@@ -146,7 +151,6 @@ function showAllClothesDonna() {
     const areaDonna = document.querySelector('.area-donna');
     if (areaDonna) areaDonna.style.display = 'flex';
 }
-
 
 function allowDrop(ev) {
     ev.preventDefault(); //per dire "qui è permesso fare il drop"
@@ -505,15 +509,14 @@ function scrollCarousel(carouselId, direction) {
 function changeMannequinColor(genere, colore) {
     const manichino = document.getElementById(`manichino-${genere}`);
 
-
     if(genere === 'uomo'){
-    if (colore === 'rosa'){
-        manichino.style.backgroundImage = "url('media/manichino/manichinoUomo/manichinoUomoRosa.png')";
-    } else if (colore === 'marrone'){
-        manichino.style.backgroundImage = "url('media/manichino/manichinoUomo/manichinoUomoMarrone.png')";
-    } else if (colore === 'nero'){
-        manichino.style.backgroundImage = "url('media/manichino/manichinoUomo/manichinoUomoNero.png')";
-    }
+        if (colore === 'rosa'){
+            manichino.style.backgroundImage = "url('media/manichino/manichinoUomo/manichinoUomoRosa.png')";
+        } else if (colore === 'marrone'){
+            manichino.style.backgroundImage = "url('media/manichino/manichinoUomo/manichinoUomoMarrone.png')";
+        } else if (colore === 'nero'){
+            manichino.style.backgroundImage = "url('media/manichino/manichinoUomo/manichinoUomoNero.png')";
+        }
     } else if(genere === 'donna'){
         if (colore === 'rosa'){
             manichino.style.backgroundImage = "url('media/manichino/manichinoDonna/manichinoDonnaRosa.png')";
@@ -584,6 +587,9 @@ document.querySelectorAll(".genere-img").forEach(btn => {
         } else if (this.id === "btn-donna") {
             // Se è la donna in grande
             showAllClothesDonna();
+            document.querySelectorAll('.stile-btn').forEach(btn => {
+                btn.style.backgroundColor = '#333';
+            })
             document.getElementById("istruzioni").style.display = "block";
             areaDonna.style.display = "flex";
             areaUomo.style.display = "none";
@@ -598,6 +604,9 @@ document.querySelectorAll(".genere-img").forEach(btn => {
         } else if (this.id === "btn-uomo") {
             // Se è l'uomo in grande
             showAllClothesUomo();
+            document.querySelectorAll('.stile-btn').forEach(btn => {
+                btn.style.backgroundColor = '#333';
+            })
             document.getElementById("istruzioni").style.display = "block";
             areaUomo.style.display = "flex";
             areaDonna.style.display = "none";
@@ -726,8 +735,27 @@ const stileButtons = document.querySelectorAll('.stile-btn');
 
 stileButtons.forEach(button => {
     button.addEventListener('click', () => {
+        const currentColor = button.style.backgroundColor;
+
+        // se è già selezionato richiama showAllClothes
+        if (currentColor === 'grey') {
+            button.style.backgroundColor = '#333';
+            const areaUomo = document.querySelector('.area-uomo');
+            const areaDonna = document.querySelector('.area-donna');
+
+            if (areaUomo && areaUomo.style.display !== 'none') {
+                showAllClothesUomo();
+            } else if (areaDonna && areaDonna.style.display !== 'none') {
+                showAllClothesDonna();
+            }
+            return;
+        }
+
+        // se non è selezionato, resetta tutti e colora solo questo
+        stileButtons.forEach(btn => btn.style.backgroundColor = '#333');
+        button.style.backgroundColor = 'grey';
+
         const stile = button.getAttribute('data-stile');
-        // rendo di nuovo draggable tutti i vestiti nel caso in cui passi da uno stile all'altro
         document.querySelectorAll('.vestito').forEach(el => {
             el.setAttribute('draggable', 'true');
             el.style.opacity = '1';
@@ -735,6 +763,7 @@ stileButtons.forEach(button => {
         });
     });
 });
+
 
 // Quando la pagina è pronta
 window.addEventListener('DOMContentLoaded', () => {
