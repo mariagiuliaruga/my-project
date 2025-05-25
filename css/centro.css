@@ -79,7 +79,7 @@
 }
 
 .area-personale h2 {
-    color: rgb(247, 101, 227);
+    color:  rgb(167, 54, 90);
     font-size: 6vh;
     margin-bottom: 3vh;
     text-shadow: 0 0 10vh rgba(247, 101, 227, 0.3);
@@ -112,7 +112,7 @@
     padding: 1.2vh 2.5vw;
     border: none;
     border-radius: 3vh;
-    background: linear-gradient(90deg, rgb(247, 101, 227), rgb(255, 0, 238));
+    background: linear-gradient(90deg,  rgb(167, 54, 90), rgb(167, 54, 90));
     color: white;
     font-size: 3vh;
     font-weight: 600;
@@ -127,7 +127,7 @@
 }
 
 .area-personale .logout-button {
-    background: linear-gradient(90deg, rgba(167, 52, 52, 0.84), rgba(151, 14, 14, 0.823)) !important;
+    background: linear-gradient(90deg, rgb(198, 28, 28),  rgb(198, 28, 28)) !important;
     box-shadow: 0 1vh 2vh rgba(106, 17, 203, 0.3) !important;
 }
 
@@ -190,7 +190,7 @@
     align-self: center;
     width: 200%;
     text-transform: uppercase;
-    background: linear-gradient(rgba(151, 14, 14, 0.823), rgba(185, 31, 31, 0.84));
+    background: linear-gradient( rgb(167, 54, 90),rgb(167, 54, 90));
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     background-size: cover;
     background-position: center;
@@ -393,9 +393,9 @@
 
 .explore-link span {
     margin-bottom: 180px;
-    color: rgba(100, 0, 0, 0.642);
+    color: rgb(167, 54, 90);
     text-decoration: underline;
-    text-decoration-color: rgba(100, 0, 0, 0.886);
+    text-decoration-color: rgb(167, 54, 90);
     text-transform: uppercase;
     font-size: 1.2rem;
     position: relative;
@@ -478,7 +478,7 @@
 }
 
 .save-button {
-    background-color: #ff3333;
+    background-color: rgb(167, 54, 90);
     color: white;
 }
 
@@ -488,7 +488,7 @@
 }
 
 .save-button:hover {
-    background-color: #ff0000;
+    background-color: rgb(167, 54, 90);
 }
 
 .cancel-button:hover {
@@ -560,13 +560,13 @@
 }
 
 .forgot-password-panel input[type="email"]:focus {
-  border-color: #c62828;
+  border-color: rgb(167, 54, 90);
 }
 
 /* Pulsante invio */
 .forgot-password-panel button[type="submit"] {
   padding: 10px 16px;
-  background-color: #b71c1c;
+  background-color: rgb(167, 54, 90);
   color: white;
   font-size: 0.95rem;
   font-weight: 500;
@@ -577,7 +577,7 @@
 }
 
 .forgot-password-panel button[type="submit"]:hover {
-  background-color: #a11515;
+  background-color: rgb(167, 54, 90);
 }
 
 #about-section{
@@ -629,7 +629,7 @@
 }
 
 .about-content h2 {
-    color: rgb(247, 101, 227);
+    color: rgb(211, 83, 123);
     font-size: 4vw;
     margin-bottom: 4vw;
     text-shadow: 0 0 10px rgba(247, 101, 227, 0.3);
@@ -688,9 +688,9 @@
   align-content: center;
   transform: translateX(-50%);
   background-color: #ffffffdf;
-  color: #900;
+  color:rgb(167, 54, 90);
   padding: 25px 35px;
-  border: 1px solid #900;
+  border: 1px solid rgb(167, 54, 90);
   border-radius: 8px;
   font-size: 2em;
   z-index: 1004;
@@ -711,7 +711,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
-    border: 1px solid red;
+    border: 1px solid rgb(167, 54, 90);
     padding: 25px 30px;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -737,17 +737,17 @@
 }
 
 #reload-modal #confirm-reload {
-  background-color: #e74c3c; /* rosso */
+  background-color: rgb(167, 54, 90); /* rosso */
   color: white;
 }
 
 #reload-modal #confirm-reload:hover {
-  background-color: #c0392b;
+  background-color: rgb(167, 54, 90);
   transform: scale(1.05);
 }
 
 #reload-modal #cancel-reload {
-  background-color: #bdc3c7; /* grigio */
+  background-color: #bdc3c7;
   color: white;
 }
 

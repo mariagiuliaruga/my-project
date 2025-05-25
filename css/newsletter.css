@@ -69,7 +69,7 @@
 
 /* Bottone Iscriviti */
 .newsletter-content button[type="submit"] {
-  background-color: #ff00ff;
+  background-color: rgb(167, 54, 90);
   color: white;
   padding: 0.6rem;
   border: none;

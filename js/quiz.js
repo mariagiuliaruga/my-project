@@ -465,7 +465,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             areaRisultati.scrollIntoView({ behavior: 'smooth' });
                         }
                     });
-                }, 2000);
+                }, 0);
             }
         
             // Nascondi i pulsanti navigazione
@@ -827,11 +827,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const risultato = calcolaStile(answers);
 
         fetch("php/save_style.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: "stile=" + encodeURIComponent(risultato.stileVincente),
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: "stile=" + encodeURIComponent(risultato.stileVincente),
         })
         .then((response) => response.text())
         .then((data) => {

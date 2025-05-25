@@ -58,7 +58,7 @@
     transform: translateX(-50%);
     width: 90px;
     height: 2px;
-    background: linear-gradient(135deg, #6c5ce7, #a363d5);
+    background: linear-gradient(135deg, rgb(167, 54, 90), rgb(216, 102, 138));
     border-radius: 2px;
 }
 
@@ -72,7 +72,7 @@
 
 .manichino-link {
     display: inline-block;
-    background: linear-gradient(135deg, #af3a82, #ffb3f1);
+    background: linear-gradient(135deg, rgb(167, 54, 90), rgb(216, 102, 138));
     color: white;
     padding: 15px 40px;
     border-radius: 30px;
@@ -90,7 +90,7 @@
 .manichino-link:hover {
     transform: translateY(-4px) scale(1.02);
     box-shadow: 0 8px 30px rgba(175, 58, 130, 0.6);
-    background: linear-gradient(135deg, #ffb3f1, #af3a82);
+    background: linear-gradient(135deg, rgb(216, 102, 138), rgb(167, 54, 90));
 }
 
 /* Effetto luce che attraversa */

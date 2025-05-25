@@ -57,14 +57,14 @@
 .nav-link.active {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #d81b60; /* rosa acceso */
+  color:  rgb(167, 54, 90);
 }
 
 .genere-navigation a {
   text-decoration: none;
   font-weight: 600;
   font-size: 5vh;
-  color: #f54e8e;
+  color:  rgb(167, 54, 90);
 }
 
 .genere-navigation a:hover {
@@ -118,7 +118,7 @@
 
 
 b {
-    color: rgb(95, 14, 14);
+    color: rgb(167, 54, 90);
 }
 
   

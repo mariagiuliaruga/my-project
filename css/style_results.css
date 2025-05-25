@@ -94,15 +94,15 @@
     padding: 12px 24px;
     font-size: 16px;
     font-weight: bold;
-    background-color:rgb(210, 4, 134);
+    background-color:rgb(211, 83, 123);
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.5s ease;
 }
 .scopri-stile-button:hover {
-    background-color: rgb(210, 4, 134);
+    background-color: rgb(211, 83, 123);
     transform: translateY(-1vh);
-    box-shadow: 0 1vh 1vh rgb(255, 77, 190);
+    box-shadow: 0 1vh 1vh rgb(167, 54, 90);
 }
