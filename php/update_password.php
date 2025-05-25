@@ -1,6 +1,6 @@
 <?php
-header('Content-Type: application/json'); // ✅ DICHIARA IL TIPO DI RISPOSTA
-require_once 'connessione.php'; // che istanzia $pdo
+header('Content-Type: application/json'); // DICHIARA IL TIPO DI RISPOSTA
+require_once 'connessione.php';
 
 $email = trim($_POST['email'] ?? '');
 $newPassword = $_POST['newPassword'] ?? '';
