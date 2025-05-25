@@ -131,7 +131,7 @@ function showAllClothesUomo() {
     caroselli.forEach(carousel => {
         const vestiti = carousel.querySelectorAll('.vestito');
         vestiti.forEach(vestito => {
-            vestito.style.display = 'inline-block';
+            vestito.style.display = 'inline-block'; // o flex se serve, in base al CSS
         });
     });
 
@@ -583,13 +583,10 @@ document.querySelectorAll(".genere-img").forEach(btn => {
             document.getElementById('container-stili-donna').style.display = "none";
             istruzioniScritta.style.display = 'none';
             cestino.classList.add("hidden");
-            moveRight();
+            window.location.href = 'camerino.html';
         } else if (this.id === "btn-donna") {
             // Se è la donna in grande
             showAllClothesDonna();
-            document.querySelectorAll('.stile-btn').forEach(btn => {
-                btn.style.backgroundColor = '#333';
-            })
             document.getElementById("istruzioni").style.display = "block";
             areaDonna.style.display = "flex";
             areaUomo.style.display = "none";
@@ -604,9 +601,6 @@ document.querySelectorAll(".genere-img").forEach(btn => {
         } else if (this.id === "btn-uomo") {
             // Se è l'uomo in grande
             showAllClothesUomo();
-            document.querySelectorAll('.stile-btn').forEach(btn => {
-                btn.style.backgroundColor = '#333';
-            })
             document.getElementById("istruzioni").style.display = "block";
             areaUomo.style.display = "flex";
             areaDonna.style.display = "none";
@@ -698,21 +692,6 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// non posso mettere .arrow right perchè significherebbe che right è figlio di arrow
-document.querySelectorAll('.arrow.right').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const carouselId = btn.dataset.carouselId;
-        scrollCarousel(carouselId, 1);
-    });
-});
-
-document.querySelectorAll('.arrow.left').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const carouselId = btn.dataset.carouselId;
-        scrollCarousel(carouselId, -1);
-    });
-});
-
 cestino.addEventListener('dragover', allowDrop);
 cestino.addEventListener('drop', throwInTheTrash);
 
@@ -738,8 +717,8 @@ stileButtons.forEach(button => {
         const currentColor = button.style.backgroundColor;
 
         // se è già selezionato richiama showAllClothes
-        if (currentColor === 'grey') {
-            button.style.backgroundColor = '#333';
+        if (currentColor === '#333') {
+            button.style.backgroundColor = 'grey';
             const areaUomo = document.querySelector('.area-uomo');
             const areaDonna = document.querySelector('.area-donna');
 
@@ -750,20 +729,20 @@ stileButtons.forEach(button => {
             }
             return;
         }
-
-        // se non è selezionato, resetta tutti e colora solo questo
-        stileButtons.forEach(btn => btn.style.backgroundColor = '#333');
-        button.style.backgroundColor = 'grey';
+        
+        //se non è selezionato, resetta tutti e colora solo questo
+        stileButtons.forEach(btn => btn.style.backgroundColor = 'grey');
+        button.style.backgroundColor = '#333';
 
         const stile = button.getAttribute('data-stile');
+        // rendo di nuovo draggable tutti i vestiti nel caso in cui passi da uno stile all'altro
         document.querySelectorAll('.vestito').forEach(el => {
-            el.setAttribute('draggable', 'true');
-            el.style.opacity = '1';
-            el.style.cursor = "grab";
+        el.setAttribute('draggable', 'true');
+        el.style.opacity = '1';
+        el.style.cursor = "grab";
         });
     });
 });
-
 
 // Quando la pagina è pronta
 window.addEventListener('DOMContentLoaded', () => {
@@ -826,7 +805,7 @@ document.querySelector("#scaricaOutfitUomo input[type='checkbox']").addEventList
         link.href = base64image;
         link.download = "outfit-uomo.png"; // quando il link viene cliccato, scarica il file e lo chiama "outfit-uomo.png”, invece di aprirlo nel browser.
         document.body.appendChild(link);
-        link.click(); //  simula un clic sul link, in modo da farpartire il download automatico
+        link.click(); //  simula un clic sul link, in modo da far partire il download automatico
         document.body.removeChild(link);
 
         bookmark.style.display = "flex";
