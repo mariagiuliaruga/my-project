@@ -1,4 +1,6 @@
 <?php
+require __DIR__ . '/connessione.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -6,14 +8,8 @@ require __DIR__ . '/../PHPMailer/src/Exception.php';
 require __DIR__ . '/../PHPMailer/src/PHPMailer.php';
 require __DIR__ . '/../PHPMailer/src/SMTP.php';
 
-// Connessione PDO
-$host = 'sql7.freesqldatabase.com';
-$dbname = 'sql7777430';
-$user = 'sql7777430';
-$password = 'CacMXZdVbr';
-
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Connessione fallita: " . $e->getMessage());
@@ -44,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h2>Grazie per esserti iscritta!</h2>
             <div style="max-width: 600px; margin: auto; padding: 20px;">
                 <h2 style="text-align: center;">✨ Il primo stile è arrivato!</h2>
-                <img src="https://drive.google.com/uc?export=view&id=1_FK-s5GhnEFQyxt08cddk5P5xs4TmRM7" alt="Stile 1" style="width: 100%; max-width: 400px; display: block; margin: 20px auto; border-radius: 8px;">
                 <p style="text-align: center; font-size: 16px;"><strong>Natural Elegance</strong> – Per chi ama uno sguardo naturale ma definito. Semplice, elegante, e perfetto per ogni occasione 🌿</p>
                 <p style="text-align: center; font-size: 14px; margin-top: 30px;">👉 Torna domani per scoprire il <strong>secondo stile</strong> esclusivo!</p>
             </div>
@@ -53,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $body2 = '
             <div style="max-width: 600px; margin: auto; padding: 20px;">
                 <h2 style="text-align: center;">🌸 Il secondo stile è qui!</h2>
-                <img src="https://drive.google.com/uc?export=view&id=1JMbtorW_vrW7oi41zCALwKhPY_6M4GMV" alt="Stile 2" style="width: 100%; max-width: 400px; display: block; margin: 20px auto; border-radius: 8px;">
                 <p style="text-align: center;"><strong>Soft Glam</strong> – Romantico, leggero e luminoso. Ideale per chi vuole brillare con delicatezza ✨</p>
                 <p style="text-align: center;">👉 Non perderti il terzo stile domani!</p>
             </div>
@@ -80,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ]
             ];
 
-            $mail->setFrom('mystylessence@gmail.com', 'MyStileEssence');
+            $mail->setFrom('mystylessence@gmail.com', 'MyStyleEssence');
             $mail->addAddress($email);
 
             $mail->isHTML(true);

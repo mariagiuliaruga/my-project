@@ -1,4 +1,5 @@
 <?php
+//connessione al database
 $host = 'sql7.freesqldatabase.com';
 $dbname = 'sql7777430';
 $user = 'sql7777430';

@@ -1,7 +1,7 @@
 <?php
 // forgot_password.php
 session_start();
-require 'connessione.php'; // Deve restituire un oggetto $conn di tipo PDO
+require 'connessione.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

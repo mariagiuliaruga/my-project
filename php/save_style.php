@@ -1,10 +1,6 @@
 <?php
 session_start();
-
-$host = 'sql7.freesqldatabase.com';
-$dbname = 'sql7777430';
-$user = 'sql7777430';
-$pass = 'CacMXZdVbr';
+require __DIR__ . '/connessione.php';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
