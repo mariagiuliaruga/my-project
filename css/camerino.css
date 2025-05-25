@@ -155,7 +155,7 @@ body {
 
 }
 
-#manichino-uomo #zona-busto, #zona-busto-donna {
+#manichino-uomo #zona-busto, #zona-busto-donna, #zona-vestito {
   top: 17%;
   height: 25%;
   background: transparent;
@@ -206,12 +206,6 @@ body {
   width: 8%;
   background: transparent;
 }
-
-/* #zona-vestito{
-  top: 17%;
-  height: 70%;
-  background: rgba(0, 128, 0, 0);
-} */
 
 #cestino {
   width: 100px;

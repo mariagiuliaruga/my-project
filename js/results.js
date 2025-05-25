@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         const img = document.createElement('img');
                         img.src = src;
                         img.alt = "Outfit salvato";
-                        img.style.maxWidth = '200px';
+                        img.style.width = 'auto';
+                        img.style.height = '500px';
                         img.style.margin = '10px';
                         galleria.appendChild(img);
                     });

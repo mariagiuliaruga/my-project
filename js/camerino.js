@@ -217,53 +217,43 @@ function drop(ev) {
     zona = document.getElementById('zona-vestito')
     } 
     
-    // per evitare sovrapposizioni e sostituire un indumento esistente nella stessa zona
+    function rimuoviIndumenti(zona) {
+        const esistenti = manichino.querySelectorAll(`.indumento[data-zona="${zona}"]`);
+        esistenti.forEach(el => {
+            el.remove();
+
+            // Ripristina l'elemento originale nella lista vestiti
+            const originalId = el.id.replace("-clone", "");
+            const original = document.getElementById(originalId);
+            if (original) {
+                original.setAttribute("draggable", "true");
+                original.style.opacity = "1";
+                original.style.cursor = "grab";
+            }
+        });
+    }
+
+    // rimuovo indumenti dalla zona corrente
     if (zonaNome) {
-    const esistenti = manichino.querySelectorAll(`.indumento[data-zona="${zonaNome}"]`);
-    esistenti.forEach(el => {
-        el.remove();
-
-        // Ripristina l'elemento originale nella lista vestiti
-        const originalId = el.id.replace("-clone", "");
-        const original = document.getElementById(originalId);
-        if (original) {
-        original.setAttribute("draggable", "true");
-        original.style.opacity = "1";
-        original.style.cursor = "grab";
-        }
-    });
+        rimuoviIndumenti(zonaNome);
     }
 
-    if (zonaNome==="borsa") {
-        const esistenti = manichino.querySelectorAll(`.indumento[data-zona="${"borsa-mano"}"]`);
-        esistenti.forEach(el => {
-            el.remove();
-
-            // Ripristina l'elemento originale nella lista vestiti
-            const originalId = el.id.replace("-clone", "");
-            const original = document.getElementById(originalId);
-            if (original) {
-            original.setAttribute("draggable", "true");
-            original.style.opacity = "1";
-            original.style.cursor = "grab";
-            }
-        });
+    // casi speciali
+    if (zonaNome === "vestito") {
+        rimuoviIndumenti("gambe");
+        rimuoviIndumenti("busto");
     }
 
-    if (zonaNome==="borsa-mano") {
-        const esistenti = manichino.querySelectorAll(`.indumento[data-zona="${"borsa"}"]`);
-        esistenti.forEach(el => {
-            el.remove();
+    if (zonaNome === "gambe" || zonaNome === "busto") {
+        rimuoviIndumenti("vestito");
+    }
 
-            // Ripristina l'elemento originale nella lista vestiti
-            const originalId = el.id.replace("-clone", "");
-            const original = document.getElementById(originalId);
-            if (original) {
-            original.setAttribute("draggable", "true");
-            original.style.opacity = "1";
-            original.style.cursor = "grab";
-            }
-        });
+    if (zonaNome === "borsa") {
+        rimuoviIndumenti("borsa-mano");
+    }
+
+    if (zonaNome === "borsa-mano") {
+        rimuoviIndumenti("borsa");
     }
 
     clone.setAttribute("data-zona", zonaNome); //perchè anche il clone deve avere la stessa zona dell'originale, per futuri controlli
@@ -271,7 +261,7 @@ function drop(ev) {
     let zIndex = 1;
     if (zonaNome === "over-busto") {
     zIndex = 3;
-    } else if (zonaNome === "busto") {
+    } else if (zonaNome === "busto" || zonaNome === "vestito") {
     zIndex = 2;
     } else if (zonaNome === "gambe") {
     zIndex = 1;
@@ -559,11 +549,6 @@ function updateDataVisible(vestitiVisibili) {
             }
         });
 
-        // Aggiorna sia data-visible (quanti si vedono sullo schermo)
-        // sia data-total (quanti vestiti ci sono per questo stile)
-        carosello.setAttribute('data-total', count);
-        carosello.setAttribute('data-visible', 4);
-
         // Reset dell’indice di scroll
         carouselIndices[id] = 0;
         scrollCarousel(id, 0);
@@ -629,13 +614,10 @@ document.querySelectorAll(".manichino").forEach(manichino => {
                 original.setAttribute("draggable", "true");
                 original.style.opacity = "1";
                 original.style.cursor = "grab";
-                
             }
-
             event.target.remove();
         }
     });
-
     manichino.addEventListener("dragover", allowDrop);
     manichino.addEventListener("drop", drop);
 });

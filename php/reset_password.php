@@ -34,7 +34,8 @@ if (isset($_GET['token'])) {
                 $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                 $stmt->execute();
 
-                echo "✅ Password aggiornata con successo!";
+                echo "✅ Password aggiornata con successo! <br><br>";
+                echo '<a href="/index.html" style="display: inline-block; padding: 10px 20px; background-color: rgb(255, 94, 159); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-family: Segoe UI, sans-serif;">Torna alla home</a>';
                 exit;
             }
         } else {
@@ -53,12 +54,8 @@ if (isset($_GET['token'])) {
 }
 ?>
 
-<!-- Form per inserire la nuova password -->
-<form method="POST" style="max-width: 300px; margin: 40px auto; padding: 20px; background: #f9f9f9; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-    <input type="password" name="password" placeholder="Nuova password" required
-        style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px;">
-    <button type="submit"
-        style="width: 100%; padding: 10px; background-color: #5c67f2; color: white; border: none; border-radius: 8px; font-size: 14px; cursor: pointer;">
-        Salva nuova password
-    </button>
+<form method="POST" style="max-width: 420px; margin: 100px auto; padding: 30px 25px; background: #fff; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); text-align: center; font-family: 'Segoe UI', sans-serif;">
+  <h2 style="margin-bottom: 25px; color: #333; font-size: 20px;">Imposta una nuova password</h2>
+  <input type="password" name="password" placeholder="Nuova password" required style="width: 100%; padding: 12px 14px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 10px; font-size: 15px; transition: border-color 0.3s;" onfocus="this.style.borderColor='rgb(255, 94, 159)'" onblur="this.style.borderColor='#ddd'">
+  <button type="submit" style="width: 100%; padding: 12px; background-color: rgb(255, 94, 159); color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: bold; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='rgb(235, 84, 149)'" onmouseout="this.style.backgroundColor='rgb(255, 94, 159)'">Salva nuova password</button>
 </form>
