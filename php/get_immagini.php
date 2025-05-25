@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+require 'connessione.php';
+
 header('Content-Type: application/json');
 
 // Controlla login
@@ -10,16 +13,8 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
-// Connessione DB con PDO
-$host = "sql7.freesqldatabase.com";
-$dbname = "sql7777430";
-$username = "sql7777430";
-$password = "CacMXZdVbr";
-
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     $stmt = $conn->prepare("SELECT percorso_file FROM immagini WHERE email = :email");
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->execute();

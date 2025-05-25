@@ -1,16 +1,12 @@
 <?php
 session_start();
 
-// Connessione al database con PDO
-$host = 'sql7.freesqldatabase.com';
-$dbname = 'sql7777430';
-$user = 'sql7777430';
-$pass = 'CacMXZdVbr';
+require 'connessione.php';
 
 $response = ['success' => false, 'message' => 'Credenziali errate'];
 
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Verifica se è una richiesta POST

@@ -1,5 +1,8 @@
 <?php
 session_start(); //attiva la sessione PHP per accedere ai dati salvati, come l’email dell’utente che servirà per collegarsi al database
+
+require 'connessione.php';
+
 header('Content-Type: application/json');
 
 // Verifica che l'utente sia loggato
@@ -40,10 +43,8 @@ file_put_contents($percorsoFile, $immagineBinaria);
 
 // Connessione PDO
 try {
-    $conn = new PDO("mysql:host=sql7.freesqldatabase.com;dbname=sql7777430", "sql7777430", "CacMXZdVbr");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Inserisci percorso immagine nel database
+    // Inserisco percorso immagine nel database
     $stmt = $conn->prepare("INSERT INTO immagini (email, percorso_file) VALUES (:email, :percorso)");
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->bindParam(':percorso', $percorsoFile, PDO::PARAM_STR);
