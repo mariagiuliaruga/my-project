@@ -13,7 +13,7 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email']; // se è loggato, salva l'email in $email 
 
-// Leggi i dati JSON dal frontend e li decodifica in array associativo $data = ['immagine' => 'base64dataqui'];
+// Legge i dati JSON dal frontend e li decodifica in array associativo $data = ['immagine' => 'base64data'];
 // in modo che $data['immagine'] sia accessibile
 $data = json_decode(file_get_contents('php://input'), true);
 
@@ -36,7 +36,7 @@ $immagineBinaria = base64_decode($base64);
 
 // crea nome file unico
 $nomeFile = uniqid('outfit_', true) . '.png';
-$percorsoFile = $cartella . $nomeFile; // crea un array associativo del tipo percorsoFile -> immagini_salvate/outfit_xxx.png
+$percorsoFile = $cartella . $nomeFile; // crea una stringa percorsoFile con dentro "immagini_salvate/outfit_xxx.png"
 
 // salva l'immagine nel server
 file_put_contents($percorsoFile, $immagineBinaria);
