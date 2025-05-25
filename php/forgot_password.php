@@ -34,9 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
                 $stmt->bindParam(':expires_at', $expires_at);
                 $stmt->execute();
 
-                // Link di reset
-                $resetLink = "http://localhost:3000/Documents/GitHub//my-project/php/reset_password.php?token=$token";
-                // $resetLink = "http://localhost/my-project/php/reset_password.php?token=$token"; questo funziona ma non a mari
+                $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+
+                // Ottieni il nome host (es: localhost o dominio)
+                $host = $_SERVER['HTTP_HOST'];
+
+                // Ottieni il percorso della cartella corrente e risali
+                $path = dirname($_SERVER['PHP_SELF']); // es: /my-project/php
+                $resetLink = "$scheme://$host$path/reset_password.php?token=$token";
 
                 // Invia l'email
                 sendPasswordResetEmail($email, $resetLink);

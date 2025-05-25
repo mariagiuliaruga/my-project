@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/connessione.php'; // Corretto percorso
+require __DIR__ . '/connessione.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
