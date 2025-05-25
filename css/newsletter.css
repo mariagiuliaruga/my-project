@@ -10,9 +10,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #ffffff;
-  padding: 3rem 2rem; /* più spazio verticale */
+  padding: 3rem 2rem;
   width: 95%;
-  max-width: 500px; /* aumentato da 400px a 500px */
+  max-width: 500px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   z-index: 1000;
@@ -60,9 +60,9 @@
 }
 
 /* Campo email */
-.-content input[type="email"] {
+.newsletter-content input[type="email"] {
   padding: 0.6rem;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
 }
