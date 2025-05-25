@@ -60,7 +60,7 @@
 }
 
 /* Campo email */
-.newsletter-content input[type="email"] {
+.-content input[type="email"] {
   padding: 0.6rem;
   border: 1px solid #ccc;
   border-radius: 5px;

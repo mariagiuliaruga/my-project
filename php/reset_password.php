@@ -54,7 +54,11 @@ if (isset($_GET['token'])) {
 ?>
 
 <!-- Form per inserire la nuova password -->
-<form method="POST">
-    <input type="password" name="password" placeholder="Nuova password" required>
-    <button type="submit">Salva nuova password</button>
+<form method="POST" style="max-width: 300px; margin: 40px auto; padding: 20px; background: #f9f9f9; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+    <input type="password" name="password" placeholder="Nuova password" required
+        style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px;">
+    <button type="submit"
+        style="width: 100%; padding: 10px; background-color: #5c67f2; color: white; border: none; border-radius: 8px; font-size: 14px; cursor: pointer;">
+        Salva nuova password
+    </button>
 </form>
