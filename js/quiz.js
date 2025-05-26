@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const quizWindow = document.querySelector('.quiz-window');
     const quizButtonActive = document.querySelector('.quiz-button.active');
     const closeButton = document.querySelector('.quiz-close-button');
-    const quizResult = document.querySelector('.quiz-result');
     const questionElement = document.querySelector('.quiz-domanda');
     const navigationElement = document.querySelector('.quiz-navigation');
     const progressElement = document.querySelector('.quiz-progress');
@@ -389,103 +388,100 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Funzione per inviare il quiz
         function submitQuiz() {
-            
             saveAnswer(currentQuestion);
             console.log('Tutte le risposte:', answers);
         
             const risultato = calcolaStile(answers);
             risultato.genere = answers["genere"];
-
-            console.log('Risultato calcolo:', risultato);
         
+            // Salva nel database
+            fetch("php/save_style.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: "stile=" + encodeURIComponent(risultato.stileVincente),
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log("Risposta dal server:", data);
+            })
+            .catch(error => {
+                console.error("Errore nella fetch POST:", error);
+            });
+        
+            // Mostra il risultato del quiz
             const resultContent = `
-            <div class="quiz-result">
-                <h2>Il tuo stile è: ${risultato.stileVincente}</h2>
-                <div class="style-description">
-                    ${getStyleDescription(risultato.stileVincente)}
+                <div class="quiz-result">
+                    <h2>Il tuo stile è: ${risultato.stileVincente}</h2>
+                    <div class="style-description">
+                        ${getStyleDescription(risultato.stileVincente)}
+                    </div>
+                    <div class="style-scores">
+                        <h3>Punteggi per ogni stile:</h3>
+                        ${Object.entries(risultato.punteggi).map(([stile, punteggio]) => {
+                            const percentuale = ((punteggio / 10.1) * 100).toFixed(2);
+                            return `
+                                <div class="style-score">
+                                    <span>${stile}:</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: ${percentuale}%"></div>
+                                    </div>
+                                    <span>${percentuale}%</span>
+                                </div>`;
+                        }).join('')}
+                    </div>
+                    <button id="scopriStileButton" class="scopri-stile-button">Scopri il tuo stile</button>
                 </div>
-                <div class="style-scores">                    <h3>Punteggi per ogni stile:</h3>
-                    ${Object.entries(risultato.punteggi).map(([stile, punteggio]) => {
-                        const percentuale = ((punteggio / 10.1) * 100).toFixed(2);
-                        return `
-                            <div class="style-score">
-                                <span>${stile}:</span>
-                                <div class="score-bar">
-                                    <div class="score-fill" style="width: ${percentuale}%"></div>
-                                </div>
-                                <span>${percentuale}%</span>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-                <button id="scopriStileButton" class="scopri-stile-button">Scopri il tuo stile</button>
-            </div>
-        `;
+            `;
         
             if (questionElement) {
                 questionElement.innerHTML = resultContent;
-                
                 progressElement.style.display = 'none';
-                const isDonna = risultato.genere === "donna";
-
-                // Attiva pulsante "Scopri il tuo stile"
+        
                 setTimeout(() => {
                     const scopriBtn = document.getElementById('scopriStileButton');
                     scopriBtn?.addEventListener('click', () => {
                         const stile = risultato.stileVincente;
+                        const isDonna = risultato.genere === "donna";
 
                         // Chiudi il quiz
                         quizContainer.classList.remove('visible');
                         quizWindow.classList.remove('visible');
-        
-                        // Nascondi tutti i risultati
+
+                        // Nascondi tutti gli stili
                         document.querySelectorAll('.stile-container').forEach(el => {
                             el.style.display = 'none';
                         });
-        
-                        // Mostra solo quello giusto
-                        let targetId;
-                    
-                        if (stile === "sporty") {
-                            targetId = isDonna ? `stile-sportyWomen` : `stile-sportyMen`;
-                        } else {
-                            targetId = `stile-${stile}`;
-                        }
-                    
+
+                        // Calcola l'id del container da mostrare
+                        let targetId = stile === "sporty"
+                            ? (isDonna ? `stile-sportyWomen` : `stile-sportyMen`)
+                            : `stile-${stile}`;
+
                         const target = document.getElementById(targetId);
-                        if (target) {
-                            target.style.display = 'block';
-                            target.scrollIntoView({ behavior: 'smooth' });
-                        }
-                        
-                        // Mostra sezione risultati
                         const areaRisultati = document.querySelector('.area-risultati');
-                        if (areaRisultati) {
-                            areaRisultati.classList.add('visible');
-                            areaRisultati.scrollIntoView({ behavior: 'smooth' });
-                        }
+
+                        areaRisultati.classList.add('visible');
+
+                        target.style.display = 'block';
+
+                        target.offsetHeight;
+
+                        setTimeout(() => {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
                     });
+
                 }, 0);
             }
         
-            // Nascondi i pulsanti navigazione
-            if (quizResult) {
+            // Nascondi navigazione
+            if (navigationElement) {
                 navigationElement.style.display = 'none';
             }
-        
-            quizContainer.classList.add('visible');
-            quizWindow.classList.add('visible');
-        
-            const closeButton = document.createElement('button');
-            closeButton.className = 'quiz-close-button';
-            closeButton.innerHTML = '×';
-            closeButton.onclick = function () {
-                quizContainer.classList.remove('visible');
-                quizWindow.classList.remove('visible');
-            };
-            quizWindow.appendChild(closeButton);
+
         }
-        
     
         // Funzione per ottenere la descrizione dello stile
         function getStyleDescription(stile) {
@@ -530,7 +526,6 @@ document.addEventListener('DOMContentLoaded', function() {
             showQuestion(currentQuestion);
             quizContainer.classList.add('visible');
             quizWindow.classList.add('visible');
-            quizResult.style.display = 'none';
             });
         }
     
@@ -808,14 +803,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Stile vincente:', stileVincente);
             console.log('Punteggio massimo:', punteggioMassimo);
 
-            fetch('php/save_style.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'stile=' + encodeURIComponent(stileVincente),
-            });
-
             return {
                 stileVincente,
                 punteggioMassimo,
@@ -823,23 +810,6 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
         }
-
-        const risultato = calcolaStile(answers);
-
-        fetch("php/save_style.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: "stile=" + encodeURIComponent(risultato.stileVincente),
-        })
-        .then((response) => response.text())
-        .then((data) => {
-            console.log("Risposta dal server:", data);
-        })
-        .catch((error) => {
-            console.error("Errore nella fetch:", error);
-        });
 
 
         fetch("php/save_style.php", {
