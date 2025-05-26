@@ -13,8 +13,8 @@
     }
   </style>
 </head>
+
 <body> 
-  <body>
     <div class="button-group">
       <div class="button-container">
         <a title="Torna indietro" href="#" onclick="history.back(); return false;">
@@ -25,19 +25,10 @@
           </svg>
         </a>
       </div>
-    </div>
-  <div id="popup" class="popup-overlay" style="display:none;">
-    <div class="popup-content">
-      <button class="close-btn">×</button>
-      <p>Benvenuto nella tua area creativa!👗</p>
-      <p>Qui puoi dare libero sfogo al tuo stile creando outfit unici e personalizzati.</p>
-      <p>Trascina i vari capi sul manichino e scegli il colore che preferisci🎨.</p>
-      <p>Sei indeciso? Nessun problema! Basta un doppio clic sul capo per toglierlo o trascinarlo nel cestino in basso a sinistra.</p>
-      <p>Ricorda però, per ottenere outfit davvero su misura, prima devi completare il 
-      <a href="index.html" style="text-decoration: underline; color: fuchsia;">quiz</a>!📝</p>
-      <p>Se l’hai già fatto, seleziona lo stile che hai scoperto essere perfetto per te.</p>
-    </div>
-  </div>
+    </div>    
+    <div id="overlayDim" class="hidden"></div>
+    <div class="floatingHintDx" class="hidden"></div>
+  
   <h2 id="istruzioni" style="display: none;">Scegli il tuo stile e trascina i vestiti sul manichino</h2>
   
   <div class="wrapper">
@@ -69,7 +60,7 @@
     <div class="area-uomo">
   
       <div class="area-sx">
-        <div class="carousel-container-sx-alto" id="carousel1" data-total="20" data-visible="10">
+        <div class="carousel-container-sx-alto" id="carousel1">
          
           <div class="carousel">
             <img src="style/men/busto/magliaMarrone.png" id="maglia-marrone" class="vestito" data-zona="busto" draggable="true">
@@ -98,7 +89,7 @@
 
         </div>
 
-         <div class="carousel-container-sx-basso" id="carousel2" data-total="11" data-visible="3">
+         <div class="carousel-container-sx-basso" id="carousel2">
 
           <div class="carousel">
             <img src="style/men/piedi/campus.png" id="campus" class="vestito" data-zona="piedi" draggable="true">
@@ -125,7 +116,7 @@
       </div>
 
       <div id="manichino-uomo" class="manichino">
-        <label class="ui-bookmark" id="scaricaOutfitUomo" style="position: absolute; top: 10px; right: -40px; transform: scale(0.8); z-index: 10;">
+        <label class="ui-bookmark" id="scaricaOutfitUomo">
           <input type="checkbox">
           <div class="bookmark">
             <svg viewBox="0 0 32 32">
@@ -151,7 +142,7 @@
       </div>
       
 
-      <div class="carousel-container-dx" id="carousel3" data-total="10" data-visible="6">
+      <div class="carousel-container-dx" id="carousel3">
 
         <div class="carousel">
           <img src="style/men/gambe/cargoBeige.png" id="cargo" class="vestito" data-zona="gambe" draggable="true">
@@ -173,7 +164,7 @@
     <div class="area-donna">
 
       <div class="area-sx">
-        <div class="carousel-container-sx-alto" id="carousel4" data-total="25" data-visible="12">
+        <div class="carousel-container-sx-alto" id="carousel4">
 
           <div class="carousel">
             <img src="style/women/busto/camicettaBianca.png" id="camicetta-bianca" class="vestito" data-zona="busto" draggable="true">
@@ -206,7 +197,7 @@
 
         </div>
 
-        <div class="carousel-container-sx-basso" id="carousel5" data-total="17" data-visible="9">
+        <div class="carousel-container-sx-basso" id="carousel5">
 
           <div class="carousel">
             <img src="style/women/piedi/campus.png" id="campus-donna" class="vestito" data-zona="piedi" draggable="true">
@@ -231,7 +222,7 @@
         </div>
       </div>
       <div id="manichino-donna" class="manichino">
-        <label class="ui-bookmark" id="scaricaOutfitDonna" style="position: absolute; top: 10px; right: -40px; transform: scale(0.8); z-index: 10;">
+        <label class="ui-bookmark" id="scaricaOutfitDonna">
           <input type="checkbox">
           <div class="bookmark">
             <svg viewBox="0 0 32 32">
@@ -257,7 +248,7 @@
         </div>
       </div>
 
-      <div class="carousel-container-dx" id="carousel6" data-total="20" data-visible="7">
+      <div class="carousel-container-dx" id="carousel6">
 
           <div class="carousel">
             <img src="style/women/gambe/jeansGrigi2.png" id="jeans-grigi2-donna" class="vestito" data-zona="gambe" draggable="true">

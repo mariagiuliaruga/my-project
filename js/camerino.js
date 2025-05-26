@@ -193,6 +193,8 @@ function drop(ev) {
     clone.setAttribute("draggable", "true");
     clone.addEventListener("dragstart", dragIndumento);
     clone.style.cursor = "grab";
+
+    onDressDroppedOnMannequin(draggedElement);
     
     const zonaNome = original.dataset.zona;
     let zona = null;
@@ -463,39 +465,6 @@ function handleColorChange(color, elementId) {
     img.src = originalSrc; // fa partire il caricamento dell’immagine originale, il che attiva l’evento onload
 }
 
-const carouselIndices = {};
-
-function scrollCarousel(carouselId, direction) {
-    const carouselContainer = document.getElementById(carouselId);
-    const visibleItems = parseInt(carouselContainer.getAttribute('data-visible')) || 1;
-    const carousel = carouselContainer.querySelector('.carousel');
-
-    const itemWidth = 190; // larghezza + margine
-    const totalItems = parseInt(carouselContainer.getAttribute('data-total'))
-    const maxIndex = Math.max(0, totalItems - visibleItems);
-    console.log(`maxIndex ${maxIndex}: totalItems ${totalItems}, visibleItems ${visibleItems}`);
-
-    // l'indice tiene traccia di quale "pagina" del carosello sto mostrando
-    if (!(carouselId in carouselIndices)) {
-    carouselIndices[carouselId] = 0;
-    }
-
-    carouselIndices[carouselId] += direction; //aggiorna l'indice in base alla direzione
-
-    // blocco l'indice per non far scorrere oltre i limiti
-    if (carouselIndices[carouselId] < 0) {
-    carouselIndices[carouselId] = 0;
-    }
-    if (carouselIndices[carouselId] > maxIndex) {
-    carouselIndices[carouselId] = maxIndex;
-    }
-
-    const offset = carouselIndices[carouselId] * itemWidth;
-    carousel.style.transform = `translateX(-${offset}px)`;
-
-    console.log(`Carosello ${carouselId}: visibili ${visibleItems}, indice ${carouselIndices[carouselId]}`);
-}
-
 function changeMannequinColor(genere, colore) {
     const manichino = document.getElementById(`manichino-${genere}`);
 
@@ -555,6 +524,107 @@ function updateDataVisible(vestitiVisibili) {
     });
 }
 
+let firstDressDropped = false;
+
+function onDressDroppedOnMannequin(dressElement) {
+    if (firstDressDropped) return;
+    firstDressDropped = true;
+
+    const overlay = document.getElementById("overlayDim");
+    const hint = document.getElementById("floatingHint");
+
+    // Mostra overlay per oscurare il resto
+    overlay.classList.remove("hidden");
+
+    const previousZIndex = dressElement.style.zIndex;
+    dressElement.style.zIndex = '1000';
+    dressElement.style.position = 'relative';
+
+    // Posiziona il commento sopra il vestito
+    hint.textContent = "Fai doppio clic sul vestito per rimuoverlo!";
+    hint.classList.remove("hidden");
+
+    // Quando clicchi altrove: rimuove tutto
+    function handleOutsideClick(event) {
+        if (!hint.contains(event.target) && !dressElement.contains(event.target)) {
+        overlay.classList.add("hidden");
+        hint.classList.add("hidden");
+        dressElement.style.zIndex = previousZIndex;
+        document.removeEventListener("click", handleOutsideClick);
+        document.removeEventListener("dragstart", handleOutsideClick);
+        }
+    }
+
+    setTimeout(() => {
+        document.addEventListener("click", handleOutsideClick);
+        document.addEventListener("dragstart", handleOutsideClick);
+    }, 100); // timeout per evitare che il primo click chiuda subito
+}
+
+function attivaSelettoriColoreUomo() {
+    const overlay = document.getElementById("overlayDim");
+    const hint = document.getElementById("floatingHint");
+    const hint2 = document.getElementById("floatingHint");
+    overlay.classList.remove("hidden");
+
+    const manichinoUomo = document.getElementById('manichino-uomo');
+    const previousZIndexMannequin = manichinoUomo.style.zIndex;
+    manichinoUomo.style.zIndex = '1000';
+
+    // Seleziona i color button
+    const colorButtons = manichinoUomo.querySelectorAll('.color-btn');
+  
+    // Aggiunge un bordo per evidenziare visivamente che sono attivi (opzionale)
+    colorButtons.forEach(btn => {
+        // Salva il valore originale dello z-index solo se non è già stato salvato
+        if (!btn.dataset.originalZindex) {
+          btn.dataset.originalZindex = window.getComputedStyle(btn).zIndex;
+        }
+      
+        // Applica le modifiche visive
+        btn.style.zIndex = '1000';
+        btn.style.border = '2px solid #000';
+        btn.style.outline = 'none';
+        btn.style.cursor = 'pointer';
+    });
+    
+    hint.textContent = "Seleziona la carnagione";
+    hint.classList.remove("hidden");
+    hint.style.top = '10px';
+    hint.style.left = '40px';
+    hint.style.fontWeight = 'bold';
+  
+    hint2.textContent = 'Scorri nei caroselli e scegli il vestito che preferisci';
+    hint2.classList.remove("hidden");
+    hint2.style.top = '20px';
+    hint2.style.left = '-10px';
+    hint2.style.fontStyle = 'italic';
+
+    // Quando clicchi altrove: rimuove tutto
+    function handleOutsideClick(event) {
+        if (!hint.contains(event.target) && !manichinoUomo.contains(event.target) && !hint2.contains(event.target)) {
+        overlay.classList.add("hidden");
+        hint.classList.add("hidden");
+        hint2.classList.add("hidden");
+         // Aggiunge un bordo per evidenziare visivamente che sono attivi (opzionale)
+        colorButtons.forEach(btn => {
+            btn.style.zIndex = btn.dataset.originalZindex;
+        });
+        
+        manichinoUomo.style.zIndex = previousZIndexMannequin;
+        document.removeEventListener("click", handleOutsideClick);
+        document.removeEventListener("dragstart", handleOutsideClick);
+        }
+    }
+
+    setTimeout(() => {
+        document.addEventListener("click", handleOutsideClick);
+        document.addEventListener("dragstart", handleOutsideClick);
+    }, 100); // timeout per evitare che il primo click chiuda subito
+  
+}
+  
+
 // listener per btnUomo e btnDonna
 document.querySelectorAll(".genere-img").forEach(btn => {
     btn.addEventListener("click", function () {
@@ -583,6 +653,7 @@ document.querySelectorAll(".genere-img").forEach(btn => {
             document.getElementById('container-stili-donna').style.display = "flex";
             document.getElementById('container-stili-uomo').style.display = "none";
             cestino.classList.remove("hidden");
+            attivaSelettoriColoreUomo();
         } else if (this.id === "btn-uomo") {
             // Se è l'uomo in grande
             showAllClothesUomo();
@@ -597,6 +668,7 @@ document.querySelectorAll(".genere-img").forEach(btn => {
             document.getElementById('container-stili-uomo').style.display = "flex";
             document.getElementById('container-stili-donna').style.display = "none";
             cestino.classList.remove("hidden");
+            attivaSelettoriColoreUomo();
         }
     });
 });
