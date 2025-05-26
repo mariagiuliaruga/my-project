@@ -547,11 +547,11 @@ function onDressDroppedOnMannequin(dressElement) {
     hint3.style.top = '-2vh';
     hint3.style.left = '-15vw';
 
-    // Porta sopra il vestito
+    // porta sopra il vestito
     dressElement.style.zIndex = '1000';
     dressElement.style.position = 'relative';
 
-    // Gestore per click esterni
+    // gestore per click esterni
     function handleOutsideClick(event) {
         const clickFuori = !hint3.contains(event.target) && !dressElement.contains(event.target);
         const hint1Visible = !hint1.classList.contains("hidden");
@@ -582,13 +582,13 @@ function activateColorBtn(genere) {
 
     const colorButtons = manichino.querySelectorAll('.color-btn');
 
-    // Mostra overlay e porta in primo piano il manichino
+    // mostra overlay e porta in primo piano il manichino
     overlay.classList.remove("hidden");
     manichino.style.zIndex = '1001';
     manichino.style.backgroundColor = 'white';
     manichino.style.borderRadius = '20px';
 
-    // Attiva i bottoni per la selezione del colore (carnagione)
+    // attiva i bottoni per la selezione della carnagione
     colorButtons.forEach(btn => {
         btn.style.zIndex = '1000';
 
@@ -816,126 +816,60 @@ stileButtons.forEach(button => {
     });
 });
 
-// Quando la pagina è pronta
-window.addEventListener('DOMContentLoaded', () => {
-    const popup = document.getElementById('popup');
-    const btnUomo = document.getElementById('btn-uomo');
-    const btnDonna = document.getElementById('btn-donna');
-    const closeBtn = document.querySelector('.close-btn');
+function setupDownloadOutfit(genere) {
+    const bookmarkId = genere === 'uomo' ? 'scaricaOutfitUomo' : 'scaricaOutfitDonna';
+    const manichinoId = genere === 'uomo' ? 'manichino-uomo' : 'manichino-donna';
 
-    //voglio che si apra una sola volta 
-    function openPopup() {
-        // Controlla se il popup è già stato mostrato
-        if (!sessionStorage.getItem('popupShown')) {
-        popup.style.display = 'flex';
-        sessionStorage.setItem('popupShown', 'true'); // Segna che il popup è stato mostrato
-        }
-    }
-
-    function closePopup() {
-        popup.style.display = 'none';
-    }
-
-    btnUomo.addEventListener('click', openPopup);
-    btnDonna.addEventListener('click', openPopup);
-    closeBtn.addEventListener('click', closePopup);
-});
-
-document.querySelector("#scaricaOutfitUomo input[type='checkbox']").addEventListener("click", function(event) {
-    event.preventDefault();
-
-    const manichino = document.getElementById("manichino-uomo");
-    const bookmark = document.getElementById("scaricaOutfitUomo");
-    const checkbox = this;
+    const bookmark = document.getElementById(bookmarkId);
+    const checkbox = bookmark.querySelector("input[type='checkbox']");
+    const manichino = document.getElementById(manichinoId);
     const path = bookmark.querySelector("svg path");
 
-    // Colora di giallo il bookmark
-    if (path) path.style.fill = "gold";
+    checkbox.addEventListener("click", function(event) {
+        event.preventDefault();
 
-    checkbox.checked = true;
-    bookmark.style.display = "none";
+        // colora di giallo il bookmark
+        if (path) path.style.fill = "gold";
 
-    html2canvas(manichino, { backgroundColor: null }).then(function(canvas) {
-        const base64image = canvas.toDataURL("image/png"); // estrae l’immagine contenuta nel canvas e la converte in PNG data:image/png;base64,...
+        checkbox.checked = true;
+        bookmark.style.display = "none";
 
-        fetch('php/salva_immagine.php', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'}, // dice al server che i dati nel body sono in JSON
-            body: JSON.stringify({ immagine: base64image }) // invia i dati, trasformando l'immagine js in una stringa JSON tipo {"immagine": "data:image/png;base64,..."} .
-        })
-        .then(res => res.json()) // quando il server PHP risponde, ottieni un oggetto Response. Con res.json() trasformo il corpo della risposta in un oggetto JS
-        .then(data => {
-            if (!data.errore) {
-                alert('Immagine salvata!');
-            } else {
-                alert('Errore: ' + data.messaggio);
-            }
+        html2canvas(manichino, { backgroundColor: null }).then(function(canvas) {
+            const base64image = canvas.toDataURL("image/png");
+
+            fetch('php/salva_immagine.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ immagine: base64image })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (!data.errore) {
+                    alert('Immagine salvata!');
+                } else {
+                    alert('Errore: ' + data.messaggio);
+                }
+            });
+
+            // scarica l'immagine
+            const link = document.createElement("a");
+            link.href = base64image;
+            link.download = `outfit-${genere}.png`;
+            document.body.appendChild(link);
+            link.click(); // simula il click per scasaricare automaticamente 
+            document.body.removeChild(link);
+
+            bookmark.style.display = "flex";
+
+            // dopo 3 secondi resetta checkbox e colore
+            setTimeout(() => {
+                checkbox.checked = false;
+                if (path) path.style.fill = "";
+            }, 3000);
         });
-
-        // Scarica l'immagine
-        const link = document.createElement("a");
-        link.href = base64image;
-        link.download = "outfit-uomo.png"; // quando il link viene cliccato, scarica il file e lo chiama "outfit-uomo.png”, invece di aprirlo nel browser.
-        document.body.appendChild(link);
-        link.click(); //  simula un clic sul link, in modo da far partire il download automatico
-        document.body.removeChild(link);
-
-        bookmark.style.display = "flex";
-
-        // Dopo 3 secondi resetta checkbox e colore
-        setTimeout(() => {
-            checkbox.checked = false;
-            if (path) path.style.fill = ""; // reset colore
-        }, 3000);
     });
-});
+}
 
-
-document.querySelector("#scaricaOutfitDonna input[type='checkbox']").addEventListener("click", function(event) {
-    event.preventDefault();
-
-    const manichino = document.getElementById("manichino-donna");
-    const bookmark = document.getElementById("scaricaOutfitDonna");
-    const checkbox = this;
-    const path = bookmark.querySelector("svg path");
-
-    // Colora di giallo il bookmark
-    if (path) path.style.fill = "gold";
-
-    checkbox.checked = true;
-    bookmark.style.display = "none";
-
-    html2canvas(manichino, { backgroundColor: null }).then(function(canvas) {
-        const base64image = canvas.toDataURL("image/png");
-
-        fetch('php/salva_immagine.php', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ immagine: base64image })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (!data.errore) {
-                alert('Immagine salvata!');
-            } else {
-                alert('Errore: ' + data.messaggio);
-            }
-        });
-
-        // Scarica l'immagine
-        const link = document.createElement("a");
-        link.href = base64image;
-        link.download = "outfit-donna.png";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        bookmark.style.display = "flex";
-
-        // Dopo 3 secondi resetta checkbox e colore
-        setTimeout(() => {
-            checkbox.checked = false;
-            if (path) path.style.fill = ""; // reset colore
-        }, 3000);
-    });
-});
+// inizializza per uomo e donna
+setupDownloadOutfit('uomo');
+setupDownloadOutfit('donna');
