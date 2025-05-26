@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
         container.classList.remove('invisible');
         areaPersonale.classList.remove('visible');
         areaStili.classList.remove('visible');
-        loginButton.style.display = 'block';
         aboutSection.style.display = 'none';
         profileEditContainer.style.display = 'none';
         contactFooter.style.display = 'block';
@@ -103,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
         location.reload();
 
         localStorage.removeItem(document.querySelector('.immagini-outfit'));
+        localStorage.removeItem(document.querySelector('.area-risultati'));
 
         // loginButton.removeEventListener('click', window.handleUserIconClick);
         quizButton.addEventListener('click', window.handleQuizButtonClick);

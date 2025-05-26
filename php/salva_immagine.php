@@ -31,14 +31,14 @@ if (!file_exists($cartella)) {
 // decodifica l'immagine base64
 $base64 = $data['immagine'];
 $base64 = str_replace('data:image/png;base64,', '', $base64);
-$base64 = str_replace(' ', '+', $base64);
-$immagineBinaria = base64_decode($base64);
+$base64 = str_replace(' ', '+', $base64); // riprisitina gli spazi che potrebbero essere stati sostituiti da + via POST
+$immagineBinaria = base64_decode($base64); // converte la stringa base64 in dati binari veri e propri
 
 // crea nome file unico
 $nomeFile = uniqid('outfit_', true) . '.png';
 $percorsoFile = $cartella . $nomeFile; // crea una stringa percorsoFile con dentro "immagini_salvate/outfit_xxx.png"
 
-// salva l'immagine nel server
+// crea fisicamente il file e ci scrive dentro i dati binari dell’immagine
 file_put_contents($percorsoFile, $immagineBinaria);
 
 // Connessione PDO
