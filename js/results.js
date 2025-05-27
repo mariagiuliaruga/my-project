@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.galleria = document.getElementById('galleria');
     window.sezioneImmagini = document.querySelector('.immagini-outfit');
     window.areaRisultati = document.querySelector('.area-risultati');
+    window.stiliContainer = document.getElementById('stili-container');
 
     resultsButton.addEventListener('click', function (e) {
         e.preventDefault();
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const isVisible = sezioneImmagini.style.display === 'block';
 
         sezioneImmagini.style.display = isVisible ? 'none' : 'block';
+        stiliContainer.style.display = isVisible ? 'none' : 'block';
         areaRisultati.style.display = isVisible ? 'none' : 'block';
         resultsButton.textContent = isVisible ? 'Visualizza Risultati' : 'Nascondi Risultati';
 

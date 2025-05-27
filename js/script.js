@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         registerPanel.classList.remove('visible');
         areaStili.classList.remove('visible');
 
+        stiliContainer.style.display = 'none';
         
         localStorage.setItem('showPersonalArea', 'false');
     };

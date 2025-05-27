@@ -16,25 +16,25 @@ let spostato = false;
 const vestitiPerStile = {
 oldMoney: [
     'camicia-verde', 'gilet-azzurro', 'camicetta', 'maglia', 'maglia-lanetta', 'mocassini', 'scarpe-bianche', 'stivaletti-marroni', 'pantaloni-lino',
-    'felpa-ralph', 'orologio', 'cappello-polo', 'skinny', 'pantaloni-neri', 'giacca-elegante', 'air-force'
+    'felpa-ralph', 'orologio', 'cappello-polo', 'skinny', 'pantaloni-neri', 'giacca-elegante', 'air-force', 'felpone-grigia'
 ],
 casual: [
     'maglia', 'camicia-verde', 'maglia-lanetta', 'scarpe-bianche', 'cappello-polo', 'stivaletti-marroni', 'orologio', 
     'cargo', 'camicetta', 'maglia-maglione-marrone', 'giacca-jeans', 'giacca-pelle', 'pantaloni-neri', 'jeans-grigi', 'scarpe-samba',
-     'new-balance', 'dunk-nere', 'skinny', 'pantaloncino-jeans-nero'
+     'new-balance', 'dunk-nere', 'skinny', 'pantaloncino-jeans-nero', 'felpone-grigia', 'jeans-chiari'
 ],
 vintage: [
     'maglia-lanetta', 'maglia-marrone', 'giacca-jeans', 'jeans-grigi', 'campus', 'mocassini', 'mocassini-marroni', 
      'orologio', 'giacca-pelle', 'maglia-nera', 'maglione-marrone', 'giacca-colorata', 'maglia-maglione', 'maglia-maglione-marrone', 
-     'jeans', 'jeans-grigi', 'pantaloncino-jeans-nero', 'pantaloni-lino', 'pantaloncini-jeans'
+     'jeans', 'jeans-grigi', 'pantaloncino-jeans-nero', 'pantaloni-lino', 'pantaloncini-jeans',  'felpa-nera-uomo'
 ],
 eBoy: [
     'maglia-nera',  'cappello-marrone', 'giacca-colorata', 'vans', 'cappello-marrone', 'felpa-ralph', 'giacca-pelle',
-    'pantaloncino-jeans-nero', 'jeans-neri', 'new-balance', 'skinny'
+    'pantaloncino-jeans-nero', 'jeans-neri', 'new-balance', 'skinny', 'felpa-nera-uomo', 'jeans-chiari'
 ],
 street: [
     'maglia-marrone', 'maglia-stussy', 'giacca-carhartt', 'giacca-nike', 'timberland', 'cappello-marrone', 
-    'giacca-jeans', 'pantaloncino-jeans', 'jeans-neri', 'asics', 'dunk-nere', 'new-balance', 'jeans-grigi', 'cargo'
+    'giacca-jeans', 'pantaloncino-jeans', 'jeans-neri', 'asics', 'dunk-nere', 'new-balance', 'jeans-grigi', 'cargo',  'felpa-nera-uomo'
 ],
 sportyMen: [
     'maglia-aderente', 'pantaloncino-tuta', 'giacca-nike', 'campus', 'felpa-ralph', 'cappello-polo',
@@ -605,18 +605,45 @@ function activateColorBtn(genere) {
     hint1.style.top = '-5vh';
     hint1.style.left = '-3vw';
 
-    // hint2 (istruzioni carosello)
-    hint2.textContent = 'Scorri i caroselli, scegli il vestito che preferisci e trascinalo sul manichino!';
-    hint2.classList.remove("hidden");
-    hint2.style.top = '10vh';
-    hint2.style.left = '25vw';
-    hint2.style.width = '18vw';
+    colorButtons.forEach(btn => {
+        btn.style.zIndex = '1000';
 
-    // hint4 (palette colori)
-    hint4.textContent = 'Prova a cliccare su un vestito!';
-    hint4.classList.remove("hidden");
-    hint4.style.top = '-20vh';
-    hint4.style.left = '35vw';
+        btn.addEventListener('click', () => {
+            // chiude hint1 e resetta sfondo manichino
+            hint1.classList.add("hidden");
+            manichino.style.backgroundColor = 'transparent';
+
+            // hint2 (istruzioni carosello)
+            hint2.textContent = 'Scorri i caroselli, scegli il vestito che preferisci e trascinalo sul manichino!';
+            hint2.classList.remove("hidden");
+            hint2.style.top = '10vh';
+            hint2.style.left = '25vw';
+            hint2.style.width = '18vw';
+
+            // hint4 (palette colori)
+            hint4.textContent = 'Prova a cliccare su un vestito per cambiare colore!';
+            hint4.classList.remove("hidden");
+            hint4.textContent = 'Prova a cliccare su un vestito per cambiare colore!';
+            hint4.classList.remove("hidden");
+            hint4.style.top = '-20vh';
+            hint4.style.left = '35vw';
+
+            // Listener per chiudere hint4 cliccando fuori da hint4
+            function closeHint4OnClickOutside(event) {
+                if (!hint4.contains(event.target)) {
+                    hint4.classList.add("hidden");
+                    document.removeEventListener("click", closeHint4OnClickOutside);
+                }
+            }
+
+            // aggiungo il listener globale con un timeout per evitare conflitti con lo stesso click che ha aperto hint4
+            setTimeout(() => {
+                document.addEventListener("click", closeHint4OnClickOutside);
+            }, 0);
+
+        });
+    });
+
 
     // clic altrove: chiude hint2 e hint1, poi mostra hint3 (solo se hint1 è già stato chiuso)
     function handleClickToShowHint3(event) {
@@ -631,6 +658,7 @@ function activateColorBtn(genere) {
 
             // altrimenti chiudo anche hint2 e procedo a mostrare hint3, al drop del vestito sul manichino
             hint2.classList.add("hidden");
+            hint4.classList.add("hidden");
 
             onDressDroppedOnMannequin(manichino);
 
@@ -641,6 +669,7 @@ function activateColorBtn(genere) {
     setTimeout(() => {
         document.addEventListener("drop", handleClickToShowHint3);
     }, 100);
+
 }
 
 // listener per btnUomo e btnDonna
