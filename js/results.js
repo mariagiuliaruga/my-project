@@ -43,7 +43,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (data.errore) return alert(data.messaggio);
                     
                     const stile = data.stile;
-                    const target = document.getElementById('stile-' + stile);
+                     let targetId;
+
+                    if (stile === "sporty") {
+                        if (document.getElementById("stile-sportyMen")) {
+                            targetId = "stile-sportyMen";
+                        } else {
+                            targetId = "stile-sportyWomen";
+                        }
+                    } else {
+                        targetId = "stile-" + stile;
+                    }
+
+                    const target = document.getElementById(targetId);
                     if (target) target.style.display = 'block';
 
                 });
