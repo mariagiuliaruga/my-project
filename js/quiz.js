@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     target.offsetHeight;
 
                     setTimeout(() => {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        target.scrollIntoView();
                     }, 100);
                 });
 

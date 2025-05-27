@@ -79,7 +79,7 @@ function sendPasswordResetEmail($toEmail, $resetLink) {
             ]
         ];
 
-        $mail->setFrom('mystylessence@gmail.com', 'MyStileEssence');
+        $mail->setFrom('mystylessence@gmail.com', 'MyStyleEssence');
         $mail->addAddress($toEmail);
 
         $mail->isHTML(true);
