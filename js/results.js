@@ -6,29 +6,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     resultsButton.addEventListener('click', function (e) {
         e.preventDefault();
-        // Se la galleria è visibile, nascondila
-        if (sezioneImmagini.style.display === 'block') {
-            sezioneImmagini.style.display = 'none';
-            galleria.innerHTML = ''; // Pulisce anche le immagini se vuoi
-            areaRisultati.style.display = 'none';
-            resultsButton.textContent = 'Visualizza Risultati';
 
-        } else {
-            document.querySelector('.immagini-outfit').style.display = 'block';
-            document.querySelector('.area-risultati').style.display = 'block';
+        document.querySelectorAll('.stile-container').forEach(el => {
+            el.style.display = 'none';
+        });
 
-            resultsButton.textContent = 'Nascondi Risultati';
+        const isVisible = sezioneImmagini.style.display === 'block';
+
+        sezioneImmagini.style.display = isVisible ? 'none' : 'block';
+        areaRisultati.style.display = isVisible ? 'none' : 'block';
+        resultsButton.textContent = isVisible ? 'Visualizza Risultati' : 'Nascondi Risultati';
+
+        if (!isVisible) {
+            // IMMAGINI
             fetch('php/get_immagini.php', { credentials: 'include' })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.errore) {
-                        alert(data.messaggio);
-                        return;
-                    }
+                    if (data.errore) return alert(data.messaggio);
 
-                    const galleria = document.getElementById('galleria');
-                    galleria.innerHTML = ''; // PULISCE PRIMA
-
+                    galleria.innerHTML = '';
                     data.immagini.forEach(src => {
                         const img = document.createElement('img');
                         img.src = src;
@@ -38,11 +34,18 @@ document.addEventListener('DOMContentLoaded', function () {
                         img.style.margin = '10px';
                         galleria.appendChild(img);
                     });
+                });
 
-                })
-                .catch(err => {
-                    console.error(err);
-                    alert('Errore nel caricamento delle immagini');
+            // STILE
+            fetch('php/get_stile.php', { credentials: 'include' })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.errore) return alert(data.messaggio);
+                    
+                    const stile = data.stile;
+                    const target = document.getElementById('stile-' + stile);
+                    if (target) target.style.display = 'block';
+
                 });
         }
     });

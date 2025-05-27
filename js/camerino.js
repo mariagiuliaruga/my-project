@@ -342,14 +342,14 @@ function handleColorChange(color, elementId) {
     // Salva le dimensioni e la posizione del clone (se esiste)
     let cloneDimensions = null;
     if (cloneElement) {
-    cloneDimensions = {
-        width: cloneElement.style.width,
-        position: cloneElement.style.position,
-        left: cloneElement.style.left,
-        top: cloneElement.style.top,
-        zIndex: cloneElement.style.zIndex,
-        dataZona: cloneElement.getAttribute('data-zona')
-    };
+        cloneDimensions = {
+            width: cloneElement.style.width,
+            position: cloneElement.style.position,
+            left: cloneElement.style.left,
+            top: cloneElement.style.top,
+            zIndex: cloneElement.style.zIndex,
+            dataZona: cloneElement.getAttribute('data-zona')
+        };
     }
 
     // Salva l'immagine originale solo la prima volta per poter ripristinarne il colore con il tasto reset

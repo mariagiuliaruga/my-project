@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.contactFooter = document.querySelector('.contact-footer');
     window.aboutSection = document.getElementById('about-section');
     window.sezioneImmagini = document.querySelector('.immagini-outfit');
+    window.stiliContainer = document.getElementById('stili-container');
     isLoggedIn = false;
 
     // Mostra l'area personale dopo il login
@@ -108,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
         quizButton.addEventListener('click', window.handleQuizButtonClick);
 
         pulisciGalleria();
+        pulisciStile();
 
         const loginForm=document.querySelector('.login-form');
         if(loginForm){
@@ -121,9 +123,15 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     window.pulisciGalleria = function() {
-        
         if (galleria) galleria.innerHTML = ''; // Svuota le immagini
         if (sezioneImmagini) sezioneImmagini.style.display = 'none'; // Nasconde la sezione immagini
+        resultsButton.textContent = 'Visualizza Risultati';
+    };
+
+    window.pulisciStile = function() {
+        document.querySelectorAll('.stile-container').forEach(el => {
+            el.style.display = 'none';
+        });
         resultsButton.textContent = 'Visualizza Risultati';
     };
 

@@ -34,7 +34,7 @@ if (isset($_GET['token'])) {
                 $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                 $stmt->execute();
 
-                echo "✅ Password aggiornata con successo! <br><br>";
+                echo " Password aggiornata con successo! <br><br>";
                 echo '<a href="/index.html" style="display: inline-block; padding: 10px 20px; background-color: rgb(255, 94, 159); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-family: Segoe UI, sans-serif;">Torna alla home</a>';
                 exit;
             }
