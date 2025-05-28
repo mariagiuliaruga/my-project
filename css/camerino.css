@@ -103,6 +103,7 @@ body {
   align-items: center; /* centrato verticalmente */
   flex-direction: column;
   padding: 0;
+  transform: translateY(-450px);
 }
 
 .area-uomo, .area-donna{
@@ -525,7 +526,17 @@ body {
   }
 }
 
-
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 1288px) {
+    .container-camerino {
+        transform: translateY(400px);
+    }
+}
+@media screen and (min-width: 1289px) {
+    .container-camerino {
+        transform: translateY(-450px);
+    }
 }

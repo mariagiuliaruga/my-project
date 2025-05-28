@@ -2,22 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.scrollTo(0, 0);
 });
 
-document.querySelector('.explore-link').addEventListener('click', function(e){
-    e.preventDefault();
-
-    const targetId = this.getAttribute('data-target');
-    const targetContainer = document.getElementById(targetId);
-
-    if(targetContainer){
-        targetContainer.classList.add('visible');
-    }
-
-    window.scrollTo({ top: 0, behavior: 'smooth'});
-});
-
-// serve per far caricare l'area stili dall'alto
-
-//window.funzione la rende globale
 function showAlert(message) {
     const alertBox = document.getElementById('alert-box');
     alertBox.textContent = message;
