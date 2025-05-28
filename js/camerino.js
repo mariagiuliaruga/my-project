@@ -78,8 +78,8 @@ function moveLeft() {
     const btnDonna = document.getElementById("btn-donna");
 
     // Sposta molto più in alto e a sinistra, con scala
-    btnDonna.style.transform = "translate(-50vw, -150px) scale(0.2)";
-    btnUomo.style.transform = "translate(-30vw, -150px) scale(0.2)";
+    btnDonna.style.transform = "translate(-50vw, -180px) scale(0.2)";
+    btnUomo.style.transform = "translate(-30vw, -180px) scale(0.2)";
 
     btnUomo.style.transition = "transform 0.3s ease";
     btnDonna.style.transition = "transform 0.3s ease";
@@ -87,7 +87,7 @@ function moveLeft() {
     btnDonna.classList.add("btn-mini");
     btnUomo.classList.add("btn-mini");
 
-    wrapper.style.transform = "translateY(-15vh)";
+    wrapper.style.transform = "translateY(-5px)";
     wrapper.style.transition = "transform 0.3s ease";
 
     scritta.style.transform = "translateX(-40vw) translateY(-5vh) scale(0.6)";

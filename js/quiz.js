@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         //domanda 7
         {
-            domanda: "Come porti i capelli?",
+            domanda: "Come porti la barba?",
             tipo: "select",
             opzioni: ["Sempre rasato, look pulito", "Barba corta e curata", "Barba lunga", "Solo baffi", "Un po' selvaggia, ma voluta", "Niente barba, niente sbatti"]
         },

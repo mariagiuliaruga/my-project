@@ -1,7 +1,8 @@
 .container {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
@@ -790,4 +791,23 @@
     transform: scale(1.05);
     box-shadow: 0 4px 16px rgba(255, 237, 35, 0.3);
     cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .centro {
+        flex-direction: column-reverse; /* Da row a column */
+        align-items: center;
+        text-align: center;
+    }
+
+    .text-content {
+        width: 100%;
+        padding: 0 5vw;
+    }
+
+    .gif-animata {
+        margin-top: 4vh;
+        max-width: 100%;
+        height: auto;
+    }
 }

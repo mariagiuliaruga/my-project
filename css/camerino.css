@@ -13,13 +13,13 @@
 #btn-donna {
   background-color: rgba(255, 192, 203, 0);
   width: 30vw;
-  height: 60vh;
+  height: auto;
 }
 
 #btn-uomo {
   background-color: rgba(129, 177, 255, 0);
   width: 30vw;
-  height: 60vh;
+  height: auto;
 }
 
 #btn-donna:hover, #btn-uomo:hover {

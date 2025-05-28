@@ -121,5 +121,22 @@ b {
     color: rgb(167, 54, 90);
 }
 
-  
+/* Responsive: su schermi piccoli (max 768px) */
+@media screen and (max-width: 768px) {
+    .style-entry-sx,
+    .style-entry-dx {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .img-guide {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 0 1rem 0;
+    }
+
+    .testo-stili {
+        width: 100%;
+    }
+}
   
