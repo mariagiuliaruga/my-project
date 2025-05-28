@@ -1,16 +1,12 @@
-// Inizializza gli event listener quando il documento è caricato
 document.addEventListener('DOMContentLoaded', function() {
-    const loginPanel = document.querySelector('.login-panel');
-    const quizButton = document.querySelector('.quiz-button');
-    const quizContainer = document.querySelector('.quiz-container');
-    const quizWindow = document.querySelector('.quiz-window');
-    const quizButtonActive = document.querySelector('.quiz-button.active');
-    const closeButton = document.querySelector('.quiz-close-button');
-    const questionElement = document.querySelector('.quiz-domanda');
-    const navigationElement = document.querySelector('.quiz-navigation');
-    const progressElement = document.querySelector('.quiz-progress');
-    
-    
+    window.quizButton = document.querySelector('.quiz-button');
+    window.quizContainer = document.querySelector('.quiz-container');
+    window.quizWindow = document.querySelector('.quiz-window');
+    window.closeButton = document.querySelector('.quiz-close-button');
+    window.questionElement = document.querySelector('.quiz-domanda');
+    window.navigationElement = document.querySelector('.quiz-navigation');
+    window.progressElement = document.querySelector('.quiz-progress');
+
     //event listener per il pulsante di chiusura
     if (closeButton) {
         closeButton.addEventListener('click', function() {
@@ -19,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
             quizWindow.classList.remove('visible');
         });
     }
-
 
     //Domande iniziali (genere e età)
     const sondaggioIniziale = [

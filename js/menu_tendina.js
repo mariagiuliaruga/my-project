@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+ window.menuButton = document.querySelector('.bottone');
+    window.menuTendina = document.querySelector('.menu-tendina');
+    window.homeLink = document.getElementById('home-link');
+    window.resetLink = document.getElementById('reset-link');
+    window.camerinoLink = document.getElementById('camerino-link');
+
     // Gestione apertura/chiusura menu
     if (window.menuButton && window.menuTendina) {
         window.menuButton.addEventListener('click', function (e) {
@@ -37,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.resetLink) {
         window.resetLink.addEventListener('click', function (e) {
             e.preventDefault();
-            if (typeof window.handleLogout === 'function') {
-                window.handleLogout();
+            if (typeof handleLogout === 'function') {
+                handleLogout();
             } else {
                 console.warn('handleLogout non definita');
             }
@@ -48,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.homeLink) {
         window.homeLink.addEventListener('click', function (e) {
             e.preventDefault();
-            if (typeof window.handleBackToHome === 'function') {
-                window.handleBackToHome();
+            if (typeof handleBackToHome === 'function') {
+                handleBackToHome();
             } else {
                 console.warn('handleBackToHome non definita');
             }
