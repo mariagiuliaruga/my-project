@@ -71,15 +71,48 @@ function pulisciStile() {
     resultsButton.textContent = 'Visualizza Risultati';
 }
 
-function handleQuizButtonClick() {
-    if (isLoggedIn) {
-        if (quizContainer) quizContainer.classList.add('visible');
-    } else {
-        loginPanel.classList.add('visible');
-        if (quizContainer) quizContainer.classList.remove('visible');
-        showAlert("⚠️" + "Prima ti devi loggare!");
+window.handleQuizButtonClick = function () {
+    if (typeof window.isLoggedIn === "undefined") {
+        console.error("isLoggedIn non definito");
+        return;
     }
-}
+
+    if (window.isLoggedIn) {
+        if (window.quizContainer && window.quizWindow) {
+            // Reset quiz ogni volta
+            window.currentSondaggio = [...window.sondaggioIniziale];
+            window.currentQuestion = 0;
+            window.answers = {};
+
+            if (window.navigationElement) {
+                window.navigationElement.style.display = 'flex';
+            }
+            if (window.progressElement) {
+                window.progressElement.style.display = "block";
+            }
+            if (typeof window.showQuestion === "function") {
+                window.showQuestion(window.currentQuestion);
+            }
+
+            window.quizContainer.classList.add('visible');
+            window.quizWindow?.classList.add('visible');
+        } else {
+            console.warn("quizContainer o quizWindow non definiti");
+        }
+    } else {
+        // Utente NON loggato
+        if (window.loginPanel) window.loginPanel.classList.add('visible');
+        if (window.quizContainer) window.quizContainer.classList.remove('visible');
+
+        if (typeof window.showAlert === 'function') {
+            window.showAlert("⚠️ Prima ti devi loggare!");
+        } else {
+            alert("⚠️ Prima ti devi loggare!");
+        }
+    }
+};
+
+
 
 function showError(inputElement, message) {
     const formGroup = inputElement.parentElement;

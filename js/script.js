@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.titolo = document.querySelector('.titolo-link');
     window.quizButton = document.querySelector('.quiz-button');
-    window.quizButton.addEventListener('click', handleQuizButtonClick);
-    
     window.closeButtons = document.querySelectorAll('.close-button');
     window.registerLink = document.querySelector('.register-link');
     window.loginLink = document.querySelector('.login-link');
@@ -122,6 +120,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 window.menuTendina.classList.remove('visible');
             }
         });
+    }
+
+    if (window.quizButton) {
+        window.quizButton.addEventListener('click', window.handleQuizButtonClick);
     }
 
     const linkDonna = document.getElementById("link-donna");
