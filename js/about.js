@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+    window.aboutSection = document.getElementById('about-section');
     const aboutLink = document.getElementById('about-link');
-    const aboutSection = document.getElementById('about-section');
     const aboutInner = document.getElementById('about-inner');
   
     aboutLink.addEventListener('click', function (e) {

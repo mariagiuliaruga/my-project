@@ -343,7 +343,7 @@
 
     <div class="area-risultati">
     <div id="stili-container">
-    <link rel="stylesheet" href="css/risultati.css">
+        <link rel="stylesheet" href="css/risultati.css">
 
         <div class="stile stile-container" id="stile-bohoChic">
             <h2>Stile BohoChic</h2>
@@ -437,7 +437,7 @@
             <div class="contact-info">
                 <div class="footer-text">GETTING DRESSED HAS NEVER BEEN THIS EASY - thanks to MSE! </div>
                 <div class="social-links">
-                    <a href="mailto:mystylessence@gmail.com" class="social-link">
+                    <a href="https://mail.google.com/mail/?view=cm&to=mystylessence@gmail.com" target="_blank" class="social-link">
                         <img src="media/logo/gmail.png" alt="Email" class="social-icon">
                     </a>
                     <a href="https://www.facebook.com/profile.php?id=61576822162271" class="social-link" target="_blank">
@@ -456,32 +456,15 @@
             </div>
         </div>
     </footer>
+    <script src="js/caricamento_home.js"></script>
+    <script src="js/newsletter.js"></script>
+    <script src="js/function_script.js"></script>
+    <script src="js/menu_tendina.js"></script>
+    <script src="js/profile_edit.js"></script>
     <script src="js/quiz.js"></script>
-    <script src="js/script.js"></script> 
-    <script src="js/profile-edit.js"></script>
-    <script src="js/caricamentoHome.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/login_register.js"></script>
     <script src="js/about.js"></script>
-    <script src="js/menuTendina.js"></script>
     <script src="js/results.js"></script>
-    
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-          const popup = document.getElementById('newsletterPopup');
-          const closeBtn = document.getElementById('closeBtn');
-      
-          // Mostra il popup dopo 8 secondi se non già mostrato in questa sessione
-          if (!sessionStorage.getItem('newsletterShown')) {
-            setTimeout(() => {
-              popup.classList.remove('hidden');
-              sessionStorage.setItem('newsletterShown', 'true');
-            }, 3000); 
-          }     
-          // Chiude il popup al click
-          closeBtn.addEventListener('click', () => {
-            popup.classList.add('hidden');
-          });
-        });
-        
-      </script>
 </body>
 </html>

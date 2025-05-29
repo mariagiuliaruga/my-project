@@ -13,13 +13,13 @@
 #btn-donna {
   background-color: rgba(255, 192, 203, 0);
   width: 30vw;
-  height: 60vh;
+  height: auto;
 }
 
 #btn-uomo {
   background-color: rgba(129, 177, 255, 0);
   width: 30vw;
-  height: 60vh;
+  height: auto;
 }
 
 #btn-donna:hover, #btn-uomo:hover {
@@ -103,6 +103,7 @@ body {
   align-items: center; /* centrato verticalmente */
   flex-direction: column;
   padding: 0;
+  transform: translateY(-450px);
 }
 
 .area-uomo, .area-donna{
@@ -201,7 +202,7 @@ body {
 
 #manichino-uomo #zona-orologio{
   top: 46%;
-  left: 2%;
+  left: 5%;
   height: 2%;
   width: 8%;
   background: transparent;
@@ -525,7 +526,61 @@ body {
   }
 }
 
-
 .hidden {
   display: none;
+}
+
+/* Schermi piccoli */
+@media screen and (max-width: 767px) {
+    .container-camerino {
+        transform: translateY(400px);
+    }
+}
+
+/* Schermi medi */
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+    .container-camerino {
+        transform: translateY(150px);
+    }
+}
+
+/* Schermi grandi */
+@media screen and (min-width: 1280px) {
+    .container-camerino {
+        transform: translateY(-450px);
+    }
+}
+
+@media (max-width: 1500px) {
+  .area-uomo, .area-donna {
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+  }
+
+  .area-sx {
+    order: 1;
+    width: 100%;
+    align-items: center;
+  }
+
+  .carousel-container-sx-alto,
+  .carousel-container-sx-basso,
+  .carousel-container-dx {
+    margin: 10px auto;
+    top: 0;
+    position: relative;
+  }
+
+  .manichino {
+    order: 2;
+    width: 80%;
+    max-width: 300px;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  body{
+    gap: 2vh;
+  }
 }

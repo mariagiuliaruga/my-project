@@ -110,8 +110,6 @@
     left: 130%;
 }
 
-
-/* Responsive design */
 @media (max-width: 768px) {
     .stili-container {
         padding: 0.5rem;
@@ -134,5 +132,59 @@
     .link-manichino {
         padding: 12px 30px;
         font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .stili-container {
+        padding: 0.5rem;
+    }
+
+    .stile {
+        padding: 1rem;
+        margin: 0.5rem auto;
+    }
+
+    .stile img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .stile h2 {
+        font-size: 1.8rem;
+        padding-bottom: 8px;
+    }
+
+    .stile p {
+        font-size: 1rem;
+        margin: 1rem auto;
+        line-height: 1.5;
+        padding: 0 1rem;
+    }
+
+    .manichino-link {
+        width: 100%;
+        font-size: 1rem;
+        padding: 10px 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .stile {
+        padding: 0.8rem;
+    }
+
+    .stile h2 {
+        font-size: 1.5rem;
+    }
+
+    .stile p {
+        font-size: 0.95rem;
+    }
+
+    .manichino-link {
+        font-size: 0.95rem;
+        padding: 10px 0;
     }
 }
