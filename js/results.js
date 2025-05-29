@@ -26,7 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     if (data.errore) return alert(data.messaggio);
 
-                    galleria.innerHTML = '';
+                    galleria.innerHTML = ''; // svuota la galleria
+                    // inserisce ogni immagine nella galleria
                     data.immagini.forEach(src => {
                         const img = document.createElement('img');
                         img.src = src;
@@ -45,9 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (data.errore) return alert(data.messaggio);
                     
                     const stile = data.stile;
-                     let targetId;
+                    let targetId;
 
-                    if (stile === "sporty") {
+                    if (stile === "sporty") { //gestione stile sporty (c'è sia sportyMen che sportyWomen)
                         if (document.getElementById("stile-sportyMen")) {
                             targetId = "stile-sportyMen";
                         } else {

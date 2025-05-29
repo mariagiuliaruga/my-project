@@ -530,13 +530,57 @@ body {
   display: none;
 }
 
-@media screen and (max-width: 1288px) {
+/* Schermi piccoli */
+@media screen and (max-width: 767px) {
     .container-camerino {
         transform: translateY(400px);
     }
 }
-@media screen and (min-width: 1289px) {
+
+/* Schermi medi */
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+    .container-camerino {
+        transform: translateY(150px);
+    }
+}
+
+/* Schermi grandi */
+@media screen and (min-width: 1280px) {
     .container-camerino {
         transform: translateY(-450px);
     }
+}
+
+@media (max-width: 1500px) {
+  .area-uomo, .area-donna {
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+  }
+
+  .area-sx {
+    order: 1;
+    width: 100%;
+    align-items: center;
+  }
+
+  .carousel-container-sx-alto,
+  .carousel-container-sx-basso,
+  .carousel-container-dx {
+    margin: 10px auto;
+    top: 0;
+    position: relative;
+  }
+
+  .manichino {
+    order: 2;
+    width: 80%;
+    max-width: 300px;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  body{
+    gap: 2vh;
+  }
 }

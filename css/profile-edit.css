@@ -16,8 +16,6 @@
     display: block;
 }
 
-
-
 .profile-form {
     width: 100%;
     max-width: 800px;
@@ -115,14 +113,13 @@
     border-radius: 10px;
 }
 
-/* Media query per tablet */
+/* media query per tablet */
 @media (max-width: 1024px) {
     .profile-edit-container {
         max-width: 85vw;
         margin: 15vh auto 5vh;
         padding: 3vh 4vw;
     }
-    
     
     .form-group label {
         font-size: 1.1rem;
@@ -137,16 +134,14 @@
     }
 }
 
-/* Media query per dispositivi mobili */
+/* media query per dispositivi mobili */
 @media (max-width: 768px) {
     .profile-edit-container {
         max-width: 90vw;
         margin: 18vh 5vw 5vh;
         padding: 3vh 4vw;
     }
-    
-    
-    
+
     .form-group label {
         font-size: 1rem;
     }
@@ -160,14 +155,13 @@
     }
 }
 
-/* Per schermi molto piccoli */
+/* per schermi molto piccoli */
 @media (max-width: 480px) {
     .profile-edit-container {
         max-width: 95vw;
         margin: 15vh auto 5vh;
         padding: 2.5vh 3vw;
     }
-    
     
     .form-group label {
         font-size: 0.95rem;
@@ -182,7 +176,7 @@
     }
 }
 
-/* Stili per il campo email non modificabile */
+/* stili per il campo email non modificabile */
 .form-group input[readonly] {
     background-color: rgba(0, 0, 0, 0.05);
     cursor: not-allowed;
@@ -195,7 +189,7 @@
     box-shadow: none;
 }
 
-/* Stili per le notifiche toast */
+/* stili per le notifiche toast */
 .toast-container {
     position: fixed;
     top: 50%;
@@ -245,7 +239,7 @@
     letter-spacing: -0.3px;
 }
 
-/* Animazione di entrata */
+/* animazione di entrata */
 @keyframes slideIn {
     from {
         transform: translateY(20px);
@@ -257,7 +251,7 @@
     }
 }
 
-/* Animazione di uscita */
+/* animazione di uscita */
 @keyframes slideOut {
     from {
         transform: translateY(0);

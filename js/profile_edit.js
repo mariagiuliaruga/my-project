@@ -1,25 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // -------- Campo email readonly e precompilato ----------
+    // campo email readonly e precompilato
     if (window.userEmail) {
         const emailInput = document.getElementById('email');
         if (emailInput) {
             emailInput.value = window.userEmail;
             emailInput.readOnly = true;
             emailInput.title = "L'email non può essere modificata";
-            window.emailInput = emailInput;  // salva globalmente per riuso
+            window.emailInput = emailInput;  // memorizza un riferimento globale a emailInput per riutilizzarla
         } else {
             console.error("Input con id 'email' non trovato nel DOM");
         }
     } 
 
-    // ---------- Variabili form profilo -----------
     window.profileForm = document.getElementById('profile-edit-form');
     window.cancelButton = document.querySelector('.cancel-button');
     window.currentPasswordInput = document.getElementById('current-password');
     window.newPasswordInput = document.getElementById('new-password');
     window.confirmPasswordInput = document.getElementById('confirm-password');
 
-    // ----------- Validazioni password ---------------
+    // validazione password eseguita quando esco dal campo di input, cioè se il campo perde il focus
     currentPasswordInput.addEventListener('blur', function() {
         if (!this.value) {
             showError(this, 'La password attuale è obbligatoria');
@@ -50,11 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ----------- Submit form profilo ----------------
+    // event listener al submit del form
     profileForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        window.email = (window.emailInput && window.emailInput.value) || window.userEmail; //non so perchè ma non la aggiorna
+        window.email = (window.emailInput && window.emailInput.value) || window.userEmail; // usa userEmail se emailInput non è disponibile
         window.currentPassword = currentPasswordInput.value;
         window.newPassword = newPasswordInput.value;
         console.log(`mail ${window.email}`);
@@ -64,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let isValid = true;
 
+        // mostro errori se qualche campo non è valido
         if (!currentPassword) {
             showError(currentPasswordInput, 'La password attuale è obbligatoria');
             isValid = false;

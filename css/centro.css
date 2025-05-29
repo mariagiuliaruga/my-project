@@ -211,7 +211,6 @@
     font-size: clamp(0.8rem, 1.5vw, 1.2rem);
 }
 
-/* Media queries per responsività */
 @media (min-width: 768px) {
     .main-title {
         width: 80vw;
@@ -495,14 +494,14 @@
 .cancel-button:hover {
     background-color: #e0e0e0;
 }
-/* Overlay visibile */
+
+/* overlay visibile */
 .modal-overlay.visible,
 .forgot-password-panel.visible {
   display: block;
   animation: fadeInScale 0.35s ease-out forwards;
 }
 
-/* Pannello principale */
 .forgot-password-panel {
   position: fixed;
   top: 50%;
@@ -520,7 +519,6 @@
   text-align: center;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
- 
 
 @keyframes fadeInScale {
   from {
@@ -533,7 +531,7 @@
   }
 }
 
-/* Titolo */
+/* titolo */
 .forgot-password-panel h2 {
   font-size: 1.4rem;
   color: #222;
@@ -541,7 +539,7 @@
   font-weight: 600;
 }
 
-/* Contenitore campo e bottone */
+/* contenitore campo e bottone */
 .forgot-password-panel .form-group {
   display: flex;
   flex-direction: column;
@@ -550,7 +548,7 @@
   margin-bottom: 12px;
 }
 
-/* Campo email */
+/* campo email */
 .forgot-password-panel input[type="email"] {
   padding: 10px 12px;
   border: 1px solid #ccc;
@@ -564,7 +562,7 @@
   border-color: rgb(167, 54, 90);
 }
 
-/* Pulsante invio */
+/* pulsante invio */
 .forgot-password-panel button[type="submit"] {
   padding: 10px 16px;
   background-color: rgb(167, 54, 90);
@@ -757,7 +755,7 @@
   transform: scale(1.05);
 }
 
-/* Titolo */
+/* titolo */
 .galleria-titolo {
     text-align: center;
     font-size: 2em;
@@ -795,7 +793,7 @@
 
 @media (max-width: 767px) {
     .centro {
-        flex-direction: column-reverse; /* Da row a column */
+        flex-direction: column-reverse; /* da row a column */
         align-items: center;
         text-align: center;
     }

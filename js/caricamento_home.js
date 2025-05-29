@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.scrollTo(0, 0);
 });
 
+// messaggi di alert personalizzati
 function showAlert(message) {
     const alertBox = document.getElementById('alert-box');
     alertBox.textContent = message;

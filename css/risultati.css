@@ -110,8 +110,6 @@
     left: 130%;
 }
 
-
-/* Responsive design */
 @media (max-width: 768px) {
     .stili-container {
         padding: 0.5rem;

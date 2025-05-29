@@ -36,9 +36,9 @@
 }
 
 .genere-navigation{
-    position: sticky;      /* la mantiene visibile mentre scorri */
+    position: sticky; /* la mantiene visibile mentre scorri */
     top: 80px;                
-    z-index: 1000;         /* resta sopra agli altri elementi */
+    z-index: 1000; 
     display: flex;         
     justify-content: center;
     gap: 1.5rem;  
@@ -121,7 +121,7 @@ b {
     color: rgb(167, 54, 90);
 }
 
-/* Responsive: su schermi piccoli (max 768px) */
+/* schermi piccoli */
 @media screen and (max-width: 768px) {
     .style-entry-sx,
     .style-entry-dx {

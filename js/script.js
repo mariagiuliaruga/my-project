@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.stiliContainer = document.getElementById('stili-container');
     window.isLoggedIn = false;
 
+    // click sul titolo rimanda alla home
     titolo.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -64,18 +65,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // al click apre loginpanel
     registerLink.addEventListener('click', function (e) {
         e.preventDefault();
         loginPanel.classList.remove('visible');
         registerPanel.classList.add('visible');
     });
 
+    // al click apre registerpanel
     loginLink.addEventListener('click', function (e) {
         e.preventDefault();
         registerPanel.classList.remove('visible');
         loginPanel.classList.add('visible');
     });
 
+    // bottone di modifica profilo
     profileButton.addEventListener('click', function (e) {
         e.preventDefault();
         profileEditContainer.style.display = 'block';
@@ -90,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
         handleLogout();
     });
 
-    // per far caricare l'area stili dall'alto
+    // per far caricare l'area stili dall'inizio della pagina
     document.querySelector('.explore-link').addEventListener('click', function(e){
         e.preventDefault();
 
@@ -128,16 +132,17 @@ document.addEventListener('DOMContentLoaded', function () {
         linkUomo.classList.remove("active");
     });
 
+    // rimanda all'area stili uomo
     linkUomo.addEventListener("click", () => {
         linkUomo.classList.add("active");
         linkDonna.classList.remove("active");
     });
     
-    //rendere visibile il moodboard corrispondente allo stile dell'utente
+    // rendere visibile il moodboard corrispondente allo stile dell'utente
     const stili = document.querySelectorAll('.stile');
     stili.forEach(stile => stile.style.display = 'block');
 
-    // Gestisci i link che portano al camerino
+    // gestisce i link degli stili che portano al camerino
     const links = document.querySelectorAll('a[href*="camerino.html"]');
     links.forEach(link => {
         // Rimuovi il preventDefault per permettere la navigazione

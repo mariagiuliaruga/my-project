@@ -393,16 +393,7 @@ che contiene un input(casella del checkbox) e un div(contenitore dell'immagine e
     .shoe-img, .accessory-img {
         max-height: 200px;
     }
-}
 
-@media (max-width: 480px) {
-    .shoe-img, .accessory-img {
-        max-height: 150px;
-    }
-}
-
-/* Media query per dispositivi mobili */
-@media (max-width: 768px) {
     .quiz-window {
         width: 90vw;
         height: 80vh;
@@ -410,6 +401,10 @@ che contiene un input(casella del checkbox) e un div(contenitore dell'immagine e
 }
 
 @media (max-width: 480px) {
+    .shoe-img, .accessory-img {
+        max-height: 150px;
+    }
+
     .quiz-window {
         width: 95vw;
         height: 75vh;
