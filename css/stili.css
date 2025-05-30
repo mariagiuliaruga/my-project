@@ -121,12 +121,12 @@ b {
     color: rgb(167, 54, 90);
 }
 
-/* schermi piccoli */
 @media screen and (max-width: 768px) {
     .style-entry-sx,
     .style-entry-dx {
         flex-direction: column;
         text-align: center;
+        margin: 0 1rem 2rem 1rem;
     }
 
     .img-guide {
@@ -137,6 +137,77 @@ b {
 
     .testo-stili {
         width: 100%;
+        padding: 0 1rem;
+    }
+
+    .area-stili h1 {
+        font-size: 2rem;
+        padding: 0 0.5rem;
+    }
+
+    .area-stili p {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .genere-navigation {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap; /* se serve su schermi piccolissimi */
+        padding: 0 1rem;
+    }
+
+    .genere-navigation a {
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        font-size: 1.1rem;
+        text-decoration: none;
+        color: #8B0000;
+        border: 2px solid #8B0000;
+        border-radius: 30px;
+        background-color: #fff;
+        transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    }
+
+    .genere-navigation a:hover {
+        background-color: #8B0000;
+        color: #fff;
+        transform: scale(1.05);
     }
 }
-  
+
+@media screen and (max-width: 480px) {
+    .area-stili {
+        padding: 1rem 2rem 1rem 1rem; /* destra 2rem */
+    }
+
+    .area-stili h1 {
+        font-size: 1.8rem;
+        padding: 0 0.5rem;
+    }
+
+    .area-stili p {
+        font-size: 0.95rem;
+        padding: 0 0.5rem;
+    }
+
+    .genere-navigation {
+        padding: 0 2rem 0 1rem; /* destra 2rem */
+    }
+
+    .genere-navigation a {
+        font-size: 1rem;
+    }
+
+    .style-entry-sx,
+    .style-entry-dx {
+        margin-bottom: 2rem;
+        margin-left: 1rem;
+        margin-right: 2rem; /* più margine a destra */
+    }
+
+    .testo-stili {
+        padding: 0 1.5rem 0 0.5rem; /* destra 1.5rem */
+    }
+}

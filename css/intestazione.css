@@ -554,3 +554,20 @@ body {
     height: 25%;
 }
 }
+
+@media screen and (max-width: 900px) and (orientation: landscape) {
+    .login-button {
+      font-size: 1.1rem ;
+      width: 150px ;
+      height: 30px ;
+      top: -2.5px;
+      padding-top: 2px;
+      position: relative;  
+    }
+    .logo-img {
+        width: 180px;
+        transform: translateY(-13px); 
+      }
+      
+      
+  }

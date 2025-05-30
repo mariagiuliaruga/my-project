@@ -792,20 +792,38 @@
 }
 
 @media (max-width: 767px) {
+    .login-panel input,
+    .register-panel input,
+    .login-panel select,
+    .register-panel select,
+    .login-panel textarea,
+    .register-panel textarea {
+      font-size: 0.9rem;
+      padding: 8px 10px;
+      width: 94%;
+      max-width: 450px;
+    }
+  
+    .login-panel,
+    .register-panel {
+      padding: 20px;
+    }
     .centro {
         flex-direction: column-reverse; /* da row a column */
         align-items: center;
         text-align: center;
     }
-
-    .text-content {
-        width: 100%;
-        padding: 0 5vw;
+    .text-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    .text-content p:first-child {
+        font-size: 1.1rem;
     }
 
+
     .gif-animata {
-        margin-top: 4vh;
-        max-width: 100%;
-        height: auto;
+        margin-top: -150px;
     }
 }
